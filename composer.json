@@ -1,0 +1,44 @@
+{
+    "name": "threef/entree",
+    "description": "Front End Extensions Orchestra Platform",
+    "homepage": "",
+    "keywords": ["orchestra-platform", "orchestral", "laravel", "administrator", "admin", "user-management", "front"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Johari Jumali",
+            "email": "joharijumali@gmail.com",
+            "homepage": "https://bitbucket.org/joesama"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+    
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "knplabs/knp-snappy":"dev-master",
+        "maatwebsite/excel": "~2.0.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.1",
+        "orchestra/testing": "~3.2.0"
+    },
+    "suggest": {
+    },
+    "scripts": {
+        "test": [
+            "./vendor/bin/phpunit"
+        ],
+        "update-frontend": [
+            "bower update",
+            "bower-installer",
+            "gulp"
+        ]
+    },
+    "minimum-stability": "dev"
+}

@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
  * @package Threef\Entree
  * @author joharijumali@gmail.com
  **/
-class Entree extends ServiceProvider
+class EntreeServiceProvider extends ServiceProvider
 {
 
 	/**
@@ -20,7 +20,6 @@ class Entree extends ServiceProvider
     public function boot()
     {
     	$path = realpath(__DIR__.'/../');
-    	dd($path);
     	$this->bootingExtensions($path);
     	$this->publishExtensionsComponent($path);
 

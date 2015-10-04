@@ -22,6 +22,8 @@ class EntreeServiceProvider extends ServiceProvider
     	$path = realpath(__DIR__.'/../');
     	$this->bootingExtensions($path);
     	$this->publishExtensionsComponent($path);
+        $this->bootingEventListener();
+        $this->publishOrchestraLang($path);
 
     	require_once "{$path}/src/routes.php";
     }
@@ -33,7 +35,7 @@ class EntreeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registeringServices();
+        $this->registeringEntreeServices();
     }
 
 
@@ -42,16 +44,55 @@ class EntreeServiceProvider extends ServiceProvider
      **/
     protected function bootingExtensions($path)
     {
-    	 $this->loadViewsFrom($path.'/resources/views', 'entree');
-    	 $this->loadTranslationsFrom($path.'/resources/lang', 'entree');
+         $this->loadViewsFrom($path.'/resources/views', 'entree');
+         $this->loadTranslationsFrom($path.'/resources/lang', 'entree');
     }
-
 
     /**
      * undocumented function
      *
      * @return void
      * @author 
+     **/
+    protected function publishOrchestraLang($path)
+    {
+        $this->publishes([
+            $path.'/resources/lang/orchestra' => base_path('resources/lang/packages/orchestra/foundation/ms'),
+            $path.'/resources/lang/app' => base_path('resources/lang/ms'),
+        ]);
+    }
+
+
+    /**
+     * Booting Event Listener
+     **/
+    protected function bootingEventListener()
+    {
+        //  Register Listener For User Related Database
+        $this->bootUserEventListener();
+
+        $this->app['events']->listen('orchestra.install.schema', 'Threef\Entree\Event\Listener\EntreeMigrator');
+
+
+    }
+
+
+    /**
+     * User Related Event Listener
+     **/
+    protected function bootUserEventListener()
+    {
+        $this->app['events']->listen('orchestra.install.schema: users', 'Threef\Entree\Event\Listener\EntreeUser');
+        $this->app['events']->listen('threef.user.profile', 'Threef\Entree\Event\Listener\EntreeUserProfile');
+        $this->app['events']->listen('orchestra.install: user', 'Threef\Entree\Event\Listener\EntreeRegisterUser');
+        $this->app['events']->listen('orchestra.list: users', 'Threef\Entree\Event\Listener\Presenter\EntreeUserGrid');
+        $this->app['events']->listen('entree.user.list: action', 'Threef\Entree\Event\Listener\Presenter\EntreeUserGridAction');
+    }
+
+
+    /**
+     * Publish Public Component
+     *
      **/
     protected function publishExtensionsComponent($path)
     {
@@ -69,9 +110,15 @@ class EntreeServiceProvider extends ServiceProvider
      * @return void
      * @author 
      **/
-    protected function registeringServices()
+    protected function registeringEntreeServices()
     {
-    	$this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
+        $this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
+        $this->app->register('yajra\Datatables\DatatablesServiceProvider');
+    	$this->app->register('Collective\Html\HtmlServiceProvider');
+
+        // Bind Orchestra\Model\User with Threef\Entree\User\User
+        $this->app->bind('Orchestra\Model\User', 'Threef\Entree\Database\Model\User');
+        $this->app->bind('Orchestra\Html\HtmlBuilder', 'Collective\Html\HtmlBuilder');
     }
 
 } // END class Entree 

@@ -24,8 +24,8 @@ class EntreeRegisterUser
      */
     public function handle($user, $input)
     {
-        $emel = array_get($input,'emel');
-        $user->user_name = strstr($email, '@', true);
+        $email = array_get($input,'emel');
+        $user->username = strstr($email, '@', true);
 
     }
 

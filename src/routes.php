@@ -1,17 +1,16 @@
 <?php
 
-Route::group(['namespace' => 'Threef\Entree\Http\Controller','middleware' => 'orchestra.installable'], function($router)
+Route::group(['namespace' => 'Threef\Entree\Http\Controller','middleware' => [ 'web','orchestra.installable']], function($router)
 {
 	$router->group(['middleware' => 'guest'],function($router){
 		$router->get('/', 'Entrance@getIndex');
 		$router->get('/login', 'Entrance@getIndex');
 		$router->post('/login', 'Auth\Access@login');
+		$router->get('/forgot', 'Auth\ResetPassword@getSelfReset');
+		$router->post('/forgot', 'Auth\ResetPassword@postSelfReset');
+		$router->get('/forgot/reset/{token}', 'Auth\ResetPassword@getResetPassword');
+		$router->post('/forgot/reset/{token}', 'Auth\ResetPassword@postResetPassword');
 	});
-
-	$router->get('/forgot', 'Auth\ResetPassword@getSelfReset');
-	$router->post('/forgot', 'Auth\ResetPassword@postSelfReset');
-	$router->get('/forgot/reset/{token}', 'Auth\ResetPassword@getResetPassword');
-	$router->post('/forgot/reset/{token}', 'Auth\ResetPassword@postResetPassword');
 
 	$router->group(['middleware' => 'auth.basic'],function($router){
 		$router->get('/home', 'Auth\Access@home');

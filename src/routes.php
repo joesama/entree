@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace' => 'Threef\Entree\Http\Controller'], function($router)
+Route::group(['namespace' => 'Threef\Entree\Http\Controller','middleware' => 'orchestra.installable'], function($router)
 {
 	$router->group(['middleware' => 'guest'],function($router){
 		$router->get('/', 'Entrance@getIndex');
@@ -19,6 +19,7 @@ Route::group(['namespace' => 'Threef\Entree\Http\Controller'], function($router)
 		$router->get('/password', 'Auth\Password@edit');
 		$router->post('/password', 'Auth\Password@update');
 		$router->get('/user', 'User@getIndex');
+		$router->get('/user/new', 'User@create');
 		$router->get('/userdata', 'User@getUsers');
 		$router->get('/user/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);
 	});

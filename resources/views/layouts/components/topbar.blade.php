@@ -27,7 +27,7 @@
                             {{ trans('orchestra/foundation::title.users.list') }}
                             </a>
                         </li>
-                        <li><a href="#">{{ trans('orchestra/foundation::title.users.create') }}</a></li>
+                        <li><a href="{!! handles('threef::user/new') !!}">{{ trans('orchestra/foundation::title.users.create') }}</a></li>
                     </ul>
                 </li>
                     

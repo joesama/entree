@@ -24,9 +24,9 @@
         "orchestra/foundation": "3.2.*",
         "orchestra/installer": "~3.2",
         "knplabs/knp-snappy":"0.4.*",
-        "maatwebsite/excel": "~2.0.0",
+        "maatwebsite/excel": "~2.1.0",
         "yajra/laravel-datatables-oracle":"~6.0",
-        "laravelcollective/html": "5.1.*"
+        "laravelcollective/html": "5.2.*"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.1",

@@ -1,10 +1,11 @@
 <?php namespace Threef\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Orchestra\Foundation\Http\Controllers\UsersController;
 use Threef\Entree\Http\Processor\UserManager;
 use Orchestra\Foundation\Processor\User as Processor;
+
+
 
 class User extends UsersController
 {
@@ -13,7 +14,8 @@ class User extends UsersController
 
         parent::__construct($parent);
 
-        $this->processor = $parent;
+        $this->parent = $parent;
+        $this->manager = $manager;
 
     }
 
@@ -26,25 +28,22 @@ class User extends UsersController
     {
         set_meta('page-header',trans('entree::entree.user.manage'));
         
-        return $this->processor->index($this, Input::all());
+        return $this->manager->listUser($request);
     }
+
 
 
     /**
-     * Response when list users page succeed.
+     * undocumented function
      *
-     * @param  array  $data
-     *
-     * @return mixed
-     */
-    public function showUsers(array $data)
+     * @return void
+     * @author 
+     **/
+    public function getUserModification(Request $request)
     {
- 
-        event('entree.user.list: action',[$data['table']]);
+        set_meta('page-header',trans('entree::entree.user.manage'));
 
-        return view('entree::entree.user.list', $data);
+        return $this->manager->userPage($request);
     }
-
-
 
 }

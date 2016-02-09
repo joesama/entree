@@ -14,4 +14,17 @@ class User extends OrchestraUser implements AuthorizableContract, CanResetPasswo
 {
 	 use Authorizable;
 
+	 
+	public function getFullnameAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
+	 
+	public function getStatusAttribute($value)
+    {
+
+        return trans('entree::entree.user.status.'.$value);
+    }
+
 } // END class User extends OrchestraUser 

@@ -6,6 +6,7 @@ return [
 		'emel' => 'Emel',
 		'password' => 'Kata Laluan',
 		'forgot-password' => 'Lupa Kata Laluan',
+		'lastlogin' => 'Daftar Masuk Terakhir',
 		'button' => [
 			'signin' => 'Daftar Masuk'
 		]
@@ -24,11 +25,22 @@ return [
 	],
 	'user' => [
 		"manage" => "Pengurusan Pengguna",
+		"status" => [
+			"1" => "Aktif",
+			"0" => "Tidal Aktif"
+		],
+		"action" => [
+			'edit' => 'Kemaskini',
+			'reset' => 'Tukar Katalaluan',
+			'remove' => 'Hapus'
+		],
 		"grid" => [
 			'username' => 'ID Pengguna',
 			'email' => 'Emel Pengguna',
 			'role' => 'Peranan',
 			'fullname' => 'Nama Pengguna',
+			"created" => "Daftar Pada",
+			"status" => "Status",
 		]
 	],
 	'button' => [

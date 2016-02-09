@@ -84,6 +84,7 @@ class EntreeServiceProvider extends ServiceProvider
     {
         $this->app['events']->listen('orchestra.install.schema: users', 'Threef\Entree\Event\Listener\EntreeUser');
         $this->app['events']->listen('threef.user.profile', 'Threef\Entree\Event\Listener\EntreeUserProfile');
+        $this->app['events']->listen('threef.user.login', 'Threef\Entree\Event\Listener\EntreeUserLogin');
         $this->app['events']->listen('orchestra.install: user', 'Threef\Entree\Event\Listener\EntreeRegisterUser');
         $this->app['events']->listen('orchestra.list: users', 'Threef\Entree\Event\Listener\Presenter\EntreeUserGrid');
         $this->app['events']->listen('entree.user.list: action', 'Threef\Entree\Event\Listener\Presenter\EntreeUserGridAction');
@@ -113,7 +114,7 @@ class EntreeServiceProvider extends ServiceProvider
     protected function registeringEntreeServices()
     {
         $this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
-        $this->app->register('yajra\Datatables\DatatablesServiceProvider');
+        $this->app->register('Yajra\Datatables\DatatablesServiceProvider');
     	$this->app->register('Collective\Html\HtmlServiceProvider');
 
         // Bind Orchestra\Model\User with Threef\Entree\User\User

@@ -2,8 +2,9 @@
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Carbon\Carbon;
 
-class EntreeUser
+class EntreeUserLogin
 {
 
     /**
@@ -22,13 +23,12 @@ class EntreeUser
      * @param  threef.user.profile  $event
      * @return void
      */
-    public function handle($table)
+    public function handle($user)
     {
-        $table->engine = 'InnoDB';
-        $table->string('username');
-        $table->integer('isAdmin')->default(0);
-        $table->unique('username');
-        $table->datetime('lastlogin');
+        // $user = User::find($user->id);
+        $user->lastlogin = Carbon::now()->toDateTimeString();
+        $user->save();
+
     }
 
 

@@ -42,6 +42,14 @@
             "bower update",
             "bower-installer",
             "gulp"
+        ],
+        "post-install-cmd": [
+            "php artisan datatables:make UsersDataTable",
+            "php artisan vendor:publish"
+        ],
+        "post-update-cmd": [
+            "php artisan datatables:make UsersDataTable",
+            "php artisan vendor:publish"
         ]
     },
     "minimum-stability": "dev"

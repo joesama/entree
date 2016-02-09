@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Threef\Entree\Database\Model\User;
 use Threef\Entree\DataGrid\Grid;
 
-use yajra\Datatables\Datatables;
+use Threef\Entree\DataGrid\UsersDataTable;
 
 
 /**
@@ -16,24 +16,21 @@ use yajra\Datatables\Datatables;
 class UserManager
 {
 
-	public function __construct(Grid $grid){
+	public function __construct(UsersDataTable $grid){
 
 		$this->grid = $grid;
 	}
 
 	/**
-	 * undocumented function
+	 * Show All Registered User
 	 *
-	 * @return void
-	 * @author 
+	 * @return $grid  UsersDataTable
 	 **/
-	public function listUser($control, Request $request)
+	public function listUser(Request $request)
 	{	
-
-		$html = $this->grid->attach($request,User::select('*'));
-
-		return $control->listUsers(compact('html'));
+		return $this->grid->render('entree::entree.user.datatables');
 	}
+
 
 	/**
 	 * undocumented function
@@ -41,19 +38,11 @@ class UserManager
 	 * @return void
 	 * @author 
 	 **/
-	public function getUserData($request)
+	public function userPage(Request $request)
 	{
-		$users = User::select(['id', 'fullname', 'email', 'password', 'created_at', 'updated_at']);
-
-        return Datatables::of($users)
-            // ->addColumn('action', function ($user) {
-            //     return '<a href="#edit-'.$user->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-            // })
-            ->editColumn('id', 'ID: {{$id}}')
-            ->removeColumn('password')
-            ->make(true);
-    
+		dump($request);
 	}
+
 
 
 

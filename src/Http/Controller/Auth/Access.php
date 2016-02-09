@@ -104,6 +104,8 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
 
         messages('success', trans('orchestra/foundation::response.credential.logged-in'));
 
+        event('threef.user.login', [$user]);
+
         return Redirect::intended(handles('entree::home'));
     }
 

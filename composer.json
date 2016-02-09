@@ -26,7 +26,8 @@
         "knplabs/knp-snappy":"0.4.*",
         "maatwebsite/excel": "~2.1.0",
         "yajra/laravel-datatables-oracle":"~6.0",
-        "laravelcollective/html": "5.2.*"
+        "laravelcollective/html": "5.2.*",
+        "caffeinated/menus": "~2.0"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.1",

@@ -115,7 +115,8 @@ class EntreeServiceProvider extends ServiceProvider
     {
         $this->app->register('Maatwebsite\Excel\ExcelServiceProvider');
         $this->app->register('Yajra\Datatables\DatatablesServiceProvider');
-    	$this->app->register('Collective\Html\HtmlServiceProvider');
+        $this->app->register('Collective\Html\HtmlServiceProvider');
+    	$this->app->register('Caffeinated\Menus\MenusServiceProvider');
 
         // Bind Orchestra\Model\User with Threef\Entree\User\User
         $this->app->bind('Orchestra\Model\User', 'Threef\Entree\Database\Model\User');

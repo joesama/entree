@@ -28,7 +28,7 @@ class UsersDataTable extends DataTable
 				  </ul>
 				</div>'
             	)
-            ->editColumn('lastlogin', '{!! $created_at->diffForHumans() !!} | {!! date("d-m-Y",strtotime($created_at)) !!}')
+            ->editColumn('lastlogin', '{!! $updated_at->diffForHumans() !!} | {!! date("d-m-Y H:i:s",strtotime($lastlogin)) !!}')
             ->editColumn('created_at', '{!! $created_at->diffForHumans() !!} | {!! date("d-m-Y",strtotime($created_at)) !!}')
             ->make(true);
     }
@@ -73,7 +73,7 @@ class UsersDataTable extends DataTable
         	['data' => 'id', 'name' => 'id', 'title' => 'Id'],
         	['data' => 'fullname', 'name' => 'fullname', 'title' => trans('entree::entree.user.grid.fullname')],
         	['data' => 'username', 'name' => 'username', 'title' => trans('entree::entree.user.grid.username')],
-        	['data' => 'email', 'name' => 'email', 'title' => trans('entree::entree.user.grid.emel')],
+        	['data' => 'email', 'name' => 'email', 'title' => trans('entree::entree.user.grid.email')],
         	['data' => 'lastlogin', 'name' => 'lastlogin', 'title' => trans('entree::entree.login.lastlogin')],
         	['data' => 'created_at', 'name' => 'created_at', 'title' => trans('entree::entree.user.grid.created')],
         	['data' => 'status', 'name' => 'status', 'title' => trans('entree::entree.user.grid.status')]

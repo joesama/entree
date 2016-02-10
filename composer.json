@@ -53,5 +53,6 @@
             "php artisan vendor:publish"
         ]
     },
-    "minimum-stability": "dev"
+    "prefer-stable": true,
+    "minimum-stability": "stable"
 }

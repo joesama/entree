@@ -45,11 +45,11 @@
             "gulp"
         ],
         "post-install-cmd": [
-            "php artisan datatables:make UsersDataTable",
+            "php artisan view:clear",
             "php artisan vendor:publish"
         ],
         "post-update-cmd": [
-            "php artisan datatables:make UsersDataTable",
+            "php artisan view:clear",
             "php artisan vendor:publish"
         ]
     },

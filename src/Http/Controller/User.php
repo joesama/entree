@@ -34,16 +34,27 @@ class User extends UsersController
 
 
     /**
-     * undocumented function
+     * Response to Update User Form
      *
-     * @return void
-     * @author 
+     * @return mixed
      **/
-    public function getUserModification(Request $request)
+    public function getUserUpdate($id)
     {
         set_meta('page-header',trans('entree::entree.user.manage'));
 
-        return $this->manager->userPage($request);
+        return $this->manager->userUpdate($id);
+    }
+
+    /**
+     * Response to Update User Form
+     *
+     * @return mixed
+     **/
+    public function getUserCreation(Request $request)
+    {
+        set_meta('page-header',trans('entree::entree.user.manage'));
+
+        return $this->manager->userCreation($request);
     }
 
 }

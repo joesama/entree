@@ -23,7 +23,7 @@ class UsersDataTable extends DataTable
 				  </button>
 				  <ul class="dropdown-menu">
 				    <li><a href="{{ handles("entree::user") }}/{!! $id !!}" class="text-primary"><i class="glyphicon glyphicon-edit"></i> ' .trans('entree::entree.user.action.edit'). '</a></li>
-				    <li><a href="{{ handles("entree::user") }}/{!! $id !!}" class="text-info"><i class="glyphicon glyphicon-retweet"></i> ' .trans('entree::entree.user.action.reset'). '</a></li>
+				    <li><a href="{{ handles("entree::user/reset") }}/{!! $id !!}" class="text-info"><i class="glyphicon glyphicon-retweet"></i> ' .trans('entree::entree.user.action.reset'). '</a></li>
 				    <li><a href="{{ handles("entree::user") }}/{!! $id !!}" class="text-danger"><i class="glyphicon glyphicon-remove-sign"></i> ' .trans('entree::entree.user.action.remove'). '</a></li>
 				  </ul>
 				</div>'

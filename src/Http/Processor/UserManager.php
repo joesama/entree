@@ -33,14 +33,13 @@ class UserManager
 
 
 	/**
-	 * undocumented function
+	 * Process User Update
 	 *
-	 * @return void
-	 * @author 
+	 * @return mixed
 	 **/
-	public function userPage(Request $request)
+	public function userUpdate($id)
 	{
-		dump($request);
+		dump($id);
 	}
 
 

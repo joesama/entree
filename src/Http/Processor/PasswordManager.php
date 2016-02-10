@@ -81,6 +81,7 @@ class PasswordManager
             $mail->subject(trans('orchestra/foundation::email.forgot.request', ['site' => $site]));
         });
 
+
         return $control->resetByAdminLinkSent($response);
 
 

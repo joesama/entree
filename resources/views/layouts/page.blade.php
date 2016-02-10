@@ -7,7 +7,6 @@
 @stop
 @section('body')
 <div class="container-fluid">
-	@include('entree::layouts.components.topbar')
 	@yield('page')
 </div>
 @endsection

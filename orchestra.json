@@ -8,6 +8,7 @@
 		"Maatwebsite\\Excel\\ExcelServiceProvider'",
 		"Yajra\\Datatables\\DatatablesServiceProvider",
 		"Collective\\Html\\HtmlServiceProvider",
-		"Caffeinated\\Menus\\MenusServiceProvider"
+		"Caffeinated\\Menus\\MenusServiceProvider",
+		"Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider"
 	]
 }

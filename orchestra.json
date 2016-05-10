@@ -1,0 +1,13 @@
+{
+	"name": "threef/entree",
+	"description": "Front End Extensions Orchestra Platform",
+	"author": "Ahmed Johari Jumali",
+	"url": "",
+	"version": "1.0",
+	"provides": [
+		"Maatwebsite\\Excel\\ExcelServiceProvider'",
+		"Yajra\\Datatables\\DatatablesServiceProvider",
+		"Collective\\Html\\HtmlServiceProvider",
+		"Caffeinated\\Menus\\MenusServiceProvider"
+	]
+}

@@ -18,7 +18,7 @@ Route::group(['namespace' => 'Threef\Entree\Http\Controller','middleware' => [ '
 		$router->get('/password', 'Auth\Password@edit');
 		$router->post('/password', 'Auth\Password@update');
 		$router->get('/user', 'User@getIndex');
-		$router->get('/user/{id}', 'User@getUserModification');
+		$router->get('/user/{id}', 'User@getUserModification')->where(['id' => '[0-9]+']);
 		$router->get('/user/new', 'User@getUserCreation');
 		$router->get('/userdata', 'User@getUsers');
 		$router->get('/user/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);

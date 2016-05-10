@@ -3,7 +3,7 @@
 <style type="text/css">
 
 </style>
-@stop
+@endpush
 @section('content')
 <div class="panel panel-default">
   <div class="panel-body">
@@ -17,4 +17,4 @@
 <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script src="{{ asset('/vendor/datatables/buttons.server-side.js') }}"></script>
 {!! $dataTable->scripts() !!}
-@stop
+@endpush

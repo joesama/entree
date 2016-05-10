@@ -4,7 +4,7 @@
 
 </style>
 @stack('content.style')
-@stop
+@endpush
 @section('body')
 <div class="container-fluid">
 	@yield('page')
@@ -15,4 +15,4 @@
 
 </script>
 @stack('content.script')
-@stop
+@endpush

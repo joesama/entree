@@ -136,10 +136,10 @@ Image credits: unsplash.com
 }
 
 </style>
-@stop
+@endpush
 @section('page')
 <div class="row">
-    <div class="col-md-12"  style="padding-top:60px">
+    <div class="col-md-12"  style="padding-top:15px">
         <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
           <!-- Overlay -->
 
@@ -159,7 +159,7 @@ Image credits: unsplash.com
                     <h1>We are creative</h1>        
                     <h3>Get start your next awesome project</h3>
                 </hgroup>
-                <a  href="http://wiki.3fresources.com/index.php/Professional_Software_Services_(_PSS_)" class="btn btn-hero btn-lg" role="button">Visit PSS Wiki Page..</a>
+                <a  target="_blank" href="http://wiki.3fresources.com/index.php/Professional_Software_Services_(_PSS_)" class="btn btn-hero btn-lg" role="button">Visit PSS Wiki Page..</a>
               </div>
             </div>
             <div class="item slides">
@@ -191,4 +191,4 @@ Image credits: unsplash.com
 <script type="text/javascript">
 
 </script>
-@stop
+@endpush

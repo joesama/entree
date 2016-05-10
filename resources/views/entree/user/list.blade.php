@@ -3,7 +3,7 @@
 <style type="text/css">
 
 </style>
-@stop
+@endpush
 @section('content')
 <div class="panel panel-default">
   <div class="panel-body">
@@ -17,4 +17,4 @@
 <script type="text/javascript">
 
 </script>
-@stop
+@endpush

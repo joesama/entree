@@ -7,7 +7,9 @@
         <title>{{ memorize('site.name', '3FRSB - PSS') }}</title>
     </head>
     <body >
-        @include('entree::layouts.components.topbar')
+        @if(Auth::check())
+            @include('entree::layouts.components.topbar')
+        @endif
         <section id="content">
              @yield('body')
         </section>

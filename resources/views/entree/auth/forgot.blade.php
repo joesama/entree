@@ -4,7 +4,7 @@
 <style type="text/css">
 
 </style>
-@stop
+@endpush
 @section('body')
 <div class="container-fluid" style="padding-bottom:310px;margin-top:100px">
     
@@ -45,4 +45,4 @@
 <script type="text/javascript">
 
 </script>
-@stop
+@endpush

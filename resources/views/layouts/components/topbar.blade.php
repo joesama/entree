@@ -11,7 +11,7 @@
                 </button>
                 <a class="navbar-brand" href="#">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                    {{ memorize('site.name', '3FRSB - PSS') }}
+                    3FRSB - PSS
                     <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                 </a>
                 

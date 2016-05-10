@@ -3,7 +3,7 @@
 <style type="text/css">
 
 </style>
-@stop
+@endpush
 @section('content')
     <div class="row" style="">
         <div class="col-sm-18 col-md-12">
@@ -55,4 +55,4 @@
 <script type="text/javascript">
 
 </script>
-@stop
+@endpush

@@ -75,7 +75,7 @@
     margin-top: 10px;
 }
 </style>
-@stop
+@endpush
 @section('body')
 <div class="container-fluid" style="padding-bottom:100px">
     <div class="row" style="margin-top:50px">
@@ -120,4 +120,4 @@
 <script type="text/javascript">
 
 </script>
-@stop
+@endpush

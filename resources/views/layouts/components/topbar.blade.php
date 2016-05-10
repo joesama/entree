@@ -17,27 +17,11 @@
                 
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ handles('entree::/') }}" class="">{{ trans('orchestra/foundation::title.home') }}</a></li>
-                    <li class=" dropdown">
-                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('entree::entree.user.manage') }} <span class="caret"></span>
-                    </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="{!! handles('threef::user') !!}">
-                                {{ trans('orchestra/foundation::title.users.list') }}
-                                </a>
-                            </li>
-                            <li><a href="{!! handles('threef::user/new') !!}">{{ trans('orchestra/foundation::title.users.create') }}</a></li>
-                        </ul>
-                    </li>
-                        
-                </ul>
+                @unless(is_null($user))
                 <ul class="nav navbar-nav pull-right">
                     <li class=" dropdown"><a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     {{ strtoupper($user->fullname) }}
                     <span class="caret"></span></a>
-                    @unless(is_null($user))
                             <ul class="dropdown-menu">
                                 <li>
                                 <div class="col-md-12 text-center">
@@ -63,13 +47,13 @@
                                     {{ trans('orchestra/foundation::title.account.password') }}
                                 </a></li>  
                             </ul>
-                    @endunless
                     </li>                 
                     <li class=""><a href="{!! handles('threef::logout') !!}">
                         <span class="glyphicon glyphicon-user glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;
                         {{ trans('orchestra/foundation::title.logout') }}
                     </a></li>
                 </ul>
+                @endunless
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
 	"url": "",
 	"version": "1.0",
 	"provides": [
-		"Maatwebsite\\Excel\\ExcelServiceProvider'",
+		"Maatwebsite\\Excel\\ExcelServiceProvider",
 		"Yajra\\Datatables\\DatatablesServiceProvider",
 		"Collective\\Html\\HtmlServiceProvider",
 		"Caffeinated\\Menus\\MenusServiceProvider",

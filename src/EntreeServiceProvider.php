@@ -111,8 +111,8 @@ class EntreeServiceProvider extends ModuleServiceProvider
     protected function registeringEntreeServices()
     {
         // Bind Orchestra\Model\User with Threef\Entree\User\User
-        $this->app->bind('Orchestra\Model\User', 'Threef\Entree\Database\Model\User');
-        $this->app->bind('Orchestra\Html\HtmlBuilder', 'Collective\Html\HtmlBuilder');
+        // $this->app->bind('Orchestra\Model\User', 'Threef\Entree\Database\Model\User');
+        // $this->app->bind('Orchestra\Html\HtmlBuilder', 'Collective\Html\HtmlBuilder');
     }
 
 } // END class Entree 

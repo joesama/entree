@@ -5,9 +5,9 @@
 	"url": "",
 	"version": "1.0",
 	"provides": [
+		"Threef\\Entree\\EntreeServiceProvider",
 		"Maatwebsite\\Excel\\ExcelServiceProvider",
 		"Yajra\\Datatables\\DatatablesServiceProvider",
-		"Collective\\Html\\HtmlServiceProvider",
 		"Caffeinated\\Menus\\MenusServiceProvider",
 		"Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider"
 	]

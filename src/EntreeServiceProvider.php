@@ -14,6 +14,28 @@ class EntreeServiceProvider extends ModuleServiceProvider
 {
 
     /**
+     * The application or extension group namespace.
+     *
+     * @var string|null
+     */
+    protected $routeGroup = '';
+
+    /**
+     * The fallback route prefix.
+     *
+     * @var string
+     */
+    protected $routePrefix = '/';
+
+
+    /**
+     * The application or extension namespace.
+     *
+     * @var string|null
+     */
+    protected $namespace = 'Threef\Entree\Http\Controller';
+
+    /**
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
@@ -59,6 +81,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     public function register()
     {
         $this->registeringEntreeServices();
+
     }
 
 
@@ -70,7 +93,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $path = realpath(__DIR__.'/../resources');
 
         $this->publishOrchestraLang($path);
-
         $this->addLanguageComponent('threef/entree', 'entree', $path.'/lang');
         $this->addConfigComponent('threef/entree', 'entree', $path.'/config');
         $this->addViewComponent('threef/entree', 'entree', $path.'/views');

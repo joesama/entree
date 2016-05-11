@@ -1,7 +1,9 @@
 <?php
+use Illuminate\Routing\Router;
+use Orchestra\Support\Facades\Foundation;
 
-Route::group(['namespace' => 'Threef\Entree\Http\Controller','middleware' => [ 'web','orchestra.installable']], function($router)
-{
+Foundation::group('threef/entree', NULL , ['middleware' => ['web']], function (Router $router) {
+
 	$router->group(['middleware' => 'guest'],function($router){
 		$router->get('/', 'Entrance@getIndex');
 		$router->get('/login', 'Entrance@getIndex');
@@ -23,4 +25,5 @@ Route::group(['namespace' => 'Threef\Entree\Http\Controller','middleware' => [ '
 		$router->get('/userdata', 'User@getUsers');
 		$router->get('/user/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);
 	});
-});
+
+ });

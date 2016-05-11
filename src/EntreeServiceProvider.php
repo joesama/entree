@@ -59,9 +59,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
         'orchestra.list: users' => [
             'Threef\Entree\Event\Listener\Presenter\EntreeUserGrid'],
         'entree.user.list: action' => [
-            'Threef\Entree\Event\Listener\Presenter\EntreeUserGridAction'],
-        'orchestra.install.schema' => [
-            'Threef\Entree\Event\Listener\EntreeMigrator']
+            'Threef\Entree\Event\Listener\Presenter\EntreeUserGridAction']
     ];
 
     /**

@@ -1,5 +1,4 @@
-
-@extends('entree::layouts.page')
+@extends('threef/entree::layouts.page')
 @push('content.style')
 <style type="text/css">
 /*

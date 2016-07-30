@@ -1,14 +1,10 @@
 {
-	"name": "threef/entree",
-	"description": "Front End Extensions Orchestra Platform",
+	"name": "ThreefEntree",
+	"description": "Threef Front End Extensions Orchestra Platform",
 	"author": "Ahmed Johari Jumali",
 	"url": "",
 	"version": "1.0",
 	"provides": [
-		"Threef\\Entree\\EntreeServiceProvider",
-		"Maatwebsite\\Excel\\ExcelServiceProvider",
-		"Yajra\\Datatables\\DatatablesServiceProvider",
-		"Caffeinated\\Menus\\MenusServiceProvider",
-		"Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider"
+		"Threef\\Entree\\EntreeServiceProvider"
 	]
 }

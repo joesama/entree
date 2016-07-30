@@ -1,4 +1,4 @@
-@extends('entree::layouts.main')
+@extends('threef/entree::layouts.main')
 @push('threef.style')
 <style type="text/css">
 

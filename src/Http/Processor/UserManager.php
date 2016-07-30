@@ -28,7 +28,7 @@ class UserManager
 	 **/
 	public function listUser(Request $request)
 	{	
-		return $this->grid->render('entree::entree.user.datatables');
+		return $this->grid->render('threef/entree::entree.user.datatables');
 	}
 
 

@@ -90,7 +90,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
     	$message = trans($response);
     	$token   = Input::get('token');
 
-        return $this->redirectWithErrors(handles('threef::password/reset/'.$token), $message);
+        return $this->redirectWithErrors(handles('threef/entree::password/reset/'.$token), $message);
     }
 
 
@@ -105,7 +105,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
     	
     	$message = trans($response);
 
-        return $this->redirectWithMessage(handles('threef::/'), $message);
+        return $this->redirectWithMessage(handles('threef/entree::/'), $message);
     }
 
     /**
@@ -117,7 +117,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
      */
     public function resetLinkFailedValidation($errors){
 
-        return $this->redirectWithErrors(handles('threef::forgot'), $errors);
+        return $this->redirectWithErrors(handles('threef/entree::forgot'), $errors);
     }
 
     /**
@@ -131,7 +131,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
     	
     	$message = trans($response);
 
-        return $this->redirectWithErrors(handles('threef::forgot'), $message);
+        return $this->redirectWithErrors(handles('threef/entree::forgot'), $message);
     }
 
     /**
@@ -145,7 +145,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
     	
     	$message = trans($response);
 
-        return $this->redirectWithMessage(handles('threef::forgot'), $message);
+        return $this->redirectWithMessage(handles('threef/entree::forgot'), $message);
     }
 
 
@@ -160,7 +160,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
     	
     	$message = trans($response);
 
-        return $this->redirectWithMessage(handles('threef::user'), $message);
+        return $this->redirectWithMessage(handles('threef/entree::user'), $message);
     }
 
     /**

@@ -10,10 +10,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @package default
  * @author 
  **/
-class User extends OrchestraUser implements AuthorizableContract, CanResetPasswordContract
+class User extends OrchestraUser 
 {
-	 use Authorizable;
-
 	 
 	public function getFullnameAttribute($value)
     {

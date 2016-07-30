@@ -30,6 +30,6 @@ class Entrance extends Controller
      **/
     public function viewMain()
     {
-        return view('entree::entree.index');
+        return view('threef/entree::entree.index');
     }
 }

@@ -44,7 +44,7 @@ class Password extends Controller implements Listener
      */
     public function updatePasswordFailedValidation($errors)
     {
-        return $this->redirectWithErrors(handles('entree::password'), $errors);
+        return $this->redirectWithErrors(handles('threef/entree::password'), $errors);
     }
 
     /**
@@ -56,7 +56,7 @@ class Password extends Controller implements Listener
     {
         $message = trans('orchestra/foundation::response.account.password.invalid');
 
-        return $this->redirectWithMessage(handles('entree::password'), $message, 'error');
+        return $this->redirectWithMessage(handles('threef/entree::password'), $message, 'error');
     }
 
     /**
@@ -70,7 +70,7 @@ class Password extends Controller implements Listener
     {
         $message = trans('orchestra/foundation::response.db-failed', $errors);
 
-        return $this->redirectWithMessage(handles('entree::password'), $message, 'error');
+        return $this->redirectWithMessage(handles('threef/entree::password'), $message, 'error');
     }
 
     /**
@@ -82,7 +82,7 @@ class Password extends Controller implements Listener
     {
         $message = trans('orchestra/foundation::response.account.password.update');
 
-        return $this->redirectWithMessage(handles('entree::home'), $message);
+        return $this->redirectWithMessage(handles('threef/entree::home'), $message);
     }
 
     /**

@@ -49,7 +49,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
      **/
     public function home()
     {
-        return view('entree::entree.home');
+        return view('threef/entree::entree.home');
     }
 
     /**
@@ -61,7 +61,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
      */
     public function userLoginHasFailedValidation($errors){
         
-        return $this->redirectWithErrors(handles('entree::login'), $errors);
+        return $this->redirectWithErrors(handles('threef/entree::login'), $errors);
     }
 
     /**
@@ -75,7 +75,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
 
         $message = trans('orchestra/foundation::response.credential.invalid-combination');
 
-        return $this->redirectWithMessage(handles('entree::login'), $message, 'error')->withInput();
+        return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'error')->withInput();
     }
 
     /**
@@ -90,7 +90,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
         
         $message = trans('auth.throttle', ['seconds' => $seconds]);
 
-        return $this->redirectWithMessage(handles('entree::login'), $message, 'error')->withInput();
+        return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'error')->withInput();
     }
 
     /**
@@ -106,7 +106,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
 
         event('threef.user.login', [$user]);
 
-        return Redirect::intended(handles('entree::home'));
+        return Redirect::intended(handles('threef/entree::home'));
     }
 
     /**
@@ -118,7 +118,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
 
         messages('success', trans('orchestra/foundation::response.credential.logged-out'));
 
-        return Redirect::intended(handles(Input::get('redirect', 'entree::login')));
+        return Redirect::intended(handles(Input::get('redirect', 'threef/entree::login')));
     }
 
 }

@@ -1,4 +1,4 @@
-@extends('entree::layouts.page')
+@extends('threef/entree::layouts.page')
 @push('threef.style')
 
 <style type="text/css">
@@ -9,8 +9,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			@include('entree::layouts.components.content-header')
-			@include('entree::layouts.components.message')
+			@include('threef/entree::layouts.components.content-header')
+			@include('threef/entree::layouts.components.message')
 			@yield('content')
 		</div>
 	</div>

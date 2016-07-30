@@ -78,7 +78,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
      */
     public function register()
     {
-        $this->registeringEntreeServices();
 
     }
 
@@ -91,9 +90,9 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $path = realpath(__DIR__.'/../resources');
 
         $this->publishOrchestraLang($path);
-        $this->addLanguageComponent('threef/entree', 'entree', $path.'/lang');
-        $this->addConfigComponent('threef/entree', 'entree', $path.'/config');
-        $this->addViewComponent('threef/entree', 'entree', $path.'/views');
+        $this->addLanguageComponent('threef/entree', 'threef/entree', $path.'/lang');
+        $this->addConfigComponent('threef/entree', 'threef/entree', $path.'/config');
+        $this->addViewComponent('threef/entree', 'threef/entree', $path.'/views');
 
     }
 
@@ -121,18 +120,5 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->loadFrontendRoutesFrom($path.'/routes.php');
     }
 
-
-    /**
-     * Registering Entree Services
-     *
-     * @return void
-     * @author 
-     **/
-    protected function registeringEntreeServices()
-    {
-        // Bind Orchestra\Model\User with Threef\Entree\User\User
-        // $this->app->bind('Orchestra\Model\User', 'Threef\Entree\Database\Model\User');
-        // $this->app->bind('Orchestra\Html\HtmlBuilder', 'Collective\Html\HtmlBuilder');
-    }
 
 } // END class Entree 

@@ -78,7 +78,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      */
     public function register()
     {
-
+        $this->registerMenuHandler();
     }
 
 
@@ -118,6 +118,15 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $path = realpath(__DIR__);
 
         $this->loadFrontendRoutesFrom($path.'/routes.php');
+    }
+
+    /**
+     * Registering Menu Handler
+     *
+     **/
+    protected function registerMenuHandler()
+    {
+        $this->app->bind('entreemenu', EntreeMenu::class);
     }
 
 

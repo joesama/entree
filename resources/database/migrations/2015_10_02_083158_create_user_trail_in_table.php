@@ -14,10 +14,10 @@ class CreateUserTrailInTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('username');
-            $table->integer('isAdmin')->default(0);
+            $table->string('username')->after('id');
+            $table->integer('isAdmin')->default(0)->after('status');
+            $table->datetime('lastlogin')->after('isAdmin');
             $table->unique('username');
-            $table->datetime('lastlogin');
         });
 
         Schema::create('user_trails', function (Blueprint $table) {

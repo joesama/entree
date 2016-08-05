@@ -24,8 +24,8 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
      */
     public function login(Request $request, AuthenticateUser $authenticate, ThrottlesCommand $throttles )
     {
-        $input = $request->only(['email', 'password', 'remember']);
-        $throttles->setRequest($request)->setLoginKey('email');
+        $input = $request->only(['username', 'password', 'remember']);
+        $throttles->setRequest($request)->setLoginKey('username');
 
         return $authenticate->login($this, $input, $throttles);
     }

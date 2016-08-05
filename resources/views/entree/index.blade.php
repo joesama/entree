@@ -84,7 +84,7 @@
             	<h1 class="text-center login-title">3F Resources Sdn Bhd<br/><small>Professional Software Services</small></h1>
                 {!! Form::open(['url' => handles('threef::login'), 'action' => 'POST', 'class' => 'form-signin']) !!}
                 <label class="sr-only">Email</label>
-                {!! Form::input('text', 'email', old('email'), ['required' => true, 'tabindex' => 1, 'class' => 'form-control', 'autofocus', 'placeholder' => trans('entree::entree.login.username')]) !!}
+                {!! Form::input('text', 'username', old('username'), ['required' => true, 'tabindex' => 1, 'class' => 'form-control', 'autofocus', 'placeholder' => trans('entree::entree.login.username')]) !!}
 				{!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 				<label class="sr-only">Password</label>
                 {!! Form::input('password', 'password', '', ['required' => true, 'tabindex' => 2, 'class' => 'form-control', 'placeholder' => trans('entree::entree.login.password')]) !!}

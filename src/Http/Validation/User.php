@@ -1,8 +1,8 @@
 <?php namespace Threef\Entree\Http\Validation;
 
-use Orchestra\Support\Validator;
+use Orchestra\Foundation\Validation\AuthenticateUser;
 
-class User extends Validator
+class User extends AuthenticateUser
 {
     /**
      * List of rules.
@@ -10,7 +10,7 @@ class User extends Validator
      * @var array
      */
     protected $rules = [
-        'email'    => ['required', 'email']
+        // 'email'    => ['required', 'email']
     ];
 
     /**
@@ -62,7 +62,7 @@ class User extends Validator
      */
     protected function onLogin()
     {
-        $this->rules['emel'] = ['required','exists:user'];
+        $this->rules['username'] = ['required'];
         $this->rules['password'] = ['required'];
     }
 }

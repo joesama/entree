@@ -79,6 +79,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     public function register()
     {
         $this->registerMenuHandler();
+        $this->bindingUserValidation();
     }
 
 
@@ -127,6 +128,17 @@ class EntreeServiceProvider extends ModuleServiceProvider
     protected function registerMenuHandler()
     {
         $this->app->bind('entreemenu', EntreeMenu::class);
+    }
+
+    /**
+     * Bind Login Validation
+     *
+     **/
+    protected function bindingUserValidation()
+    {
+        $this->app->when('Orchestra\Foundation\Processor\AuthenticateUser')
+          ->needs('Orchestra\Foundation\Validation\AuthenticateUser')
+          ->give('Threef\Entree\Http\Validation\User');
     }
 
 

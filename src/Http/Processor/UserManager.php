@@ -1,10 +1,8 @@
 <?php namespace Threef\Entree\Http\Processor;
 
 use Illuminate\Http\Request;
-use Threef\Entree\Database\Model\User;
-use Threef\Entree\DataGrid\Grid;
-
-use Threef\Entree\DataGrid\UsersDataTable;
+use Orchestra\Support\Facades\Foundation;
+use Orchestra\Foundation\Processor\User;
 
 
 /**
@@ -13,22 +11,35 @@ use Threef\Entree\DataGrid\UsersDataTable;
  * @package default
  * @author 
  **/
-class UserManager
+class UserManager extends User
 {
 
-	public function __construct(UsersDataTable $grid){
-
-		$this->grid = $grid;
-	}
-
 	/**
-	 * Show All Registered User
+	 * Process User Update
 	 *
-	 * @return $grid  UsersDataTable
+	 * @return mixed
 	 **/
-	public function listUser(Request $request)
-	{	
-		return $this->grid->render('threef/entree::entree.user.datatables');
+	public function userCreate(Request $request)
+	{
+
+		$input = $request->except('_token');
+
+        $user = Foundation::make('orchestra.user');
+
+        foreach($input as $field => $value):
+        	$user->$field = $value;
+        endforeach;
+
+        $user->status   = Eloquent::UNVERIFIED;
+        $user->password = data_get($input,'password');
+
+        try {
+
+			$this->saving($user, $input, 'create');
+
+		} catch (Exception $e) {
+            dd($e->getMessage());
+        }
 	}
 
 
@@ -37,10 +48,31 @@ class UserManager
 	 *
 	 * @return mixed
 	 **/
-	public function userUpdate($id)
+	public function userUpdate(Request $request)
 	{
-		dump($id);
+		$id = $request->segment(3);
+		$input = $request->except('_token');
+
+        $user = Foundation::make('orchestra.user')->findOrFail($id);
+
+        ! empty($input['password']) && $user->password = data_get($input,'password');
+
+        foreach($input as $field => $value):
+        	$user->$field = $value;
+        endforeach;
+
+        try {
+
+		$this->saving($user, $input, 'update');
+
+		} catch (Exception $e) {
+            dd($e->getMessage());
+        }
 	}
+
+
+
+
 
 
 

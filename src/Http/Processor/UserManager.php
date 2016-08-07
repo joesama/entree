@@ -26,12 +26,16 @@ class UserManager extends User
 
         $user = Foundation::make('orchestra.user');
 
-        foreach($input as $field => $value):
+        $userTable = collect($input);
+        $userTable->forget('roles');
+        $userTable->forget('status');
+        $userTable->forget('password');
+
+        foreach($userTable as $field => $value):
         	$user->$field = $value;
         endforeach;
 
         $user->status   = Eloquent::UNVERIFIED;
-        $user->password = data_get($input,'password');
 
         try {
 
@@ -57,7 +61,10 @@ class UserManager extends User
 
         ! empty($input['password']) && $user->password = data_get($input,'password');
 
-        foreach($input as $field => $value):
+        $userTable = collect($input);
+        $userTable->forget('roles');
+
+        foreach($userTable as $field => $value):
         	$user->$field = $value;
         endforeach;
 

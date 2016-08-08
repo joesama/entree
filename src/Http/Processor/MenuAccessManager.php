@@ -34,7 +34,7 @@ class MenuAccessManager
 	{
 		$acl  = $this->acl->get('entree');
 
-		// $actionRoles = $this->getRolesActions($acl);
+		$actionRoles = $this->getRolesActions($acl);
 
 		$menu = $this->menu->menu();
 
@@ -102,12 +102,16 @@ class MenuAccessManager
 	 * @return void
 	 * @author 
 	 **/
-	protected function getRolesActions()
+	protected function getRolesActions($acl)
 	{
 
 		// $instances  = $acl;
 		// $aclList = $acl->acl();
-		// $action = $acl->actions();
+dump($acl);
+		foreach($acl->actions() as $value){
+			dd($value);
+			// $acl->can($link->id)
+		}
 		// $roleList = $acl->roles();
 		// dump($aclList);
 		// dump($roleList);

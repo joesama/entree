@@ -25,4 +25,5 @@ class User extends OrchestraUser
         return trans('entree::entree.user.status.'.$value);
     }
 
+
 } // END class User extends OrchestraUser 

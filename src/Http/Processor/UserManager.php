@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Orchestra\Support\Facades\Foundation;
 use Orchestra\Foundation\Processor\User;
+use Threef\Entree\Database\Model\User as Eloquent;
 
 
 /**
@@ -24,7 +25,7 @@ class UserManager extends User
 
 		$input = $request->except('_token');
 
-        $user = Foundation::make('orchestra.user');
+        $user = new Eloquent;
 
         $userTable = collect($input);
         $userTable->forget('roles');
@@ -35,7 +36,12 @@ class UserManager extends User
         	$user->$field = $value;
         endforeach;
 
+        $roles = data_get($input,'roles');
+        $roles = (is_array($roles)) ? $roles : [$roles];
+        $input['roles'] = $roles;
+
         $user->status   = Eloquent::UNVERIFIED;
+        $user->password   = data_get($input,'password');
 
         try {
 
@@ -54,15 +60,19 @@ class UserManager extends User
 	 **/
 	public function userUpdate(Request $request)
 	{
-		$id = $request->segment(3);
+		$id = $request->segment(4);
 		$input = $request->except('_token');
-
-        $user = Foundation::make('orchestra.user')->findOrFail($id);
+		
+        $user = Eloquent::findOrFail($id);
 
         ! empty($input['password']) && $user->password = data_get($input,'password');
 
         $userTable = collect($input);
         $userTable->forget('roles');
+
+        $roles = data_get($input,'roles');
+        $roles = (is_array($roles)) ? $roles : [$roles];
+        $input['roles'] = $roles;
 
         foreach($userTable as $field => $value):
         	$user->$field = $value;

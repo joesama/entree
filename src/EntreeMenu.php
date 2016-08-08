@@ -98,7 +98,7 @@ use Orchestra\Contracts\Authorization\Factory;
     public function acl()
     {
         return $this->acl;
-    }
+    }    
 
     /**
      * Get app memory services.

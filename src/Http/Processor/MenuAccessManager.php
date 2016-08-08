@@ -82,7 +82,7 @@ class MenuAccessManager
 				endif;
 			});
 
-			$acl->allow($name, $menu->toArray());
+			$acl->disallow($name, $menu->toArray());
 
 		});
 

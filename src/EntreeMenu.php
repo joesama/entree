@@ -57,9 +57,7 @@ use Orchestra\Contracts\Authorization\Factory;
     {
 
     	$menu = $this->widget->make("menu.entree");
-        $this->acl = $this->acl->make('entree');
-
-        $this->acl->attach($this->memory);
+        $this->acl = $this->acl->make('entree',$this->memory);
 
     	$this->generateMenuService($menu);
 

@@ -1,6 +1,7 @@
 <?php namespace Threef\Entree;
 
 use Illuminate\Foundation\Application;
+use Orchestra\Contracts\Authorization\Factory;
 
 /**
   * undocumented class
@@ -12,6 +13,8 @@ use Illuminate\Foundation\Application;
  {
 
 
+    const KEY = 'menu.entree';
+
     /**
      * The widget manager.
      *
@@ -20,16 +23,26 @@ use Illuminate\Foundation\Application;
     protected $widget;
 
     /**
-     * Entre Menu.
+     * Entree Menu.
      *
      * @var \Orchestra\Widget\Handlers\Menu
      */
     protected $menu;
 
+    /**
+     * Entree Menu  ACL.
+     *
+     * @var \Orchestra\Widget\Handlers\Menu
+     */
+    protected $acl;
 
-    public function __construct(Application $app)
+
+    public function __construct(Application $app,Factory $acl)
     {
-    	$this->widget = $app->make('orchestra.widget');
+
+        $this->widget = $app->make('orchestra.widget');
+    	$this->acl = $app->make('orchestra.acl');
+        $this->memory = $app->make('orchestra.memory')->make();
 
     	$this->loadMenuServices();
 
@@ -42,11 +55,16 @@ use Illuminate\Foundation\Application;
      **/
     protected function loadMenuServices()
     {
+
     	$menu = $this->widget->make("menu.entree");
+        $this->acl = $this->acl->make('entree');
+
+        $this->acl->attach($this->memory);
 
     	$this->generateMenuService($menu);
 
     	$this->menu = $menu;
+
     }
 
 
@@ -71,7 +89,27 @@ use Illuminate\Foundation\Application;
      */
     public function menu()
     {
-    	return $this->menu;
+        return $this->menu;
+    }
+
+    /**
+     * Get menu ACL services.
+     *
+     * @return \Orchestra\Authorization\Authorization
+     */
+    public function acl()
+    {
+        return $this->acl;
+    }
+
+    /**
+     * Get app memory services.
+     *
+     * @return \Orchestra\Contracts\Memory\Provider
+     */
+    public function memory()
+    {
+    	return $this->memory;
     }
 
 

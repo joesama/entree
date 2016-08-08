@@ -19,6 +19,8 @@ Foundation::group('threef/entree', NULL , ['middleware' => ['web']], function (R
 		$router->get('/logout', 'Auth\Access@logout');
 		$router->get('/password', 'Auth\Password@edit');
 		$router->post('/password', 'Auth\Password@update');
+		$router->get('/menu', 'MenuAccess@getIndex');
+		$router->post('/menu', 'MenuAccess@menuAccess');
 		$router->get('/user', 'User@getIndex');
 		$router->get('/user/{id}', 'User@getUserModification')->where(['id' => '[0-9]+']);
 		$router->get('/user/new', 'User@getUserCreation');

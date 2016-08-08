@@ -17,8 +17,7 @@
 		  </div>
 			<div class="form-group">
 		    <label class="col-md-2 control-label">Roles</label>
-		    <div class="col-md-6">  
-		    {{ dump($action->search($links->id)) }}		
+		    <div class="col-md-6">  		
 		    {!! Form::select($links->id.'[]', $roles, NULL ,array('required','multiple' => 'multiple','class' => 'col-md-5 form-control pull-right')) !!}
 		    </div>
 		  </div>

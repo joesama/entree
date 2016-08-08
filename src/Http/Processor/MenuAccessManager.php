@@ -34,7 +34,7 @@ class MenuAccessManager
 	{
 		$acl  = $this->acl->get('entree');
 
-		$actionRoles = $this->getRolesActions($acl);
+		// $actionRoles = $this->getRolesActions($acl);
 
 		$menu = $this->menu->menu();
 
@@ -91,7 +91,7 @@ class MenuAccessManager
 
 		$role = \Auth::user()->getRoles();
 
-		return redirect('threef/entree::menu');
+		return redirect(handles('threef/entree::menu'));
 
 	}
 
@@ -106,18 +106,18 @@ class MenuAccessManager
 	{
 
 		// $instances  = $acl;
-		$aclList = $acl->acl();
-		$action = $acl->actions();
-		$roleList = $acl->roles();
-		dump($aclList);
-		dump($roleList);
+		// $aclList = $acl->acl();
+		// $action = $acl->actions();
+		// $roleList = $acl->roles();
+		// dump($aclList);
+		// dump($roleList);
 
-		foreach(){
+		// foreach(){
 
 
-		}
+		// }
 
-		dd($action);
+		// dd($action);
 		// $rolesAttached = collect($acl->roles()->get())->reject(function ($role) {
   //           return in_array($role, ['guest']);
   //       })->map(function ($slug) {

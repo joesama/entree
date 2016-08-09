@@ -2,53 +2,53 @@
 
 return [
 	'login' => [
-		'username' => 'ID Pengguna / Emel',
-		'emel' => 'Emel',
-		'password' => 'Kata Laluan',
-		'forgot-password' => 'Lupa Kata Laluan',
-		'lastlogin' => 'Daftar Masuk Terakhir',
+		'username' => 'User ID',
+		'emel' => 'Email',
+		'password' => 'Password',
+		'forgot-password' => 'Forget Password',
+		'lastlogin' => 'Last Log In',
 		'button' => [
-			'signin' => 'Daftar Masuk'
+			'signin' => 'Log In'
 		]
 	],
 	'password' => [
 		'reset' => [
-			'title' => 'Tukar Kata Laluan',
-			'desc' => 'Masukan Emel Yang Sah Untuk Menukar Kata Laluan',
-			'button' => 'Tukar'	
+			'title' => 'Reset Password',
+			'desc' => 'Please insert valid email for password reset request',
+			'button' => 'Change'	
 		],
 		'form' => [
-			'current' => 'Kata Laluan Sedia Ada',
-			'new' => 'Kata Laluan Baru',
-			'confirm' => 'Pengesahan Kata Laluan'
+			'current' => 'Current Password',
+			'new' => 'New Password',
+			'confirm' => 'New Password Verification'
 		]
 	],
 	'user' => [
-		"manage" => "Pengurusan Pengguna",
+		"manage" => "User Management",
 		"status" => [
-			"1" => "Aktif",
-			"0" => "Tidal Aktif"
+			"1" => "Active",
+			"0" => "Non Active"
 		],
 		"action" => [
-			'edit' => 'Kemaskini',
-			'reset' => 'Tukar Katalaluan',
-			'remove' => 'Hapus'
+			'edit' => 'Update',
+			'reset' => 'Reset Password',
+			'remove' => 'Remove'
 		],
 		"grid" => [
-			'username' => 'ID Pengguna',
-			'email' => 'Emel Pengguna',
-			'role' => 'Peranan',
-			'fullname' => 'Nama Pengguna',
-			"created" => "Daftar Pada",
+			'username' => 'User Id',
+			'email' => 'User Email',
+			'role' => 'Role',
+			'fullname' => 'Full Name',
+			"created" => "Date Registered",
 			"status" => "Status",
 		]
 	],
 	'button' => [
-		'save' => 'Simpan',
-		'update' => 'Kemaskini',
-		'delete' => 'Hapus',
-		'reset' => 'Tukar',
+		'save' => 'Save',
+		'update' => 'Edit',
+		'delete' => 'Delete',
+		'reset' => 'Reset',
 	],
-	'required' => 'Perlu Diisi'
+	'required' => 'Required'
 
 ];

@@ -40,13 +40,10 @@ class PasswordManager
         if ($validation->fails()) {
             return $listener->resetLinkFailedValidation($validation->getMessageBag());
         }
-
-        $site   = app('orchestra.platform.memory')->get('site.name', '3FRSB : PSS');
+        
         $data   = ['email' => $input['email']];
 
-        $response = $this->password->sendResetLink($data, function ($mail) use ($site) {
-            $mail->subject(trans('orchestra/foundation::email.forgot.request', ['site' => $site]));
-        });
+        $response = $this->password->sendResetLink($data);
 
         if ($response != Password::RESET_LINK_SENT) {
             return $listener->resetLinkFailed($response);

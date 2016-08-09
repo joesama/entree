@@ -105,7 +105,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
     	
     	$message = trans($response);
 
-        return $this->redirectWithMessage(handles('threef/entree::/'), $message);
+        return $this->redirectWithMessage(handles('threef/entree::login'), $message);
     }
 
     /**
@@ -170,7 +170,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
      **/
     public function viewForgot()
     {
-        return view('entree::entree.auth.forgot');
+        return view('threef/entree::entree.auth.forgot');
     }
 
     /**
@@ -180,7 +180,7 @@ class ResetPassword extends Controller implements PasswordReset,PasswordResetLin
      **/
     public function viewResetPassword()
     {
-        return view('entree::entree.auth.reset');
+        return view('threef/entree::entree.auth.reset');
     }
 
 } // END class ResetPassword 

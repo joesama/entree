@@ -14,7 +14,7 @@ use Threef\Entree\Database\Model\User;
  * @package default
  * @author 
  **/
-class PasswordManager 
+class ResetPasswordManager 
 {
 
 	public function __construct(Password $password, Validator $validator, PasswordBroker $orchestraBroker) {

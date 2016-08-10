@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Contracts\Auth\Listener\PasswordReset;
 use Orchestra\Contracts\Auth\Listener\PasswordResetLink;
-use Threef\Entree\Http\Processor\PasswordManager;
+use Threef\Entree\Http\Processor\ResetPasswordManager;
 
 /**
  * undocumented class
@@ -16,7 +16,7 @@ use Threef\Entree\Http\Processor\PasswordManager;
 class ResetPassword extends Controller implements PasswordReset,PasswordResetLink
 {
 
-	public function __construct(PasswordManager $password) {
+	public function __construct(ResetPasswordManager $password) {
 
 		$this->manager = $password;
 	}

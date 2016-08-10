@@ -59,7 +59,7 @@
                         </div>
                     </div>
                   </div>
-                  <button class="btn btn-sm btn-primary pull-right" type="submit">{{ trans('entree::entree.button.reset') }}</button>
+                  <button class="btn btn-sm btn-primary pull-right" type="submit">{{ trans('threef/entree::entree.button.reset') }}</button>
                 {!! Form::close() !!}
             </div>    
         </div>

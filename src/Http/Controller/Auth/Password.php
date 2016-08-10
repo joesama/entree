@@ -102,6 +102,6 @@ class Password extends Controller implements Listener
      **/
     public function showPasswordChanger(array $data)
     {
-        return view('entree::entree.auth.password',$data);
+        return view('threef/entree::entree.auth.password',$data);
     }
 }

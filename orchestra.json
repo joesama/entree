@@ -5,6 +5,7 @@
 	"url": "",
 	"version": "1.0",
 	"provides": [
-		"Threef\\Entree\\EntreeServiceProvider"
+		"Threef\\Entree\\EntreeServiceProvider",
+		"Yajra\\Datatables\\DatatablesServiceProvider"
 	]
 }

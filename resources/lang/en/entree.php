@@ -44,6 +44,7 @@ return [
 		]
 	],
 	'button' => [
+		'view' => 'View',
 		'save' => 'Save',
 		'update' => 'Edit',
 		'delete' => 'Delete',

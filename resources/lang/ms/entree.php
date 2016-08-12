@@ -44,6 +44,7 @@ return [
 		]
 	],
 	'button' => [
+		'view' => 'Papar',
 		'save' => 'Simpan',
 		'update' => 'Kemaskini',
 		'delete' => 'Hapus',

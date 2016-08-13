@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Orchestra\Support\Facades\Foundation;
 use Orchestra\Foundation\Processor\User;
 use Threef\Entree\Database\Model\User as Eloquent;
+use Threef\Entree\Database\Model\UserProfile as Profile;
+use Carbon\Carbon;
 
 
 /**
@@ -61,9 +63,51 @@ class UserManager extends User
 	public function userUpdate(Request $request)
 	{
 		$id = $request->segment(4);
-		$input = $request->except('_token');
-		
+
+        $delegated = $this->delegateUserInfo($request);
+
+        return $this->processUser($delegated , $id);
+
+	}
+
+
+    /**
+     * Delegation of user table 
+     *
+     * @return Array $input
+     *
+     **/
+    public function delegateUserInfo($request)
+    {
+        $user = collect([]);
+        $profile = collect([]);
+
+        foreach($request->except('_token') as $field => $value){
+
+            if(str_is('profile*', $field)){
+                $profile->put(str_replace("profile_", "", $field),$value);
+            }else{
+                $user->put(str_replace("user_", "", $field),$value);
+            }
+
+        }
+
+        return compact('user','profile');
+    }
+
+
+    /**
+     * Processing User Information
+     *
+     * @return Threef\Entree\Database\Model\User 
+     * 
+     **/
+    public function processUser($collections , $id)
+    {
+
         $user = Eloquent::findOrFail($id);
+
+        $input = data_get($collections,'user');
 
         ! empty($input['password']) && $user->password = data_get($input,'password');
 
@@ -75,17 +119,27 @@ class UserManager extends User
         $input['roles'] = $roles;
 
         foreach($userTable as $field => $value):
-        	$user->$field = $value;
+            $user->$field = $value;
         endforeach;
 
         try {
 
-		$this->saving($user, $input, 'update');
+        $this->saving($user, $input, 'update');
 
-		} catch (Exception $e) {
+        $profile = data_get($collections,'profile');
+        $profile->put('updated_at',Carbon::now());
+
+        $user->profile()->update($profile->toArray());
+
+
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
-	}
+
+
+        return $user;
+
+    }
 
 
 

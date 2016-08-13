@@ -13,6 +13,15 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class User extends OrchestraUser 
 {
 	 
+
+    /**
+     * Relation has one Threef\Entree\Database\Model\UserProfile
+     **/
+    public function profile()
+    {
+        return $this->hasOne('Threef\Entree\Database\Model\UserProfile','fk_user');
+    } 
+
 	public function getFullnameAttribute($value)
     {
         return strtoupper($value);

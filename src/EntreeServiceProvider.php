@@ -52,8 +52,10 @@ class EntreeServiceProvider extends ModuleServiceProvider
             'Threef\Entree\Event\Listener\EntreeUser'],
         'threef.user.profile' => [
             'Threef\Entree\Event\Listener\EntreeUserProfile'],
-        'threef.user.login' => [
+        'Illuminate\Auth\Events\Login' => [
             'Threef\Entree\Event\Listener\EntreeUserLogin'],
+        'Illuminate\Auth\Events\Logout' => [
+            'Threef\Entree\Event\Listener\EntreeUserLogout'],
         'orchestra.install: user' => [
             'Threef\Entree\Event\Listener\EntreeRegisterUser'],
         'orchestra.list: users' => [

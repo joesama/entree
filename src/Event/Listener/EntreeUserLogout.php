@@ -1,6 +1,6 @@
 <?php namespace Threef\Entree\Event\Listener;
 
-use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Threef\Entree\Database\Model\User;
 use Threef\Entree\Database\Model\UserTrails;
 
-class EntreeUserLogin
+class EntreeUserLogout
 {
 
     /**
@@ -27,14 +27,10 @@ class EntreeUserLogin
      * @param  threef.user.login  $event
      * @return void
      */
-    public function handle(Login $person)
+    public function handle(Logout $person)
     {
-        $user = User::find($person->user->id);
-        $user->lastlogin = Carbon::now()->toDateTimeString();
-        $user->save();
-
         $trails = new UserTrails();
-        $trails->type = 1;
+        $trails->type = 0;
         $trails->user_id = $person->user->id;
         $trails->save();
 

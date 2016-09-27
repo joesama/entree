@@ -20,10 +20,11 @@
         ]
     },
     "require": {
-        "php": ">=5.5.9",
-        "yajra/laravel-datatables-oracle": "^6.17"
+        "php": ">=5.6.4",
+        "yajra/laravel-datatables-oracle": "~6.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^2.3"
     },
     "suggest": {
     },

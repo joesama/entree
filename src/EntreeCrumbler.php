@@ -19,25 +19,23 @@ class EntreeCrumbler
 
 
 	/**
-	 * undocumented function
+	 * Get Breadcrumb
 	 *
 	 * @return Illuminate\Support\Collection
 	 **/
 	public function crumbler()
 	{
-		return $this->breaded();
+		return $this->breaded($this->currentPath());
 	}
 
 
 	/**
 	 * Retrieve Breadcrumb
 	 *
-	 * @return void
+	 * @return Illuminate\Support\Collection
 	 **/
-	protected function breaded()
+	protected function breaded($path)
 	{
-		$path = $this->currentPath();
-
 		$bread = collect([]);
 
 		foreach($this->menu as $menu){
@@ -62,16 +60,11 @@ class EntreeCrumbler
 			}
 		}
 
-
-		dd($bread);
-
-
 	}
 
 
 	/**
 	 * Retrieve Current Path
-	 *
 	 **/
 	protected function currentPath()
 	{

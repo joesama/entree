@@ -6,6 +6,7 @@
 @endpush
 @section('content')
 {!! Form::open(['url' => handles('threef/entree::menu'), 'action' => 'POST', 'class' => 'form-horizontal']) !!}
+<div class="container-fluid">
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel-group" id="menu-access" role="tablist" aria-multiselectable="true">
@@ -100,6 +101,7 @@
 	<div class="col-md-12">
 		<button class="btn btn-sm btn-primary pull-right" type="submit">{{ trans('threef/entree::entree.button.save') }}</button>
 	</div>
+</div>
 </div>
 {!! Form::close() !!}
 

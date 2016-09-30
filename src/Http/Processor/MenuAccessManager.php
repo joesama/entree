@@ -76,7 +76,6 @@ class MenuAccessManager
            	 	$menu = Keyword::make($actionName)->getSlug();
 				$role = Keyword::make($roleName)->getSlug();
                 $value = ('yes'=== Arr::get($params, "{$menu}_{$role}", 'no'));
-                dump($menu . ':' . $role . '->' . $value);
                 $acl->allow($roleName, $actionName, $value);
             }
         }

@@ -130,6 +130,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     protected function registerMenuHandler()
     {
         $this->app->bind('entreemenu', EntreeMenu::class);
+        $this->app->bind('entreecrumbler', EntreeCrumbler::class);
     }
 
     /**

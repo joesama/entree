@@ -1,6 +1,7 @@
 <?php namespace Threef\Entree\Http\Processor;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Threef\Entree\Database\Model\Role;
 use Threef\Entree\EntreeMenu;
 
@@ -37,10 +38,11 @@ class MenuAccessManager
 		$actionRoles = $this->getRolesActions($acl);
 
 		$menu = $this->menu->menu();
+		$access = $this->menu->acl();
 
-		$roles = $this->roles->pluck('name','id');
+		$roles = $this->roles->where('id','!=',1)->pluck('name','id');
 
-		return $controller->viewMain(compact('menu','roles','action','actionRoles'));
+		return $controller->viewMain(compact('menu','roles','access','actionRoles'));
 
 
 	}
@@ -55,55 +57,93 @@ class MenuAccessManager
 	{   
 		$acl  = $this->menu->acl();
 
-		$params = collect($request->except('_token'));
+		$params = $request->except('_token');
 
-		$acl->actions()->detach($params->keys());
-		$acl->actions()->attach($params->keys()->toArray());
+		$actions = $this->getAclActions();
+		$roles = $this->getAclRoles();
 
-		$roles = $this->roles->pluck('name','id');
 
-		$acl->roles()->detach($roles->toArray());
-		$acl->roles()->attach($roles->toArray());
-		$acl->sync();
+		if(empty($acl->actions()->get()) && empty($acl->roles()->get())):
 
-		$roles->each(function($roleName,$roleId)use($params,$acl){
+			$acl->actions()->attach($actions);
+			$acl->roles()->attach($roles);
+			$acl->sync();
 
-			$roleName = Keyword::make($roleName)->getSlug();
+		endif;
 
-			$params->each(function ($item, $key) use ($roleId,$acl,$roleName){
+        foreach ($roles as $roleKey => $roleName) {
+            foreach ($actions as $actionKey => $actionName) {
+           	 	$menu = Keyword::make($actionName)->getSlug();
+				$role = Keyword::make($roleName)->getSlug();
+                $value = ('yes'=== Arr::get($params, "{$menu}_{$role}", 'no'));
+                dump($menu . ':' . $role . '->' . $value);
+                $acl->allow($roleName, $actionName, $value);
+            }
+        }
 
-				if(in_array($roleId,$item)):
-					$acl->allow($roleName, $key);
-				endif;
-			});
 
-		});
-
-		return redirect(handles('threef/entree::menu'));
+		return redirect_with_message(handles('threef/entree::menu'),trans('threef/entree::respond.respond.saved'),'success');
 
 	}
 
 
 	/**
-	 * undocumented function
+	 * Get All Action For ACL
 	 *
-	 * @return void
-	 * @author 
+	 * @return Illuminate\Support\Collection
+	 **/
+	protected function getAclActions()
+	{
+		$menus  = $this->menu->menu();
+
+		$actions = collect([]);
+
+		foreach($menus as $menu):
+			if($menu->id !== 'home'):
+			$action = Keyword::make($menu->id)->getSlug();
+			$actions->push($action);
+
+			foreach($menu->childs as $submenumenu):
+				$action = Keyword::make($menu->id.$submenumenu->id)->getSlug();
+				$actions->push($action);
+			endforeach;
+			endif;
+		endforeach;
+
+
+		return $actions;
+	}
+
+	/**
+	 * Get All Role For ACL
+	 *
+	 * @return Illuminate\Support\Collection
+	 **/
+	protected function getAclRoles()
+	{
+		return $this->roles->where('id','!=',1)->pluck('name','id')
+				 ->transform(function ($item, $key) {
+					    return Keyword::make($item)->getSlug();;
+				});
+	}
+
+
+
+	/**
+	 * Get Action Priveleges For Roles
+	 *
+	 * @return Illuminate\Support\Collection
 	 **/
 	protected function getRolesActions($acl)
 	{
 		$actionAvail = collect([]);
 
 		foreach($acl->actions()->get() as $action){
-
 			$access = collect([]);
 
-			$roles = $this->roles->pluck('name','id');
+			$roles = $this->getAclRoles();
 
 			foreach($roles as $roleId => $role){
-
-				$role = Keyword::make($role)->getSlug();
-
 				if($acl->check($role,$action)):
 					$access->push($roleId);
 				endif;

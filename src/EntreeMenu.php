@@ -72,10 +72,19 @@ use Orchestra\Contracts\Authorization\Factory;
      **/
     protected function generateMenuService($menu)
     {
-    	$menu->add('home')
+        $menu->add('home')
             ->title(trans('threef/entree::title.home'))
             ->link(handles('threef/entree::home'))
-            ->icon('glyphicon glyphicon-home');
+            ->icon('fa fa-home');
+
+    	$menu->add('config','>:home')
+            ->title(trans('threef/entree::title.config.title'))
+            ->icon('fa fa-cogs');
+
+        $menu->add('menu','^:config')
+            ->title(trans('threef/entree::title.config.menu'))
+            ->link(handles('threef/entree::menu'))
+            ->icon('fa fa-bars');
 
         event('entree.menu:ready',[$menu]);
     }

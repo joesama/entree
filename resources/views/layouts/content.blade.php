@@ -1,9 +1,6 @@
 @extends('threef/entree::layouts.page')
-@push('threef.style')
-
-<style type="text/css">
-</style>
-@stack('content.style')
+@push('page.style')
+@stack('pages.style')
 @endpush
 @section('page')
 <div class="container-fluid">
@@ -16,8 +13,6 @@
 	</div>
 </div>
 @endsection
-@push('threef.footer')
-<script type="text/javascript">
-</script>
+@push('pages.script')
 @stack('content.script')
 @endpush

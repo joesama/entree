@@ -42,6 +42,8 @@ class MenuAccess extends Controller
      **/
     public function viewMain($data)
     {
+        set_meta('page-header',trans('threef/entree::title.config.menu'));
+        
         return view('threef/entree::entree.menu.menu',$data);
     }
 }

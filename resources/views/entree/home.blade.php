@@ -1,5 +1,5 @@
 @extends('threef/entree::layouts.page')
-@push('content.style')
+@push('pages.style')
 <style type="text/css">
 /*
 Fade content bs-carousel with hero headers
@@ -186,7 +186,7 @@ Image credits: unsplash.com
     </div>
 </div>
 @endsection
-@push('content.script')
+@push('pages.script')
 <script type="text/javascript">
 
 </script>

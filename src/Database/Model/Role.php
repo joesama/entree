@@ -1,13 +1,8 @@
 <?php namespace Threef\Entree\Database\Model;
 
-use Illuminate\Database\Eloquent\Model;
+use Orchestra\Model\Role as OrchestraRole;
 
-class Role extends Model
+class Role extends OrchestraRole
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'roles';
+
 }

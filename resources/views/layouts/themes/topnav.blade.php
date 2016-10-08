@@ -13,48 +13,13 @@
             <ul id="topbar"  class="nav navbar-nav">
             @foreach($menu as $link)
                 @if($link->id === 'home')
-                    <li>
-                        <a href="{{ $link->link }}" >
-                        <i class="{{ $link->icon }}" aria-hidden="true"></i>
-                        &nbsp;&nbsp;{!! $link->title !!}
-                        </a>
-                    </li>
+                    @include('threef/entree::layouts.menu.item', ['item' => $link])
                 @else
                     @if($acl->canIf($link->id) || $user->roles->contains('id', 1) )
                         @if(empty($link->childs))
-                        <li>
-                            <a href="{{ $link->link }}" >
-                            <i class="{{ $link->icon }}" aria-hidden="true"></i>
-                            &nbsp;&nbsp;{!! $link->title !!}
-                            </a>
-                        </li>
-                        @endif
-                        @if(!empty($link->childs))
-                        <li class="dropdown mega-dropdown">
-                            <a href="{{ $link->link }}" data-toggle="dropdown">
-                                <i class="{{ $link->icon }}" aria-hidden="true"></i>
-                                &nbsp;&nbsp;{!! $link->title !!}
-                                <span class="caret"></span>
-                            </a>
-                            @if(!empty($link->childs))
-                            <ul class="dropdown-menu mega-dropdown-menu">
-                                @foreach($link->childs as $child)
-                                @if($acl->canIf($link->id.$child->id) || $user->roles->contains('id', 1))
-                                <li class="col-sm-3">
-                                    <ul>
-                                        <li class="dropdown-header">
-                                        <a href="{{ $child->link }}">
-                                            <i class="{{ $child->icon }}" aria-hidden="true"></i>
-                                            &nbsp;&nbsp;{!! $child->title !!}
-                                        </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                @endif
-                                @endforeach
-                            </ul>
-                            @endif
-                        </li>
+                            @include('threef/entree::layouts.menu.item', ['item' => $link])
+                        @else
+                            @include('threef/entree::layouts.menu.child', ['item' => $link])
                         @endif
                     @endif
                 @endif

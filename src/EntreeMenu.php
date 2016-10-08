@@ -84,7 +84,29 @@ use Orchestra\Contracts\Authorization\Factory;
         $menu->add('menu','^:config')
             ->title(trans('threef/entree::title.config.menu'))
             ->link(handles('threef/entree::menu'))
-            ->icon('fa fa-bars');
+            ->icon('fa fa-link');
+
+        $menu->add('report','^:config')
+            ->title(trans('threef/entree::report.menu.report'))
+            ->link(handles('threef/entree::menu'))
+            ->icon('fa fa-bar-chart');
+
+        $menu->add('reportlist','^:config.report')
+            ->title(trans('threef/entree::report.menu.report-list'))
+            ->link(handles('threef/entree::menu'))
+            ->icon('fa fa-chevron-circle-right');
+
+        $menu->add('reportgroup','^:config.report')
+            ->title(trans('threef/entree::report.menu.report-group'))
+            ->link(handles('threef/entree::menu'))
+            ->icon('fa fa-chevron-circle-right');
+
+        $menu->add('reportaccess','^:config.report')
+            ->title(trans('threef/entree::report.menu.report-assign'))
+            ->link(handles('threef/entree::menu'))
+            ->icon('fa fa-chevron-circle-right');
+
+        // dd($menu);
 
         event('entree.menu:ready',[$menu]);
     }

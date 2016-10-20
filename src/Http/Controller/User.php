@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Orchestra\Foundation\Http\Controllers\UsersController;
 use Threef\Entree\Http\Processor\UserManager;
 use Orchestra\Foundation\Processor\User as Processor;
+use Threef\Entree\DataGrid\UsersDataTable;
 
 
 
@@ -24,11 +25,11 @@ class User extends UsersController
      *
      * @return mixed
      **/
-    public function getIndex(Request $request)
+    public function getIndex(UsersDataTable $datatables)
     {
-        set_meta('page-header',trans('entree::entree.user.manage'));
+        set_meta('page-header',trans('threef/entree::entree.user.manage'));
         
-        return $this->manager->listUser($request);
+        return $datatables->render('threef/entree::entree.user.datatables');
     }
 
 
@@ -40,7 +41,7 @@ class User extends UsersController
      **/
     public function getUserUpdate($id)
     {
-        set_meta('page-header',trans('entree::entree.user.manage'));
+        set_meta('page-header',trans('threef/entree::entree.user.manage'));
 
         return $this->manager->userUpdate($id);
     }

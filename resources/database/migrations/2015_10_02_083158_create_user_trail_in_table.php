@@ -24,6 +24,7 @@ class CreateUserTrailInTable extends Migration
             
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('person');
             $table->integer('type')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');

@@ -15,6 +15,7 @@ class EntreeCrumbler
 	public function __construct(EntreeMenu $menu)
 	{
 		$this->menu = $menu->menu();
+		$this->path = $this->currentPath();
 	}
 
 
@@ -25,7 +26,7 @@ class EntreeCrumbler
 	 **/
 	public function crumbler()
 	{
-		return $this->breaded($this->currentPath());
+		return $this->breaded();
 	}
 
 
@@ -34,32 +35,51 @@ class EntreeCrumbler
 	 *
 	 * @return Illuminate\Support\Collection
 	 **/
-	protected function breaded($path)
+	protected function breaded()
 	{
+
 		$bread = collect([]);
 
 		foreach($this->menu as $menu){
 
-			if($menu->id === 'home'){
+			if($menu->id === 'home'):
 				$bread->put('main',$menu);
-			}
+			endif;
 
-			if($menu->link === $path){
+			if($menu->link === $this->path):
 				$bread->put('path',$menu);
 				return $bread;
-			}
+			endif;
 
-			foreach($menu->childs as $submenu){
-				if($submenu->link === $path){
+			$this->childCrumbler($menu,$menu->childs,$bread);
 
-					$bread->put('path',$submenu);
-					$bread->put('head',$menu);
-
-					return $bread;
-				}
-			}
 		}
 
+		return $bread;
+
+	}
+
+
+	/**
+	 * undocumented function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	protected function childCrumbler($parent,$childs,$bread)
+	{
+		foreach($childs as $submenu){
+			if($submenu->link === $this->path):
+
+				$bread->put('path',$submenu);
+				$bread->put('head',$parent);
+				return $bread;
+			else:
+
+			$this->childCrumbler($submenu,$submenu->childs,$bread);
+
+			endif;
+		}
 	}
 
 

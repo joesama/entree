@@ -31,7 +31,7 @@ class User extends OrchestraUser
 	public function getStatusAttribute($value)
     {
 
-        return trans('entree::entree.user.status.'.$value);
+        return trans('threef/entree::entree.user.status.'.$value);
     }
 
 

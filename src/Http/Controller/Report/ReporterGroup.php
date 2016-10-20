@@ -15,6 +15,8 @@ class ReporterGroup extends Controller
      **/
     public function getIndex()
     {
+        set_meta('page-header',trans('threef/entree::report.menu.report-group'));
+        
         return  $this->viewMain();
     }
 
@@ -27,6 +29,6 @@ class ReporterGroup extends Controller
      **/
     public function viewMain()
     {
-        return view('threef/entree::entree.index');
+        return view('threef/entree::entree.report.category');
     }
 }

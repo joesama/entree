@@ -14,7 +14,7 @@ Foundation::group('threef/entree', NULL , ['middleware' => ['web']], function (R
 		$router->post('/forgot/reset/{token}', 'Auth\ResetPassword@postResetPassword');
 	});
 
-	$router->group(['middleware' => 'auth.basic'],function($router){
+	$router->group(['middleware' => 'auth'],function($router){
 		$router->get('/home', 'Auth\Access@home');
 		$router->get('/logout', 'Auth\Access@logout');
 		$router->get('/password', 'Auth\Password@edit');
@@ -26,6 +26,12 @@ Foundation::group('threef/entree', NULL , ['middleware' => ['web']], function (R
 		$router->get('/user/new', 'User@getUserCreation');
 		$router->get('/userdata', 'User@getUsers');
 		$router->get('/user/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);
+
+		$router->group(['prefix' => 'report', 'namespace' => 'Report'],function($router){
+			$router->get('/list', 'Reporter@getIndex');
+			$router->get('/category', 'ReporterGroup@getIndex');
+			$router->get('/access', 'ReporterAccess@getIndex');
+		});
 	});
 
  });

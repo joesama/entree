@@ -35,6 +35,7 @@ class EntreeUserLogin
 
         $trails = new UserTrails();
         $trails->type = 1;
+        $trails->person = $person->user->username;
         $trails->user_id = $person->user->id;
         $trails->save();
 

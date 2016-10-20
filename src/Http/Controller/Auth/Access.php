@@ -24,8 +24,10 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
      */
     public function login(Request $request, AuthenticateUser $authenticate, ThrottlesCommand $throttles )
     {
+
         $input = $request->only(['username', 'password', 'remember']);
         $throttles->setRequest($request)->setLoginKey('username');
+        $input['status'] = 1;
 
         return $authenticate->login($this, $input, $throttles);
     }
@@ -73,7 +75,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
      */
     public function userLoginHasFailedAuthentication(array $input){
 
-        $message = trans('orchestra/foundation::response.credential.invalid-combination');
+        $message = trans('threef/entree::respond.respond.login.fail-auth');
 
         return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'error')->withInput();
     }
@@ -90,7 +92,7 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
         
         $message = trans('auth.throttle', ['seconds' => $seconds]);
 
-        return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'error')->withInput();
+        return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'danger')->withInput();
     }
 
     /**

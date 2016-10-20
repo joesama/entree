@@ -4,6 +4,7 @@ namespace Threef\Entree\Http\Controller\Report;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class Reporter extends Controller
 {
@@ -15,6 +16,8 @@ class Reporter extends Controller
      **/
     public function getIndex()
     {
+        set_meta('page-header',trans('threef/entree::report.menu.report-list'));
+
         return  $this->viewMain();
     }
 
@@ -27,6 +30,6 @@ class Reporter extends Controller
      **/
     public function viewMain()
     {
-        return view('threef/entree::entree.index');
+        return view('threef/entree::entree.report.list');
     }
 }

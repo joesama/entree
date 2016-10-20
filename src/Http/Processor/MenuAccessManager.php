@@ -68,13 +68,22 @@ class MenuAccessManager
 			$acl->actions()->attach($actions);
 			$acl->roles()->attach($roles);
 			$acl->sync();
-
 		endif;
-
+	
         foreach ($roles as $roleKey => $roleName) {
             foreach ($actions as $actionKey => $actionName) {
            	 	$menu = Keyword::make($actionName)->getSlug();
 				$role = Keyword::make($roleName)->getSlug();
+
+
+				if(!$acl->actions()->has($menu)):
+					$acl->actions()->add($menu);
+				endif;
+
+				if(!$acl->roles()->has($role)):
+					$acl->roles()->add($role);
+				endif;
+
                 $value = ('yes'=== Arr::get($params, "{$menu}_{$role}", 'no'));
                 $acl->allow($roleName, $actionName, $value);
             }
@@ -102,15 +111,31 @@ class MenuAccessManager
 			$action = Keyword::make($menu->id)->getSlug();
 			$actions->push($action);
 
-			foreach($menu->childs as $submenumenu):
-				$action = Keyword::make($menu->id.$submenumenu->id)->getSlug();
-				$actions->push($action);
-			endforeach;
+			if(!empty($menu->childs)):
+				$this->getAclChildActions($menu->childs,$actions);
+			endif;
+
 			endif;
 		endforeach;
 
-
 		return $actions;
+	}
+
+	/**
+	 * Proceesing child actions
+	 *
+	 **/
+	protected function getAclChildActions($childs,$actions)
+	{
+		foreach($childs as $item):
+			$action = Keyword::make($item->id)->getSlug();
+			$actions->push($action);
+
+			if(!empty($item->childs)):
+				$this->getAclChildActions($item->childs,$actions);
+			endif;
+
+		endforeach;
 	}
 
 	/**

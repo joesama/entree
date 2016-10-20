@@ -28,7 +28,7 @@
                         @foreach($child->childs as $submenu)
                             @if($acl->canIf($item->id.$child->id.$submenu->id) || $user->roles->contains('id', 1))
                             <li>
-                                <a href="{{ $submenu->link }}" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="{{ $submenu->link }}" >
                                     <i class="{{ $submenu->icon }}" aria-hidden="true"></i>
                                     {!! $submenu->title !!}
                                 </a>

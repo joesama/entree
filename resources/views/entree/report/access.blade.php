@@ -7,11 +7,13 @@
 @section('content')
 <div class="panel panel-default">
   <div class="panel-body">
-	{!! $dataTable->table() !!}
+
   </div>
 </div>
 
 @endsection
 @push('content.script')
-{!! $dataTable->scripts() !!}
+<script type="text/javascript">
+
+</script>
 @endpush

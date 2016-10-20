@@ -15,6 +15,8 @@ class ReporterAccess extends Controller
      **/
     public function getIndex()
     {
+        set_meta('page-header',trans('threef/entree::report.menu.report-assign'));
+        
         return  $this->viewMain();
     }
 
@@ -27,6 +29,6 @@ class ReporterAccess extends Controller
      **/
     public function viewMain()
     {
-        return view('threef/entree::entree.index');
+        return view('threef/entree::entree.report.access');
     }
 }

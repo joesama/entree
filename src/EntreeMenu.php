@@ -106,6 +106,12 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('threef/entree::report/access'))
             ->icon('fa fa-chevron-circle-right');
 
+
+        $menu->add('user','^:config')
+            ->title(trans('threef/entree::entree.user.manage'))
+            ->link(handles('threef/entree::user'))
+            ->icon('fa fa-user');
+
         event('entree.menu:ready',[$menu]);
     }
 

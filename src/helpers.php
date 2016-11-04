@@ -1,5 +1,4 @@
 <?php 
-	dd('test');
 if (! function_exists('ip_origin')) {
 
     /**

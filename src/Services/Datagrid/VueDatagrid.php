@@ -31,6 +31,21 @@ class VueDatagrid
      */
     protected $items;
 
+    /**
+     * Data API Path URL
+     */
+    protected $api;
+
+    /**
+     * Add Button
+     */
+    protected $add = FALSE;
+
+    /**
+     * Actions Button
+     */
+    protected $actions = FALSE;
+
 
 	/**
 	 * Generate Columns For Table
@@ -60,13 +75,33 @@ class VueDatagrid
 	}
 
 	/**
-	 * undocumented function
+	 * URI for Data API
 	 *
 	 * @param string $url
 	 **/
 	public function apiUrl(String $url)
 	{
 		$this->api = $url;
+	}
+
+	/**
+	 * Edit action
+	 *
+	 * @param string $url
+	 **/
+	public function action(Array $actions)
+	{
+		$this->actions = $actions;
+	}
+
+	/**
+	 * Add action
+	 *
+	 * @param string $url
+	 **/
+	public function add(String $url)
+	{
+		$this->add = $url;
 	}
 
 	/**
@@ -81,6 +116,8 @@ class VueDatagrid
 	        'column' => $this->columns,
 	        'data' => $this->items->items(),
 	        'api' => $this->api,
+	        'add' => $this->add,
+	        'actions' => $this->actions,
 	        'pagination' => [
 	            'total' => $this->items->total(),
 	            'per_page' => $this->items->perPage(),

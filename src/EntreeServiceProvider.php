@@ -33,7 +33,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'Threef\Entree\Http\Controller';
+    protected $namespace = 'Threef\Entree';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -95,6 +95,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $path = realpath(__DIR__.'/../resources');
 
         $this->publishOrchestraLang($path);
+        $this->publishJavascriptTransformerView($path);
         $this->addLanguageComponent('threef/entree', 'threef/entree', $path.'/lang');
         $this->addConfigComponent('threef/entree', 'threef/entree', $path.'/config');
         $this->addViewComponent('threef/entree', 'threef/entree', $path.'/views');
@@ -109,6 +110,16 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->publishes([
             $path.'/lang/orchestra' => base_path('resources/lang/packages/orchestra/foundation/ms'),
             $path.'/lang/app' => base_path('resources/lang/ms'),
+        ]);
+    }
+
+    /**
+     * Publishing Javascript Transformer View
+     **/
+    protected function publishJavascriptTransformerView($path)
+    {
+        $this->publishes([
+            $path.'/views/entree/phptojs' => base_path('resources/views'),
         ]);
     }
 

@@ -1,7 +1,6 @@
 <?php namespace Threef\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Threef\Entree\Http\Processor\MenuAccessManager;
 
 class MenuAccess extends Controller

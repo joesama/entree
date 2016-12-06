@@ -1,7 +1,6 @@
 <?php namespace Threef\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class Entrance extends Controller
 {

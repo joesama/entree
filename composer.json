@@ -21,7 +21,10 @@
     },
     "require": {
         "php": ">=5.6.4",
-        "yajra/laravel-datatables-oracle": "~6.0"
+        "laracasts/utilities": "~2.0",
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "laravel/scout": "^1.1",
+        "teamtnt/laravel-scout-tntsearch-driver": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.3"

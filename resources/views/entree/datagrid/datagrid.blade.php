@@ -89,7 +89,7 @@
             </demo-grid>
           </div>
       </div>
-      <nav aria-label="..." class="text-center">
+      <div class="row">
         <div class="col-md-2 text-left">
         <ul class="pagination pagination-sm">
           <li>
@@ -100,9 +100,7 @@
           </li>
         </ul>
         </div>
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-5 col-md-offset-4 text-right">
         <ul class="pagination pagination-sm">
             <li v-if="pagination.current_page > 1">
                 <a href="#" aria-label="Previous"
@@ -123,7 +121,18 @@
             </li>
         </ul>
         </div>
-      </nav>
+        <div class="col-md-1 text-right">
+          <div class="btn-group" role="group" aria-label="...">
+            <a  class="btn btn-sm btn-default">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-sm btn-default">
+            <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+        
+      </div>
     </div>
   </div>
 

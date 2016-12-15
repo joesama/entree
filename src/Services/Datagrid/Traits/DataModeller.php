@@ -1,10 +1,10 @@
 <?php 
 namespace Threef\Entree\Services\DataGrid\Traits;
 
-use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
- * 
+ * VueDatagrid Data Handler Traits 
  *
  * @package threef/entree
  * @author joharijumali@gmail.com
@@ -13,14 +13,14 @@ trait DataModeller
 {
 
 	/**
-	 * undocumented function
+	 * Build Paginator For Data
 	 *
 	 * @param void
 	 * @author 
 	 **/
-	public function builderMixer($builder, $columns)
+	public function buildPaginators(LengthAwarePaginator $paginator)
 	{
-		return $builder->paginate(100);
+		return $paginator;
 	}
 
 

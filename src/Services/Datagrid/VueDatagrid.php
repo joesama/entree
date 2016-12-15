@@ -47,6 +47,12 @@ class VueDatagrid
     protected $actions = FALSE;
 
 
+    /**
+     * Paginate Numbers
+     */
+    public $paginate = 20;
+
+
 	/**
 	 * Generate Columns For Table
 	 *
@@ -69,6 +75,7 @@ class VueDatagrid
 	public function setModel($model,array $columns = [])
 	{
 		$this->columns = (empty($columns)) ? $this->columns  : $columns;
+
 		$this->items = $model;
 
 
@@ -95,6 +102,16 @@ class VueDatagrid
 	}
 
 	/**
+	 * TODO : checboxes
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function checkboxes()
+	{
+	}
+
+	/**
 	 * Add action
 	 *
 	 * @param string $url
@@ -111,20 +128,21 @@ class VueDatagrid
 	 **/
 	public function build()
 	{
+		$items = $this->buildPaginators($this->items);
 
 		JavaScript::put([
 	        'column' => $this->columns,
-	        'data' => $this->items->items(),
+	        'data' => $items->items(),
 	        'api' => $this->api,
 	        'add' => $this->add,
 	        'actions' => $this->actions,
 	        'pagination' => [
-	            'total' => $this->items->total(),
-	            'per_page' => $this->items->perPage(),
-	            'current_page' => $this->items->currentPage(),
-	            'last_page' => $this->items->lastPage(),
-	            'from' => $this->items->firstItem(),
-	            'to' => $this->items->lastItem()
+	            'total' => $items->total(),
+	            'per_page' => $items->perPage(),
+	            'current_page' => $items->currentPage(),
+	            'last_page' => $items->lastPage(),
+	            'from' => $items->firstItem(),
+	            'to' => $items->lastItem()
 	        ]
 	    ]);
 

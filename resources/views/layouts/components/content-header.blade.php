@@ -9,6 +9,8 @@
 			  	@endif
 				@if($crumb->has('head'))
 			  		<li><a href="{{ $crumb->get('head')->link }}">{{ $crumb->get('head')->title }}</a></li>
+			  	@else
+				  	<li class="active">{{ get_meta('title', '') }}</li>
 			  	@endif
 				@if($crumb->has('path'))
 			  	<li class="active">{{ $crumb->get('path')->title }}</li>

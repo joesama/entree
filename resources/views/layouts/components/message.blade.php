@@ -6,14 +6,57 @@ $format = <<<MESSAGE
 </div>
 MESSAGE;
 
-$message = app('orchestra.messages')->retrieve();
+	\JavaScript::put([
+    	'errorBags' => $errors->messages(),
+    	'hasError' => $errors->isEmpty()
+	]);
 
-if ($message instanceof Orchestra\Messages\MessageBag) :
-	$message->setFormat($format);
 
-	foreach (['error', 'info', 'success'] as $key) :
-		if ($message->has($key)) :
-			echo implode('', $message->get($key));
-		endif;
-	endforeach;
-endif;
+	$message = app('orchestra.messages')->retrieve();
+
+	if ($message instanceof Orchestra\Messages\MessageBag) :
+		$message->setFormat($format);
+		foreach (['danger', 'info', 'success'] as $key) :
+			if ($message->has($key)) :
+				echo implode('', $message->get($key));
+			endif;
+		endforeach;
+	endif;
+
+?>
+
+@push('messages.jscript')
+
+<script type="text/javascript">
+
+
+// create Vue app
+var mesej = new Vue({
+  // element to mount to
+  el: '.form-validation',
+  // initial data
+  data: {
+    errors: window.errorBags,
+    bags: window.hasError,
+  },
+  // methods
+  mounted: function () {
+   	if(this.bags == false){
+		this.createMessage;
+	}
+  },
+  computed: {
+    createMessage: function () {
+    		
+		for( x in this.errors){
+
+		$( "#" + x ).parent().addClass( "has-error" ).append( '<span id="helpBlock2" class="help-block text-right"><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp;' + this.errors[x] + '</span>' );
+
+		}
+
+    }
+  }
+});
+
+</script>
+@endpush

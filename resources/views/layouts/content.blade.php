@@ -14,6 +14,8 @@
 				<div class="panel-heading">
 					@if($crumb->has('path'))
 				  	{{ $crumb->get('path')->title }}
+				  	@else
+				  	{{ get_meta('title', '') }}
 				  	@endif
 				</div>
 				<div class="panel-body">
@@ -28,4 +30,5 @@
 @include('footer')
 @stack('content.script')
 @stack('datagrid.jscript')
+@stack('messages.jscript')
 @endpush

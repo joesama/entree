@@ -23,7 +23,7 @@
               @{{ checkNumbers(entry[key.field]) }}
             </td>
             <td v-if="actions" class="text-center" style="background-color: #f9f9f9">
-              <div class="btn-group" v-if="actions.length > 2">
+              <div class="btn-group" v-if="actions.length > 1">
                 <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ trans('threef/entree::datagrid.actions') }} <span class="caret"></span>
                 </button>
@@ -36,7 +36,7 @@
                 </ul>
               </div>
 
-              <a v-if="actions.length < 3" :href="btn.url" v-for="btn in actions" class="btn btn-xs btn-actions">
+              <a v-if="actions.length < 2" :href="uriaction(btn.url,entry[btn.key])" v-for="btn in actions" class="btn btn-xs btn-actions">
               <i v-bind:class="[ btn.icons ? 'fa ' + btn.icons : 'fa fa-pencil-square-o']" aria-hidden="true"></i>&nbsp;
               @{{ btn.action }}
               </a>
@@ -66,8 +66,12 @@
                   </span>
                 </div><!-- /input-group -->
               </div>
-              <div class="col-sm-2 col-sm-offset-4 text-right">
-                <a class="btn btn-sm btn-primary" :href="gridNew" v-if="gridNew">
+              <div class="col-sm-2 col-sm-offset-4 text-right" v-if="gridNew">
+                <a class="btn btn-sm btn-primary" :href="gridNew" v-if="gridNewDesc">
+                <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
+                @{{ gridNewDesc }}
+                </a>
+                <a class="btn btn-sm btn-primary" :href="gridNew" v-else >
                 <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;
                 {{ trans('threef/entree::datagrid.buttons.add') }}
                 </a>
@@ -224,6 +228,7 @@ var demo = new Vue({
     gridBuilder: window.builder,
     gridApi: window.api,
     gridNew: window.add,
+    gridNewDesc: window.addDesc,
     gridActions: window.actions,
     pagination: {
       total: window.pagination.total,

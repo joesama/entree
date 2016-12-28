@@ -39,7 +39,8 @@ class VueDatagrid
     /**
      * Add Button
      */
-    protected $add = FALSE;
+    protected $add = NULL;
+    protected $addDesc = NULL;
 
     /**
      * Actions Button
@@ -116,9 +117,10 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function add(String $url)
+	public function add(String $url, String $urlDesc = NULL)
 	{
 		$this->add = $url;
+		$this->addDesc = $urlDesc;
 	}
 
 	/**
@@ -135,6 +137,7 @@ class VueDatagrid
 	        'data' => $items->items(),
 	        'api' => $this->api,
 	        'add' => $this->add,
+	        'addDesc' => $this->addDesc,
 	        'actions' => $this->actions,
 	        'pagination' => [
 	            'total' => $items->total(),

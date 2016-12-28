@@ -6,7 +6,6 @@
 	"version": "1.0",
 	"provides": [
 		"Threef\\Entree\\EntreeServiceProvider",
-		"Yajra\\Datatables\\DatatablesServiceProvider",
 		"Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider",
 		"Laravel\\Scout\\ScoutServiceProvider",
     	"TeamTNT\\Scout\\TNTSearchScoutServiceProvider"

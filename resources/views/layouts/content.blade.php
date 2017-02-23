@@ -1,7 +1,9 @@
 @extends('threef/entree::layouts.page')
-@push('page.style')
-@stack('pages.style')
+
+@push('pages.style')
+	@stack('content.style')
 @endpush
+
 @section('page')
 @inject('bread', 'Threef\Entree\EntreeCrumbler')
 <?php $crumb = $bread->crumbler(); ?>
@@ -27,8 +29,8 @@
 </div>
 @endsection
 @push('pages.script')
-@include('footer')
-@stack('content.script')
-@stack('datagrid.jscript')
-@stack('messages.jscript')
+	@include('footer')
+	@stack('messages.jscript')
+	@stack('content.script')
+	@stack('datagrid.jscript')
 @endpush

@@ -22,6 +22,7 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->get('/menu', 'MenuAccess@getIndex');
 		$router->post('/menu', 'MenuAccess@menuAccess');
 		$router->get('/user', 'User@getIndex');
+		$router->get('/user/data', 'User@dataApi');
 		$router->get('/user/{id}', 'User@getUserModification')->where(['id' => '[0-9]+']);
 		$router->get('/user/new', 'User@getUserCreation');
 		$router->get('/userdata', 'User@getUsers');

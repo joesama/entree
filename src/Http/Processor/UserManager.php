@@ -6,6 +6,8 @@ use Orchestra\Foundation\Processor\User;
 use Threef\Entree\Database\Model\User as Eloquent;
 use Threef\Entree\Database\Model\UserProfile as Profile;
 use Carbon\Carbon;
+use Threef\Entree\Services\DataGrid\VueDatagrid;
+use Threef\Entree\Database\Respository\UserRepo;
 
 
 /**
@@ -16,6 +18,69 @@ use Carbon\Carbon;
  **/
 class UserManager extends User
 {
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public function __construct(UserRepo $repo)
+    {
+        $this->repo = $repo;
+    }
+
+
+    /**
+     * Listing All User
+     *
+     * @return void
+     * @author 
+     **/
+    public function userList($request)
+    {
+
+        $columns = [
+            [ 'field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left h2'],
+            [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-right'], 
+            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.email'), 'style' => 'text-right']
+        ];
+
+        $grid = new VueDatagrid;
+        $grid->setColumns($columns);
+        $grid->apiUrl(handles('threef/entree::user/data'));
+        // $grid->add(handles('threef/project::manager/resources/form'), trans('threef/manager::title.resources.register'));
+        $grid->action([
+                [ 'action' => trans('threef/entree::datagrid.buttons.edit') ,
+                  'url' => handles('threef/project::manager/resources/form'),
+                  'icons' => 'fa fa-pencil',
+                  'key' => 'id'  ],
+                // [ 'action' => trans('threef/manager::navigation.project.list') ,
+                //   'url' => handles('threef/project::manager/api/mailer'),
+                //   'icons' => 'fa fa-object-group',
+                //   'key' => 'id'   ]
+                // [ 'action' => trans('threef/entree::datagrid.buttons.delete') ,
+                //   'url' => handles('threef/project::manager/add/project'),
+                //   'icons' => 'fa fa-trash',
+                //   'key' => 'id'  ]
+            ]);
+        
+        return $grid->build();
+
+    }
+
+
+    /**
+     * User Data API
+     *
+     * @return void
+     * @author 
+     **/
+    public function dataList($request)
+    {
+        return $this->repo->userList($request);
+    }
+
 
 	/**
 	 * Process User Update

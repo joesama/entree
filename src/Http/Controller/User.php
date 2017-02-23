@@ -25,13 +25,26 @@ class User extends UsersController
      *
      * @return mixed
      **/
-    public function getIndex(UsersDataTable $datatables)
+    public function getIndex(Request $request)
     {
         set_meta('page-header',trans('threef/entree::entree.user.manage'));
         
-        return $datatables->render('threef/entree::entree.user.datatables');
+        $table = $this->manager->userList($request);
+
+        return view('threef/entree::entree.datagrid.list',compact('table'));
     }
 
+
+    /**
+     * Retrieve User List
+     *
+     * @return void
+     * @author 
+     **/
+    public function dataApi(Request $request)
+    {
+        return $this->manager->dataList($request);
+    }
 
 
     /**

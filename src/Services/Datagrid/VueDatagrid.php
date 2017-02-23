@@ -29,7 +29,7 @@ class VueDatagrid
     /**
      * Paginate Items
      */
-    protected $items;
+    protected $items = NULL;
 
     /**
      * Data API Path URL
@@ -130,24 +130,30 @@ class VueDatagrid
 	 **/
 	public function build()
 	{
-		$items = $this->buildPaginators($this->items);
+
+		if(!is_null($this->items)):
+			$items = $this->buildPaginators($this->items);
+		endif;
 
 		JavaScript::put([
 	        'column' => $this->columns,
-	        'data' => $items->items(),
 	        'api' => $this->api,
 	        'add' => $this->add,
 	        'addDesc' => $this->addDesc,
 	        'actions' => $this->actions,
+	       	'data' => (!is_null($this->items)) ? $items->items() : [],
 	        'pagination' => [
-	            'total' => $items->total(),
-	            'per_page' => $items->perPage(),
-	            'current_page' => $items->currentPage(),
-	            'last_page' => $items->lastPage(),
-	            'from' => $items->firstItem(),
-	            'to' => $items->lastItem()
+	            'total' => (!is_null($this->items)) ? $items->total() : 0,
+	            'per_page' => (!is_null($this->items)) ? $items->perPage() : 20,
+	            'current_page' => (!is_null($this->items)) ? $items->currentPage() : 1,
+	            'last_page' => (!is_null($this->items)) ? $items->lastPage() : 1,
+	            'from' => (!is_null($this->items)) ? $items->firstItem() : 1,
+	            'to' => (!is_null($this->items)) ? $items->lastItem() : 1
 	        ]
 	    ]);
+
+
+
 
 	    return view('threef/entree::entree.datagrid.datagrid');
 	}

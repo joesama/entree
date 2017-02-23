@@ -16,6 +16,9 @@
         <footer>
             @include('threef/entree::layouts.components._footer')
             @stack('threef.footer')
+            <script type="text/javascript">
+            $('select').select2();
+            </script>
         </footer>
     </body>
 </html>

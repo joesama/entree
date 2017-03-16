@@ -84,6 +84,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     {
         $this->registerMenuHandler();
         $this->bindingUserValidation();
+        $this->bindingCsrfVerification();
     }
 
 
@@ -155,6 +156,18 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->app->when('Orchestra\Foundation\Processor\AuthenticateUser')
           ->needs('Orchestra\Foundation\Validation\AuthenticateUser')
           ->give('Threef\Entree\Http\Validation\User');
+    }
+
+    /**
+     * Bind CSRF Token Verification 
+     *
+     **/
+    protected function bindingCsrfVerification()
+    {
+
+        $this->app->when('Orchestra\Foundation\Http\Middleware\VerifyCsrfToken')
+          ->needs('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+          ->give('Threef\Entree\Http\Middleware\VerifyCsrfToken');
     }
 
 

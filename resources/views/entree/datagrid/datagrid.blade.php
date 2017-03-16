@@ -20,7 +20,7 @@
           <tr v-for="(entry, index) in filteredData">
             <td class="text-center" style="background-color: #f9f9f9">@{{ runner + (index + 1 ) }}</td>
             <td v-for="key in columns" v-bind:class="[ key.style ? key.style : '']">
-              @{{ checkNumbers(entry[key.field]) }}
+              @{{ checkDisplay(entry,key.field) }}
             </td>
             <td v-if="actions" class="text-center" style="background-color: #f9f9f9">
               <div class="btn-group" v-if="actions.length > 1">
@@ -214,6 +214,17 @@ Vue.component('demo-grid', {
       }else{
         return amount;
       }
+    },
+    checkDisplay : function(data,field){
+
+      var display = data[field];
+
+      if (field.indexOf(".") >= 0){  
+        var obj =  field.split('.');
+        display =  data[obj[0]][obj[1]];
+      }
+
+      return this.checkNumbers(display);
     }
   }
 })
@@ -276,7 +287,6 @@ var demo = new Vue({
           var data = {page: page};
           this.$http.get(this.gridApi + '?page=' + page + '&search=' + this.searchQuery).then(function (response) {
               //look into the routes file and format your response
-              console.log(response.data);
               this.gridData = response.data.data;
               this.pagination.current_page = (response.data.current_page > response.data.last_page ) ? 1 : response.data.current_page;
               this.pagination.total = response.data.total;

@@ -29,7 +29,6 @@
 </div>
 @endsection
 @push('pages.script')
-	@include('footer')
 	@stack('messages.jscript')
 	@stack('content.script')
 	@stack('datagrid.jscript')

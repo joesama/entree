@@ -86,6 +86,10 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('threef/entree::menu'))
             ->icon('fa fa-link');
 
+        /** 
+
+        @TODO : Report Menu
+
         $menu->add('report','^:config')
             ->title(trans('threef/entree::report.menu.report'))
             ->link(handles('threef/entree::menu'))
@@ -106,6 +110,7 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('threef/entree::report/access'))
             ->icon('fa fa-chevron-circle-right');
 
+        **/
 
         $menu->add('user','^:config')
             ->title(trans('threef/entree::entree.user.manage'))

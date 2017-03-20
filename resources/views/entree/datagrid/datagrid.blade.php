@@ -242,7 +242,7 @@ var demo = new Vue({
     gridNewDesc: window.addDesc,
     gridActions: window.actions,
     pagination: {
-      total: window.pagination.total,
+      total: window.pagination.total_item,
       per_page: window.pagination.per_page,
       from: window.pagination.from,
       to: window.pagination.last_page,
@@ -289,7 +289,7 @@ var demo = new Vue({
               //look into the routes file and format your response
               this.gridData = response.data.data;
               this.pagination.current_page = (response.data.current_page > response.data.last_page ) ? 1 : response.data.current_page;
-              this.pagination.total = response.data.total;
+              this.pagination.total = response.data.total_item;
               this.pagination.last_page = response.data.last_page;
               this.pagination.to = response.data.last_page;
               // this.$set('pagination', response.data.pagination);

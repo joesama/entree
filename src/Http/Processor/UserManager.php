@@ -7,7 +7,7 @@ use Threef\Entree\Database\Model\User as Eloquent;
 use Threef\Entree\Database\Model\UserProfile as Profile;
 use Carbon\Carbon;
 use Threef\Entree\Services\DataGrid\VueDatagrid;
-use Threef\Entree\Database\Respository\UserRepo;
+use Threef\Entree\Database\Repository\UserRepo;
 
 
 /**
@@ -49,7 +49,7 @@ class UserManager extends User
         $grid = new VueDatagrid;
         $grid->setColumns($columns);
         $grid->apiUrl(handles('threef/entree::user/data'));
-        // $grid->add(handles('threef/project::manager/resources/form'), trans('threef/manager::title.resources.register'));
+        $grid->add(handles('threef/project::manager/resources/form'), trans('threef/manager::title.resources.register'));
         $grid->action([
                 [ 'action' => trans('threef/entree::datagrid.buttons.edit') ,
                   'url' => handles('threef/project::manager/resources/form'),
@@ -64,7 +64,7 @@ class UserManager extends User
                 //   'icons' => 'fa fa-trash',
                 //   'key' => 'id'  ]
             ]);
-        
+
         return $grid->build();
 
     }

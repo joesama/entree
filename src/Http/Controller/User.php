@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Orchestra\Foundation\Http\Controllers\UsersController;
 use Threef\Entree\Http\Processor\UserManager;
 use Orchestra\Foundation\Processor\User as Processor;
-use Threef\Entree\DataGrid\UsersDataTable;
 
 
 

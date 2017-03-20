@@ -16,7 +16,7 @@ class CreateUserTrailInTable extends Migration
             $table->engine = 'InnoDB';
             $table->string('username')->after('id');
             $table->integer('isAdmin')->default(0)->after('status');
-            $table->datetime('lastlogin')->after('isAdmin');
+            $table->dateTime('lastlogin')->after('isAdmin');
             $table->unique('username');
         });
 

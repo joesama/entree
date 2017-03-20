@@ -7,14 +7,8 @@
 @section('content')
 <div class="panel panel-default">
   <div class="panel-body">
-	@include('orchestra/foundation::users._search')
-	{!! $table !!}
+  {!! $table !!}
   </div>
 </div>
 
 @endsection
-@push('content.script')
-<script type="text/javascript">
-
-</script>
-@endpush

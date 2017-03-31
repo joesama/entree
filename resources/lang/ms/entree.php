@@ -25,6 +25,7 @@ return [
 	],
 	'user' => [
 		"manage" => "Pengurusan Pengguna",
+		"new" => "Pengguna Baru",
 		"status" => [
 			"1" => "Aktif",
 			"0" => "Tidal Aktif"
@@ -40,6 +41,7 @@ return [
 			'role' => 'Peranan',
 			'fullname' => 'Nama Pengguna',
 			"created" => "Daftar Pada",
+			"lastlogin" => "Daftar Masuk Terakhir",
 			"status" => "Status",
 		]
 	],

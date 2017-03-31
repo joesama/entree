@@ -8,7 +8,7 @@ use Threef\Entree\Database\Model\UserProfile as Profile;
 use Carbon\Carbon;
 use Threef\Entree\Services\DataGrid\VueDatagrid;
 use Threef\Entree\Database\Repository\UserRepo;
-
+use Threef\Entree\Services\Form\UserProfileForm;
 
 /**
  * UserManager class
@@ -42,14 +42,15 @@ class UserManager extends User
 
         $columns = [
             [ 'field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left h2'],
-            [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-right'], 
-            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.email'), 'style' => 'text-right']
+            [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-left'], 
+            [ 'field' => 'roles', 'title' => trans('threef/entree::entree.user.grid.role'), 'style' => 'text-left'], 
+            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.lastlogin'), 'style' => 'text-right']
         ];
 
         $grid = new VueDatagrid;
         $grid->setColumns($columns);
         $grid->apiUrl(handles('threef/entree::user/data'));
-        $grid->add(handles('threef/project::manager/resources/form'), trans('threef/manager::title.resources.register'));
+        $grid->add(handles('threef/entree::user/new'), trans('threef/entree::entree.user.new'));
         $grid->action([
                 [ 'action' => trans('threef/entree::datagrid.buttons.edit') ,
                   'url' => handles('threef/project::manager/resources/form'),
@@ -79,6 +80,24 @@ class UserManager extends User
     public function dataList($request)
     {
         return $this->repo->userList($request);
+    }
+
+
+    /**
+     * New User Form
+     *
+     * @param Illuminate\Http\Request $request
+     * @author 
+     **/
+    public function userCreation(Request $request)
+    {
+
+        $form = new UserProfileForm($request);
+
+
+        dd($form);
+
+
     }
 
 

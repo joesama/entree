@@ -10,4 +10,10 @@ class UserProfile extends Model
      * @var string
      */
     protected $table = 'user_profiles';
+
+	public function getTableColumns() {
+		return $this->getConnection()->getSchemaBuilder();
+        // return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
 }

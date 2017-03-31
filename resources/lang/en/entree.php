@@ -25,6 +25,7 @@ return [
 	],
 	'user' => [
 		"manage" => "User Management",
+		"new" => "New User",
 		"status" => [
 			"1" => "Active",
 			"0" => "Non Active"
@@ -40,6 +41,7 @@ return [
 			'role' => 'Role',
 			'fullname' => 'Full Name',
 			"created" => "Date Registered",
+			"lastlogin" => "Last Login",
 			"status" => "Status",
 		]
 	],

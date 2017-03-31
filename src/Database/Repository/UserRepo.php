@@ -23,15 +23,19 @@ class UserRepo
 
 		$user = User::when($search, 
 				function ($query) use ($search) {
-                    return $query->where('fullname','like', '%' . $search . '%')
-                    		->orWhere('email','like', '%' . $search . '%')
-                    		->orWhere('lastlogin','like', '%' . $search . '%')
-                    		->orderBy('fullname');
+                    return $query->where(function ($query) use ($search) {
+				                $query->where('fullname','like', '%' . $search . '%')
+                    				->orWhere('email','like', '%' . $search . '%')
+                    				->orWhere('lastlogin','like', '%' . $search . '%');
+				            })->orderBy('fullname');
+
                 },function ($query) {
                     return $query->orderBy('fullname');
                 });
 
-		return $user->paginate(20);
+		return $user->whereHas('roles', function ($query) {
+					$query->whereRaw('roles.id <> 1');
+				})->paginate(20);
 	}
 
 

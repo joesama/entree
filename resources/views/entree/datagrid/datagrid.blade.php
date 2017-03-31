@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-if="filteredData.length < 1">
-            <td :colspan="columns.length + 2"><p>{{ trans('threef/entree::datagrid.search') }}</p></td>
+            <td :colspan="columns.length + 2"><p><center>{{ trans('threef/entree::datagrid.empty') }}</center></p></td>
           </tr>
           <tr v-for="(entry, index) in filteredData">
             <td class="text-center" style="background-color: #f9f9f9">@{{ runner + (index + 1 ) }}</td>

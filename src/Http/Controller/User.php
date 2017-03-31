@@ -65,7 +65,7 @@ class User extends UsersController
      **/
     public function getUserCreation(Request $request)
     {
-        set_meta('page-header',trans('entree::entree.user.manage'));
+        set_meta('page-header',trans('threef/entree::entree.user.manage'));
 
         return $this->manager->userCreation($request);
     }

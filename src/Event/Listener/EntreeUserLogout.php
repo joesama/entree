@@ -31,7 +31,8 @@ class EntreeUserLogout
     {
         $trails = new UserTrails();
         $trails->type = 0;
-        $trails->user_id = $person->user->id;
+        $trails->person = data_get($person,'user.fullname');
+        $trails->user_id = data_get($person,'user.id');
         $trails->save();
 
     }

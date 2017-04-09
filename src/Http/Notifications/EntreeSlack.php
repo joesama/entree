@@ -5,7 +5,7 @@ namespace Threef\Entree\Http\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Orchestra\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Messages\SlackMessage;
 
 class EntreeSlack extends Notification
 {
@@ -16,9 +16,11 @@ class EntreeSlack extends Notification
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($message,$chanel = '#general', $type = 'success')
     {
         $this->message = $message;
+        $this->chanel = $chanel;
+        $this->type = $type;
 
     }
 
@@ -41,9 +43,15 @@ class EntreeSlack extends Notification
      */
     public function toSlack($notifiable)
     {
-        return (new SlackMessage)
-                    ->success()
+        $slack = (new SlackMessage)
+                    ->to( $this->chanel)
                     ->content($this->message);
+
+        if(strtolower($this->type) === 'error'):
+            return $slack->error();
+        else:
+            return $slack->success();
+        endif;
     }
 
 }

@@ -1,6 +1,6 @@
 <?php namespace Threef\Entree\Database\Model;
 
-use Orchestra\Model\User as OrchestraUser;
+use Orchestra\Foundation\Auth\User as OrchestraUser;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;

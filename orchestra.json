@@ -8,6 +8,7 @@
 		"Threef\\Entree\\EntreeServiceProvider",
 		"Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider",
 		"Laravel\\Scout\\ScoutServiceProvider",
-    	"TeamTNT\\Scout\\TNTSearchScoutServiceProvider"
+    	"TeamTNT\\Scout\\TNTSearchScoutServiceProvider",
+		"Laravel\\Passport\\PassportServiceProvider"
 	]
 }

@@ -61,7 +61,7 @@ class VueDatagrid
 	 * @param array $columns
 	 *
 	 **/
-	public function setColumns(Array $columns)
+	public function setColumns($columns)
 	{
 		$this->columns = $columns;
 	}
@@ -74,7 +74,7 @@ class VueDatagrid
 	 * @param array $columns
 	 * 
 	 **/
-	public function setModel($model,Array $columns = [])
+	public function setModel($model, $columns = [])
 	{
 		$this->columns = (empty($columns)) ? $this->columns  : $columns;
 
@@ -88,7 +88,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function apiUrl(String $url)
+	public function apiUrl($url)
 	{
 		$this->api = $url;
 	}
@@ -98,7 +98,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function action(Array $actions)
+	public function action($actions)
 	{
 		$this->actions = $actions;
 	}
@@ -118,7 +118,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function add(String $url, String $urlDesc = NULL)
+	public function add($url, $urlDesc = NULL)
 	{
 		$this->add = $url;
 		$this->addDesc = $urlDesc;

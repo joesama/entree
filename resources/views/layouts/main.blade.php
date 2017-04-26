@@ -15,6 +15,7 @@
         </section>
         <footer>
             @include('threef/entree::layouts.components._footer')
+            @include('footer')
             @stack('threef.footer')
             <script type="text/javascript">
             $('select').select2();

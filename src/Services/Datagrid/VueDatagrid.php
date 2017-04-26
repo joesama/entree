@@ -87,7 +87,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function apiUrl(String $url)
+	public function apiUrl(string $url)
 	{
 		$this->api = $url;
 	}
@@ -97,7 +97,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function action(Array $actions)
+	public function action(array $actions)
 	{
 		$this->actions = $actions;
 	}
@@ -117,7 +117,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function add(String $url, String $urlDesc = NULL)
+	public function add(string $url, string $urlDesc = NULL)
 	{
 		$this->add = $url;
 		$this->addDesc = $urlDesc;

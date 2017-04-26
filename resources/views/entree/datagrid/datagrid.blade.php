@@ -221,7 +221,12 @@ Vue.component('demo-grid', {
 
       if (field.indexOf(".") >= 0){  
         var obj =  field.split('.');
-        display =  data[obj[0]][obj[1]];
+        
+        if(obj.length == 3){
+          display =  data[obj[0]][obj[1]][obj[2]];
+        }else{
+          display =  data[obj[0]][obj[1]];
+        }
       }
 
       return this.checkNumbers(display);

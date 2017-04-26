@@ -5,7 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Threef\Entree\Services\DataGrid\Traits\DataModeller;
 use JavaScript;
-use String, Array;
+use String;
+use Array;
 
 /**
  * Services to generate datagrid using vue.js
@@ -61,7 +62,7 @@ class VueDatagrid
 	 * @param array $columns
 	 *
 	 **/
-	public function setColumns($columns)
+	public function setColumns(Array $columns)
 	{
 		$this->columns = $columns;
 	}
@@ -74,7 +75,7 @@ class VueDatagrid
 	 * @param array $columns
 	 * 
 	 **/
-	public function setModel($model, $columns = [])
+	public function setModel($model,Array $columns = [])
 	{
 		$this->columns = (empty($columns)) ? $this->columns  : $columns;
 
@@ -88,7 +89,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function apiUrl($url)
+	public function apiUrl(String $url)
 	{
 		$this->api = $url;
 	}
@@ -98,7 +99,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function action($actions)
+	public function action(Array $actions)
 	{
 		$this->actions = $actions;
 	}
@@ -118,7 +119,7 @@ class VueDatagrid
 	 *
 	 * @param string $url
 	 **/
-	public function add($url, $urlDesc = NULL)
+	public function add(String $url, String $urlDesc = NULL)
 	{
 		$this->add = $url;
 		$this->addDesc = $urlDesc;

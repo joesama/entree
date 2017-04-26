@@ -221,7 +221,7 @@ Vue.component('demo-grid', {
 
       if (field.indexOf(".") >= 0){  
         var obj =  field.split('.');
-        
+
         if(obj.length == 3){
           display =  data[obj[0]][obj[1]][obj[2]];
         }else{
@@ -238,6 +238,7 @@ Vue.component('demo-grid', {
 var demo = new Vue({
   el: '#griddata',
   data: {
+    timer:'',
     searchQuery: '',
     gridColumns: window.column,
     gridData: window.data,
@@ -286,6 +287,7 @@ var demo = new Vue({
   },
   mounted: function () {
     this.fetchItems(this.pagination.current_page);
+    this.timer = setInterval(this.fetchItems(this.pagination.current_page), 300000)
   },
   methods: {
       fetchItems: function (page) {
@@ -306,6 +308,9 @@ var demo = new Vue({
           this.pagination.current_page = page;
           this.fetchItems(page);
       }
+  },
+  beforeDestroy() {
+    clearIntervall(this.timer)
   }
 })
 

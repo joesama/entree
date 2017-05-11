@@ -7,6 +7,7 @@ use Threef\Entree\Database\Model\User as Eloquent;
 use Threef\Entree\Database\Model\UserProfile as Profile;
 use Carbon\Carbon;
 use Threef\Entree\Services\DataGrid\VueDatagrid;
+use Threef\Entree\Services\Upload\FileUploader;
 use Threef\Entree\Database\Repository\UserRepo;
 
 
@@ -42,17 +43,20 @@ class UserManager extends User
 
         $columns = [
             [ 'field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left h2'],
+            [ 'field' => 'profile.idnumber', 'title' => trans('threef/entree::entree.user.grid.idno') , 'style' => 'text-right'], 
             [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-right'], 
-            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.email'), 'style' => 'text-right']
+            [ 'field' => 'roles:name', 'title' => trans('threef/entree::entree.user.grid.role') , 'style' => 'text-right multi'], 
+            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.email'), 'style' => 'text-right date']
         ];
 
         $grid = new VueDatagrid;
         $grid->setColumns($columns);
+        $grid->setModel($this->dataList($request));
         $grid->apiUrl(handles('threef/entree::user/data'));
-        $grid->add(handles('threef/project::manager/resources/form'), trans('threef/manager::title.resources.register'));
+        $grid->add(handles('threef/entree::user/new'), trans('threef/entree::entree.user.action.new'));
         $grid->action([
                 [ 'action' => trans('threef/entree::datagrid.buttons.edit') ,
-                  'url' => handles('threef/project::manager/resources/form'),
+                  'url' => handles('threef/entree::user'),
                   'icons' => 'fa fa-pencil',
                   'key' => 'id'  ],
                 // [ 'action' => trans('threef/manager::navigation.project.list') ,
@@ -82,6 +86,22 @@ class UserManager extends User
     }
 
 
+
+    /**
+     * User Data Form
+     *
+     * @return void
+     * @author 
+     **/
+    public function userCreation($request)
+    {
+
+        $user = $this->repo->userInfo($request->segment(4));
+        $roles = $this->repo->userRoleArray();
+        return compact('user','roles');
+    }
+
+
 	/**
 	 * Process User Update
 	 *
@@ -89,6 +109,7 @@ class UserManager extends User
 	 **/
 	public function userCreate(Request $request)
 	{
+        $fieldUsername = config('threef/entree::entree.username');
 
 		$input = $request->except('_token');
 
@@ -98,6 +119,9 @@ class UserManager extends User
         $userTable->forget('roles');
         $userTable->forget('status');
         $userTable->forget('password');
+        $userTable->forget('photo');
+        $userTable->forget('idno');
+        $userTable->forget('id');
 
         foreach($userTable as $field => $value):
         	$user->$field = $value;
@@ -105,19 +129,47 @@ class UserManager extends User
 
         $roles = data_get($input,'roles');
         $roles = (is_array($roles)) ? $roles : [$roles];
-        $input['roles'] = $roles;
 
         $user->status   = Eloquent::UNVERIFIED;
+        $user->username   = data_get($input,$fieldUsername);
         $user->password   = data_get($input,'password');
+
+        $profile = new Profile([
+         'photo' => data_get($input,'photo') ,
+         'idnumber' => data_get($input,'idno') 
+
+         ]);
 
         try {
 
-			$this->saving($user, $input, 'create');
+			$user->save();
+            $user->roles()->sync($roles);
+            $user->profile()->save($profile);
 
 		} catch (Exception $e) {
             dd($e->getMessage());
         }
 	}
+
+
+    /**
+     * Upload Photo & Update Resources Photo Path 
+     *
+     * @return void
+     * @author 
+     **/
+    public function uploadPhoto($request)
+    {
+        if ($request->file('photo')->isValid()) :
+
+            $file = new FileUploader($request->file('photo'), $this);
+
+            $this->repo->savePhoto($request,$file->destination());
+
+            return response()->json(['path' => $file->destination()]);
+
+        endif;
+    }
 
 
 	/**

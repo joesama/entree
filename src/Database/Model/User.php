@@ -21,7 +21,7 @@ class User extends OrchestraUser
      **/
     public function profile()
     {
-        return $this->hasOne('Threef\Entree\Database\Model\UserProfile','fk_user');
+        return $this->hasOne('Threef\Entree\Database\Model\UserProfile','user_id');
     } 
 
 	public function getFullnameAttribute($value)

@@ -23,19 +23,28 @@ return [
 			'confirm' => 'Pengesahan Kata Laluan'
 		]
 	],
+	'role' => [
+		'list' => 'Senarai Peranan',
+		'new' => 'Peranan Baru'
+		"manage" => "Pengurusan Peranan",
+	],
 	'user' => [
+		"list" => "Senarai Pengguna",
+		"new" => "Penguna Baharu",
 		"manage" => "Pengurusan Pengguna",
 		"status" => [
 			"1" => "Aktif",
 			"0" => "Tidal Aktif"
 		],
 		"action" => [
+			'new' => 'Baharu',
 			'edit' => 'Kemaskini',
 			'reset' => 'Tukar Katalaluan',
 			'remove' => 'Hapus'
 		],
 		"grid" => [
 			'username' => 'ID Pengguna',
+			'idno' => 'No. Pengenalan',
 			'email' => 'Emel Pengguna',
 			'role' => 'Peranan',
 			'fullname' => 'Nama Pengguna',

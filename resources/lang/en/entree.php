@@ -23,19 +23,28 @@ return [
 			'confirm' => 'New Password Verification'
 		]
 	],
+	'role' => [
+		'list' => 'Roles List',
+		'new' => 'New Role',
+		"manage" => "Roles Management",
+	],
 	'user' => [
+		"list" => "User List",
+		"new" => "New User",
 		"manage" => "User Management",
 		"status" => [
 			"1" => "Active",
 			"0" => "Non Active"
 		],
 		"action" => [
+			'new' => 'New',
 			'edit' => 'Update',
 			'reset' => 'Reset Password',
 			'remove' => 'Remove'
 		],
 		"grid" => [
-			'username' => 'User Id',
+			'username' => 'Username',
+			'idno' => 'Identification No.',
 			'email' => 'User Email',
 			'role' => 'Role',
 			'fullname' => 'Full Name',

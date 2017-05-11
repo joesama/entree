@@ -65,9 +65,36 @@ class User extends UsersController
      **/
     public function getUserCreation(Request $request)
     {
-        set_meta('page-header',trans('entree::entree.user.manage'));
+        set_meta('page-holder',trans('entree::entree.user.manage'));
 
-        return $this->manager->userCreation($request);
+        $data = $this->manager->userCreation($request);
+
+        return view('threef/entree::entree.user.form',$data);
+
+    }
+
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public function getUserCreate(Request $request)
+    {
+        return $this->manager->userCreate($request);
+    }
+
+
+    /**
+     * Upload User Photo
+     *
+     * @return void
+     * @author 
+     **/
+    public function savePhoto(Request $request)
+    {
+        return $this->manager->uploadPhoto($request);
     }
 
 }

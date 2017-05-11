@@ -23,8 +23,10 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->post('/menu', 'MenuAccess@menuAccess');
 		$router->get('/user', 'User@getIndex');
 		$router->get('/user/data', 'User@dataApi');
-		$router->get('/user/{id}', 'User@getUserModification')->where(['id' => '[0-9]+']);
+		$router->get('/user/{id}', 'User@getUserCreation')->where(['id' => '[0-9]+']);
 		$router->get('/user/new', 'User@getUserCreation');
+		$router->post('/user/new', 'User@getUserCreate');
+		$router->post('/user/photo', 'User@savePhoto');
 		$router->get('/userdata', 'User@getUsers');
 		$router->get('/user/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);
 

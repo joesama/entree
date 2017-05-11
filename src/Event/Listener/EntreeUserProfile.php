@@ -25,7 +25,8 @@ class EntreeUserProfile
     public function handle($table)
     {
         // Add additional user profile base on project here
-        // $table->string('id_number');
+        $table->text('idnumber');
+        $table->text('photo');
 
     }
 

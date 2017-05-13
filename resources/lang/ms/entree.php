@@ -25,7 +25,7 @@ return [
 	],
 	'role' => [
 		'list' => 'Senarai Peranan',
-		'new' => 'Peranan Baru'
+		'new' => 'Peranan Baru',
 		"manage" => "Pengurusan Peranan",
 	],
 	'user' => [

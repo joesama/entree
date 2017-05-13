@@ -12,7 +12,7 @@ class EntreeMailer extends Notification
 {
     use Queueable;
 
-    protected  $view;
+    protected  $view = 'threef/entree::entree.emails.layouts.simple';
     protected  $message;
 
     /**
@@ -23,7 +23,7 @@ class EntreeMailer extends Notification
     public function __construct($message , $view = FALSE)
     {
         $this->message = $message;
-        $this->view = $view;
+        $this->view = ($view) ? $view : $this->view;
         
     }
 
@@ -54,6 +54,7 @@ class EntreeMailer extends Notification
         $mailMessage->subject($this->message->get('title', 'Email From ' . memorize('site.name')));
         $mailMessage->title($this->message->get('title', 'Email From ' . memorize('site.name')));
         $mailMessage->level($this->message->get('level'));
+        $mailMessage->greeting(trans('threef/entree::mail.greeting') . ' ' .$notifiable->fullname. ', ');
 
         $content  = $this->message->get('content',[]);
 
@@ -72,8 +73,10 @@ class EntreeMailer extends Notification
 
         $footer  = $this->message->get('footer',[]);
         foreach($footer as $foot){
-            $mailMessage->line($cont);
+            $mailMessage->line($foot);
         }
+
+        // dd($mailMessage);
 
         return $mailMessage;
     }
@@ -86,8 +89,9 @@ class EntreeMailer extends Notification
      */
     public function toArray($notifiable)
     {
+        
         return [
-            //
+            'test' => 'abnc'
         ];
     }
 }

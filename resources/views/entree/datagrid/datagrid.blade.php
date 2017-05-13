@@ -142,8 +142,9 @@
 
 @push('datagrid.jscript')
 <script type="text/javascript">
+// Vue.config.performance = true;
 // Vue.config.debug = true;
-// Vue.config.devtools = true;
+Vue.config.devtools = false;
 
 // register the grid component
 Vue.component('demo-grid', {
@@ -222,6 +223,9 @@ Vue.component('demo-grid', {
           }) 
 
         })
+
+        vuegrid.pagination.total = data.length;
+
       }
       if (sortKey) {
         data = data.slice().sort(function (a, b) {
@@ -260,6 +264,7 @@ Vue.component('demo-grid', {
           return (a === b ? 0 : a > b ? 1 : -1) * order
         })
       }
+
       return data
     },
     runner : function () {
@@ -374,7 +379,9 @@ var vuegrid = new Vue({
   },
   mounted: function () {
     this.fetchItems(this.pagination.current_page);
-    this.timer = setInterval(this.fetchItems(this.pagination.current_page), 300000)
+    this.timer = setInterval(function () { 
+      this.fetchItems(this.pagination.current_page);
+      }.bind(this), 60000)
   },
   methods: {
       fetchItems: function (page) {
@@ -383,7 +390,8 @@ var vuegrid = new Vue({
               //look into the routes file and format your response
               this.gridData = response.data.data;
               this.pagination.current_page = (response.data.current_page > response.data.last_page ) ? 1 : response.data.current_page;
-              this.pagination.total = response.data.total_item;
+              console.log('test');
+              // this.pagination.total = response.data.total;
               this.pagination.last_page = response.data.last_page;
               this.pagination.to = response.data.last_page;
               // this.$set('pagination', response.data.pagination);

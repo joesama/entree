@@ -16,13 +16,7 @@
             @if(isset($level) && ! is_null($level))
             <tr>
               <td class="alert alert-{{ $level }}">
-                @if($level == 'error')
-                  {{ isset($title) ? $title : 'Whoops!' }}
-                @elseif($level == 'warning')
-                  {{ isset($title) ? $title : 'Warning!' }}
-                @else
-                  {{ isset($title) ? $title : 'Hello!' }}
-                @endif
+                {{ $title }}
               </td>
             </tr>
             @endif
@@ -40,6 +34,13 @@
                   </tr>
                   @endif
 
+                  {{-- Greeting --}}
+                  <tr>
+                    <td class="content-block">
+                      <p>{{ title_case($greeting) }}</p>
+                    </td>
+                  </tr>
+
                   {{-- Intro --}}
                   <tr>
                     <td class="content-block">
@@ -53,7 +54,7 @@
                   @if(isset($actionText))
                   <tr>
                     <td class="content-block" itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler">
-                      <a href="{{ $actionUrl }}" class="btn btn-{{ $actionColor }}" itemprop="url"  target="_blank">
+                      <a href="{{ $actionUrl }}" class="btn btn-primary btn-sm" itemprop="url"  target="_blank">
                         {{ $actionText }}
                       </a>
                     </td>

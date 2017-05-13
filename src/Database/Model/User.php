@@ -5,6 +5,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Carbon\Carbon;
+
 /**
  * Extension of 
  *
@@ -17,6 +19,15 @@ class User extends OrchestraUser
     use Notifiable;
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'lastlogin'
+    ];
+
+    /**
      * Relation has one Threef\Entree\Database\Model\UserProfile
      **/
     public function profile()
@@ -24,9 +35,14 @@ class User extends OrchestraUser
         return $this->hasOne('Threef\Entree\Database\Model\UserProfile','user_id');
     } 
 
-	public function getFullnameAttribute($value)
+    public function getFullnameAttribute($value)
     {
         return strtoupper($value);
+    }
+
+	public function getLastloginAttribute($value)
+    {
+        return Carbon::parse($this->attributes['lastlogin'])->diffForHumans(Carbon::now());
     }
 
 	 

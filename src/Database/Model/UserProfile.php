@@ -16,6 +16,6 @@ class UserProfile extends Model
      *
      * @var array
      */
-    protected $fillable = ['profile_photo'];
+    protected $fillable = ['photo'];
 
 }

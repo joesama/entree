@@ -95,8 +95,7 @@ class UserManager extends User
      **/
     public function userCreation($request)
     {
-
-        $user = $this->repo->userInfo($request->segment(4));
+        $user = $this->repo->userInfo($request->segment(2));
         $roles = $this->repo->userRoleArray();
         return compact('user','roles');
     }
@@ -107,48 +106,20 @@ class UserManager extends User
 	 *
 	 * @return mixed
 	 **/
-	public function userCreate(Request $request)
+	public function userCreate($request)
 	{
-        $fieldUsername = config('threef/entree::entree.username');
-
 		$input = $request->except('_token');
 
-        $user = new Eloquent;
+        $user = $this->repo->createUserData($input);
 
-        $userTable = collect($input);
-        $userTable->forget('roles');
-        $userTable->forget('status');
-        $userTable->forget('password');
-        $userTable->forget('photo');
-        $userTable->forget('idno');
-        $userTable->forget('id');
+        if(config('threef/entree::entree.notify.email',TRUE)):
 
-        foreach($userTable as $field => $value):
-        	$user->$field = $value;
-        endforeach;
+            event('threef.email.user: new', [$user]);
 
-        $roles = data_get($input,'roles');
-        $roles = (is_array($roles)) ? $roles : [$roles];
+        endif;
 
-        $user->status   = Eloquent::UNVERIFIED;
-        $user->username   = data_get($input,$fieldUsername);
-        $user->password   = data_get($input,'password');
+        return redirect(handles('threef/entree::user'));
 
-        $profile = new Profile([
-         'photo' => data_get($input,'photo') ,
-         'idnumber' => data_get($input,'idno') 
-
-         ]);
-
-        try {
-
-			$user->save();
-            $user->roles()->sync($roles);
-            $user->profile()->save($profile);
-
-		} catch (Exception $e) {
-            dd($e->getMessage());
-        }
 	}
 
 
@@ -177,12 +148,12 @@ class UserManager extends User
 	 *
 	 * @return mixed
 	 **/
-	public function userUpdate(Request $request)
+	public function userUpdate($id)
 	{
 		$id = $request->segment(4);
 
         $delegated = $this->delegateUserInfo($request);
-
+dd($delegated);
         return $this->processUser($delegated , $id);
 
 	}

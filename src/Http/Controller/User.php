@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Orchestra\Foundation\Http\Controllers\UsersController;
 use Threef\Entree\Http\Processor\UserManager;
 use Orchestra\Foundation\Processor\User as Processor;
-
+use Threef\Entree\Http\Requests\User\NewUserRequest;
 
 
 class User extends UsersController
@@ -45,21 +45,8 @@ class User extends UsersController
         return $this->manager->dataList($request);
     }
 
-
     /**
-     * Response to Update User Form
-     *
-     * @return mixed
-     **/
-    public function getUserUpdate($id)
-    {
-        set_meta('page-header',trans('threef/entree::entree.user.manage'));
-
-        return $this->manager->userUpdate($id);
-    }
-
-    /**
-     * Response to Update User Form
+     * Response to Create User Form
      *
      * @return mixed
      **/
@@ -73,16 +60,42 @@ class User extends UsersController
 
     }
 
-
     /**
-     * undocumented function
+     * Save User Information
      *
      * @return void
      * @author 
      **/
-    public function getUserCreate(Request $request)
+    public function postUserCreation(NewUserRequest $request)
     {
         return $this->manager->userCreate($request);
+    }
+
+
+    /**
+     * Response to Update User Form
+     *
+     * @return mixed
+     **/
+    public function getUserUpdate(Request $request)
+    {
+        set_meta('page-header',trans('threef/entree::entree.user.manage'));
+
+        $data = $this->manager->userCreation($request);
+
+        // $greeting = 'Hi, Joe';
+        // $level = 'info';
+        // $title = 'Pengesahan Akaun';
+        // $actionText = 'Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae';
+        // $actionUrl = handles('app');
+        // $outroLines = $introLines = [
+        //     'abc','jnk'
+        // ];
+
+        // return view('threef/entree::entree.emails.layouts.simple',compact('greeting','level','introLines','title','actionText','actionUrl','outroLines'));
+
+        event('threef.email.user: new', [$data['user'], '123456']);
+
     }
 
 

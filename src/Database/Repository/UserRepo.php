@@ -83,7 +83,7 @@ class UserRepo
 
 			try{
 
-				$profile->profile_photo = $path;
+				$profile->photo = $path;
 				$profile->save();
 
 			}catch (\Exception $e)
@@ -97,6 +97,57 @@ class UserRepo
 	        DB::commit();
 
         endif;
+
+	}
+
+
+	/**
+	 * Save User Data
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function createUserData($input)
+	{
+
+        $user = new User;
+
+        $userTable = collect($input);
+        $userTable->forget('roles');
+        $userTable->forget('status');
+        $userTable->forget('password');
+        $userTable->forget('photo');
+        $userTable->forget('idno');
+        $userTable->forget('id');
+
+        foreach($userTable as $field => $value):
+        	$user->$field = $value;
+        endforeach;
+
+        $roles = data_get($input,'roles');
+        $roles = (is_array($roles)) ? $roles : [$roles];
+
+        $user->status   = User::UNVERIFIED;
+        $user->username   = data_get($input, config('threef/entree::entree.username','email'));
+        $user->password   = data_get($input,'password');
+
+        $profile = new UserProfile([
+         'photo' => data_get($input,'photo') ,
+         'idnumber' => data_get($input,'idno') 
+
+         ]);
+
+        try {
+
+			$user->save();
+            $user->roles()->sync($roles);
+            $user->profile()->save($profile);
+
+            return $user;
+
+		} catch (Exception $e) {
+            dd($e->getMessage());
+        }
 
 	}
 

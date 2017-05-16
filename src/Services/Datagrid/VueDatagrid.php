@@ -46,6 +46,7 @@ class VueDatagrid
      * Actions Button
      */
     protected $actions = FALSE;
+    protected $simple = FALSE;
 
 
     /**
@@ -95,11 +96,12 @@ class VueDatagrid
 	/**
 	 * Edit action
 	 *
-	 * @param string $url
+	 * @param array $actions
 	 **/
-	public function action($actions)
+	public function action($actions, $simple = FALSE)
 	{
 		$this->actions = $actions;
+		$this->simple = $simple;
 	}
 
 	/**
@@ -141,6 +143,7 @@ class VueDatagrid
 	        'add' => $this->add,
 	        'addDesc' => $this->addDesc,
 	        'actions' => $this->actions,
+	        'simple' => $this->simple,
 	       	'data' => (!is_null($this->items)) ? $items->items() : [],
 	        'pagination' => [
 	            'total_item' => (!is_null($this->items)) ? $items->total() : 0,

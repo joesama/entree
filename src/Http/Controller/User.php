@@ -52,7 +52,7 @@ class User extends UsersController
      **/
     public function getUserCreation(Request $request)
     {
-        set_meta('page-holder',trans('entree::entree.user.manage'));
+        // set_meta('title',trans('entree::entree.user.manage'));
 
         $data = $this->manager->userCreation($request);
 
@@ -66,7 +66,7 @@ class User extends UsersController
      * @return void
      * @author 
      **/
-    public function postUserCreation(NewUserRequest $request)
+    public function postUserCreation(Request $request)
     {
         return $this->manager->userCreate($request);
     }
@@ -79,24 +79,41 @@ class User extends UsersController
      **/
     public function getUserUpdate(Request $request)
     {
-        set_meta('page-header',trans('threef/entree::entree.user.manage'));
+        set_meta('title',trans('threef/entree::entree.user.edit'));
 
         $data = $this->manager->userCreation($request);
 
-        // $greeting = 'Hi, Joe';
-        // $level = 'info';
-        // $title = 'Pengesahan Akaun';
-        // $actionText = 'Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae';
-        // $actionUrl = handles('app');
-        // $outroLines = $introLines = [
-        //     'abc','jnk'
-        // ];
+        return view('threef/entree::entree.user.form',$data);
 
-        // return view('threef/entree::entree.emails.layouts.simple',compact('greeting','level','introLines','title','actionText','actionUrl','outroLines'));
-
-        event('threef.email.user: new', [$data['user'], '123456']);
+        // event('threef.email.user: new', [$data['user'], '123456']);
 
     }
+
+
+    /**
+     * Update User Information
+     *
+     * @return void
+     * @author 
+     **/
+    public function postUserUpdate(Request $request)
+    {
+        return $this->manager->userUpdate($request);
+    }
+
+
+    /**
+     * Remove User From List
+     *
+     * @return void
+     * @author 
+     **/
+    public function getRemoveUser($id)
+    {
+        return $this->manager->deactivateUser($id);
+    }
+
+
 
 
     /**

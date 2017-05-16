@@ -30,6 +30,8 @@ return [
 	],
 	'user' => [
 		"list" => "Senarai Pengguna",
+		"edit" => "Kemaskini Penguna",
+		"delete" => "Hapus Penguna",
 		"new" => "Penguna Baharu",
 		"manage" => "Pengurusan Pengguna",
 		"status" => [

@@ -4,6 +4,7 @@ namespace Threef\Entree\Database\Repository;
 use Threef\Entree\Database\Model\User;
 use Threef\Entree\Database\Model\Role;
 use Threef\Entree\Database\Model\UserProfile;
+use DB;
 /**
  * User Data Manager
  *
@@ -72,7 +73,6 @@ class UserRepo
 	 **/
 	public function savePhoto($input, $path)
 	{
-
 		$id = $input->get('id');
 
 		if($id):
@@ -83,7 +83,7 @@ class UserRepo
 
 			try{
 
-				$profile->photo = $path;
+				$profile->profile_photo = $path;
 				$profile->save();
 
 			}catch (\Exception $e)
@@ -102,7 +102,7 @@ class UserRepo
 
 
 	/**
-	 * Save User Data
+	 * Save User Information
 	 *
 	 * @return void
 	 * @author 
@@ -112,30 +112,25 @@ class UserRepo
 
         $user = new User;
 
-        $userTable = collect($input);
-        $userTable->forget('roles');
-        $userTable->forget('status');
-        $userTable->forget('password');
-        $userTable->forget('photo');
-        $userTable->forget('idno');
-        $userTable->forget('id');
+        $userTable = data_get($input,'user')->except('roles');
 
         foreach($userTable as $field => $value):
         	$user->$field = $value;
         endforeach;
 
-        $roles = data_get($input,'roles');
+        $roles = data_get($input,'user')->get('roles');
         $roles = (is_array($roles)) ? $roles : [$roles];
-
+        
         $user->status   = User::UNVERIFIED;
-        $user->username   = data_get($input, config('threef/entree::entree.username','email'));
-        $user->password   = data_get($input,'password');
+        $user->username   = data_get($input,'user')->get(config('threef/entree::entree.username','email'));
 
-        $profile = new UserProfile([
-         'photo' => data_get($input,'photo') ,
-         'idnumber' => data_get($input,'idno') 
+        $profileTable = data_get($input,'profile');
 
-         ]);
+        $profile = new UserProfile;
+
+        foreach($profileTable as $field => $value):
+        	$profile->$field = $value;
+        endforeach;
 
         try {
 
@@ -151,5 +146,66 @@ class UserRepo
 
 	}
 
+    /**
+     * Update User Information
+     *
+     * @return Threef\Entree\Database\Model\User 
+     * 
+     **/
+    public function updateUserData($input)
+    {
+    	$id = data_get($input,'user')->get('id');
+
+        $user = User::find($id);
+
+        $userTable = data_get($input,'user')->except('roles');
+
+        foreach($userTable as $field => $value):
+        	$user->$field = $value;
+        endforeach;
+
+        $roles = data_get($input,'user')->get('roles');
+        $roles = (is_array($roles)) ? $roles : [$roles];
+        
+        $user->username   = data_get($input,'user')->get(config('threef/entree::entree.username','email'));
+
+        $profileTable = data_get($input,'profile');
+
+        $profile = UserProfile::where('user_id',$id)->first();
+
+        foreach($profileTable as $field => $value):
+        	$profile->$field = $value;
+        endforeach;
+
+        try {
+
+			$user->save();
+            $user->roles()->sync($roles);
+            $user->profile()->save($profile);
+
+            return $user;
+
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+
+    }
+
+
+    /**
+     * Deactivate User 
+     *
+     * @return void
+     * @param  $id users.id
+     **/
+    public function deactivate($id)
+    {
+    	$user = User::find($id);
+    	$info = $user;
+    	$user->delete();
+
+    	return $info;
+    }
 
 } // END class UserRepositories 

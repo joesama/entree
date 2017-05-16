@@ -6,5 +6,10 @@ return [
 		'login' => [
 			'fail-auth' => 'Login failed. Please ensure you enter the right username and password. You should have an active account to access.'
 		]
+	],
+	'data' => [
+		'success' => ':form Information Successfully Saved',
+		'failed' => ':form Information Failed To Be Saved',
+		'deleted' => ':form :person Success',
 	]
 ];

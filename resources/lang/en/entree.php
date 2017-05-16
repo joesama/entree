@@ -31,6 +31,8 @@ return [
 	'user' => [
 		"list" => "User List",
 		"new" => "New User",
+		"edit" => "Update User",
+		"delete" => "Remove User",
 		"manage" => "User Management",
 		"status" => [
 			"1" => "Active",

@@ -54,7 +54,7 @@ input:invalid {
         {{ trans('threef/entree::entree.user.grid.idno') }}
         </label>
         <div class="col-sm-10">
-          {!! Form::text('idno', data_get($user,'idno',old('idno')) , array('class' => 'form-control', 'id' => 'email','placeholder' => trans('threef/entree::entree.user.grid.idno') )) !!}
+          {!! Form::text('idnumber', data_get($user,'profile.idnumber',old('idnumber')) , array('class' => 'form-control', 'id' => 'idnumber','placeholder' => trans('threef/entree::entree.user.grid.idno') )) !!}
         </div>
       </div>
       <div class="form-group">
@@ -62,9 +62,10 @@ input:invalid {
         {{ trans('threef/entree::entree.user.grid.role') }}
         </label>
         <div class="col-sm-10">
-          {!! Form::select('roles[]', $roles , data_get($user,'role'), ['required', 'class'=>'form-control' , 'multiple' => TRUE] ) !!}
+          {!! Form::select('roles[]', $roles , data_get($user,'roles',collect([]))->pluck('id'), ['required', 'class'=>'form-control' , 'multiple' => TRUE] ) !!}
         </div>
       </div>
+      @if(!data_get($user,'id',false) )
       <div class="form-group">
         <label for="password" class="col-sm-2 control-label">
         {{ trans('threef/entree::entree.login.password') }}
@@ -73,9 +74,9 @@ input:invalid {
           {!! Form::text('password',NULL, array('required','class' => 'form-control', 'id' => 'password','placeholder' => trans('threef/entree::entree.login.password') )) !!}
         </div>
       </div>
-      {!! Form::hidden('status', 1 ) !!}
-      {!! Form::hidden('photo', data_get($user,'profile.profile_photo') ) !!}
-      {!! Form::hidden('id', request()->segment(4,FALSE) ) !!}
+      @endif
+      {!! Form::hidden('photo', data_get($user,'profile.photo') ) !!}
+      {!! Form::hidden('id', data_get($user,'id',false)  ) !!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-right">
           <button type="submit" class="btn btn-primary">
@@ -129,10 +130,10 @@ Vue.config.devtools = true;
 var resources = new Vue({
   el: '#photoprofile',
   data: {
-    image: "{{ data_get($user,'res_photo') }}",
-    newPhoto: "{{ data_get($user,'res_photo','false') }}",
+    image: "{{ data_get($user,'profile.photo',false) }}",
+    newPhoto: "{{ data_get($user,'profile.photo',false) }}",
     padRight: '',
-    profileID: "{{ request()->segment(4,false) }}",
+    profileID: "{{ data_get($user,'id',false) }}",
     photo:'',
     width: '200',
     height: '200'

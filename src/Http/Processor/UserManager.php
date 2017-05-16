@@ -9,7 +9,8 @@ use Carbon\Carbon;
 use Threef\Entree\Services\DataGrid\VueDatagrid;
 use Threef\Entree\Services\Upload\FileUploader;
 use Threef\Entree\Database\Repository\UserRepo;
-
+use Threef\Entree\Services\Form\UserProfileForm;
+use Threef\Entree\Http\Validation\Profile as Validator;
 
 /**
  * UserManager class
@@ -26,9 +27,10 @@ class UserManager extends User
      * @return void
      * @author 
      **/
-    public function __construct(UserRepo $repo)
+    public function __construct(UserRepo $repo, Validator $validate)
     {
         $this->repo = $repo;
+        $this->validator = $validate;
     }
 
 
@@ -63,11 +65,11 @@ class UserManager extends User
                 //   'url' => handles('threef/project::manager/api/mailer'),
                 //   'icons' => 'fa fa-object-group',
                 //   'key' => 'id'   ]
-                // [ 'action' => trans('threef/entree::datagrid.buttons.delete') ,
-                //   'url' => handles('threef/project::manager/add/project'),
-                //   'icons' => 'fa fa-trash',
-                //   'key' => 'id'  ]
-            ]);
+                [ 'delete' => trans('threef/entree::datagrid.buttons.delete') ,
+                  'url' => handles('threef/entree::user/delete/'),
+                  'icons' => 'fa fa-trash',
+                  'key' => 'id'  ]
+            ],TRUE);
 
         return $grid->build();
 
@@ -108,17 +110,35 @@ class UserManager extends User
 	 **/
 	public function userCreate($request)
 	{
-		$input = $request->except('_token');
 
-        $user = $this->repo->createUserData($input);
+        $validation = $this->validator->on('create')
+            ->with($request->input());
 
-        if(config('threef/entree::entree.notify.email',TRUE)):
+        if($validation->fails()):
 
-            event('threef.email.user: new', [$user]);
+            return redirect_with_message(
+                handles('threef/entree::user/new'),
+                trans('threef/entree::respond.data.failed', [ 'form' => trans('threef/entree::entree.user.new') ]),
+                'danger')
+            ->withInput()
+            ->withErrors($validation->getMessageBag());
 
         endif;
 
-        return redirect(handles('threef/entree::user'));
+        $input = $this->delegateUserInfo($request);
+
+        $user = $this->repo->createUserData($input);
+
+        // if(config('threef/entree::entree.notify.email',TRUE)):
+
+        event('threef.email.user: new', [$user]);
+
+        // endif;
+
+        return redirect_with_message(
+                handles('threef/entree::user'),
+                trans('threef/entree::respond.data.success', [ 'form' => trans('threef/entree::entree.user.new') ]),
+                'success');
 
 	}
 
@@ -148,35 +168,58 @@ class UserManager extends User
 	 *
 	 * @return mixed
 	 **/
-	public function userUpdate($id)
+	public function userUpdate($request)
 	{
-		$id = $request->segment(4);
 
-        $delegated = $this->delegateUserInfo($request);
-dd($delegated);
-        return $this->processUser($delegated , $id);
+        $validation = $this->validator->on('update')
+            ->bind(['userId' => $request->get('id')])
+            ->with($request->input());
+
+        if($validation->fails()):
+
+            return redirect_with_message(
+                handles('threef/entree::user/'.$request->get('id')),
+                trans('threef/entree::respond.data.failed', [ 'form' => trans('threef/entree::entree.user.edit') ]),
+                'danger')
+            ->withInput()
+            ->withErrors($validation->getMessageBag());
+
+        endif;
+
+        $input = $this->delegateUserInfo($request);
+
+        $user = $this->repo->updateUserData($input);
+
+        return redirect_with_message(
+                handles('threef/entree::user'),
+                trans('threef/entree::respond.data.success', [ 'form' => trans('threef/entree::entree.user.edit') ]),
+                'success');
 
 	}
 
 
     /**
-     * Delegation of user table 
+     * Delegation of user & profile table 
      *
      * @return Array $input
      *
      **/
-    public function delegateUserInfo($request)
+    protected function delegateUserInfo($request)
     {
         $user = collect([]);
         $profile = collect([]);
 
+        $data = new UserProfileForm($request);
+
         foreach($request->except('_token') as $field => $value){
 
-            if(str_is('profile*', $field)){
-                $profile->put(str_replace("profile_", "", $field),$value);
+            if($value !== ""):
+            if(data_get($data,'profiles')->contains($field)){
+                $profile->put($field,$value);
             }else{
-                $user->put(str_replace("user_", "", $field),$value);
+                $user->put($field,$value);
             }
+            endif;
 
         }
 
@@ -184,52 +227,24 @@ dd($delegated);
     }
 
 
+
     /**
-     * Processing User Information
+     * Deactivate User
      *
-     * @return Threef\Entree\Database\Model\User 
-     * 
+     * @return void
+     * @param $id users.id
      **/
-    public function processUser($collections , $id)
+    public function deactivateUser($id)
     {
+        $user = $this->repo->deactivate($id);
 
-        $user = Eloquent::findOrFail($id);
-
-        $input = data_get($collections,'user');
-
-        ! empty($input['password']) && $user->password = data_get($input,'password');
-
-        $userTable = collect($input);
-        $userTable->forget('roles');
-
-        $roles = data_get($input,'roles');
-        $roles = (is_array($roles)) ? $roles : [$roles];
-        $input['roles'] = $roles;
-
-        foreach($userTable as $field => $value):
-            $user->$field = $value;
-        endforeach;
-
-        try {
-
-        $this->saving($user, $input, 'update');
-
-        $profile = data_get($collections,'profile');
-        $profile->put('updated_at',Carbon::now());
-
-        $user->profile()->update($profile->toArray());
-
-
-        } catch (Exception $e) {
-            dd($e->getMessage());
-        }
-
-
-        return $user;
-
+        return redirect_with_message(
+                handles('threef/entree::user'),
+                trans('threef/entree::respond.data.deleted', [ 
+                    'form' => trans('threef/entree::entree.user.delete'),
+                    'person' => title_case(data_get($user,'fullname')) ]),
+                'success');
     }
-
-
 
 
 

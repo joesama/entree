@@ -10,7 +10,7 @@
               <span class="arrow" :class="sortOrders[key.field] > 0 ? 'asc' : 'dsc'">
               </span>
             </th>
-            <th v-if="actions" width="120px" max-width="150px"  class="text-center">{{ trans('threef/entree::datagrid.actions') }}</th>
+            <th v-if="actions" min-width="50px" max-width="150px"  class="text-center">{{ trans('threef/entree::datagrid.actions') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -23,23 +23,29 @@
               @{{ checkDisplay(entry,key) }}
             </td>
             <td v-if="actions" class="text-center" style="background-color: #f9f9f9">
-              <div class="btn-group" v-if="actions.length > 1">
+              <div class="btn-group" v-if="(actions.length > 1) && !simple">
+                <button type="button" class="btn btn-xs  btn-default">{{ trans('threef/entree::datagrid.actions') }} </button>
                 <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ trans('threef/entree::datagrid.actions') }} <span class="caret"></span>
+                  <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                   <li v-for="btn in actions">
                   <a :href="uriaction(btn.url,entry[btn.key])">
-                  <i v-bind:class="[ btn.icons ? 'fa ' + btn.icons : 'fa fa-pencil-square-o']" aria-hidden="true"></i>&nbsp;@{{ btn.action }}
+                  <i v-bind:class="[ btn.icons ? 'fa ' + btn.icons : 'fa fa-pencil-square-o']" aria-hidden="true"></i>&nbsp;@{{ btn.action }} @{{ btn.delete }}
                   </a>
                   </li>
                 </ul>
               </div>
 
-              <a v-if="actions.length < 2" :href="uriaction(btn.url,entry[btn.key])" v-for="btn in actions" class="btn btn-xs btn-actions">
+              <a v-if="(actions.length < 2) && !simple" :href="uriaction(btn.url,entry[btn.key])" v-for="btn in actions" class="btn btn-xs btn-actions">
               <i v-bind:class="[ btn.icons ? 'fa ' + btn.icons : 'fa fa-pencil-square-o']" aria-hidden="true"></i>&nbsp;
               @{{ btn.action }}
               </a>
+              <div  v-if="simple" class="btn-group btn-group-xs" role="group" aria-label="...">
+              <a :href="uriaction(btn.url,entry[btn.key])" v-for="btn in actions" v-bind:class="[ btn.delete ? 'btn btn-xs btn-danger' : 'btn btn-xs btn-default']">
+              <i v-bind:class="[ btn.icons ? 'fa ' + btn.icons : 'fa fa-pencil-square-o']" aria-hidden="true"></i>
+              </a>
+              </div>
             </td>
           </tr>
         </tbody>
@@ -86,6 +92,7 @@
             <demo-grid
               :data="gridData"
               :actions = "gridActions"
+              :simple = "gridActionsSimple"
               :columns="gridColumns"
               :current_page="pagination.current_page"
               :per_page="pagination.per_page"
@@ -154,6 +161,7 @@ Vue.component('demo-grid', {
     data: Array,
     columns: Array,
     actions: Array,
+    simple: Boolean,
     current_page: String,
     per_page: String,
     filterKey: String
@@ -339,6 +347,7 @@ var vuegrid = new Vue({
     gridNew: window.add,
     gridNewDesc: window.addDesc,
     gridActions: window.actions,
+    gridActionsSimple: window.simple,
     pagination: {
       total: window.pagination.total_item,
       per_page: window.pagination.per_page,
@@ -390,7 +399,6 @@ var vuegrid = new Vue({
               //look into the routes file and format your response
               this.gridData = response.data.data;
               this.pagination.current_page = (response.data.current_page > response.data.last_page ) ? 1 : response.data.current_page;
-              console.log('test');
               // this.pagination.total = response.data.total;
               this.pagination.last_page = response.data.last_page;
               this.pagination.to = response.data.last_page;

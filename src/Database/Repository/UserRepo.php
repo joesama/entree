@@ -83,7 +83,7 @@ class UserRepo
 
 			try{
 
-				$profile->profile_photo = $path;
+				$profile->photo = $path;
 				$profile->save();
 
 			}catch (\Exception $e)

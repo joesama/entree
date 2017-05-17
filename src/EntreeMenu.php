@@ -128,7 +128,6 @@ use Orchestra\Contracts\Authorization\Factory;
 
         $menu->add('user','^:config')
             ->title(trans('threef/entree::entree.user.manage'))
-            ->link(handles('threef/entree::user'))
             ->icon('fa fa-user');
 
         $menu->add('user-list','^:config.user')

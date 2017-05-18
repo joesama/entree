@@ -70,14 +70,13 @@ class ResetPasswordManager
 	 **/
 	public function resetByAdmin($control, $id)
 	{	
-		$user = User::find($id)->toArray();
+		$user = collect(User::find($id)->toArray())->only(config('threef/entree::entree.username','email'));
 
 		$site   = app('orchestra.platform.memory')->get('site.name', '3FRSB : PSS');
 
- 		$response = $this->password->sendResetLink($user, function ($mail) use ($site) {
+ 		$response = $this->password->sendResetLink($user->toArray(), function ($mail) use ($site) {
             $mail->subject(trans('orchestra/foundation::email.forgot.request', ['site' => $site]));
         });
-
 
         return $control->resetByAdminLinkSent($response);
 

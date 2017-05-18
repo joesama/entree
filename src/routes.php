@@ -21,16 +21,18 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->post('/password', 'Auth\Password@update');
 		$router->get('/menu', 'MenuAccess@getIndex');
 		$router->post('/menu', 'MenuAccess@menuAccess');
-		$router->get('/user', 'User@getIndex');
-		$router->get('/user/data', 'User@dataApi');
-		$router->get('/user/{id}', 'User@getUserUpdate')->where(['id' => '[0-9]+']);
-		$router->get('/user/new', 'User@getUserCreation');
-		$router->post('/user/new', 'User@postUserCreation');
-		$router->post('/user/{id}', 'User@postUserUpdate')->where(['id' => '[0-9]+']);
-		$router->post('/user/photo', 'User@savePhoto');
-		$router->get('/userdata', 'User@getUsers');
-		$router->get('/user/delete/{id}', 'User@getRemoveUser')->where(['id' => '[0-9]+']);
-		$router->get('/user/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);
+
+		$router->group(['prefix' => 'user'],function($router){
+			$router->get('/', 'User@getIndex');
+			$router->get('/data', 'User@dataApi');
+			$router->get('/{id}', 'User@getUserUpdate')->where(['id' => '[0-9]+']);
+			$router->get('/new', 'User@getUserCreation');
+			$router->post('/new', 'User@postUserCreation');
+			$router->post('/{id}', 'User@postUserUpdate')->where(['id' => '[0-9]+']);
+			$router->post('/photo', 'User@savePhoto');
+			$router->get('/delete/{id}', 'User@getRemoveUser')->where(['id' => '[0-9]+']);
+			$router->get('/reset/{id}', 'Auth\ResetPassword@adminResetPassword')->where(['id' => '[0-9]+']);
+		});
 
 		$router->group(['prefix' => 'report', 'namespace' => 'Report'],function($router){
 			$router->get('/list', 'Reporter@getIndex');

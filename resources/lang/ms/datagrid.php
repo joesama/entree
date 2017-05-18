@@ -9,6 +9,7 @@ return [
 	'buttons' => [
 		'add' => 'Tambah',
 		'edit' => 'Kemaskini',
+		'reset-pwd' => 'Tukar Katalaluan',
 		'delete' => 'Hapus'
 	]
 ];

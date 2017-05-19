@@ -75,7 +75,7 @@ class ResetPasswordManager
 		$site   = app('orchestra.platform.memory')->get('site.name', '3FRSB : PSS');
 
  		$response = $this->password->sendResetLink($user->toArray(), function ($mail) use ($site) {
-            $mail->subject(trans('orchestra/foundation::email.forgot.request', ['site' => $site]));
+            $mail->subject(trans('threef/entree::emails.password', ['site' => $site]));
         });
 
         return $control->resetByAdminLinkSent($response);

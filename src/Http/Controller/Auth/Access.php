@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Orchestra\Foundation\Processor\AuthenticateUser;
 use Orchestra\Foundation\Processor\DeauthenticateUser;
+use Threef\Entree\Http\Processor\UserManager;
 use Orchestra\Contracts\Auth\Command\ThrottlesLogins as ThrottlesCommand;
 use Orchestra\Contracts\Auth\Listener\AuthenticateUser as AuthenticateListener;
 use Orchestra\Contracts\Auth\Listener\ThrottlesLogins as ThrottlesListener;
@@ -53,6 +54,33 @@ class Access extends Controller implements AuthenticateListener,DeauthenticateLi
     {
         return view('threef/entree::entree.home');
     }
+
+
+    /**
+     * Validate User Account
+     *
+     * @param Illuminate\Http\Request $request
+     *
+     * @return mixed
+     **/
+    public function emailValidation(Request $request)
+    {
+        return app(UserManager::class)->validateUserRegistration($this,$request);
+    }
+
+
+    /**
+     * Response to user email validation failed .
+     *
+     * @param  \Illuminate\Support\MessageBag|array  $errors
+     *
+     * @return mixed
+     */
+    public function userEmailValidationRespond($messages){
+
+        return view('threef/entree::entree.auth.validation', compact('messages'));
+    }
+
 
     /**
      * Response to user log-in trigger failed validation .

@@ -1,4 +1,5 @@
-<?php namespace Threef\Entree\Http\Processor;
+<?php 
+namespace Threef\Entree\Http\Processor;
 
 use Illuminate\Http\Request;
 use Orchestra\Support\Facades\Foundation;
@@ -48,6 +49,7 @@ class UserManager extends User
             [ 'field' => 'profile.idnumber', 'title' => trans('threef/entree::entree.user.grid.idno') , 'style' => 'text-right'], 
             [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-right'], 
             [ 'field' => 'roles:name', 'title' => trans('threef/entree::entree.user.grid.role') , 'style' => 'text-right multi'], 
+            [ 'field' => 'status', 'title' => trans('threef/entree::entree.user.grid.status'), 'style' => 'text-center'], 
             [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.email'), 'style' => 'text-right date']
         ];
 
@@ -131,7 +133,7 @@ class UserManager extends User
 
         // if(config('threef/entree::entree.notify.email',TRUE)):
 
-        event('threef.email.user: new', [$user]);
+            event('threef.email.user: new', [$user]);
 
         // endif;
 
@@ -247,7 +249,26 @@ class UserManager extends User
     }
 
 
+    /**
+     * Validate User Status
+     *
+     * @return void
+     * @author 
+     **/
+    public function validateUserRegistration($control, $request)
+    {
 
+        $token = $request->segment(2);
+        $email = $request->get('email');
+
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)):
+            return $control->userEmailValidationRespond('erros');
+        endif;
+
+        $respond = $this->repo->validateUser($token,$email);
+
+
+    }
 
 
 

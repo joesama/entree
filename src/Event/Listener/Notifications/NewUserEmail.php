@@ -29,6 +29,8 @@ class NewUserEmail
      */
     public function handle(User $user)
     {
+        $token = $user->validate;
+        $email = $user->email;
 
         $message = collect([]);
         $message->put("level","info");
@@ -42,7 +44,7 @@ class NewUserEmail
          trans('threef/entree::mail.click'),
         ]));
 
-        $message->put("action" , collect([ "Login" => handles('threef/entree::login') ]));
+        $message->put("action" , collect([ trans('threef/entree::mail.validation') => handles('threef/entree::validate/'.$token . '/?email='.$email) ]));
 
         $user->notify(new EntreeMailer($message));
 

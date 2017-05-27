@@ -22,18 +22,19 @@ class UserRepo
 	public function userList($request)
 	{
 		$search = $request->get('search');
-
-		$user = User::whereHas('roles', function ($query) {
-				    $query->where('roles.id', '<>' ,app(Role::class)->admin()->id);
-				})->when($search, 
+		// dd(app(Role::class)->admin()->id);
+		$user = User::when($search, 
 				function ($query) use ($search) {
-                    return $query->where('fullname','like', '%' . $search . '%')
-                    		->orWhere('email','like', '%' . $search . '%')
-                    		->orWhere('lastlogin','like', '%' . $search . '%')
-                    		->orderBy('fullname');
+                    return $query->where(function ($query) use ($search) {
+			                $query->where('fullname','like', '%' . $search . '%')
+			                      ->orWhere('email','like', '%' . $search . '%')
+			                      ->orWhere('lastlogin','like', '%' . $search . '%');
+			            	})->orderBy('fullname');
                 },function ($query) {
                     return $query->orderBy('fullname');
-                })->with('profile','roles');
+                })->whereHas('roles', function ($query) {
+				    $query->whereNotIn('roles.id', [app(Role::class)->admin()->id]);
+				})->with('profile','roles');
 
 		return $user->paginate(20);
 	}
@@ -89,9 +90,7 @@ class UserRepo
 			}catch (\Exception $e)
 	        {
 	            DB::rollback();
-
-	            dd($e->getMessage());
-	            return $e->getMessage();
+	            throw $e->getMessage();
 	        }
 
 	        DB::commit();
@@ -132,17 +131,23 @@ class UserRepo
         	$profile->$field = $value;
         endforeach;
 
+        DB::beginTransaction();
+
         try {
 
 			$user->save();
             $user->roles()->sync($roles);
             $user->profile()->save($profile);
 
-            return $user;
-
 		} catch (Exception $e) {
-            dd($e->getMessage());
+
+			DB::rollback();
+            throw $e->getMessage();
         }
+
+        DB::commit();
+
+        return $user;
 
 	}
 
@@ -177,18 +182,24 @@ class UserRepo
         	$profile->$field = $value;
         endforeach;
 
+        DB::beginTransaction();
+
         try {
 
 			$user->save();
             $user->roles()->sync($roles);
             $user->profile()->save($profile);
 
-            return $user;
-
 
         } catch (Exception $e) {
-            dd($e->getMessage());
+
+        	DB::rollback();
+            throw $e->getMessage();
         }
+
+        DB::commit();
+
+        return $user;
 
     }
 
@@ -203,9 +214,72 @@ class UserRepo
     {
     	$user = User::find($id);
     	$info = $user;
-    	$user->delete();
+    	
+
+        DB::beginTransaction();
+
+        try {
+
+			$user->delete();
+
+        } catch (Exception $e) {
+
+        	DB::rollback();
+            throw $e->getMessage();
+        }
+
+        DB::commit();
+
 
     	return $info;
     }
+
+
+    /**
+     * Validate user
+     *
+     * @return void
+     * @author 
+     **/
+    public function validateUser($token, $email, $password = NULL)
+    {
+
+    	$user = User::whereEmail($email)->first();
+
+    	$password = is_null($password) ? str_random(10) : $password;
+
+    	// Validate parameter passed
+    	if($user && $user->validateEmail($token,$email)):
+
+    		DB::beginTransaction();
+
+    		try {
+
+    			// Activate the user status
+    			// $user->password = $password;
+    			// $user->activate()->save();
+
+    			dd($user);
+
+    		} catch (Exception $e) {
+
+    			DB::rollback();
+	            throw $e->getMessage();
+	        }
+
+	        DB::commit();
+
+    		$user->sendWelcomeNotification($password);
+
+    		return $user;
+
+    	else:
+
+    		return FALSE;
+
+    	endif;
+
+    }
+
 
 } // END class UserRepositories 

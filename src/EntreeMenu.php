@@ -112,20 +112,6 @@ use Orchestra\Contracts\Authorization\Factory;
 
         **/
 
-        $menu->add('roles','^:config')
-            ->title(trans('threef/entree::entree.role.manage'))
-            ->icon('fa fa-user');
-
-        $menu->add('role-list','^:config.roles')
-            ->title(trans('threef/entree::entree.role.list'))
-            ->link(handles('threef/entree::roles'))
-            ->icon('fa fa-chevron-circle-right');
-
-        $menu->add('role-new','^:config.roles')
-            ->title(trans('threef/entree::entree.role.new'))
-            ->link(handles('threef/entree::roles/new'))
-            ->icon('fa fa-chevron-circle-right');
-
         $menu->add('user','^:config')
             ->title(trans('threef/entree::entree.user.manage'))
             ->icon('fa fa-user');

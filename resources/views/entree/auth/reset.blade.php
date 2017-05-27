@@ -21,7 +21,7 @@
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
             </a>
                 <h2 class="text-center">{{ trans('threef/entree::entree.password.reset.title') }}<small></small></h2>
-               {!! Form::open(['url' => handles('threef/entree::forgot/reset/{$token}'), 'action' => 'POST', 'class' => 'form-horizontal']) !!}
+               {!! Form::open(['url' => handles('threef/entree::forgot/reset/'.$token), 'action' => 'POST', 'class' => 'form-horizontal']) !!}
                 <input type="hidden" name="token" value="{!! $token !!}">
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">{{ trans('threef/entree::entree.login.emel') }}</label>

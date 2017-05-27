@@ -35,7 +35,7 @@ input:invalid {
     {!! Form::open(array('url' => url()->current(), 'method' => 'POST', 'class' => 'form-horizontal form-validation')) !!}
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.user.grid.fullname') }}
+          {{ trans('threef/entree::entree.user.grid.fullname') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
           {!! Form::text('fullname', data_get($user,'fullname',old('fullname')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('threef/entree::entree.user.grid.fullname') )) !!}
@@ -43,7 +43,7 @@ input:invalid {
       </div>
       <div class="form-group">
         <label for="email" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.user.grid.email') }}
+        {{ trans('threef/entree::entree.user.grid.email') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
           {!! Form::email('email', data_get($user,'email',old('email')) , array('required','class' => 'form-control', 'id' => 'email','placeholder' => trans('threef/entree::entree.user.grid.email') )) !!}
@@ -59,7 +59,7 @@ input:invalid {
       </div>
       <div class="form-group">
         <label for="spec_project" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.user.grid.role') }}
+        {{ trans('threef/entree::entree.user.grid.role') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
           {!! Form::select('roles[]', $roles , data_get($user,'roles',collect([]))->pluck('id'), ['required', 'class'=>'form-control' , 'multiple' => TRUE] ) !!}
@@ -68,7 +68,7 @@ input:invalid {
       @if(!data_get($user,'id',false) )
       <div class="form-group">
         <label for="password" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.login.password') }}
+        {{ trans('threef/entree::entree.login.password') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
           {!! Form::text('password',NULL, array('required','class' => 'form-control', 'id' => 'password','placeholder' => trans('threef/entree::entree.login.password') )) !!}

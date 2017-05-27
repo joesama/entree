@@ -11,6 +11,8 @@ use Threef\Entree\Database\Model\UserTrails;
 class EntreeUserLogout
 {
 
+    const LOGOUT = 0;
+
     /**
      * Create the event listener.
      *
@@ -30,7 +32,8 @@ class EntreeUserLogout
     public function handle(Logout $person)
     {
         $trails = new UserTrails();
-        $trails->type = 0;
+        $trails->type = self::LOGOUT;
+        $trails->person = $person->user->fullname;
         $trails->user_id = $person->user->id;
         $trails->save();
 

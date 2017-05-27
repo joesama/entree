@@ -8,6 +8,7 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->get('/', 'Entrance@getIndex');
 		$router->get('/login', 'Entrance@getIndex');
 		$router->post('/login', 'Auth\Access@login');
+		$router->get('/validate/{token}', 'Auth\Access@emailValidation');
 		$router->get('/forgot', 'Auth\ResetPassword@getSelfReset');
 		$router->post('/forgot', 'Auth\ResetPassword@postSelfReset');
 		$router->get('/forgot/reset/{token}', 'Auth\ResetPassword@getResetPassword');

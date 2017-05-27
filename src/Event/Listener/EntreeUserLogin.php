@@ -10,6 +10,7 @@ use Threef\Entree\Database\Model\UserTrails;
 
 class EntreeUserLogin
 {
+    const LOGIN = 1;
 
     /**
      * Create the event listener.
@@ -27,16 +28,15 @@ class EntreeUserLogin
      * @param  threef.user.login  $event
      * @return void
      */
-    public function handle(Login $person)
+    public function handle($user)
     {
-        $user = User::find($person->user->id);
         $user->lastlogin = Carbon::now()->toDateTimeString();
         $user->save();
 
         $trails = new UserTrails();
-        $trails->type = 1;
-        $trails->person = $person->user->username;
-        $trails->user_id = $person->user->id;
+        $trails->type = self::LOGIN;
+        $trails->person = $user->fullname;
+        $trails->user_id = $user->id;
         $trails->save();
 
     }

@@ -2,9 +2,12 @@
 
 use Orchestra\Foundation\Auth\User as OrchestraUser;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Threef\Entree\Http\Notifications\ResetPasswordMessage;
+use Threef\Entree\Http\Notifications\EntreeMailer;
 use Carbon\Carbon;
 
 /**
@@ -45,14 +48,72 @@ class User extends OrchestraUser
         return Carbon::parse($this->attributes['lastlogin'])->diffForHumans(Carbon::now());
     }
 
-	 
 	public function getStatusAttribute($value)
     {
-
         return trans('threef/entree::entree.user.status.'.$value);
     }
 
-/**
+    /**
+     * Get Validation Token
+     *
+     * @return string
+     **/
+    public function getValidateAttribute($value)
+    {
+        return encrypt( $this->attributes['status'].$this->attributes['email'] );
+    }
+
+    /**
+     * Validate Passed Info
+     *
+     * @return void
+     * @author 
+     **/
+    public function validateEmail($token, $email)
+    {
+        return decrypt( $token ) == $this->attributes['status'].$email; 
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @param  string|null  $provider
+     *
+     * @return void
+     */
+    public function sendPasswordResetNotification($token, $provider = null)
+    {
+        $message = collect([]);
+        $message->put("level","success");
+        $message->put("title",trans('threef/entree::mail.reset.title'));
+        $message->put("content" , collect([
+         trans('threef/entree::mail.reset.form')
+        ]));
+
+        $message->put("footer" , collect([
+         trans('threef/entree::mail.reset.expired', ['time' => config('auth.reminder.expire', 60) ]),
+        ]));
+
+        $message->put("action" , collect([ trans('threef/entree::mail.reset.title') => handles('entree::forgot/reset/'.$token) ]));
+
+        $this->notify(new EntreeMailer($message));
+    }
+
+    /**
+     * Send the user registered notification.
+     *
+     * @param  string|null  $password
+     *
+     * @return void
+     */
+    public function sendWelcomeNotification($password = null)
+    {
+        $this->notify(new EntreeMailer(collect([])));
+    }
+
+
+    /**
      * Route notifications for the mail channel.
      *
      * @return string

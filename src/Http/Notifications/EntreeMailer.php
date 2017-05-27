@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Orchestra\Notifications\Messages\MailMessage;
 
 
-class EntreeMailer extends Notification
+class EntreeMailer extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -90,8 +90,5 @@ class EntreeMailer extends Notification
     public function toArray($notifiable)
     {
         
-        return [
-            'test' => 'abnc'
-        ];
     }
 }

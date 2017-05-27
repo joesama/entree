@@ -4,11 +4,11 @@
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<h2>Password Reset</h2>
+		<h2>{{ trans('threef/entree::entree.password.reset.title') }}</h2>
 
 		<p>
-			To reset your password, complete this form: {{ url(handles("entree::forgot/reset/{$token}")) }}.<br/>
-			This link will expire in {{ config('auth.reminder.expire', 60) }} minutes.
+			{{ trans('threef/entree::mail.reset.form') }} {{ url(handles("entree::forgot/reset/{$token}")) }}.<br/>
+			{{ trans('threef/entree::mail.reset.expired', ['time' => config('auth.reminder.expire', 60) ]) }}.
 		</p>
 	</body>
 </html>

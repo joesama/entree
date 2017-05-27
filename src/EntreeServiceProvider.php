@@ -49,21 +49,17 @@ class EntreeServiceProvider extends ModuleServiceProvider
      */
     protected $listen = [
         'orchestra.install.schema: users' => [
-            'Threef\Entree\Event\Listener\EntreeUser'],
+            Event\Listener\EntreeUser::class],
         'threef.user.profile' => [
-            'Threef\Entree\Event\Listener\EntreeUserProfile'],
-        'Illuminate\Auth\Events\Login' => [
-            'Threef\Entree\Event\Listener\EntreeUserLogin'],
+            Event\Listener\EntreeUserProfile::class],
+        'threef.user.login' => [
+            Event\Listener\EntreeUserLogin::class ],
         'Illuminate\Auth\Events\Logout' => [
-            'Threef\Entree\Event\Listener\EntreeUserLogout'],
+            Event\Listener\EntreeUserLogout::class ],
         'Illuminate\Auth\Events\Lockout' => [
-            'Threef\Entree\Event\Listener\EntreeUserAttempting'],
+            Event\Listener\EntreeUserAttempting::class],
         'orchestra.install: user' => [
-            'Threef\Entree\Event\Listener\EntreeRegisterUser'],
-        'orchestra.list: users' => [
-            'Threef\Entree\Event\Listener\Presenter\EntreeUserGrid'],
-        'entree.user.list: action' => [
-            'Threef\Entree\Event\Listener\Presenter\EntreeUserGridAction'],
+            Event\Listener\EntreeRegisterUser::class],
         'threef.email.user: new' => [
             Event\Listener\Notifications\NewUserEmail::class ]
     ];

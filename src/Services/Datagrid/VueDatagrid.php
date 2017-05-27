@@ -146,7 +146,7 @@ class VueDatagrid
 	        'simple' => $this->simple,
 	       	'data' => (!is_null($this->items)) ? $items->items() : [],
 	        'pagination' => [
-	            'total_item' => (!is_null($this->items)) ? $items->total() : 0,
+	            'total' => (!is_null($this->items)) ? $items->total() : 0,
 	            'per_page' => (!is_null($this->items)) ? $items->perPage() : 20,
 	            'current_page' => (!is_null($this->items)) ? $items->currentPage() : 1,
 	            'last_page' => (!is_null($this->items)) ? $items->lastPage() : 1,

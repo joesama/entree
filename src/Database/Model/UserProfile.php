@@ -18,4 +18,16 @@ class UserProfile extends Model
      */
     protected $fillable = ['photo'];
 
+
+    /**
+     * Get All Table Listing.
+     *
+     * @var array
+     */
+	public function getTableColumns() {
+		return $this->getConnection()->getSchemaBuilder();
+        // return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
+
 }

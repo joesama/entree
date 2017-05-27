@@ -79,13 +79,12 @@ class User extends UsersController
      **/
     public function getUserUpdate(Request $request)
     {
+
         set_meta('title',trans('threef/entree::entree.user.edit'));
 
         $data = $this->manager->userCreation($request);
 
         return view('threef/entree::entree.user.form',$data);
-
-        // event('threef.email.user: new', [$data['user'], '123456']);
 
     }
 

@@ -15,7 +15,7 @@
         </thead>
         <tbody>
           <tr v-if="filteredData.length < 1">
-            <td :colspan="columns.length + 2"><p>{{ trans('threef/entree::datagrid.search') }}</p></td>
+            <td :colspan="columns.length + 2"><p><center>{{ trans('threef/entree::datagrid.empty') }}</center></p></td>
           </tr>
           <tr v-for="(entry, index) in filteredData">
             <td class="text-center" style="background-color: #f9f9f9">@{{ runner + (index + 1 ) }}</td>
@@ -349,7 +349,7 @@ var vuegrid = new Vue({
     gridActions: window.actions,
     gridActionsSimple: window.simple,
     pagination: {
-      total: window.pagination.total_item,
+      total: window.pagination.total,
       per_page: window.pagination.per_page,
       from: window.pagination.from,
       to: window.pagination.last_page,
@@ -399,7 +399,8 @@ var vuegrid = new Vue({
               //look into the routes file and format your response
               this.gridData = response.data.data;
               this.pagination.current_page = (response.data.current_page > response.data.last_page ) ? 1 : response.data.current_page;
-              // this.pagination.total = response.data.total;
+
+              this.pagination.total = response.data.total;
               this.pagination.last_page = response.data.last_page;
               this.pagination.to = response.data.last_page;
               // this.$set('pagination', response.data.pagination);

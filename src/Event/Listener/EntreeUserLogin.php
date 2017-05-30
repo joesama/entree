@@ -36,8 +36,8 @@ class EntreeUserLogin
         $trails = new UserTrails();
 
         $trails->type = self::LOGIN;
-        $trails->person = data_get($person,'fullname');
-        $trails->user_id = data_get($person,'id');
+        $trails->person = data_get($user,'fullname');
+        $trails->user_id = data_get($user,'id');
         $trails->save();
 
     }

@@ -149,9 +149,9 @@
 
 @push('datagrid.jscript')
 <script type="text/javascript">
-Vue.config.performance = true;
-Vue.config.debug = true;
-Vue.config.devtools = true;
+// Vue.config.performance = true;
+// Vue.config.debug = true;
+Vue.config.devtools = false;
 
 // register the grid component
 Vue.component('demo-grid', {

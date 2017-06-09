@@ -50,14 +50,6 @@ input:invalid {
         </div>
       </div>
       <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.user.grid.idno') }}
-        </label>
-        <div class="col-sm-10">
-          {!! Form::text('idnumber', data_get($user,'profile.idnumber',old('idnumber')) , array('class' => 'form-control', 'id' => 'idnumber','placeholder' => trans('threef/entree::entree.user.grid.idno') )) !!}
-        </div>
-      </div>
-      <div class="form-group">
         <label for="spec_project" class="col-sm-2 control-label">
         {{ trans('threef/entree::entree.user.grid.role') }}<span class="text-danger">&nbsp;*</span>
         </label>

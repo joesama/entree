@@ -43,7 +43,7 @@
 						<h5>{{ title_case($greeting) }}</h5>
 						<!-- <p class="lead">{{ title_case($title) }}</p> -->
 						@foreach($introLines as $line)
-	                    <p>{{ title_case($line) }}</p>
+	                    <p>{{ $line }}</p>
 	                    @endforeach
 						<!-- Callout Panel -->
 						@if(isset($actionText))

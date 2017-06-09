@@ -246,7 +246,7 @@ class UserRepo
 
     	$user = User::whereEmail($email)->first();
 
-    	$password = is_null($password) ? str_random(10) : $password;
+    	$password = is_null($password) ? str_random(20) : $password;
 
     	// Validate parameter passed
     	if($user && $user->validateEmail($token,$email)):
@@ -256,10 +256,8 @@ class UserRepo
     		try {
 
     			// Activate the user status
-    			// $user->password = $password;
-    			// $user->activate()->save();
-
-    			dd($user);
+    			$user->password = $password;
+    			$user->activate()->save();
 
     		} catch (Exception $e) {
 

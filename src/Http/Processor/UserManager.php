@@ -262,10 +262,12 @@ class UserManager extends User
         $email = $request->get('email');
 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)):
-            return $control->userEmailValidationRespond('erros');
+            return $control->userEmailValidationRespond('errors');
         endif;
 
-        $respond = $this->repo->validateUser($token,$email);
+        $user = $this->repo->validateUser($token,$email);
+
+        return view('threef/entree::entree.auth.validation',compact('user'));
 
 
     }

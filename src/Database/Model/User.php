@@ -53,6 +53,17 @@ class User extends OrchestraUser
         return trans('threef/entree::entree.user.status.'.$value);
     }
 
+
+    /**
+     * Get the username of the user.
+     *
+     * @return string
+     */
+    public function getUserName()
+    {
+        return strtolower($this->attributes[config('threef/entree::entree.username','email')]);
+    }
+
     /**
      * Get Validation Token
      *
@@ -109,7 +120,23 @@ class User extends OrchestraUser
      */
     public function sendWelcomeNotification($password = null)
     {
-        $this->notify(new EntreeMailer(collect([])));
+
+        $message = collect([]);
+        $message->put("level","success");
+        $message->put("title",trans('threef/entree::mail.validated.title'));
+        $message->put("content" , collect([
+            title_case(trans('threef/entree::mail.validated.success')),
+            trans('threef/entree::mail.validated.username', ['username' => $this->getUserName() ]),
+            trans('threef/entree::mail.validated.password', ['password' => $password ]),
+        ]));
+
+        $message->put("footer" , collect([
+            title_case(trans('threef/entree::mail.validated.form')),
+        ]));
+
+        $message->put("action" , collect([ trans('threef/entree::mail.login') => handles('entree::login/') ]));
+
+        $this->notify(new EntreeMailer($message));
     }
 
 

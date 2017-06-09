@@ -16,4 +16,16 @@ return [
 
     'username' => 'email',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Config Register User Method
+    |--------------------------------------------------------------------------
+    |
+    | To set process use to register user either required email validation or not 
+    | 
+    */
+
+    'validation' => 'email',
+
+
 ];

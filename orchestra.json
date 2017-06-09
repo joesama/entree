@@ -9,6 +9,7 @@
 		"Laracasts\\Utilities\\JavaScript\\JavaScriptServiceProvider",
 		"Laravel\\Scout\\ScoutServiceProvider",
     	"TeamTNT\\Scout\\TNTSearchScoutServiceProvider",
-		"Laravel\\Passport\\PassportServiceProvider"
+		"Laravel\\Passport\\PassportServiceProvider",
+		"Maatwebsite\\Excel\\ExcelServiceProvider"
 	]
 }

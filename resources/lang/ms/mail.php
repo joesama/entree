@@ -16,7 +16,7 @@ return [
 		'title' => 'Pendaftaran Pengguna Baharu Berjaya',
 		'form' => 'Bagi mendaftar masuk sila klik pada pautan.',
 		'success' => 'Pendaftaran pengguna telah berjaya. Sila gunakan maklumat berikut bagi daftar masuk.',
-		'mail' => 'Pendaftaran pengguna telah berjaya. Notifikasi emel telah dihantar ke akaun emel yang telah didaftar bagi maklumat ID Pengguna & Katalaluan',
+		'mail' => 'Pendaftaran pengguna telah berjaya. Notifikasi emel bagi maklumat ID Pengguna & Katalaluan telah dihantar ke akaun emel yang telah didaftarkan',
 		'username' => 'ID Pengguna :  :username',
 		'password' => 'Katalaluan : :password',
 	]

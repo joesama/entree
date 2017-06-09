@@ -14,7 +14,7 @@ return [
     | 
     */
 
-    'username' => 'email',
+    'username' => env('USER_NAME', 'email'),
 
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ return [
     | 
     */
 
-    'validation' => FALSE,
+    'validation' => env('USER_VALIDATION', FALSE),
 
 
 ];

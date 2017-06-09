@@ -48,8 +48,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $listen = [
-        'orchestra.install.schema: users' => [
-            Event\Listener\EntreeUser::class],
         'threef.user.profile' => [
             Event\Listener\EntreeUserProfile::class],
         'threef.user.login' => [

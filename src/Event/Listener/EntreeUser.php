@@ -26,6 +26,7 @@ class EntreeUser
     {
         $table->engine = 'InnoDB';
         $table->string('username');
+        $table->string('password')->nullable()->change();
         $table->integer('isAdmin')->default(0);
         $table->unique('username');
         $table->datetime('lastlogin');

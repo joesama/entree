@@ -120,7 +120,7 @@ class UserRepo
         $roles = data_get($input,'user')->get('roles');
         $roles = (is_array($roles)) ? $roles : [$roles];
         
-        $user->status   = User::UNVERIFIED;
+        $user->status   = config('threef/entree::entree.validation') ? User::UNVERIFIED : User::VERIFIED;
         $user->username   = data_get($input,'user')->get(config('threef/entree::entree.username','email'));
 
         $profileTable = data_get($input,'profile');
@@ -220,6 +220,7 @@ class UserRepo
 
         try {
 
+            $user->profile()->delete();
 			$user->delete();
 
         } catch (Exception $e) {

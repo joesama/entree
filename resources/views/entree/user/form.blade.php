@@ -65,7 +65,7 @@ input:invalid {
           {!! Form::select('roles[]', $roles , data_get($user,'roles',collect([]))->pluck('id'), ['required', 'class'=>'form-control' , 'multiple' => TRUE] ) !!}
         </div>
       </div>
-      @if(!data_get($user,'id',false) )
+      @if(!data_get($user,'id',false) && $validation == FALSE )
       <div class="form-group">
         <label for="password" class="col-sm-2 control-label">
         {{ trans('threef/entree::entree.login.password') }}<span class="text-danger">&nbsp;*</span>

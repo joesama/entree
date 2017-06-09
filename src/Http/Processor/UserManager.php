@@ -101,7 +101,9 @@ class UserManager extends User
     {
         $user = $this->repo->userInfo($request->segment(2));
         $roles = $this->repo->userRoleArray();
-        return compact('user','roles');
+        $validation = config('threef/entree::entree.validation');
+
+        return compact('user','roles','validation');
     }
 
 
@@ -128,14 +130,17 @@ class UserManager extends User
         endif;
 
         $input = $this->delegateUserInfo($request);
-
         $user = $this->repo->createUserData($input);
 
-        // if(config('threef/entree::entree.notify.email',TRUE)):
+        if(config('threef/entree::entree.validation')):
 
             event('threef.email.user: new', [$user]);
 
-        // endif;
+        else:
+
+            $user->sendWelcomeNotification(data_get($input,'user.password'));
+
+        endif;
 
         return redirect_with_message(
                 handles('threef/entree::user'),

@@ -25,7 +25,7 @@ return [
     | 
     */
 
-    'validation' => 'email',
+    'validation' => FALSE,
 
 
 ];

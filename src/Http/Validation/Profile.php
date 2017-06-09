@@ -34,10 +34,14 @@ class Profile extends Validator
      */
     protected function onCreate()
     {
-        $this->rules['email'][] = 'unique:users';
-        $this->rules['idnumber'][] = 'unique:user_profiles';
+        $this->rules['email'][] = Rule::unique('users')->where(function ($query) {
+            $query->whereNull('deleted_at');
+        });
+        $this->rules['idnumber'][] = Rule::unique('user_profiles')->where(function ($query) {
+            $query->whereNull('deleted_at');
+        });
         $this->phrases['required'] = trans('threef/entree::validation.required');
-        $this->phrases['idnumber.unique'] = trans('threef/entree::validation.custom.idnumber.unique');
+        // $this->phrases['idnumber.unique'] = trans('threef/entree::validation.custom.idnumber.unique');
         $this->phrases['email.unique'] = trans('threef/entree::validation.custom.email.unique');
     }
 

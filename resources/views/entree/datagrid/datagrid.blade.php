@@ -20,7 +20,11 @@
           <tr v-for="(entry, index) in filteredData">
             <td class="text-center" style="background-color: #f9f9f9">@{{ runner + (index + 1 ) }}</td>
             <td v-for="key in columns" v-bind:class="[ key.style ? key.style : '']">
-              @{{ checkDisplay(entry,key) }}
+              <a v-if="key.file" class="btn btn-primary btn-xs" :href="createUri(entry,key)" target="_blank">
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;@{{ sanitizeUri(entry,key) }}
+              </a>
+              <a v-if="key.uri" :href="uriaction(key.uri.url,entry[key.uri.key])" target="_blank">@{{ display(entry,key) }}</a>
+              <span v-if="!key.file && !key.uri">@{{ display(entry,key) }}</span>
             </td>
             <td v-if="actions" class="text-center" style="background-color: #f9f9f9">
               <div class="btn-group" v-if="(actions.length > 1) && !simple">
@@ -149,9 +153,6 @@
 
 @push('datagrid.jscript')
 <script type="text/javascript">
-// Vue.config.performance = true;
-// Vue.config.debug = true;
-Vue.config.devtools = false;
 
 // register the grid component
 Vue.component('demo-grid', {
@@ -300,13 +301,21 @@ Vue.component('demo-grid', {
       return uri + '/' +  id;
     },
     checkNumbers : function(amount){
-      // if($.isNumeric(amount)){
-        // return accounting.formatNumber(amount);
-      // }else{
-        return amount;
-      // }
+        return accounting.formatNumber(amount);
     },
-    checkDisplay : function(data,key){
+    createUri : function(data,key){
+
+      var path = this.display(data,key);
+      return "{{ handles('threef/entree::/') }}" + path.replace('public','');
+
+    },
+    sanitizeUri : function(data,key){
+
+      var path = this.display(data,key);
+      return path.substr(path.lastIndexOf('/')+1).substring(0,50).concat(' ...');
+
+    },
+    display : function(data,key){
 
       var field = key.field;
       var style = key.style;
@@ -334,7 +343,11 @@ Vue.component('demo-grid', {
 
       }
 
-      return this.checkNumbers(display);
+      if(display.length > 100) display = display.substring(0,100).concat(' ...');
+
+      if(key.number) return this.checkNumbers(display);
+
+      return display;
     }
   }
 })

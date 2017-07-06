@@ -56,6 +56,13 @@ return [
 			"status" => "Status",
 		]
 	],
+	'base' => [
+		'logo' => 'Logo Aplikasi',
+		'abbr' => 'Abbr',
+		'name' => 'Nama Aplikasi',
+		'summary' => 'Ringkasan Aplikasi',
+		'footer' => 'Footer',
+	],
 	'button' => [
 		'view' => 'Papar',
 		'save' => 'Simpan',

@@ -166,5 +166,4 @@ class EntreeServiceProvider extends ModuleServiceProvider
           ->give('Threef\Entree\Http\Middleware\VerifyCsrfToken');
     }
 
-
 } // END class Entree 

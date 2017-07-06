@@ -20,6 +20,12 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->get('/logout', 'Auth\Access@logout');
 		$router->get('/password', 'Auth\Password@edit');
 		$router->post('/password', 'Auth\Password@update');
+
+		// Base Configuration
+		$router->get('/base', 'Admin\BasicSetup@appConfig');
+		$router->post('/base', 'Admin\BasicSetup@saveAppConfig');
+		$router->post('/logo', 'Admin\BasicSetup@saveLogo');
+
 		$router->get('/menu', 'MenuAccess@getIndex');
 		$router->post('/menu', 'MenuAccess@menuAccess');
 

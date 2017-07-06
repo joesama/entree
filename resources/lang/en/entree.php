@@ -56,6 +56,13 @@ return [
 			"status" => "Status",
 		]
 	],
+	'base' => [
+		'logo' => 'Application Logo',
+		'abbr' => 'Abbr',
+		'name' => 'Application Name',
+		'summary' => 'Application Summary',
+		'footer' => 'Footer Wording',
+	],
 	'button' => [
 		'view' => 'View',
 		'save' => 'Save',

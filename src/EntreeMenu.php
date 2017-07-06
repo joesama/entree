@@ -86,6 +86,11 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('threef/entree::menu'))
             ->icon('fa fa-link');
 
+        $menu->add('base','^:config')
+            ->title(trans('threef/entree::title.config.base'))
+            ->link(handles('threef/entree::base'))
+            ->icon('fa fa-info');
+
         /** 
 
         @TODO : Report Menu

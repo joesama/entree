@@ -4,6 +4,7 @@ return [
 	'home' => 'Home',
 	'config' => [
 		'title' => 'Configuration',
-		'menu' => 'Menu Configuration'
+		'menu' => 'Menu',
+		'base' => 'Application Info'
 	]
 ];

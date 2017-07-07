@@ -25,6 +25,7 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->get('/base', 'Admin\BasicSetup@appConfig');
 		$router->post('/base', 'Admin\BasicSetup@saveAppConfig');
 		$router->post('/logo', 'Admin\BasicSetup@saveLogo');
+		$router->post('/favicon', 'Admin\BasicSetup@saveFavicon');
 
 		$router->get('/menu', 'MenuAccess@getIndex');
 		$router->post('/menu', 'MenuAccess@menuAccess');

@@ -1,7 +1,7 @@
 <?php 
 namespace Threef\Entree\Database\Repository;
 
-use Threef\Entree\Database\Model\Admin\BaseConfig;
+use Orchestra\Contracts\Memory\Provider;
 
 /**
  * Base Config Data Processing class
@@ -13,15 +13,21 @@ class BaseConfigData
 {
 
 
-	function __construct()
+	function __construct(Provider $memory)
 	{
-
-		$appInfo = BaseConfig::find(1);
-    	$appInfo = ($appInfo)  ? $appInfo : new BaseConfig;
-
-		$this->model = $appInfo;
+        $this->memory = $memory;
 	}
 
+
+    /**
+     * Default Application Name
+     *
+     * @return String
+     */
+    protected function defaultApplicationAbbr()
+    {
+        return memorize('abbr');
+    }
 
 	/**
      * Default Application Name
@@ -43,14 +49,24 @@ class BaseConfigData
 		return memorize('site.description');
 	}
 
-	/**
+    /**
      * Default Application Logo
      *
      * @return String
      */
     protected function defaultApplicationLogo()
+    {
+        return memorize('logo.apps');
+    }
+
+	/**
+     * Default Application Logo
+     *
+     * @return String
+     */
+    protected function defaultApplicationFavicon()
 	{
-		return false;//'http://placehold.it/200x200';
+		return memorize('logo.favicon');
 	}
 
 	/**
@@ -60,7 +76,7 @@ class BaseConfigData
      */
     protected function defaultApplicationFooter()
 	{
-		return 'Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '. date('Y');
+		return memorize('footer','Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '. date('Y'));
 	}
 
 
@@ -83,28 +99,27 @@ class BaseConfigData
      **/
     protected function saveData($request)
     {
+        $memory = $this->memory;
+        $memory->put('site.name', $request->get('name'));
+        $memory->put('site.description', $request->get('summary'));
+        $memory->put('logo.favicon', $request->get('fav'));
+        $memory->put('logo.apps', $request->get('logo'));
+        $memory->put('footer', $request->get('footer'));
+        $memory->put('abbr', $request->get('abbr'));
+    }
 
-        \DB::beginTransaction();
+    /**
+     * Update Logo Path
+     *
+     * @return void
+     * @author 
+     **/
+    public function saveFavicon($input, $path)
+    {
 
-        try {
+        $memory = $this->memory;
+        $memory->put('logo.favicon', $path);
 
-        	$appInfo = $this->model;
-            $appInfo->app_name = $request->get('name');
-            $appInfo->app_summary = $request->get('summary');
-            $appInfo->app_abbr = $request->get('abbr');
-            $appInfo->exclaimation = $request->get('footer');
-			$appInfo->save();
-
-        } catch (Exception $e) {
-
-        	\DB::rollback();
-            throw $e->getMessage();
-        }
-
-        \DB::commit();
-
-
-    	return $appInfo;
     }
 
 	/**
@@ -116,22 +131,8 @@ class BaseConfigData
 	public function saveLogo($input, $path)
 	{
 
-		$appInfo = $this->model;
-
-		\DB::beginTransaction();
-
-		try{
-
-			$appInfo->logo_small = $path;
-			$appInfo->save();
-
-		}catch (\Exception $e)
-        {
-            \DB::rollback();
-            throw $e->getMessage();
-        }
-
-        \DB::commit();
+		$memory = $this->memory;
+        $memory->put('logo.apps', $path);
 
 	}
 
@@ -143,7 +144,7 @@ class BaseConfigData
      */
     public function applicationName()
 	{
-		return data_get($this->model,'app_name', $this->defaultApplicationName());
+		return $this->defaultApplicationName();
 	}
 
 	/**
@@ -153,17 +154,27 @@ class BaseConfigData
      */
     public function applicationSummary()
 	{
-		return data_get($this->model,'app_summary', $this->defaultApplicationSummary());
+		return $this->defaultApplicationSummary();
 	}
+
+    /**
+     * Return Application Logo
+     *
+     * @return String
+     */
+    public function applicationLogo()
+    {
+        return $this->defaultApplicationLogo();
+    }
 
 	/**
      * Return Application Logo
      *
      * @return String
      */
-    public function applicationLogo()
+    public function applicationFavicon()
 	{
-		return data_get($this->model,'logo_small', $this->defaultApplicationLogo());
+		return $this->defaultApplicationFavicon();
 	}
 
 	/**
@@ -173,7 +184,7 @@ class BaseConfigData
      */
     public function applicationFooter()
 	{
-		return data_get($this->model,'exclaimation', $this->defaultApplicationFooter());
+		return  $this->defaultApplicationFooter();
 	}
 
 	/**
@@ -183,7 +194,7 @@ class BaseConfigData
      */
     public function applicationAbbr()
 	{
-		return data_get($this->model,'app_abbr');
+		return $this->defaultApplicationAbbr();
 	}
 
 

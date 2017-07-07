@@ -2,7 +2,6 @@
 namespace Threef\Entree\Http\Processor\Admin;
 
 use Threef\Entree\Database\Repository\BaseConfigData;
-use Orchestra\Contracts\Memory\Provider;
 use Threef\Entree\Services\Upload\FileUploader;
 
 /**
@@ -14,10 +13,9 @@ use Threef\Entree\Services\Upload\FileUploader;
 class BasicSetupProcessor
 {
 
-    public function __construct(BaseConfigData $data, Provider $memory) {
+    public function __construct(BaseConfigData $data) {
         
         $this->data = $data;
-        $this->memory = $memory;
     }
 
 	/**
@@ -28,11 +26,13 @@ class BasicSetupProcessor
 	 **/
 	public function processAppConfig($controller)
 	{
+
 		$data = collect([
 			'name' => $this->data->applicationName(),
 			'summary' => $this->data->applicationSummary(),
 			'footer' => $this->data->applicationFooter(),
 			'logo' => $this->data->applicationLogo(),
+			'favicon' => $this->data->applicationFavicon(),
 			'abbr' => $this->data->applicationAbbr(),
 		]);
 
@@ -50,11 +50,7 @@ class BasicSetupProcessor
 	public function processConfigData($request)
 	{
 
-		$respond = $this->data->saveBaseConfigInfo($request);
-
-        $memory = $this->memory;
-        $memory->put('site.name', $respond['app_name']);
-        $memory->put('site.description', $respond['app_summary']);
+		$this->data->saveBaseConfigInfo($request);
 
 		return redirect_with_message(
             handles('threef/entree::base'),
@@ -77,6 +73,25 @@ class BasicSetupProcessor
             $file = new FileUploader($request->file('logo'), $this);
 
             $this->data->saveLogo($request,$file->destination());
+
+            return response()->json(['path' => $file->destination()]);
+
+        endif;
+    }
+
+    /**
+     * Upload Photo & Update Resources Photo Path 
+     *
+     * @return void
+     * @author 
+     **/
+    public function uploadFavIcon($request)
+    {
+        if ($request->file('fav')->isValid()) :
+
+            $file = new FileUploader($request->file('fav'), $this);
+
+            $this->data->saveFavicon($request,$file->destination());
 
             return response()->json(['path' => $file->destination()]);
 

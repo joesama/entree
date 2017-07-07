@@ -57,4 +57,15 @@ class BasicSetup extends Controller
         return $this->processor->uploadLogo($request);
     }
 
+    /**
+     * Upload Fav Icon
+     *
+     * @return void
+     * @author 
+     **/
+    public function saveFavicon(Request $request)
+    {
+        return $this->processor->uploadFavIcon($request);
+    }
+
 }

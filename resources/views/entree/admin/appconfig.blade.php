@@ -40,6 +40,7 @@
         </div>
       </div>
       {!! Form::hidden('logo', data_get($data,'logo') ) !!}
+      {!! Form::hidden('fav', data_get($data,'favicon') ) !!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-right">
           <button type="submit" class="btn btn-primary">
@@ -49,13 +50,64 @@
       </div>
       {!! Form::close() !!}
     </div>
-    <div class="col-md-2 col-xs-12">
+    <div  id="photoprofile" class="col-md-2 col-xs-12">
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+    <!-- Start Fav Icon -->
+    <div class="row">
+      <div class="col-md-12">
+      <center>
+        <label for="fullname" class="control-label">
+        {{ trans('threef/entree::entree.base.favicon') }}
+        </label>
+      </center>
+      <div class="row">
+        <div  class="col-md-12" v-if="!favicon">
+          <center>
+          <img src="http://placehold.it/16x16" alt="" class="img-rounded img-responsive" :width="fwidth"/>
+          </center>
+          <div class="row"  style="margin-top: 5px">
+          <div class="col-md-12">
+            <label class="btn btn-xs btn-primary btn-block">
+              <input class='btn btn-xs btn-primary' style="display: none;" type="file" @change="onFavIconChange">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </label>
+          </div>
+          </div>
+        </div>
+        <div class="col-md-12" v-else>
+          <center>
+          <img :src="favicon" class="img-rounded img-responsive"  :width="fwidth" :height="fheight" />
+          </center>
+          <div class="row"  style="margin-top: 5px">
+          <div :class="[ !newFav ? 'col-md-6':'col-md-12' ]" :style="{ paddingRight: padRight }">
+            <label class="btn btn-xs btn-danger btn-block">
+              <input class='btn btn-xs btn-danger' style="display: none;" type="file" @change="onFavIconChange">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            </label>
+          </div>
+          <div class="col-md-6" v-if="!newFav" style="padding-left:5px">
+            <button class="btn btn-xs btn-primary  btn-block" @click="uploadFavIcon">
+              <i class="fa fa-upload" aria-hidden="true"></i>
+            </button>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <!-- End Fav Icon -->
+    <div class="clearfix">&nbsp;</div>
+    <div class="clearfix">&nbsp;</div>
+    <!-- Start Application Logo -->
+    <div class="row">
+      <div class="col-md-12">
       <center>
         <label for="fullname" class="control-label">
         {{ trans('threef/entree::entree.base.logo') }}
         </label>
       </center>
-      <div id="photoprofile" class="row">
+      <div class="row">
         <div  class="col-md-12" v-if="!image">
           <img src="http://placehold.it/200x200" alt="" class="img-rounded img-responsive" :width="width"/>
           <div class="row"  style="margin-top: 5px">
@@ -84,6 +136,13 @@
           </div>
         </div>
       </div>
+      </div>
+    </div>
+    <!-- End Application Logo -->
+    </div>
+
+
+
     </div>
 </div>
 @endsection
@@ -100,10 +159,16 @@ var resources = new Vue({
   data: {
     image: "{{ data_get($data,'logo',false) }}",
     newPhoto: "{{ data_get($data,'logo',false) }}",
+    favicon: "{{ data_get($data,'favicon',false) }}",
+    newFav: "{{ data_get($data,'favicon',false) }}",
     padRight: '',
     photo:'',
+    fwidth: '16',
     width: '200',
-    height: '200'
+    fheight: '16',
+    height: '200',
+    uploadImage:false,
+    uploadFavIcon:false,
   },
   methods: {
     onFileChange(e) {
@@ -111,6 +176,12 @@ var resources = new Vue({
       if (!files.length)
         return;
       this.createImage(files[0]);
+    },
+    onFavIconChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createFavIcon(files[0]);
     },
     createImage(file) {
 
@@ -128,6 +199,36 @@ var resources = new Vue({
       reader.readAsDataURL(file);
 
     },
+    createFavIcon(file) {
+
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = (e) => {
+        vm.favicon = e.target.result;
+      };
+
+      vm.photo = file;
+      vm.newFav = false;
+      vm.padRight = '5px';
+      reader.readAsDataURL(file);
+
+    },
+    uploadFavIcon: function (e){
+      var data = new FormData();
+
+      data.append('_token', "{{ csrf_token() }}");
+      data.append('fav', this.photo);
+
+      this.$http.post("{{ handles('threef/entree::favicon') }}", data).then((response) => {
+          $( "input[name='fav']" ).val(response.body.path);
+          this.newFav = true;
+
+      }, (response) => {
+
+      });
+    },
     uploadPhoto: function (e){
       var data = new FormData();
 
@@ -137,6 +238,8 @@ var resources = new Vue({
 
       this.$http.post("{{ handles('threef/entree::logo') }}", data).then((response) => {
           $( "input[name='logo']" ).val(response.body.path);
+          this.newPhoto = true;
+
       }, (response) => {
 
       });

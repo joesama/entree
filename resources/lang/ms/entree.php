@@ -58,6 +58,7 @@ return [
 	],
 	'base' => [
 		'logo' => 'Logo Aplikasi',
+		'favicon' => 'Fav Icon',
 		'abbr' => 'Abbr',
 		'name' => 'Nama Aplikasi',
 		'summary' => 'Ringkasan Aplikasi',

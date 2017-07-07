@@ -58,6 +58,7 @@ return [
 	],
 	'base' => [
 		'logo' => 'Application Logo',
+		'favicon' => 'Fav Icon',
 		'abbr' => 'Abbr',
 		'name' => 'Application Name',
 		'summary' => 'Application Summary',

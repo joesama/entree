@@ -7,11 +7,10 @@
 		</h4> 
 		</div> 
 		<div class="panel-collapse collapse" role="tabpanel" id="{!! $link->id !!}" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> 
-            <?php  $main = $main->push($link->id); ?>
             @if(count($link->childs) > 0)
-            	@include('threef/entree::entree.menu.item',['links' => $link->childs,'roles' => $roles, 'main' => $main])
+            	@include('threef/entree::entree.menu.item',['links' => $link->childs,'roles' => $roles, 'main' => $main .'_'.$link->id])
             @else
-            	@include('threef/entree::entree.menu.role',['id' => $link->id,'roles' => $roles, 'main' => $main])
+            	@include('threef/entree::entree.menu.role',['id' => $link->id,'roles' => $roles, 'main' => $main.'_'.$link->id])
 			@endif
 		</div> 
 	</div> 

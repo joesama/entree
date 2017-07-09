@@ -13,7 +13,6 @@
 <div class="panel-group" role="tablist"> 
 
 	@foreach($menu as $links)
-	<?php $main = collect([]); ?>
 	@if($links->id !== 'home')
 	<div class="col-md-3">
 	<div class="panel panel-default"> 
@@ -23,11 +22,11 @@
 		</h4> 
 		</div> 
 		<div class="panel-collapse collapse in" role="tabpanel" id="{!! $links->id !!}" aria-labelledby="collapseListGroupHeading1" aria-expanded="true" style="padding:5px;padding-left: 2px;padding-right: 3px"> 
-            <?php  $main = $main->push($links->id); ?>
+
             @if(count($links->childs) > 0)
-            	@include('threef/entree::entree.menu.item',['links' => $links->childs,'roles' => $roles, 'main' => $main])
+            	@include('threef/entree::entree.menu.item',['links' => $links->childs,'roles' => $roles, 'main' => $links->id])
             @else
-            	@include('threef/entree::entree.menu.role',['id' => $links->id,'roles' => $roles, 'main' => $main])
+            	@include('threef/entree::entree.menu.role',['id' => $links->id,'roles' => $roles, 'main' => $links->id])
 			@endif
 		</div> 
 	</div> 

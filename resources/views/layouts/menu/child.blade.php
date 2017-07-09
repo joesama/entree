@@ -7,7 +7,8 @@
     @if(!empty($item->childs))
     <ul class="dropdown-menu mega-dropdown-menu">
         @foreach($item->childs as $child)
-        @if($acl->canIf($item->id.$child->id) || $user->roles->contains('id', 1))
+
+        @if($acl->canIf($child->id) || $user->roles->contains('id', 1))
             <li class="col-md-2">
                 <ul>
                     @if(empty($child->childs))
@@ -26,7 +27,7 @@
                     </a>
                     <ul class="dropdown-menu mega-dropdown-submenu">
                         @foreach($child->childs as $submenu)
-                            @if($acl->canIf($item->id.$child->id.$submenu->id) || $user->roles->contains('id', 1))
+                            @if($acl->canIf($submenu->id) || $user->roles->contains('id', 1))
                             <li>
                                 <a href="{{ $submenu->link }}" >
                                     <i class="{{ $submenu->icon }}" aria-hidden="true"></i>

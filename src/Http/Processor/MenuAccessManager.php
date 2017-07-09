@@ -40,7 +40,7 @@ class MenuAccessManager
 		$menu = $this->menu->menu();
 		$access = $this->menu->acl();
 
-		$roles = $this->roles->where('id','!=',1)->pluck('name','id');
+		$roles = $this->getAclRoles();
 
 		return $controller->viewMain(compact('menu','roles','access','actionRoles'));
 
@@ -57,7 +57,7 @@ class MenuAccessManager
 	{   
 		$acl  = $this->menu->acl();
 
-		$params = $request->except('_token');
+		$params = $this->getParamsClean($request->except('_token'));
 
 		$actions = $this->getAclActions();
 		$roles = $this->getAclRoles();
@@ -75,7 +75,6 @@ class MenuAccessManager
            	 	$menu = Keyword::make($actionName)->getSlug();
 				$role = Keyword::make($roleName)->getSlug();
 
-
 				if(!$acl->actions()->has($menu)):
 					$acl->actions()->add($menu);
 				endif;
@@ -92,6 +91,31 @@ class MenuAccessManager
 
 		return redirect_with_message(handles('threef/entree::menu'),trans('threef/entree::respond.respond.saved'),'success');
 
+	}
+
+
+	/**
+	 * undocumented function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	protected function getParamsClean($params)
+	{
+		$result = collect([]);
+
+		foreach($params as $param => $yes):
+			
+			$array = explode('_', $param);
+			$role = $array[count($array)-1];
+			array_pop($array);
+
+			foreach($array as $menu):
+				$result->put($menu .'_'. $role , 'yes' );
+			endforeach;
+		endforeach;
+
+		return $result->toArray();
 	}
 
 

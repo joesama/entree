@@ -9,15 +9,32 @@
 <div class="container-fluid">
 <div class="row">
 	<div class="col-md-12">
-		<div class="panel-group" id="menu-access" role="tablist" aria-multiselectable="true">
-			<div class="row">
-			@foreach($menu as $links)
-				@if($links->id !== 'home')
-				@include('threef/entree::entree.menu.item',['links' => $links,'roles' => $roles])
-				@endif
-			@endforeach
-			</div>
-		</div>
+
+<div class="panel-group" role="tablist"> 
+
+	@foreach($menu as $links)
+	<?php $main = collect([]); ?>
+	@if($links->id !== 'home')
+	<div class="col-md-3">
+	<div class="panel panel-default"> 
+		<div class="panel-heading" role="tab" id="collapseListGroupHeading1"> 
+		<h4 class="panel-title"> 
+		<a href="#{!! $links->id !!}" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapseListGroup1"> {{$links->title}}</a> 
+		</h4> 
+		</div> 
+		<div class="panel-collapse collapse in" role="tabpanel" id="{!! $links->id !!}" aria-labelledby="collapseListGroupHeading1" aria-expanded="true" style="padding:5px;padding-left: 2px;padding-right: 3px"> 
+            <?php  $main = $main->push($links->id); ?>
+            @if(count($links->childs) > 0)
+            	@include('threef/entree::entree.menu.item',['links' => $links->childs,'roles' => $roles, 'main' => $main])
+            @else
+            	@include('threef/entree::entree.menu.role',['id' => $links->id,'roles' => $roles, 'main' => $main])
+			@endif
+		</div> 
+	</div> 
+	</div> 
+	@endif
+	@endforeach
+</div>
 	</div>
 </div>
 <div class="clearfix">&nbsp;</div>

@@ -45,12 +45,12 @@ class UserManager extends User
     {
 
         $columns = [
-            [ 'field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left h2'],
-            [ 'field' => 'profile.idnumber', 'title' => trans('threef/entree::entree.user.grid.idno') , 'style' => 'text-right'], 
-            [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-right'], 
-            [ 'field' => 'roles:name', 'title' => trans('threef/entree::entree.user.grid.role') , 'style' => 'text-right multi'], 
+            [ 'field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left'],
+            [ 'field' => 'profile.idnumber', 'title' => trans('threef/entree::entree.user.grid.idno') , 'style' => 'text-left'], 
+            [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-left'], 
+            [ 'field' => 'roles:name', 'title' => trans('threef/entree::entree.user.grid.role') , 'style' => 'text-left multi'], 
             [ 'field' => 'status', 'title' => trans('threef/entree::entree.user.grid.status'), 'style' => 'text-center'], 
-            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.lastlogin'), 'style' => 'text-right date']
+            [ 'field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.lastlogin'), 'style' => 'text-left date']
         ];
 
         $grid = new VueDatagrid;

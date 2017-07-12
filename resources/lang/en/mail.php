@@ -2,6 +2,7 @@
 
 return [
 	'greeting' => 'Greetings',
+	'login' => 'Login',
 	'validation' => 'User Registration Email Validation',
 	'thank' => 'Thank you for your registration.',
 	'proceed' => 'To proceed with registration please validate your email.',

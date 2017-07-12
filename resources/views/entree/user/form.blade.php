@@ -41,6 +41,16 @@ input:invalid {
           {!! Form::text('fullname', data_get($user,'fullname',old('fullname')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('threef/entree::entree.user.grid.fullname') )) !!}
         </div>
       </div>
+      @if($username == 'username')
+      <div class="form-group">
+        <label for="fullname" class="col-sm-2 control-label">
+          {{ trans('threef/entree::entree.user.grid.username') }}<span class="text-danger">&nbsp;*</span>
+        </label>
+        <div class="col-sm-10">
+          {!! Form::text('username', data_get($user,'username',old('username')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('threef/entree::entree.user.grid.username') )) !!}
+        </div>
+      </div>
+      @endif
       <div class="form-group">
         <label for="email" class="col-sm-2 control-label">
         {{ trans('threef/entree::entree.user.grid.email') }}<span class="text-danger">&nbsp;*</span>
@@ -67,7 +77,7 @@ input:invalid {
         </div>
       </div>
       @endif
-      {!! Form::hidden('photo', data_get($user,'profile.photo') ) !!}
+      {!! Form::hidden('photo', data_get($user,'photo') ) !!}
       {!! Form::hidden('id', data_get($user,'id',false)  ) !!}
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-right">
@@ -122,8 +132,8 @@ Vue.config.devtools = true;
 var resources = new Vue({
   el: '#photoprofile',
   data: {
-    image: "{{ data_get($user,'profile.photo',false) }}",
-    newPhoto: "{{ data_get($user,'profile.photo',false) }}",
+    image: "{{ data_get($user,'photo',false) }}",
+    newPhoto: "{{ data_get($user,'photo',false) }}",
     padRight: '',
     profileID: "{{ data_get($user,'id',false) }}",
     photo:'',
@@ -162,6 +172,7 @@ var resources = new Vue({
 
       this.$http.post("{{ handles('threef/entree::user/photo') }}", data).then((response) => {
           $( "input[name='photo']" ).val(response.body.path);
+          this.newPhoto = true;
       }, (response) => {
 
       });

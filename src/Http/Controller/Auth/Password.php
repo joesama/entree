@@ -21,7 +21,7 @@ class Password extends Controller implements Listener
      **/
     public function edit()
     {
-        set_meta('page-header',trans('threef/entree::entree.password.reset.title'));
+        set_meta('title',trans('threef/entree::entree.password.reset.title'));
         return $this->processor->edit($this);
     }
 

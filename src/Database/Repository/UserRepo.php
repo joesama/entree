@@ -78,14 +78,14 @@ class UserRepo
 
 		if($id):
 		
-			$profile = UserProfile::where('user_id',$id)->first();
+			$user = User::find($id);
 
 			DB::beginTransaction();
 
 			try{
 
-				$profile->photo = $path;
-				$profile->save();
+				$user->photo = $path;
+				$user->save();
 
 			}catch (\Exception $e)
 	        {
@@ -121,7 +121,10 @@ class UserRepo
         $roles = (is_array($roles)) ? $roles : [$roles];
         
         $user->status   = config('threef/entree::entree.validation') ? User::UNVERIFIED : User::VERIFIED;
+
+        if(config('threef/entree::entree.username','email') == 'email'):
         $user->username   = data_get($input,'user')->get(config('threef/entree::entree.username','email'));
+        endif;
 
         $profileTable = data_get($input,'profile');
 
@@ -172,7 +175,9 @@ class UserRepo
         $roles = data_get($input,'user')->get('roles');
         $roles = (is_array($roles)) ? $roles : [$roles];
         
+        if(config('threef/entree::entree.username','email') == 'email'):
         $user->username   = data_get($input,'user')->get(config('threef/entree::entree.username','email'));
+        endif;
 
         $profileTable = data_get($input,'profile');
 

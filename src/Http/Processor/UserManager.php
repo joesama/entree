@@ -46,7 +46,7 @@ class UserManager extends User
 
         $columns = [
             [ 'field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left'],
-            [ 'field' => 'profile.idnumber', 'title' => trans('threef/entree::entree.user.grid.idno') , 'style' => 'text-left'], 
+            [ 'field' => 'username', 'title' => trans('threef/entree::entree.user.grid.username') , 'style' => 'text-left'], 
             [ 'field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-left'], 
             [ 'field' => 'roles:name', 'title' => trans('threef/entree::entree.user.grid.role') , 'style' => 'text-left multi'], 
             [ 'field' => 'status', 'title' => trans('threef/entree::entree.user.grid.status'), 'style' => 'text-center'], 
@@ -102,8 +102,9 @@ class UserManager extends User
         $user = $this->repo->userInfo($request->segment(2));
         $roles = $this->repo->userRoleArray();
         $validation = config('threef/entree::entree.validation');
+        $username = config('threef/entree::entree.username');
 
-        return compact('user','roles','validation');
+        return compact('user','roles','validation','username');
     }
 
 

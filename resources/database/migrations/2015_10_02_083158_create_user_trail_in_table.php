@@ -18,6 +18,7 @@ class CreateUserTrailInTable extends Migration
             $table->string('username')->nullable()->after('id');
             $table->integer('isAdmin')->nullable()->default(0)->after('status');
             $table->timestamp('lastlogin')->nullable()->after('isAdmin');
+            $table->text('photo')->nullable()->after('lastlogin');
             $table->unique('username');
         });
 

@@ -53,6 +53,15 @@ class User extends OrchestraUser
         return trans('threef/entree::entree.user.status.'.$value);
     }
 
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return array
+     */
+    public function getAuthIdentifiersName()
+    {
+        return [config('threef/entree::entree.username','email')];
+    }
 
     /**
      * Get the username of the user.

@@ -59,12 +59,12 @@ input:invalid {
           {!! Form::email('email', data_get($user,'email',old('email')) , array('required','class' => 'form-control', 'id' => 'email','placeholder' => trans('threef/entree::entree.user.grid.email') )) !!}
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group"  id="default-select2">
         <label for="spec_project" class="col-sm-2 control-label">
         {{ trans('threef/entree::entree.user.grid.role') }}<span class="text-danger">&nbsp;*</span>
         </label>
-        <div class="col-sm-10">
-          {!! Form::select('roles[]', $roles , data_get($user,'roles',collect([]))->pluck('id'), ['required', 'class'=>'form-control' , 'multiple' => TRUE] ) !!}
+        <div class="col-sm-10  element-margin-bottom form-bootstrap-select">
+          {!! Form::select('roles[]', $roles , data_get($user,'roles',collect([]))->pluck('id'), ['required', 'class'=>'form-control js-example-basic-multiple' , 'multiple' => TRUE] ) !!}
         </div>
       </div>
       @if(!data_get($user,'id',false) && $validation == FALSE )

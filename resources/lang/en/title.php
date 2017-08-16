@@ -6,5 +6,8 @@ return [
 		'title' => 'Configuration',
 		'menu' => 'Menu',
 		'base' => 'Application Info'
+	],
+	'account' => [
+		'info' => 'User Profile'
 	]
 ];

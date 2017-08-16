@@ -29,6 +29,7 @@ return [
 		"manage" => "Pengurusan Peranan",
 	],
 	'user' => [
+		"info" => "Maklumat Pengguna",
 		"list" => "Senarai Pengguna",
 		"edit" => "Kemaskini Penguna",
 		"delete" => "Hapus Penguna",

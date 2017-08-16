@@ -6,6 +6,9 @@ return [
 		'title' => 'Konfigurasi',
 		'menu' => 'Menu',
 		'base' => 'Maklumat Aplikasi'
+	],
+	'account' => [
+		'info' => 'Profil Pengguna'
 	]
 
 ];

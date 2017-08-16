@@ -14,8 +14,6 @@
                      &nbsp;
                 </div>
                 <div class="col-md-4 pull-right">
-                    
-
                 <ul id="profile" class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown">
@@ -26,9 +24,9 @@
                         </a>
                         <ul class="dropdown-menu navbar-login">
                             <li>
-                                <a class=" text-center" href="{!! handles('threef::password') !!}">
-                                <i class="fa fa-key" aria-hidden="true"></i>&nbsp;
-                                <strong>{{ trans('orchestra/foundation::title.account.password') }}</strong>
+                                <a class=" text-center" href="{!! handles('threef::account/info') !!}">
+                                <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
+                                <strong>{{ trans('threef/entree::entree.user.info') }}</strong>
                                 </a>
                             </li>
                             <li class="divider"></li>

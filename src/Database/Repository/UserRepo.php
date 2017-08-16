@@ -173,8 +173,8 @@ class UserRepo
         endforeach;
 
         $roles = data_get($input,'user')->get('roles');
-        $roles = (is_array($roles)) ? $roles : [$roles];
-        
+        // $roles = (is_array($roles)) ? $roles : $roles;
+
         if(config('threef/entree::entree.username','email') == 'email'):
         $user->username   = data_get($input,'user')->get(config('threef/entree::entree.username','email'));
         endif;
@@ -192,9 +192,14 @@ class UserRepo
         try {
 
 			$user->save();
-            $user->roles()->sync($roles);
-            $user->profile()->save($profile);
 
+            if(!is_null($roles)):
+                $user->roles()->sync($roles);
+            endif;
+
+            if(!is_null($profile)):
+                $user->profile()->save($profile);
+            endif;
 
         } catch (Exception $e) {
 

@@ -108,6 +108,18 @@ class UserManager extends User
     }
 
 
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public function userInfo($id)
+    {
+        return $this->repo->userInfo($id);
+    }
+
+
 	/**
 	 * Process User Update
 	 *
@@ -278,6 +290,24 @@ class UserManager extends User
 
     }
 
+
+    /**
+     * Update Account Info
+     *
+     * @return void
+     * @author 
+     **/
+    public function updateAccountInfo($request)
+    {
+        $input = $this->delegateUserInfo($request);
+
+        $this->repo->updateUserData($input);
+
+        return redirect_with_message(
+                handles('threef/entree::account/info'),
+                trans('threef/entree::respond.data.success', [ 'form' => trans('threef/entree::entree.user.edit') ]),
+                'success');
+    }
 
 
 } // END class UserManager 

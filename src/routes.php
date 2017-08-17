@@ -37,7 +37,7 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 			$router->get('/new', 'User@getUserCreation');
 			$router->post('/new', 'User@postUserCreation');
 			$router->post('/{id}', 'User@postUserUpdate')->where(['id' => '[0-9]+']);
-			$router->post('/photo', 'User@savePhoto');
+			$router->post('/photo', 'Account\UserInfo@savePhoto');
 			$router->get('/delete/{id}', 'User@getRemoveUser')->where(['id' => '[0-9]+']);
 			$router->get('/reset/{id}', 'Auth\ResetPassword@adminResetPassword')
 			->where(['id' => '[0-9]+']);

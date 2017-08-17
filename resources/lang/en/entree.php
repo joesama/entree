@@ -29,7 +29,7 @@ return [
 		"manage" => "Roles Management",
 	],
 	'user' => [
-		"info" => "User Info",
+		"info" => "Profile",
 		"list" => "User List",
 		"new" => "New User",
 		"edit" => "Update User",

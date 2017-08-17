@@ -113,17 +113,4 @@ class User extends UsersController
     }
 
 
-
-
-    /**
-     * Upload User Photo
-     *
-     * @return void
-     * @author 
-     **/
-    public function savePhoto(Request $request)
-    {
-        return $this->manager->uploadPhoto($request);
-    }
-
 }

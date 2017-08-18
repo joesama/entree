@@ -48,6 +48,8 @@ class EntreeServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $listen = [
+        'threef.system.trail' => [
+            Event\Listener\EntreeSystemAccess::class],
         'threef.user.profile' => [
             Event\Listener\EntreeUserProfile::class],
         'threef.user.login' => [
@@ -68,7 +70,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $routeMiddleware = [
-        
+        Threef\Entree\Http\Middleware\VerifyCsrfToken::class
     ];
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Threef\Entree\Http\Middleware;
 
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Orchestra\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
 {
@@ -15,8 +15,11 @@ class VerifyCsrfToken extends BaseVerifier
         //
     ];
 
-    public function handle( $request, Closure $next )
+    public function handle( $request, \Closure $next )
     {
+
+        event('threef.system.trail',[$request]);
+
         if (
             $this->isReading($request) ||
             $this->runningUnitTests() ||

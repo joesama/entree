@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
 use Threef\Entree\Database\Model\UserAccessTrails;
 
-class EntreeSystemAccess
+class EntreeSystemAccess implements ShouldQueue
 {
 
     /**

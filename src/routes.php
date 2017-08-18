@@ -2,7 +2,7 @@
 use Illuminate\Routing\Router;
 use Orchestra\Support\Facades\Foundation;
 
-Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'middleware' => ['web']], function (Router $router) {
+Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'middleware' => ['web','entree']], function (Router $router) {
 
 	$router->group(['middleware' => 'guest'],function($router){
 		$router->get('/', 'Entrance@getIndex');

@@ -70,7 +70,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $routeMiddleware = [
-        'entree' => Threef\Entree\Http\Middleware\VerifyCsrfToken::class
+        'entree' => Http\Middleware\VerifyCsrfToken::class
     ];
 
     /**

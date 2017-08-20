@@ -18,6 +18,7 @@ class CreateSysAccessTrailTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('path')->nullable();
+            $table->string('ip')->nullable();
             $table->string('method')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -28,8 +28,11 @@ class EntreeSystemAccess implements ShouldQueue
      */
     public function handle($request)
     {
+        $ip = app('\Threef\Entree\Entity\IpOrigin')->ipOrigin();
+
         $trails = new UserAccessTrails();
-        $trails->user_id = \Auth::user()->id;
+        $trails->user_id = data_get(\Auth::user(),'id',$ip);
+        $trails->ip = $ip;
         $trails->path = $request->getUri();
         $trails->method = $request->getMethod();
         $trails->save();

@@ -18,7 +18,7 @@ class VerifyCsrfToken extends BaseVerifier
     public function handle( $request, \Closure $next )
     {
 
-        event('threef.system.trail',[$request]);
+        event('threef.system.trail',[$request->getUri(),$request->getMethod()]);
 
         if (
             $this->isReading($request) ||

@@ -26,15 +26,15 @@ class EntreeSystemAccess implements ShouldQueue
      * @param  threef.user.login  $event
      * @return void
      */
-    public function handle($request)
+    public function handle($uri,$method)
     {
         $ip = app('\Threef\Entree\Entity\IpOrigin')->ipOrigin();
 
         $trails = new UserAccessTrails();
         $trails->user_id = data_get(\Auth::user(),'id',NULL);
         $trails->ip = $ip;
-        $trails->path = $request->getUri();
-        $trails->method = $request->getMethod();
+        $trails->path = $uri;
+        $trails->method = $method;
         $trails->save();
 
     }

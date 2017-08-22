@@ -247,10 +247,10 @@ var vuegrid = new Vue({
     }
   },
   mounted: function () {
-    // this.fetchItems(this.pagination.current_page);
-    // this.timer = setInterval(function () { 
-    //   this.fetchItems(this.pagination.current_page);
-    //   }.bind(this), 60000)
+    this.fetchItems(this.pagination.current_page);
+    this.timer = setInterval(function () { 
+      this.fetchItems(this.pagination.current_page);
+      }.bind(this), 60000)
   },
   methods: {
       fetchItems: function (page) {

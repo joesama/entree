@@ -27,7 +27,7 @@ Vue.component('demo-grid', {
       var filterKey = this.filterKey && this.filterKey.toLowerCase()
       var order = this.sortOrders[sortKey] || 1
       var data = this.data
-      
+
       if (filterKey) {
         data = data.filter(function (row) {
          
@@ -198,7 +198,7 @@ var vuegrid = new Vue({
   el: '#griddata',
   data: {
     timer:'',
-    searchQuery: '',
+    searchQuery: "{{ request()->get('search') }}",
     gridColumns: window.column,
     gridData: window.data,
     gridBuilder: window.builder,

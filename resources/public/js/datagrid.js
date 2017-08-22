@@ -198,7 +198,7 @@ var vuegrid = new Vue({
   el: '#griddata',
   data: {
     timer:'',
-    searchQuery: '{{ request()->get("search") }}',
+    searchQuery: <?php request()->get("search"); ?>,
     gridColumns: window.column,
     gridData: window.data,
     gridBuilder: window.builder,

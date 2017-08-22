@@ -67,7 +67,7 @@
             <div class="row">
               <div class="col-sm-6">
                 <div class="input-group">
-                  <input type="text" class="form-control col-sm-8 input-sm" name="query" v-model="searchQuery" placeholder="{{ trans('threef/entree::datagrid.search') }}">
+                  <input type="text" class="form-control col-sm-8 input-sm" name="search" v-model="searchQuery" placeholder="{{ trans('threef/entree::datagrid.search') }}">
                   <span class="input-group-btn">
                     <button class="btn btn-sm btn-primary" type="button" @click.prevent="fetchItems(1)">
                     <i class="fa fa-search" aria-hidden="true"></i>&nbsp;

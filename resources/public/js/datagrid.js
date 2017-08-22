@@ -27,12 +27,12 @@ Vue.component('demo-grid', {
       var filterKey = this.filterKey && this.filterKey.toLowerCase()
       var order = this.sortOrders[sortKey] || 1
       var data = this.data
-      // console.log(filterKey);
+      
       if (filterKey) {
         data = data.filter(function (row) {
          
           return Object.keys(row).some(function (key) {
-            console.log(key);
+
               var display = '';
 
               if( row[key] != null && (Array.isArray(row[key]) || (typeof row[key] === 'object'))){
@@ -72,8 +72,6 @@ Vue.component('demo-grid', {
                 
                 display = row[key]
               }
-
-              // console.log(String(display).toLowerCase().lastIndexOf(filterKey));
 
               return String(display).toLowerCase().lastIndexOf(filterKey) > -1
 
@@ -248,10 +246,10 @@ var vuegrid = new Vue({
     }
   },
   mounted: function () {
-    this.fetchItems(this.pagination.current_page);
-    this.timer = setInterval(function () { 
-      this.fetchItems(this.pagination.current_page);
-      }.bind(this), 60000)
+    // this.fetchItems(this.pagination.current_page);
+    // this.timer = setInterval(function () { 
+    //   this.fetchItems(this.pagination.current_page);
+    //   }.bind(this), 60000)
   },
   methods: {
       fetchItems: function (page) {

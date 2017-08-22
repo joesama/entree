@@ -199,7 +199,7 @@ var vuegrid = new Vue({
   el: '#griddata',
   data: {
     timer:'',
-    searchQuery: searchParam.get("topic"),
+    searchQuery: searchParam.get("search"),
     gridColumns: window.column,
     gridData: window.data,
     gridBuilder: window.builder,

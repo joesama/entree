@@ -194,12 +194,12 @@ Vue.component('demo-grid', {
 })
 var urlParam = new URL(window.location);
 var searchParam = new URLSearchParams(urlParam.search);
-
+console.log(searchParam.get("search"));
 var vuegrid = new Vue({
   el: '#griddata',
   data: {
     timer:'',
-    searchQuery: searchParam.get("search"),
+    searchQuery: '',
     gridColumns: window.column,
     gridData: window.data,
     gridBuilder: window.builder,

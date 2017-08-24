@@ -131,6 +131,15 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('threef/entree::user/new'))
             ->icon('fa fa-chevron-circle-right');
 
+        $menu->add('audit','>:config')
+            ->title(trans('threef/entree::entree.audit.title'))
+            ->icon('fa fa-paperclip');
+
+        $menu->add('audit.access','^:audit')
+            ->title(trans('threef/entree::entree.audit.access'))
+            ->link(handles('threef/entree::audit/access'))
+            ->icon('fa fa-universal-access');
+
         event('entree.menu:ready',[$menu]);
     }
 

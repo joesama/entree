@@ -72,6 +72,10 @@ return [
 		'delete' => 'Delete',
 		'reset' => 'Reset',
 	],
+	'audit' => [
+		'title' => 'Audit Trails',
+		'access' => 'User Access'
+	],
 	'required' => 'Required'
 
 ];

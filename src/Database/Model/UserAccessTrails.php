@@ -10,4 +10,13 @@ class UserAccessTrails extends Model
      * @var string
      */
     protected $table = 'access_trail';
+
+    /**
+     * Relation has one Threef\Entree\Database\Model\User
+     **/
+    public function user()
+    {
+        return $this->belongsTo('Threef\Entree\Database\Model\User','user_id');
+    } 
+
 }

@@ -72,6 +72,10 @@ return [
 		'delete' => 'Hapus',
 		'reset' => 'Tukar',
 	],
+	'audit' => [
+		'title' => 'Jejak Audit',
+		'access' => 'Audit Akses Pengguna'
+	],
 	'required' => 'Perlu Diisi'
 
 ];

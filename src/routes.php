@@ -2,7 +2,7 @@
 use Illuminate\Routing\Router;
 use Orchestra\Support\Facades\Foundation;
 
-Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'middleware' => ['web','entree']], function (Router $router) {
+Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'middleware' => ['web']], function (Router $router) {
 
 	$router->group(['middleware' => 'guest'],function($router){
 		$router->get('/', 'Entrance@getIndex');
@@ -15,7 +15,7 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 		$router->post('/forgot/reset/{token}', 'Auth\ResetPassword@postResetPassword');
 	});
 
-	$router->group(['middleware' => 'auth'],function($router){
+	$router->group(['middleware' => ['auth','entree']],function($router){
 		$router->get('/home', 'Auth\Access@home');
 		$router->get('/logout', 'Auth\Access@logout');
 		$router->get('/password', 'Auth\Password@edit');
@@ -51,7 +51,16 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 			$router->get('/category', 'ReporterGroup@getIndex');
 			$router->get('/access', 'ReporterAccess@getIndex');
 		});
+
 	});
+
+	$router->group(['middleware' => ['auth']],function($router){
+		$router->group(['prefix' => 'audit'],function($router){
+			$router->get('/access', 'Audit\AuditAccess@accessUser');
+			$router->get('/data', 'Audit\AuditAccess@auditData');
+		});
+	});
+
 
  });
 

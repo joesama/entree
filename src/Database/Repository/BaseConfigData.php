@@ -27,7 +27,7 @@ class BaseConfigData
      */
     protected function defaultApplicationAbbr()
     {
-        return memorize('abbr');
+        return memorize('threef.' . $this->locale . '.abbr');
     }
 
 	/**
@@ -37,7 +37,7 @@ class BaseConfigData
      */
     protected function defaultApplicationName()
 	{
-		return memorize('site.' . $this->locale . '.name',memorize('site.name'));
+		return memorize('threef.' . $this->locale . '.name',memorize('site.name'));
 	}
 
 	/**
@@ -47,7 +47,7 @@ class BaseConfigData
      */
     protected function defaultApplicationSummary()
 	{
-		return memorize('site.' . $this->locale . '.description', memorize('site.description'));
+		return memorize('threef.' . $this->locale . '.description', memorize('site.description'));
 	}
 
     /**
@@ -57,7 +57,7 @@ class BaseConfigData
      */
     protected function defaultApplicationLogo()
     {
-        return memorize('logo.apps');
+        return memorize('threef.logo');
     }
 
 	/**
@@ -67,7 +67,7 @@ class BaseConfigData
      */
     protected function defaultApplicationFavicon()
 	{
-		return memorize('logo.favicon');
+		return memorize('threef.favicon');
 	}
 
 	/**
@@ -77,7 +77,7 @@ class BaseConfigData
      */
     protected function defaultApplicationFooter()
 	{
-		return memorize('footer.' . $this->locale,'Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '. date('Y'));
+		return memorize('threef.' . $this->locale . '.footer','Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '. date('Y'));
 	}
 
 
@@ -103,8 +103,8 @@ class BaseConfigData
         $memory = $this->memory;
         $memory->put('threef.' . $this->locale . '.name', $request->get('name'));
         $memory->put('threef.' . $this->locale . '.description', $request->get('summary'));
-        $memory->put('logo.favicon', $request->get('fav'));
-        $memory->put('logo.apps', $request->get('logo'));
+        $memory->put('threef.favicon', $request->get('fav'));
+        $memory->put('threef.logo', $request->get('logo'));
         $memory->put('threef.' . $this->locale . '.footer', $request->get('footer'));
         $memory->put('threef.' . $this->locale . '.abbr', $request->get('abbr'));
     }
@@ -119,7 +119,7 @@ class BaseConfigData
     {
 
         $memory = $this->memory;
-        $memory->put('logo.favicon', $path);
+        $memory->put('threef.favicon', $path);
 
     }
 
@@ -133,7 +133,7 @@ class BaseConfigData
 	{
 
 		$memory = $this->memory;
-        $memory->put('logo.apps', $path);
+        $memory->put('threef.logo', $path);
 
 	}
 

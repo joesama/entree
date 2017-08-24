@@ -10,6 +10,7 @@
 		"Laravel\\Scout\\ScoutServiceProvider",
     	"TeamTNT\\Scout\\TNTSearchScoutServiceProvider",
 		"Laravel\\Passport\\PassportServiceProvider",
-		"Maatwebsite\\Excel\\ExcelServiceProvider"
+		"Maatwebsite\\Excel\\ExcelServiceProvider",
+		"Dimsav\\Translatable\\TranslatableServiceProvider"
 	]
 }

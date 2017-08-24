@@ -16,6 +16,7 @@ class BaseConfigData
 	function __construct(Provider $memory)
 	{
         $this->memory = $memory;
+        $this->locale = \App::getLocale();
 	}
 
 
@@ -36,7 +37,7 @@ class BaseConfigData
      */
     protected function defaultApplicationName()
 	{
-		return memorize('site.name');
+		return memorize('site.' . $this->locale . '.name',memorize('site.name'));
 	}
 
 	/**
@@ -46,7 +47,7 @@ class BaseConfigData
      */
     protected function defaultApplicationSummary()
 	{
-		return memorize('site.description');
+		return memorize('site.' . $this->locale . '.description', memorize('site.description'));
 	}
 
     /**
@@ -76,7 +77,7 @@ class BaseConfigData
      */
     protected function defaultApplicationFooter()
 	{
-		return memorize('footer','Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '. date('Y'));
+		return memorize('footer.' . $this->locale,'Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '. date('Y'));
 	}
 
 
@@ -100,12 +101,12 @@ class BaseConfigData
     protected function saveData($request)
     {
         $memory = $this->memory;
-        $memory->put('site.name', $request->get('name'));
-        $memory->put('site.description', $request->get('summary'));
+        $memory->put('threef.' . $this->locale . '.name', $request->get('name'));
+        $memory->put('threef.' . $this->locale . '.description', $request->get('summary'));
         $memory->put('logo.favicon', $request->get('fav'));
         $memory->put('logo.apps', $request->get('logo'));
-        $memory->put('footer', $request->get('footer'));
-        $memory->put('abbr', $request->get('abbr'));
+        $memory->put('threef.' . $this->locale . '.footer', $request->get('footer'));
+        $memory->put('threef.' . $this->locale . '.abbr', $request->get('abbr'));
     }
 
     /**

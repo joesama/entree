@@ -21,11 +21,11 @@ class AuditAccessManager
 	public function listAuditAccess($request)
 	{
 		$columns = [
-            [ 'field' => 'user.fullname', 'title' => trans('threef/entree::entree.user.grid.fullname')  , 'style' => 'text-left'],
-            [ 'field' => 'ip', 'title' => trans('threef/entree::entree.user.grid.username') , 'style' => 'text-left'], 
-            [ 'field' => 'method', 'title' => trans('threef/entree::entree.user.grid.email') , 'style' => 'text-left'], 
-            [ 'field' => 'path', 'title' => trans('threef/entree::entree.user.grid.status'), 'style' => 'text-center'], 
-            [ 'field' => 'created_at', 'title' => trans('threef/entree::entree.user.grid.lastlogin'), 'style' => 'text-left']
+            [ 'field' => 'user.fullname', 'title' => trans('threef/entree::entree.audit.grid.user')  , 'style' => 'text-left'],
+            [ 'field' => 'ip', 'title' => trans('threef/entree::entree.audit.grid.ip') , 'style' => 'text-left'], 
+            [ 'field' => 'method', 'title' => trans('threef/entree::entree.audit.grid.method') , 'style' => 'text-left'], 
+            [ 'field' => 'path', 'title' => trans('threef/entree::entree.audit.grid.uri'), 'style' => 'text-center'], 
+            [ 'field' => 'created_at', 'title' => trans('threef/entree::entree.audit.grid.date'), 'style' => 'text-left']
         ];
 
         $grid = new VueDatagrid;

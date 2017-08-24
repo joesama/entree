@@ -74,7 +74,14 @@ return [
 	],
 	'audit' => [
 		'title' => 'Jejak Audit',
-		'access' => 'Audit Akses Pengguna'
+		'access' => 'Audit Akses Pengguna',
+		'grid' => [
+			'user' => 'Pengguna',
+			'ip' => 'IP',
+			'method' => 'Method',
+			'uri' => 'URI',
+			'date' => 'Tarikh',
+		]
 	],
 	'required' => 'Perlu Diisi'
 

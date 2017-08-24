@@ -74,7 +74,14 @@ return [
 	],
 	'audit' => [
 		'title' => 'Audit Trails',
-		'access' => 'User Access'
+		'access' => 'User Access',
+		'grid' => [
+			'user' => 'User',
+			'ip' => 'IP',
+			'method' => 'Method',
+			'uri' => 'URI',
+			'date' => 'Date',
+		]
 	],
 	'required' => 'Required'
 

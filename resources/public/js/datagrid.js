@@ -150,6 +150,9 @@ Vue.component('demo-grid', {
       return "{{ handles('threef/entree::/') }}" + path.replace('public','');
 
     },
+    route : function (path) {
+      return '/' + path;
+    },
     sanitizeUri : function(data,key){
 
       var path = this.display(data,key);

@@ -24,7 +24,8 @@
                 <i class="fa fa-download" aria-hidden="true"></i>&nbsp;@{{ sanitizeUri(entry,key) }}
               </a>
               <a v-if="key.uri" :href="uriaction(key.uri.url,entry[key.uri.key])" target="_blank">@{{ display(entry,key) }}</a>
-              <span v-if="!key.file && !key.uri">@{{ display(entry,key) }}</span>
+              <a v-if="key.route" :href="route(display(entry,key))" target="_blank">@{{ display(entry,key) }}</a>
+              <span v-if="!key.file && !key.uri && !key.route">@{{ display(entry,key) }}</span>
             </td>
             <td v-if="actions" class="text-center" style="background-color: #f9f9f9">
               <div class="btn-group" v-if="(actions.length > 1) && !simple">

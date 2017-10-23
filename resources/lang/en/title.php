@@ -9,5 +9,8 @@ return [
 	],
 	'account' => [
 		'info' => 'User Profile'
+	],
+	'notify' => [
+		'title' => 'Announcement Management'
 	]
 ];

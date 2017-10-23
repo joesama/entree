@@ -83,6 +83,13 @@ return [
 			'date' => 'Tarikh',
 		]
 	],
+	'notify' => [
+		'title' => 'Pengumuman',
+		'manage' => 'Pengurusan',
+		'desc' => 'Tajuk',
+		'content' => 'Kandungan',
+		'active' => 'Aktif'
+	],
 	'required' => 'Perlu Diisi'
 
 ];

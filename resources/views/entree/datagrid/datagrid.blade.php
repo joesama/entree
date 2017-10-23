@@ -25,6 +25,11 @@
               </a>
               <a v-if="key.uri" :href="uriaction(key.uri.url,entry[key.uri.key])" target="_blank">@{{ display(entry,key) }}</a>
               <a v-if="key.route" :href="route(display(entry,key))" target="_blank">@{{ display(entry,key) }}</a>
+              <span v-if="key.iconic">
+                  <i v-if="display(entry,key) == 1" class="fa fa-check-circle-o fa-2x text-success" aria-hidden="true"></i>
+                  <i v-if="display(entry,key) == 0" class="fa fa-times fa-2x text-danger" aria-hidden="true"></i>
+              </span>
+              <span v-if="!key.file && !key.uri && !key.route && !key.iconic">@{{ display(entry,key) }}</span>
               <span v-if="!key.file && !key.uri && !key.route">@{{ display(entry,key) }}</span>
             </td>
             <td v-if="actions" class="text-center" style="background-color: #f9f9f9">

@@ -83,6 +83,13 @@ return [
 			'date' => 'Date',
 		]
 	],
+	'notify' => [
+		'title' => 'Announcement',
+		'manage' => 'Management',
+		'desc' => 'Title',
+		'content' => 'Content',
+		'active' => 'Active'
+	],
 	'required' => 'Required'
 
 ];

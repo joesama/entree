@@ -140,6 +140,15 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('threef/entree::audit/access'))
             ->icon('fa fa-universal-access');
 
+        $menu->add('notify','>:audit')
+            ->title(trans('threef/entree::entree.notify.title'))
+            ->icon('fa fa-newspaper-o');
+
+        $menu->add('announcement','^:notify')
+            ->title(trans('threef/entree::entree.notify.manage'))
+            ->link(handles('threef/entree::notify/announcement'))
+            ->icon('fa fa-navicon');
+
         event('entree.menu:ready',[$menu]);
     }
 

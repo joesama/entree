@@ -9,6 +9,9 @@ return [
 	],
 	'account' => [
 		'info' => 'Profil Pengguna'
+	],
+	'notify' => [
+		'title' => 'Pengurusan Pengumuman'
 	]
 
 ];

@@ -27,7 +27,8 @@
         "laravel/passport": "^1.0",
         "teamtnt/laravel-scout-tntsearch-driver": "^1.1",
         "dimsav/laravel-translatable": "6.*",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "unisharp/laravel-ckeditor": "^4.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.3"

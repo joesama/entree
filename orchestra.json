@@ -11,6 +11,7 @@
     	"TeamTNT\\Scout\\TNTSearchScoutServiceProvider",
 		"Laravel\\Passport\\PassportServiceProvider",
 		"Maatwebsite\\Excel\\ExcelServiceProvider",
-		"Dimsav\\Translatable\\TranslatableServiceProvider"
+		"Dimsav\\Translatable\\TranslatableServiceProvider",
+		"Unisharp\\Ckeditor\\ServiceProvider"
 	]
 }

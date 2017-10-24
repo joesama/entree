@@ -143,6 +143,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     {
         $this->app->bind('entreemenu', EntreeMenu::class);
         $this->app->bind('entreecrumbler', EntreeCrumbler::class);
+        $this->app->bind('announcer', \Threef\Entree\Services\Notification\Announcement::class);
     }
 
     /**

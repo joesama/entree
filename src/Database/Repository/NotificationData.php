@@ -83,6 +83,17 @@ class NotificationData
 	}
 
 	/**
+	 * Retrieve All Active Notification Data
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function getNotifications()
+	{
+		return Notify::with('upload')->active()->get();
+	}
+
+	/**
 	 * Retrieve Notification Image
 	 *
 	 * @return void

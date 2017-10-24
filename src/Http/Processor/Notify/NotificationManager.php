@@ -30,6 +30,7 @@ class NotificationManager
 	 **/
 	public function listNotification($request)
 	{
+
 		$columns = [
             [ 'field' => 'title', 'title' => trans('threef/entree::entree.notify.desc') , 'style' => 'text-left'],
             [ 'field' => 'active', 'title' => trans('threef/entree::entree.notify.active') , 'style' => 'text-center' , 'iconic' => TRUE]

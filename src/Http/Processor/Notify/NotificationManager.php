@@ -32,7 +32,6 @@ class NotificationManager
 	{
 		$columns = [
             [ 'field' => 'title', 'title' => trans('threef/entree::entree.notify.desc') , 'style' => 'text-left'],
-            [ 'field' => 'content', 'title' => trans('threef/entree::entree.notify.content') , 'style' => 'text-left'], 
             [ 'field' => 'active', 'title' => trans('threef/entree::entree.notify.active') , 'style' => 'text-center' , 'iconic' => TRUE]
         ];
 

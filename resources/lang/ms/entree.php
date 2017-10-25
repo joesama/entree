@@ -85,7 +85,7 @@ return [
 	],
 	'notify' => [
 		'title' => 'Pengumuman',
-		'manage' => 'Pengurusan',
+		'manage' => 'Pengurusan Pengumuman',
 		'desc' => 'Tajuk',
 		'content' => 'Kandungan',
 		'active' => 'Aktif'

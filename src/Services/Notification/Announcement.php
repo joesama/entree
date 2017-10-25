@@ -28,9 +28,14 @@ class Announcement
 	 **/
 	public function notify()
 	{
+
+		$notification = $this->notify->getNotifications();
+		
 		JavaScript::put([
-			'notify' => $this->notify->getNotifications(),
+			'notify' => $notification,
 		]);
+
+		return $notification;
 	}
 
 } // END class Announcement 

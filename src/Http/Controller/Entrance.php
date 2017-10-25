@@ -1,14 +1,10 @@
 <?php namespace Threef\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
+use Threef\Entree\Services\Notification\Announcement;
 
 class Entrance extends Controller
 {
-
-    // public function __construct() {
-        
-    //     $this->middleware('guest', ['only' => ['getIndex']]);
-    // }
 
     /**
      * Displaying landing page
@@ -16,8 +12,10 @@ class Entrance extends Controller
      * @return mixed
      **/
     public function getIndex()
-    {
-        return  $this->viewMain();
+    {   
+        $announcer = \Threef\Entree\Facades\Announcer::notify();
+
+        return  $this->viewMain(compact('announcer'));
     }
 
 
@@ -27,8 +25,8 @@ class Entrance extends Controller
      *
      * @return view
      **/
-    public function viewMain()
+    public function viewMain($data)
     {
-        return view('threef/entree::entree.index');
+        return view('threef/entree::entree.index',$data);
     }
 }

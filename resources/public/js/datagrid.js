@@ -193,6 +193,35 @@ Vue.component('demo-grid', {
 
       return display;
     }
+  },
+  confimAction: function(set,path) { //index is passed by the button
+    var self = this;
+
+    if(set.delete){
+      swal({
+            title: "{{ trans('threef/entree::datagrid.delete.confirm.title') }}",
+            text: "{{ trans('threef/entree::datagrid.delete.confirm.text') }}",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "{{ trans('threef/entree::datagrid.delete.confirm.proceed') }}",
+            closeOnConfirm: true,
+          }).then(function() {
+            location.href = path;
+      }, function (dismiss) {
+        if (dismiss === 'cancel') {
+          swal(
+            "{{ trans('threef/entree::datagrid.delete.cancel.title') }}",
+            "{{ trans('threef/entree::datagrid.delete.cancel.text') }}",
+            'error'
+          )
+        }
+      });
+    
+    }else{
+      location.href = path;
+    }
   }
 })
 var urlParam = new URL(window.location);

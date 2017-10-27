@@ -3,8 +3,6 @@
 <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 <script src="{{ asset('packages/threef/entree/js/application.min.js') }}"></script>
 <script src="{{ asset('packages/threef/entree/js/datagrid.js') }}"></script>
-<script src="{{ asset('packages/threef/entree/js/sweetalert.min.js') }}"></script>
-<script src="{{ asset('packages/threef/entree/js/sweetalert.min.js') }}"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

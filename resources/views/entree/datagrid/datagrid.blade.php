@@ -52,7 +52,7 @@
               @{{ btn.action }}
               </a>
               <div  v-if="simple" class="btn-group btn-group-xs" role="group" aria-label="...">
-              <a :href="uriaction(btn.url,entry[btn.key])" :title="btn.action || btn.delete" v-for="btn in actions" v-bind:class="[ btn.delete ? 'btn btn-xs btn-danger' : 'btn btn-xs btn-default']" v-on:click.prevent="confimAction(btn,uriaction(btn.url,entry[btn.key]))>
+              <a :href="uriaction(btn.url,entry[btn.key])" :title="btn.action || btn.delete" v-for="btn in actions" v-bind:class="[ btn.delete ? 'btn btn-xs btn-danger' : 'btn btn-xs btn-default']">
               <i v-bind:class="[ btn.icons ? 'fa ' + btn.icons : 'fa fa-pencil-square-o']" aria-hidden="true"></i>
               </a>
               </div>

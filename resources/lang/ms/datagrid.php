@@ -9,12 +9,12 @@ return [
 	'delete' => [
 		'confirm' => [
 			'title' => 'Anda Pasti ?',
-			'text' => "Anda tidak dapat mengembalikannya!",
+			'text' => "Maklumat yang dipadam tidak dapat dikembalikan!",
 			'proceed' => "Ya, padamkannya!"
 		],
 		'cancel' => [
 			'title' => 'Batal',
-			'text' => 'Fail Anda Masih Wujud'
+			'text' => 'Maklumat Anda Masih Wujud'
 		]
 	],
 	'buttons' => [

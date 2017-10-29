@@ -8,13 +8,13 @@ return [
 	'actions' => 'Tindakan',
 	'delete' => [
 		'confirm' => [
-			'title' => 'Are you sure?',
-			'text' => "You won't be able to revert this!",
-			'proceed' => "Yes, delete it!"
+			'title' => 'Anda Pasti ?',
+			'text' => "Anda tidak dapat mengembalikannya!",
+			'proceed' => "Ya, padamkannya!"
 		],
 		'cancel' => [
-			'title' => 'Cancelled',
-			'text' => 'Your imaginary file is safe :)'
+			'title' => 'Dibatalkan',
+			'text' => 'Fail Anda Masih Wujud'
 		]
 	],
 	'buttons' => [

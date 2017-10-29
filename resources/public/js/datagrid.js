@@ -192,35 +192,35 @@ Vue.component('demo-grid', {
       if(key.number) return this.checkNumbers(display);
 
       return display;
-    }
-  },
-  confimAction: function(set,path) { //index is passed by the button
-    var self = this;
+    },
+    confimAction: function(set,path) { //index is passed by the button
+      var self = this;
 
-    if(set.delete){
-      swal({
-            title: window.swalert.confirm.title,
-            text: window.swalert.confirm.text,
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: window.swalert.confirm.proceed,
-            closeOnConfirm: true,
-          }).then(function() {
-            location.href = path;
-      }, function (dismiss) {
-        if (dismiss === 'cancel') {
-          swal(
-            window.swalert.cancel.title,
-            window.swalert.cancel.text,
-            'error'
-          )
-        }
-      });
-    
-    }else{
-      location.href = path;
+      if(set.delete){
+        swal({
+              title: window.swalert.confirm.title,
+              text: window.swalert.confirm.text,
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: window.swalert.confirm.proceed,
+              closeOnConfirm: true,
+            }).then(function() {
+              location.href = path;
+        }, function (dismiss) {
+          if (dismiss === 'cancel') {
+            swal(
+              window.swalert.cancel.title,
+              window.swalert.cancel.text,
+              'error'
+            )
+          }
+        });
+      
+      }else{
+        location.href = path;
+      }
     }
   }
 })

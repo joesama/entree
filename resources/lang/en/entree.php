@@ -90,6 +90,12 @@ return [
 		'content' => 'Content',
 		'active' => 'Active'
 	],
+	'alert' => [
+		'wait' => [
+			'title' => 'Please Wait A Moment',
+			'text' => 'System Currently Processing Your Data'
+		]
+	],
 	'required' => 'Required'
 
 ];

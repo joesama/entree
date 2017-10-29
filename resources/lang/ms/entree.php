@@ -90,6 +90,12 @@ return [
 		'content' => 'Kandungan',
 		'active' => 'Aktif'
 	],
+	'alert' => [
+		'wait' => [
+			'title' => 'Sila Tunggu Sebentar',
+			'text' => 'Sistem Sedang Memproses Maklumat Anda'
+		]
+	],
 	'required' => 'Perlu Diisi'
 
 ];

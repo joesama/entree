@@ -2,5 +2,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('packages/threef/entree/css/application.min.css') }}">
 <script src="https://use.fontawesome.com/5fffcf6737.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.1/sweetalert2.min.css"></script>
 
 

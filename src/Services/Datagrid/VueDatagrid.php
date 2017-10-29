@@ -138,6 +138,17 @@ class VueDatagrid
 		endif;
 
 		JavaScript::put([
+			'swalert' => [
+				'confirm' => [
+					'title' => trans('threef/entree::datagrid.delete.confirm.title'),
+					'text' => trans('threef/entree::datagrid.delete.confirm.text'),
+					'proceed' => trans('threef/entree::datagrid.delete.confirm.proceed')
+				],
+				'cancel' => [
+					'title' => trans('threef/entree::datagrid.delete.cancel.title'),
+					'text' => trans('threef/entree::datagrid.delete.cancel.text')
+				]
+			],
 	        'column' => $this->columns,
 	        'api' => $this->api,
 	        'add' => $this->add,

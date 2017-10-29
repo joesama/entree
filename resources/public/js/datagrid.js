@@ -199,21 +199,21 @@ Vue.component('demo-grid', {
 
     if(set.delete){
       swal({
-            title: "{{ trans('threef/entree::datagrid.delete.confirm.title') }}",
-            text: "{{ trans('threef/entree::datagrid.delete.confirm.text') }}",
+            title: window.swalert.confirm.title,
+            text: window.swalert.confirm.text,
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: "{{ trans('threef/entree::datagrid.delete.confirm.proceed') }}",
+            confirmButtonText: window.swalert.confirm.proceed,
             closeOnConfirm: true,
           }).then(function() {
             location.href = path;
       }, function (dismiss) {
         if (dismiss === 'cancel') {
           swal(
-            "{{ trans('threef/entree::datagrid.delete.cancel.title') }}",
-            "{{ trans('threef/entree::datagrid.delete.cancel.text') }}",
+            window.swalert.cancel.title,
+            window.swalert.cancel.text,
             'error'
           )
         }

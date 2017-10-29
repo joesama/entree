@@ -13,7 +13,7 @@ return [
 			'proceed' => "Ya, padamkannya!"
 		],
 		'cancel' => [
-			'title' => 'Dibatalkan',
+			'title' => 'Batal',
 			'text' => 'Fail Anda Masih Wujud'
 		]
 	],

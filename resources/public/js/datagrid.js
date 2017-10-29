@@ -205,6 +205,7 @@ Vue.component('demo-grid', {
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
               confirmButtonText: window.swalert.confirm.proceed,
+              cancelButtonText: window.swalert.cancel.title,
               closeOnConfirm: true,
             }).then(function() {
               location.href = path;

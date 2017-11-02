@@ -53,6 +53,11 @@ class VueDatagrid
      */
     protected $search = TRUE;
 
+    /**
+     * Data Filtering
+     */
+    protected $autoFilter = TRUE;
+
 
     /**
      * Paginate Numbers
@@ -120,7 +125,7 @@ class VueDatagrid
 	}
 
 	/**
-	 * Hide Search Function
+	 * Display Search Function
 	 *
 	 * @return void
 	 * @author 
@@ -128,6 +133,17 @@ class VueDatagrid
 	public function showSearch($okay = TRUE)
 	{
 		$this->search = $okay;
+	}
+
+	/**
+	 * Auto Filter Function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function autoFilter($okay = TRUE)
+	{
+		$this->autoFilter = $okay;
 	}
 
 	/**
@@ -165,6 +181,7 @@ class VueDatagrid
 					'text' => trans('threef/entree::datagrid.delete.cancel.text')
 				]
 			],
+			'autoFilter' => $this->autoFilter,
 			'search' => $this->search,
 	        'column' => $this->columns,
 	        'api' => $this->api,

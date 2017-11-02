@@ -28,7 +28,7 @@ Vue.component('demo-grid', {
       var order = this.sortOrders[sortKey] || 1
       var data = this.data
 
-      if (filterKey) {
+      if (filterKey && vuegrid.filter) {
         data = data.filter(function (row) {
          
           return Object.keys(row).some(function (key) {
@@ -233,6 +233,7 @@ var vuegrid = new Vue({
     timer:'',
     searchQuery: '',
     search: window.search,
+    filter: window.autoFilter,
     gridColumns: window.column,
     gridData: window.data,
     gridBuilder: window.builder,

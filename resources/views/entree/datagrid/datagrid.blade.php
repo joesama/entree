@@ -67,7 +67,7 @@
 <!-- demo root element -->
   <div class="row">
     <div class="col-md-12" id="griddata">
-      <div class="row">
+      <div v-if="search" class="row">
         <div class="col-md-12">
           <form class="form" id="search">
             <div class="row">

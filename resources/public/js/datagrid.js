@@ -232,6 +232,7 @@ var vuegrid = new Vue({
   data: {
     timer:'',
     searchQuery: '',
+    search: window.search,
     gridColumns: window.column,
     gridData: window.data,
     gridBuilder: window.builder,

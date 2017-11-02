@@ -48,6 +48,11 @@ class VueDatagrid
     protected $actions = FALSE;
     protected $simple = FALSE;
 
+    /**
+     * Search Display
+     */
+    protected $search = TRUE;
+
 
     /**
      * Paginate Numbers
@@ -115,6 +120,17 @@ class VueDatagrid
 	}
 
 	/**
+	 * Hide Search Function
+	 *
+	 * @return void
+	 * @author 
+	 **/
+	public function showSearch($okay = TRUE)
+	{
+		$this->search = $okay;
+	}
+
+	/**
 	 * Add action
 	 *
 	 * @param string $url
@@ -149,6 +165,7 @@ class VueDatagrid
 					'text' => trans('threef/entree::datagrid.delete.cancel.text')
 				]
 			],
+			'search' => $this->search,
 	        'column' => $this->columns,
 	        'api' => $this->api,
 	        'add' => $this->add,

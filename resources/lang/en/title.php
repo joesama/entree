@@ -3,7 +3,7 @@
 return [ 
 	'home' => 'Home',
 	'config' => [
-		'title' => 'Configuration',
+		'title' => 'Management',
 		'menu' => 'Menu',
 		'base' => 'Application Info'
 	],

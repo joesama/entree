@@ -3,7 +3,7 @@
 return [ 
 	'home' => 'Laman Utama',
 	'config' => [
-		'title' => 'Konfigurasi',
+		'title' => 'Pengurusan',
 		'menu' => 'Menu',
 		'base' => 'Maklumat Aplikasi'
 	],

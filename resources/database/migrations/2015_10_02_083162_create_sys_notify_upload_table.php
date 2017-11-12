@@ -19,6 +19,7 @@ class CreateSysNotifyUploadTable extends Migration
             $table->integer('notify')->unsigned()->nullable();
             $table->string('description')->nullable();
             $table->text('path')->nullable();
+            $table->text('origin')->nullable();
             $table->integer('active')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -2,6 +2,7 @@
 namespace Threef\Entree\Services\Upload;
 
 use Illuminate\Http\UploadedFile;
+use Intervention\Image\ImageManager;
 
 /**
  * File Uploader Services
@@ -14,10 +15,11 @@ class FileUploader
 
 	const SERVICES = 'uploads';
 
-	protected $path;
+	protected $directory,$thumb,$file,$path,$origin;
 
 	public function __construct(UploadedFile $file , $origin)
 	{
+		$this->image = new ImageManager(array('driver' => 'gd'));
 		$this->path = $this->upload($file, $this->guessExtensionName(get_class($origin)));
 
 	}
@@ -30,12 +32,31 @@ class FileUploader
 	 **/
 	protected function upload($file, $dest)
 	{
-		$directory = strtolower('/' . self::SERVICES . '/' . $dest . '/' . date('Ymd'));
-		$path = public_path() . $directory;
+		$this->getDirectory($dest);
+		$this->getThumbDirectory($dest);
 
-		$file->move($path, $file->getClientOriginalName());
+		$this->file = $file;
+		$this->origin = $this->image->make($file);
 
-		return $directory .'/'. $file->getClientOriginalName();
+		$file->move($this->publicPath(), $file->getClientOriginalName());
+
+		return $this->directory.'/'. $this->file->getClientOriginalName();
+
+	}
+
+
+	/**
+	 * Get Thumbnail Image
+	 *
+	 **/
+	public function thumbnail($width = 750, $height = 150 , $pos = 'top-left')
+	{
+		$this->origin->fit($width , $height , function ($constraint) {
+		    $constraint->aspectRatio();
+		},$pos)->save($this->thumbPath($this->file->getClientOriginalName()));
+
+		return $this->thumb.'/'. $this->file->getClientOriginalName();
+
 	}
 
 
@@ -52,6 +73,47 @@ class FileUploader
 
         return strtolower(implode(DIRECTORY_SEPARATOR, [ $fragment[0], $fragment[1] ]));
 	}
+
+
+	/**
+	 * Get Directory Public Path
+	 **/
+	protected function publicPath()
+	{
+		return public_path() . $this->directory;
+	}
+
+
+	/**
+	 * Get Thumbnail Public Path
+	 **/
+	protected function thumbPath($name = NULL)
+	{
+		$path = public_path() . $this->thumb ;
+
+		if(!is_dir($path)):
+			mkdir($path, 0777, true);
+		endif;
+
+		return $path . $name;
+	}
+
+	/**
+	 * Get File Directory
+	 **/
+	protected function getDirectory($dest)
+	{
+		$this->directory = strtolower('/' . self::SERVICES . '/' . $dest . '/' . date('Ymd'));
+	}
+
+	/**
+	 * Get Thumbnail Directory
+	 **/
+	protected function getThumbDirectory($dest)
+	{
+		$this->thumb = strtolower('/' . self::SERVICES . '/' . $dest . '/' . date('Ymd') . '/thumbs/');
+	}
+
 
 	/**
 	 * Return Destination Upload Path

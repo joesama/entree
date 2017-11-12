@@ -12,6 +12,7 @@
 		"Laravel\\Passport\\PassportServiceProvider",
 		"Maatwebsite\\Excel\\ExcelServiceProvider",
 		"Dimsav\\Translatable\\TranslatableServiceProvider",
-		"Unisharp\\Ckeditor\\ServiceProvider"
+		"Unisharp\\Ckeditor\\ServiceProvider",
+		"Intervention\\Image\\ImageServiceProvider"
 	]
 }

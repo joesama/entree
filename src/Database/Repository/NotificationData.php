@@ -111,7 +111,7 @@ class NotificationData
 	 * @return void
 	 * @author 
 	 **/
-	public function saveNotifyImage($notify, $desc ,$path)
+	public function saveNotifyImage($notify, $desc ,$origin, $path)
 	{
 		DB::beginTransaction();
 
@@ -121,13 +121,14 @@ class NotificationData
 			$upload->notify = $notify;
 			$upload->description = $desc;
 			$upload->path = $path;
+			$upload->origin = $origin;
 			$upload->active = 1;
 			$upload->save();
 
 		}catch (\Exception $e)
         {
             DB::rollback();
-            throw $e->getMessage();
+            dd($e->getMessage());
         }
 
         DB::commit();

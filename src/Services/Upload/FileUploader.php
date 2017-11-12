@@ -2,6 +2,7 @@
 namespace Threef\Entree\Services\Upload;
 
 use Illuminate\Http\UploadedFile;
+use Threef\Entree\Services\Traits\ExtensionManager;
 use Intervention\Image\ImageManager;
 
 /**
@@ -12,6 +13,7 @@ use Intervention\Image\ImageManager;
  **/
 class FileUploader 
 {
+	use ExtensionManager;
 
 	const SERVICES = 'uploads';
 
@@ -57,21 +59,6 @@ class FileUploader
 
 		return $this->thumb.'/'. $this->file->getClientOriginalName();
 
-	}
-
-
-	/**
-	 * Get Origin Extension Namespace
-	 *
-	 * @return String
-	 *
-	 **/
-	protected function guessExtensionName($origin)
-	{
-		$origin = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $origin);
-        $fragment = explode(DIRECTORY_SEPARATOR, $origin);
-
-        return strtolower(implode(DIRECTORY_SEPARATOR, [ $fragment[0], $fragment[1] ]));
 	}
 
 

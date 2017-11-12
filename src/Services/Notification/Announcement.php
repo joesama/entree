@@ -8,8 +8,8 @@ use JavaScript;
 /**
  * Announcement Service Class
  *
- * @package default
- * @author 
+ * @package threef/entree
+ * @author joharijumali@gmail.com
  **/
 class Announcement 
 {

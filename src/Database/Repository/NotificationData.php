@@ -57,7 +57,7 @@ class NotificationData
 
 			$notification->title = ucwords($request->get('desc'));
 			$notification->content = $request->get('content');
-			$notification->active = $request->get('active',1);
+			$notification->active = $request->get('active',0);
 			$notification->save();
 
 		}catch (\Exception $e)

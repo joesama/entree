@@ -48,8 +48,8 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 
 		$router->get('/notify/announcement', 'Notify\Announcement@notificationList');
 		$router->get('/notify/data', 'Notify\Announcement@notificationData');
-		$router->post('/notify/upload/{id}', 'Notify\Announcement@notificationUpload');
-		$router->get('/notify/upload/{id}/remove/{item}', 'Notify\Announcement@removeUpload');
+		$router->post('/notify/upload/{id?}', 'Notify\Announcement@notificationUpload');
+		$router->get('/notify/upload/{id?}/remove/{item}', 'Notify\Announcement@removeUpload');
 		$router->get('/notify/form/{id?}', 'Notify\Announcement@notification');
 		$router->post('/notify/form/{id?}', 'Notify\Announcement@saveNotification');
 

@@ -21,7 +21,6 @@ class FileUploader
 
 	public function __construct(UploadedFile $file , $origin)
 	{
-		$this->image = new ImageManager(array('driver' => 'gd'));
 		$this->path = $this->upload($file, $this->guessExtensionName(get_class($origin)));
 
 	}
@@ -38,7 +37,6 @@ class FileUploader
 		$this->getThumbDirectory($dest);
 
 		$this->file = $file;
-		$this->origin = $this->image->make($file);
 
 		$file->move($this->publicPath(), $file->getClientOriginalName());
 
@@ -53,7 +51,10 @@ class FileUploader
 	 **/
 	public function thumbnail($width = 750, $height = 150 , $pos = 'top-left')
 	{
-		$this->origin->fit($width , $height , function ($constraint) {
+		$image = new ImageManager();
+		$origin = $image->make($this->file);
+
+		$origin->fit($width , $height , function ($constraint) {
 		    $constraint->aspectRatio();
 		},$pos)->save($this->thumbPath($this->file->getClientOriginalName()));
 

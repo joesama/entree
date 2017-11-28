@@ -187,7 +187,9 @@ Vue.component('demo-grid', {
 
       }
 
-      if(display.length > 100) display = display.substring(0,100).concat(' ...');
+      if(display != undefined && display.length > 100 ){ 
+        display = display.substring(0,100).concat(' ...')
+      };
 
       if(key.number) return this.checkNumbers(display);
 

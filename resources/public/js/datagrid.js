@@ -193,7 +193,7 @@ Vue.component('demo-grid', {
 
       if(key.number) return this.checkNumbers(display);
 
-      return display;
+      return (display != null) ? unescape(display) : display;
     },
     confimAction: function(set,path) { //index is passed by the button
       var self = this;

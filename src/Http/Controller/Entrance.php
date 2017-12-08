@@ -28,7 +28,7 @@ class Entrance extends Controller
 
 
 
-        $sessionLang = 'lang' . str_replace('.', '' , app(Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
+        $sessionLang = 'lang' . str_replace('.', '' , app(\Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
         
         session([$sessionLang => $lang]);
 

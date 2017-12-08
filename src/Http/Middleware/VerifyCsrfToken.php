@@ -27,7 +27,7 @@ class VerifyCsrfToken extends BaseVerifier
 
         event('threef.system.trail',[$request->getUri(),$request->getMethod()]);
 
-        $sessionLang = 'lang' . str_replace('.', '' , app(Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
+        $sessionLang = 'lang' . str_replace('.', '' , app(\Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
 
         if(!\Session::has($sessionLang))
         {

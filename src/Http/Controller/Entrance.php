@@ -19,6 +19,22 @@ class Entrance extends Controller
     }
 
 
+    /**
+     * change language
+     *
+     **/
+    public function changeLange($lang)
+    {
+
+
+
+        $sessionLang = 'lang' . str_replace('.', '' , app(Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
+        
+        session([$sessionLang => $lang]);
+
+        return redirect(url()->previous());
+    }
+
 
     /**
      * Landing Page View

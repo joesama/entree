@@ -17,6 +17,7 @@ Foundation::group('threef/entree', NULL , ['namespace' => 'Http\Controller', 'mi
 
 	$router->group(['middleware' => ['auth','entree']],function($router){
 		$router->get('/home', 'Auth\Access@home');
+		$router->get('/lang/{lang}', 'Entrance@changeLange');
 		$router->get('/logout', 'Auth\Access@logout');
 		$router->get('/password', 'Auth\Password@edit');
 		$router->post('/password', 'Auth\Password@update');

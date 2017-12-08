@@ -94,7 +94,11 @@ class PdfMaker
 	 **/
 	protected function getBinary()
 	{
-		return 'xvfb-run /usr/bin/wkhtmltopdf';
+		if(substr_count(strtolower(php_uname()),'ubuntu') > 0):
+			return 'xvfb-run /usr/bin/wkhtmltopdf';
+		else:
+			return '/usr/bin/wkhtmltopdf';
+		endif;
 	}
 
 } // END class PdfMaker 

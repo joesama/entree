@@ -25,9 +25,9 @@ class EntreeLogNotification
      */
     public function handle(NotificationSent $event)
     {
-        $event->channel
-        $event->notifiable
-        $event->notification
+        $event->channel;
+        $event->notifiable;
+        $event->notification;
 
     }
 

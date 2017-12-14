@@ -61,7 +61,9 @@ class EntreeServiceProvider extends ModuleServiceProvider
         'orchestra.install: user' => [
             Event\Listener\EntreeRegisterUser::class],
         'threef.email.user: new' => [
-            Event\Listener\Notifications\NewUserEmail::class ]
+            Event\Listener\Notifications\NewUserEmail::class ],
+        'Illuminate\Notifications\Events\NotificationSent' => [
+            'Threef\Entree\Event\Listener\EntreeLogNotification'],
     ];
 
     /**

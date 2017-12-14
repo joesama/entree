@@ -13,7 +13,7 @@ class EntreeMailer extends Notification implements ShouldQueue
     use Queueable;
 
     protected  $view = 'threef/entree::entree.emails.layouts.simple';
-    protected  $message;
+    public  $message;
 
     /**
      * Create a new notification instance.

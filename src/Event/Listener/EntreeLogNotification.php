@@ -42,6 +42,7 @@ class EntreeLogNotification
             $log->content =  $content->toJson();
         endif;
 
+        $log->save();
 
         }catch (\Exception $e)
         {

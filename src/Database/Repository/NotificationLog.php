@@ -18,7 +18,7 @@ class NotificationLog
 	 * @return void
 	 * @author 
 	 **/
-	public function getUserMail()
+	public function mail()
 	{
 
 		return Model::where('notifiable','Threef\Entree\Database\Model\User')
@@ -33,7 +33,7 @@ class NotificationLog
 	 * @return void
 	 * @author 
 	 **/
-	public function readMail($id)
+	public function read($id)
 	{
 		\DB::beginTransaction();
 

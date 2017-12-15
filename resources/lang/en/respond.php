@@ -11,5 +11,9 @@ return [
 		'success' => ':form Information Successfully Saved',
 		'failed' => ':form Information Failed To Be Saved',
 		'deleted' => ':form :person Success',
+	],
+	'register' => [
+		'success' => ':form Information Successfully Registered. Please Check Your Email',
+		'failed' => ':form Information Failed To Be Register',
 	]
 ];

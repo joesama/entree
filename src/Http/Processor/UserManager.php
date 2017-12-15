@@ -162,6 +162,47 @@ class UserManager extends User
 
 	}
 
+    /**
+     * External User Registration
+     *
+     * @return void
+     **/
+    public function registerExtNew($request)
+    {
+        $validation = $this->validator->on('create')
+            ->with($request->input());
+
+        if($validation->fails()):
+
+            return redirect_with_message(
+                $request->url(),
+                trans('threef/entree::respond.register.failed', [ 'form' => trans('threef/entree::entree.user.new') ]),
+                'danger')
+            ->withInput()
+            ->withErrors($validation->getMessageBag());
+
+        endif;
+
+        $input = $this->delegateUserInfo($request);
+        $input['user']['roles'] = app(\Threef\Entree\Database\Model\Role::class)->member()->id;
+
+        $user = $this->repo->createUserData($input);
+
+        if(config('threef/entree::entree.validation')):
+
+            event('threef.email.user: new', [$user]);
+
+        else:
+            
+            $user->sendWelcomeNotification(data_get($input,'user.password'));
+
+        endif;
+
+        return redirect_with_message(
+                handles('threef/entree::/'),
+                trans('threef/entree::respond.register.success', [ 'form' => trans('threef/entree::entree.user.new') ]),
+                'success');
+    }
 
     /**
      * Upload Photo & Update Resources Photo Path 

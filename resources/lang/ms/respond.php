@@ -11,5 +11,9 @@ return [
 		'success' => 'Maklumat :form Berjaya Disimpan',
 		'failed' => 'Maklumat :form Gagal Disimpan',
 		'deleted' => ':form :person Berjaya',
+	],
+	'register' => [
+		'success' => 'Maklumat :form Berjaya Didaftarkan. Sila Semak Akaun Emel Bagi Pengesahan',
+		'failed' => 'Maklumat :form Gagal Didaftarkan',
 	]
 ];

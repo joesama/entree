@@ -1,5 +1,5 @@
 <?php 
-namespace Threef\Entree\Database\Model;
+namespace Threef\Entree\Database\Model\Logs;
 
 use Illuminate\Database\Eloquent\Model;
 

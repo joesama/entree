@@ -1,9 +1,9 @@
 <?php namespace Threef\Entree\Event\Listener;
 
-use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Notifications\Events\\NotificationSent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Threef\Entree\Database\Model\NotificationLog;
+use Threef\Entree\Database\Model\Logs\NotificationLog;
 
 class EntreeLogNotification
 {

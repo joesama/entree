@@ -56,7 +56,7 @@ class VueDatagrid
     /**
      * Data Filtering
      */
-    protected $autoFilter = TRUE;
+    protected $autoFilter = FALSE;
 
 
     /**

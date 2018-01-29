@@ -105,11 +105,12 @@ class NotificationManager
 	 **/
 	public function uploadNotifyImage($id, $request)
 	{
+
 		if ($request->file('photo')->isValid()) :
 
             $file = new FileUploader($request->file('photo'), $this);
 
-            $uploaded = $this->data->saveNotifyImage($id,$this->data->getNotification($id)->title,$file->destination(), $file->thumbnail());
+            $uploaded = $this->data->saveNotifyImage($id,$this->data->getNotification($id)->title,$file->destination(), $file->destination());
 
             return response()->json(['upload' => $this->data->getNotificationImage($id) ]);
 

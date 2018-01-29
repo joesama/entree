@@ -71,6 +71,7 @@ return [
 		'update' => 'Edit',
 		'delete' => 'Delete',
 		'reset' => 'Reset',
+		'back' => 'Back',
 	],
 	'audit' => [
 		'title' => 'Audit Trails',

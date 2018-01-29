@@ -5,7 +5,7 @@
 <div class="row" id="notify" >
     <div class="col-md-12 col-xs-12 col-xl-12 col-lg-12">
 		<div class="clearfix">&nbsp;</div>
-		<div class="row">
+		<div class="row"  v-if="id">
 			<div class="col-md-12 col-xs-12 col-xl-12 col-lg-12">
 				<table class="table table-hover table-condensed">
 					<tr v-if="image" v-for="img in image">
@@ -56,6 +56,9 @@
 		      <div class="clearfix">&nbsp;</div>
 		      <div class="form-group pull-right">
 		        <div class="col-md-12 col-xs-12 col-xl-12 col-lg-12">
+					<a href="{{ handles('threef/entree::notify/announcement') }}" class="btn btn-info flat-buttons" id="back">
+			          <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;{{  trans('threef/entree::entree.button.back')  }}
+			        </a>
 		          <button type="submit" class="btn btn-primary">
 		          {{  trans('threef/entree::entree.button.save')  }}
 		          </button>
@@ -76,11 +79,12 @@ Vue.config.devtools = true;
 var resources = new Vue({
   el: '#notify',
   data: {
-  	id: "{{ request()->segment(3,false) }}",
+  	id: "{{ request()->segment(3,FALSE) }}",
     image: window.upload,
     newPhoto: "http://placehold.it/200x50",
     padRight: '',
     photo:false,
+    active:"{{ data_get($data,'active',true) }}",
     width: '100%',
     height: '200',
     uploadImage:false,

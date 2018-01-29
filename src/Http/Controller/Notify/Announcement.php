@@ -96,10 +96,10 @@ class Announcement extends Controller
 	 **/
 	public function saveNotification(Request $request)
 	{
-		$this->manager->manageNotificationData($request);
+		$notification = $this->manager->manageNotificationData($request);
 
 		return redirect_with_message(
-                handles('threef/entree::notify/announcement'),
+                handles('threef/entree::notify/form/' . data_get($notification,'id')),
                 trans('threef/entree::respond.data.success', [ 'form' => trans('threef/entree::entree.notify.title') ]),
                 'success');
 	}

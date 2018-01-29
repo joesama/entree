@@ -71,6 +71,7 @@ return [
 		'update' => 'Kemaskini',
 		'delete' => 'Hapus',
 		'reset' => 'Tukar',
+		'back' => 'Kembali',
 	],
 	'audit' => [
 		'title' => 'Jejak Audit',

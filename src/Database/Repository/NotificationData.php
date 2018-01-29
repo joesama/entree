@@ -68,6 +68,8 @@ class NotificationData
 
         DB::commit();
 
+        return $notification;
+
 	}
 
 

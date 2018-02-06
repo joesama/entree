@@ -95,7 +95,7 @@ class PdfMaker
 	protected function getBinary()
 	{
 		if(substr_count(strtolower(php_uname()),'ubuntu') > 0):
-			return 'xvfb-run /usr/bin/wkhtmltopdf';
+			return 'xvfb-run -a /usr/bin/wkhtmltopdf';
 		else:
 			return '/usr/bin/wkhtmltopdf';
 		endif;

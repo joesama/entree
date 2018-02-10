@@ -50,7 +50,7 @@ class PdfMaker
 		header("Content-Disposition: attachment; filename=" . str_replace('/','_',basename($path)));   
 		header("Content-Type: application/octet-stream");
 		header("Content-Type: application/download");
-		header("Content-Description: File Transfer");            
+		header("Content-Description: " . $name);            
 		header("Content-Length: " . filesize($path));
 		flush(); // this doesn't really matter.
 		$fp = fopen($path, "r");
@@ -94,11 +94,7 @@ class PdfMaker
 	 **/
 	protected function getBinary()
 	{
-		if(substr_count(strtolower(php_uname()),'ubuntu') > 0):
-			return 'xvfb-run -a /usr/bin/wkhtmltopdf';
-		else:
-			return '/usr/bin/wkhtmltopdf';
-		endif;
+		return 'xvfb-run -a /usr/bin/wkhtmltopdf';
 	}
 
 } // END class PdfMaker 

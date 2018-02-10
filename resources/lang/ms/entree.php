@@ -63,6 +63,7 @@ return [
 		'abbr' => 'Abbr',
 		'name' => 'Nama Aplikasi',
 		'summary' => 'Ringkasan Aplikasi',
+		'contact' => 'Hubungi Kami',
 		'footer' => 'Footer',
 	],
 	'button' => [

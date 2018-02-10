@@ -63,6 +63,7 @@ return [
 		'abbr' => 'Abbr',
 		'name' => 'Application Name',
 		'summary' => 'Application Summary',
+		'contact' => 'Contact Us',
 		'footer' => 'Footer Wording',
 	],
 	'button' => [

@@ -33,6 +33,7 @@ class BasicSetupProcessor
 			'footer' => $this->data->applicationFooter(),
 			'logo' => $this->data->applicationLogo(),
 			'favicon' => $this->data->applicationFavicon(),
+            'contact' => $this->data->applicationContact(),
 			'abbr' => $this->data->applicationAbbr(),
 		]);
 

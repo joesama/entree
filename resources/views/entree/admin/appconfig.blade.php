@@ -33,6 +33,14 @@
       </div>
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
+          {{ trans('threef/entree::entree.base.contact') }}<span class="text-danger">&nbsp;*</span>
+        </label>
+        <div class="col-sm-10">
+          {!! Form::textarea('contact', data_get($data,'contact',old('contact')) , array('required','class' => 'form-control', 'id' => 'contact','placeholder' => trans('threef/entree::entree.base.contact') )) !!}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="fullname" class="col-sm-2 control-label">
           {{ trans('threef/entree::entree.base.footer') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
@@ -141,18 +149,21 @@
     <!-- End Application Logo -->
     </div>
 
-
-
     </div>
 </div>
 @endsection
 @push('content.script')
-<!-- <script src="{{ asset('packages/threef/manager/js/jcrop.min.js') }}"></script> -->
-<!-- <script src="{{ asset('packages/threef/manager/js/vue-crop.js') }}"></script> -->
+
+<script src="{{ asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'summary' );
+    CKEDITOR.replace( 'footer' );
+    CKEDITOR.replace( 'contact' );
+</script>
 <script type="text/javascript">
 
-Vue.config.debug = true;
-Vue.config.devtools = true;
+Vue.config.debug = false;
+Vue.config.devtools = false;
 
 var resources = new Vue({
   el: '#photoprofile',

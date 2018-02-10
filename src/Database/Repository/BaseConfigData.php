@@ -30,6 +30,16 @@ class BaseConfigData
         return memorize('threef.' . $this->locale . '.abbr');
     }
 
+    /**
+     * Default Contact Info
+     *
+     * @return String
+     */
+    protected function defaultContact()
+    {
+        return memorize('threef.' . $this->locale . '.contact');
+    }
+
 	/**
      * Default Application Name
      *
@@ -106,6 +116,7 @@ class BaseConfigData
         $memory->put('threef.favicon', $request->get('fav'));
         $memory->put('threef.logo', $request->get('logo'));
         $memory->put('threef.' . $this->locale . '.footer', $request->get('footer'));
+        $memory->put('threef.' . $this->locale . '.contact', $request->get('contact'));
         $memory->put('threef.' . $this->locale . '.abbr', $request->get('abbr'));
     }
 
@@ -188,14 +199,24 @@ class BaseConfigData
 		return  $this->defaultApplicationFooter();
 	}
 
-	/**
+    /**
      * Return Application Abbr
      *
      * @return String
      */
     public function applicationAbbr()
+    {
+        return $this->defaultApplicationAbbr();
+    }
+
+	/**
+     * Return Application Contact Info
+     *
+     * @return String
+     */
+    public function applicationContact()
 	{
-		return $this->defaultApplicationAbbr();
+		return $this->defaultContact();
 	}
 
 

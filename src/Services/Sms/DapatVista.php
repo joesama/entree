@@ -82,15 +82,14 @@ class DapatVista
 			$this->response = $this->client->request($mode, $this->sanitizeParameter($params));
 
 			if($this->response->getStatusCode() != 200):
-				return  FALSE;
+				return  $this->response->getStatusCode();
 			else:
-				return json_decode($this->response->getBody()->getContents());
+				return collect([$this->response->getStatusCode() => json_decode($this->response->getBody()->getContents()) ])->toJson();
 			endif;
 
 		}
 		catch (RequestException $e)
         {
-        	dd($e->getMessage());
             return response()->json([
 				'description' => $e->getMessage(),
 				'status' => 404
@@ -105,7 +104,7 @@ class DapatVista
 	 * @return String
 	 * @author 
 	 **/
-	public function status()
+	protected function status()
 	{
 		return $this->response->getStatusCode();
 	}

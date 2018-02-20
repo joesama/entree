@@ -56,11 +56,6 @@
             "php artisan vendor:publish"
         ]
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
-    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }

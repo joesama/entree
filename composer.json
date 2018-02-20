@@ -21,6 +21,7 @@
     },
     "require": {
         "php": ">=5.6.4",
+        "orchestra/foundation": ">=3.4.0",
         "maatwebsite/excel": "~2.1.0",
         "laracasts/utilities": "~2.0",
         "intervention/image": "^2.4",
@@ -57,9 +58,9 @@
     },
     "extra": {
         "branch-alias": {
-            "1.0": "1.0-dev"
+            "dev-master": "1.0-dev"
         }
     },
     "prefer-stable": true,
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

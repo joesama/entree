@@ -1,8 +1,9 @@
-<?php 
-if (! function_exists('ip_origin')) {
+<?php
+
+if (!function_exists('ip_origin')) {
 
     /**
-     * Get Origin IP
+     * Get Origin IP.
      *
      *
      * @return string

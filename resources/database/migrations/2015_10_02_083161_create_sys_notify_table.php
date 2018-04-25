@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateSysNotifyTable extends Migration
 {
@@ -13,7 +13,6 @@ class CreateSysNotifyTable extends Migration
     public function up()
     {
         Schema::create('notify', function (Blueprint $table) {
-            
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('title')->nullable();

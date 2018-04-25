@@ -1,4 +1,6 @@
-<?php namespace Threef\Entree\Database\Model;
+<?php
+
+namespace Threef\Entree\Database\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +14,10 @@ class UserAccessTrails extends Model
     protected $table = 'access_trail';
 
     /**
-     * Relation has one Threef\Entree\Database\Model\User
+     * Relation has one Threef\Entree\Database\Model\User.
      **/
     public function user()
     {
-        return $this->belongsTo('Threef\Entree\Database\Model\User','user_id');
-    } 
-
+        return $this->belongsTo('Threef\Entree\Database\Model\User', 'user_id');
+    }
 }

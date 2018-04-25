@@ -1,71 +1,67 @@
-<?php 
+<?php
+
 namespace Threef\Entree\Http\Processor\Admin;
 
 use Threef\Entree\Database\Repository\BaseConfigData;
 use Threef\Entree\Services\Upload\FileUploader;
 
 /**
- * BasicSetupProcessor class
+ * BasicSetupProcessor class.
  *
- * @package threef/entree
  * @author joesama
  **/
 class BasicSetupProcessor
 {
-
-    public function __construct(BaseConfigData $data) {
-        
+    public function __construct(BaseConfigData $data)
+    {
         $this->data = $data;
     }
 
-	/**
-	 * Process Base Setup Data
-	 *
-	 * @return Illuminate\Support\Collection
-	 * @author 
-	 **/
-	public function processAppConfig($controller)
-	{
-
-		$data = collect([
-			'name' => $this->data->applicationName(),
-			'summary' => $this->data->applicationSummary(),
-			'footer' => $this->data->applicationFooter(),
-			'logo' => $this->data->applicationLogo(),
-			'favicon' => $this->data->applicationFavicon(),
+    /**
+     * Process Base Setup Data.
+     *
+     * @return Illuminate\Support\Collection
+     *
+     * @author
+     **/
+    public function processAppConfig($controller)
+    {
+        $data = collect([
+            'name'    => $this->data->applicationName(),
+            'summary' => $this->data->applicationSummary(),
+            'footer'  => $this->data->applicationFooter(),
+            'logo'    => $this->data->applicationLogo(),
+            'favicon' => $this->data->applicationFavicon(),
             'contact' => $this->data->applicationContact(),
-			'abbr' => $this->data->applicationAbbr(),
-		]);
+            'abbr'    => $this->data->applicationAbbr(),
+        ]);
 
-
-		return $controller->appConfigView(compact('data'));
-	}
-
-
-	/**
-	 * Process Application Config Data
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function processConfigData($request)
-	{
-
-		$this->data->saveBaseConfigInfo($request);
-
-		return redirect_with_message(
-            handles('threef/entree::base'),
-            trans('threef/entree::respond.data.success', [ 'form' => trans('threef/entree::title.config.base') ]),
-            'success');
-
-	}
-
+        return $controller->appConfigView(compact('data'));
+    }
 
     /**
-     * Upload Photo & Update Resources Photo Path 
+     * Process Application Config Data.
      *
      * @return void
-     * @author 
+     *
+     * @author
+     **/
+    public function processConfigData($request)
+    {
+        $this->data->saveBaseConfigInfo($request);
+
+        return redirect_with_message(
+            handles('threef/entree::base'),
+            trans('threef/entree::respond.data.success', ['form' => trans('threef/entree::title.config.base')]),
+            'success');
+    }
+
+    /**
+     * Upload Photo & Update Resources Photo Path.
+     *
+     * @return void
+     *
+     * @author
      **/
     public function uploadLogo($request)
     {
@@ -73,18 +69,19 @@ class BasicSetupProcessor
 
             $file = new FileUploader($request->file('logo'), $this);
 
-            $this->data->saveLogo($request,$file->destination());
+        $this->data->saveLogo($request, $file->destination());
 
-            return response()->json(['path' => $file->destination()]);
+        return response()->json(['path' => $file->destination()]);
 
         endif;
     }
 
     /**
-     * Upload Photo & Update Resources Photo Path 
+     * Upload Photo & Update Resources Photo Path.
      *
      * @return void
-     * @author 
+     *
+     * @author
      **/
     public function uploadFavIcon($request)
     {
@@ -92,12 +89,10 @@ class BasicSetupProcessor
 
             $file = new FileUploader($request->file('fav'), $this);
 
-            $this->data->saveFavicon($request,$file->destination());
+        $this->data->saveFavicon($request, $file->destination());
 
-            return response()->json(['path' => $file->destination()]);
+        return response()->json(['path' => $file->destination()]);
 
         endif;
     }
-
-} // END class BasicSetupProcessor 
-
+} // END class BasicSetupProcessor

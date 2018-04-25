@@ -1,41 +1,37 @@
-<?php 
+<?php
+
 namespace Threef\Entree\Services\Notification;
 
-use Threef\Entree\Database\Repository\NotificationData;
 use JavaScript;
-
+use Threef\Entree\Database\Repository\NotificationData;
 
 /**
- * Announcement Service Class
+ * Announcement Service Class.
  *
- * @package threef/entree
  * @author joharijumali@gmail.com
  **/
-class Announcement 
+class Announcement
 {
+    public function __construct(NotificationData $notify)
+    {
+        $this->notify = $notify;
+    }
 
-	public function __construct(NotificationData $notify)
-	{
-		$this->notify = $notify;
-	}
+    /**
+     * Set Announcement To Display.
+     *
+     * @return void
+     *
+     * @author
+     **/
+    public function notify()
+    {
+        $notification = $this->notify->getNotifications();
 
+        JavaScript::put([
+            'notify' => $notification,
+        ]);
 
-	/**
-	 * Set Announcement To Display
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function notify()
-	{
-
-		$notification = $this->notify->getNotifications();
-		
-		JavaScript::put([
-			'notify' => $notification,
-		]);
-
-		return $notification;
-	}
-
-} // END class Announcement 
+        return $notification;
+    }
+} // END class Announcement

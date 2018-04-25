@@ -1,10 +1,10 @@
 <?php
 
-return [ 
+return [
 'menu' => [
-		'report' => 'Konfigurasi Laporan',
-		'report-list' => 'Senarai Laporan',
-		'report-group' => 'Kategori Laporan',
-		'report-assign' => 'Akses Laporan',
-	]
+        'report'        => 'Konfigurasi Laporan',
+        'report-list'   => 'Senarai Laporan',
+        'report-group'  => 'Kategori Laporan',
+        'report-assign' => 'Akses Laporan',
+    ],
 ];

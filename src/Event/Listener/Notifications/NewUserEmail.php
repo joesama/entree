@@ -2,10 +2,6 @@
 
 namespace Threef\Entree\Event\Listener\Notifications;
 
-use Illuminate\Http\Request;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-
 use Threef\Entree\Database\Model\User;
 use Threef\Entree\Http\Notifications\EntreeMailer;
 
@@ -18,13 +14,13 @@ class NewUserEmail
      */
     public function __construct()
     {
-
     }
 
     /**
      * Handle the event.
      *
      * @param Threef\Entree\Database\Model\User $user
+     *
      * @return void
      */
     public function handle(User $user)
@@ -33,23 +29,19 @@ class NewUserEmail
         $email = $user->email;
 
         $message = collect([]);
-        $message->put("level","info");
-        $message->put("title",trans('threef/entree::mail.validation'));
-        $message->put("content" , collect([
+        $message->put('level', 'info');
+        $message->put('title', trans('threef/entree::mail.validation'));
+        $message->put('content', collect([
          trans('threef/entree::mail.thank'),
-         trans('threef/entree::mail.proceed')
+         trans('threef/entree::mail.proceed'),
         ]));
 
-        $message->put("footer" , collect([
+        $message->put('footer', collect([
          trans('threef/entree::mail.click'),
         ]));
 
-        $message->put("action" , collect([ trans('threef/entree::mail.validation') => handles('threef/entree::validate/'.$token . '/?email='.$email) ]));
+        $message->put('action', collect([trans('threef/entree::mail.validation') => handles('threef/entree::validate/'.$token.'/?email='.$email)]));
 
         $user->notify(new EntreeMailer($message));
-
-
     }
-
-    
 }

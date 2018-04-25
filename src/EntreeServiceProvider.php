@@ -1,18 +1,16 @@
-<?php namespace Threef\Entree;
+<?php
 
-use Illuminate\Routing\Router;
+namespace Threef\Entree;
+
 use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 
-
 /**
- * Wrapper extension for threef development
+ * Wrapper extension for threef development.
  *
- * @package Threef\Entree
  * @author joharijumali@gmail.com
  **/
 class EntreeServiceProvider extends ModuleServiceProvider
 {
-
     /**
      * The application or extension group namespace.
      *
@@ -27,7 +25,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
      */
     protected $routePrefix = '/';
 
-
     /**
      * The application or extension namespace.
      *
@@ -40,7 +37,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      *
      * @var bool
      */
-    protected $defer = FALSE;
+    protected $defer = false;
 
     /**
      * The event handler mappings for the application.
@@ -49,21 +46,21 @@ class EntreeServiceProvider extends ModuleServiceProvider
      */
     protected $listen = [
         'threef.system.trail' => [
-            Event\Listener\EntreeSystemAccess::class],
+            Event\Listener\EntreeSystemAccess::class, ],
         'threef.user.profile' => [
-            Event\Listener\EntreeUserProfile::class],
+            Event\Listener\EntreeUserProfile::class, ],
         'threef.user.login' => [
-            Event\Listener\EntreeUserLogin::class ],
+            Event\Listener\EntreeUserLogin::class, ],
         'Illuminate\Auth\Events\Logout' => [
-            Event\Listener\EntreeUserLogout::class ],
+            Event\Listener\EntreeUserLogout::class, ],
         'Illuminate\Auth\Events\Lockout' => [
-            Event\Listener\EntreeUserAttempting::class],
+            Event\Listener\EntreeUserAttempting::class, ],
         'orchestra.install: user' => [
-            Event\Listener\EntreeRegisterUser::class],
+            Event\Listener\EntreeRegisterUser::class, ],
         'threef.email.user: new' => [
-            Event\Listener\Notifications\NewUserEmail::class ],
+            Event\Listener\Notifications\NewUserEmail::class, ],
         'Illuminate\Notifications\Events\NotificationSent' => [
-            'Threef\Entree\Event\Listener\EntreeLogNotification'],
+            'Threef\Entree\Event\Listener\EntreeLogNotification', ],
     ];
 
     /**
@@ -72,7 +69,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $routeMiddleware = [
-        'entree' => Http\Middleware\VerifyCsrfToken::class
+        'entree' => Http\Middleware\VerifyCsrfToken::class,
     ];
 
     /**
@@ -87,9 +84,8 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->bindingCsrfVerification();
     }
 
-
     /**
-     * Booting Entree Views, Language, Configuration
+     * Booting Entree Views, Language, Configuration.
      **/
     protected function bootExtensionComponents()
     {
@@ -100,22 +96,21 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->addLanguageComponent('threef/entree', 'threef/entree', $path.'/lang');
         $this->addConfigComponent('threef/entree', 'threef/entree', $path.'/config');
         $this->addViewComponent('threef/entree', 'threef/entree', $path.'/views');
-
     }
 
     /**
-     * Publishing Orchestral Lang MS
+     * Publishing Orchestral Lang MS.
      **/
     protected function publishOrchestraLang($path)
     {
         $this->publishes([
             $path.'/lang/orchestra' => base_path('resources/lang/packages/orchestra/foundation/ms'),
-            $path.'/lang/app' => base_path('resources/lang/ms'),
+            $path.'/lang/app'       => base_path('resources/lang/ms'),
         ]);
     }
 
     /**
-     * Publishing Javascript Transformer View
+     * Publishing Javascript Transformer View.
      **/
     protected function publishJavascriptTransformerView($path)
     {
@@ -123,7 +118,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
             $path.'/views/entree/phptojs' => base_path('resources/views'),
         ]);
     }
-
 
     /**
      * Boot extension routing.
@@ -138,7 +132,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Registering Menu Handler
+     * Registering Menu Handler.
      *
      **/
     protected function registerMenuHandler()
@@ -150,7 +144,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Bind Login Validation
+     * Bind Login Validation.
      *
      **/
     protected function bindingUserValidation()
@@ -161,15 +155,13 @@ class EntreeServiceProvider extends ModuleServiceProvider
     }
 
     /**
-     * Bind CSRF Token Verification 
+     * Bind CSRF Token Verification.
      *
      **/
     protected function bindingCsrfVerification()
     {
-
         $this->app->when('Orchestra\Foundation\Http\Middleware\VerifyCsrfToken')
           ->needs('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
           ->give('Threef\Entree\Http\Middleware\VerifyCsrfToken');
     }
-
-} // END class Entree 
+} // END class Entree

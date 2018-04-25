@@ -11,7 +11,7 @@ return [
     | By default will be email.
     |
     | Available Settings: "email", "username".
-    | 
+    |
     */
 
     'username' => env('USER_NAME', 'email'),
@@ -21,11 +21,10 @@ return [
     | Config Register User Method
     |--------------------------------------------------------------------------
     |
-    | To set process use to register user either required email validation or not 
-    | 
+    | To set process use to register user either required email validation or not
+    |
     */
 
-    'validation' => env('USER_VALIDATION', FALSE),
-
+    'validation' => env('USER_VALIDATION', false),
 
 ];

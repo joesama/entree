@@ -1,47 +1,44 @@
-<?php namespace Threef\Entree\Http\Processor;
+<?php
 
-use Illuminate\Support\Facades\Hash;
-use Orchestra\Support\Str;
-use Orchestra\Contracts\Auth\Listener\PasswordReset;
-use Orchestra\Contracts\Auth\Listener\PasswordResetLink;
-use Orchestra\Foundation\Processor\Account\PasswordBroker;
+namespace Threef\Entree\Http\Processor;
+
 use Illuminate\Contracts\Auth\PasswordBroker as Password;
-use Threef\Entree\Http\Validation\User as Validator;
+use Orchestra\Foundation\Processor\Account\PasswordBroker;
 use Threef\Entree\Database\Model\User;
+use Threef\Entree\Http\Validation\User as Validator;
+
 /**
- * undocumented class
+ * undocumented class.
  *
- * @package default
- * @author 
+ * @author
  **/
-class ResetPasswordManager 
+class ResetPasswordManager
 {
+    public function __construct(Password $password, Validator $validator, PasswordBroker $orchestraBroker)
+    {
+        $this->password = $password;
+        $this->validator = $validator;
+        $this->broker = $orchestraBroker;
+    }
 
-	public function __construct(Password $password, Validator $validator, PasswordBroker $orchestraBroker) {
-
-		$this->password = $password;
-		$this->validator = $validator;
-		$this->broker = $orchestraBroker;
-	}
-
-
-	/**
-	 * undocumented function
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function selfReset($listener, $request)
-	{
-		$input = $request->input();
+    /**
+     * undocumented function.
+     *
+     * @return void
+     *
+     * @author
+     **/
+    public function selfReset($listener, $request)
+    {
+        $input = $request->input();
 
         $validation = $this->validator->on('reset')->with($input);
 
         if ($validation->fails()) {
             return $listener->resetLinkFailedValidation($validation->getMessageBag());
         }
-        
-        $data   = ['email' => $input['email']];
+
+        $data = ['email' => $input['email']];
 
         $response = $this->password->sendResetLink($data);
 
@@ -49,38 +46,34 @@ class ResetPasswordManager
             return $listener->resetLinkFailed($response);
         }
 
-        return $listener->resetLinkSent($response,$input['email']);
+        return $listener->resetLinkSent($response, $input['email']);
+    }
 
-	}
+    /**
+     * Reset Password via Orchestra\Foundation\Processor\Account\PasswordBroker.
+     *
+     * @return mixed
+     **/
+    public function resetPassword($listener, $request)
+    {
+        return $this->broker->update($listener, $request->except('_token'));
+    }
 
-	/**
-	 * Reset Password via Orchestra\Foundation\Processor\Account\PasswordBroker
-	 * 
-	 * @return mixed
-	 **/
-	public function resetPassword($listener, $request)
-	{	
- 		return $this->broker->update($listener, $request->except('_token'));
-	}	
+    /**
+     * Reset Password By Admin.
+     *
+     * @return mixed
+     **/
+    public function resetByAdmin($control, $id)
+    {
+        $user = collect(User::find($id)->toArray())->only(config('threef/entree::entree.username', 'email'));
 
-	/**
-	 * Reset Password By Admin
-	 * 
-	 * @return mixed
-	 **/
-	public function resetByAdmin($control, $id)
-	{	
-		$user = collect(User::find($id)->toArray())->only(config('threef/entree::entree.username','email'));
+        $site = app('orchestra.platform.memory')->get('site.name', '3FRSB : PSS');
 
-		$site   = app('orchestra.platform.memory')->get('site.name', '3FRSB : PSS');
-
- 		$response = $this->password->sendResetLink($user->toArray(), function ($mail) use ($site) {
+        $response = $this->password->sendResetLink($user->toArray(), function ($mail) use ($site) {
             $mail->subject(trans('threef/entree::emails.password', ['site' => $site]));
         });
 
         return $control->resetByAdminLinkSent($response);
-
-
-	}	
-
-} // END class PasswordManager 
+    }
+} // END class PasswordManager

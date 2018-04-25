@@ -1,4 +1,6 @@
-<?php namespace Threef\Entree\Database\Model\Admin;
+<?php
+
+namespace Threef\Entree\Database\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 

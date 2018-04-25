@@ -1,14 +1,12 @@
-<?php namespace Threef\Entree\Event\Listener;
+<?php
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+namespace Threef\Entree\Event\Listener;
 
-use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Contracts\Container\Container;
+use Illuminate\Database\Migrations\Migrator;
 
 class EntreeMigrator
 {
-
     /**
      * Application instance.
      *
@@ -22,7 +20,6 @@ class EntreeMigrator
      * @var \Illuminate\Database\Migrations\Migrator
      */
     protected $migrator;
-
 
     /**
      * Create the event listener.
@@ -39,12 +36,13 @@ class EntreeMigrator
     /**
      * Handle the event.
      *
-     * @param  orchestra.install.schema  $event
+     * @param orchestra.install.schema $event
+     *
      * @return void
      */
     public function handle()
     {
-        $files      = $this->app->make('files');
+        $files = $this->app->make('files');
         $entreePath = realpath(__DIR__.'/../../../');
         $migrationPath = "{$entreePath}/migrations/";
 
@@ -52,7 +50,4 @@ class EntreeMigrator
             $this->migrator->run($migrationPath);
         }
     }
-
-
-
 }

@@ -2,8 +2,8 @@
 
 namespace Threef\Entree\Http\Validation;
 
-use Orchestra\Support\Validator;
 use Illuminate\Validation\Rule;
+use Orchestra\Support\Validator;
 
 class Profile extends Validator
 {
@@ -14,9 +14,8 @@ class Profile extends Validator
      */
     protected $rules = [
         'fullname' => ['required'],
-        'email' => ['required']
+        'email'    => ['required'],
     ];
-
 
     /**
      * List of events.
@@ -24,7 +23,7 @@ class Profile extends Validator
      * @var array
      */
     protected $events = [
-        'profile.created'
+        'profile.created',
     ];
 
     /**
@@ -61,5 +60,4 @@ class Profile extends Validator
         $this->phrases['email.unique'] = trans('threef/entree::validation.custom.email.unique');
         $this->phrases['idnumber.unique'] = trans('threef/entree::validation.custom.idnumber.unique');
     }
-
 }

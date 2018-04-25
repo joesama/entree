@@ -1,14 +1,18 @@
-<?php namespace Threef\Entree\Facades;
+<?php
+
+namespace Threef\Entree\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Announcer extends Facade {
-
+class Announcer extends Facade
+{
     /**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'announcer'; }
-
+    protected static function getFacadeAccessor()
+    {
+        return 'announcer';
+    }
 }

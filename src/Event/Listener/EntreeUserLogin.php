@@ -1,10 +1,9 @@
-<?php namespace Threef\Entree\Event\Listener;
+<?php
 
-use Illuminate\Auth\Events\Login;
+namespace Threef\Entree\Event\Listener;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Login;
 use Threef\Entree\Database\Model\User;
 use Threef\Entree\Database\Model\UserTrails;
 
@@ -23,9 +22,10 @@ class EntreeUserLogin
     }
 
     /**
-     * Handle User Login Event
+     * Handle User Login Event.
      *
-     * @param  threef.user.login  $event
+     * @param threef.user.login $event
+     *
      * @return void
      */
     public function handle($user)
@@ -36,12 +36,8 @@ class EntreeUserLogin
         $trails = new UserTrails();
 
         $trails->type = self::LOGIN;
-        $trails->person = data_get($user,'fullname');
-        $trails->user_id = data_get($user,'id');
+        $trails->person = data_get($user, 'fullname');
+        $trails->user_id = data_get($user, 'id');
         $trails->save();
-
     }
-
-
-
 }

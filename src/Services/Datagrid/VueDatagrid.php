@@ -1,211 +1,201 @@
-<?php 
+<?php
+
 namespace Threef\Entree\Services\DataGrid;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
-use Threef\Entree\Services\DataGrid\Traits\DataModeller;
 use JavaScript;
+use Threef\Entree\Services\DataGrid\Traits\DataModeller;
 
 /**
- * Services to generate datagrid using vue.js
+ * Services to generate datagrid using vue.js.
  *
- * @package threef/entree
  * @author joharijumali@gmail.com
  **/
-class VueDatagrid 
+class VueDatagrid
 {
-	use DataModeller;
+    use DataModeller;
 
     /**
-     * Columns To Be Previews
+     * Columns To Be Previews.
      */
     protected $columns;
 
     /**
-     * Query Builder To Be Generate
+     * Query Builder To Be Generate.
      */
     protected $builder;
 
     /**
-     * Paginate Items
+     * Paginate Items.
      */
-    protected $items = NULL;
+    protected $items = null;
 
     /**
-     * Data API Path URL
+     * Data API Path URL.
      */
     protected $api;
 
     /**
-     * Add Button
+     * Add Button.
      */
-    protected $add = NULL;
-    protected $addDesc = NULL;
+    protected $add = null;
+    protected $addDesc = null;
 
     /**
-     * Actions Button
+     * Actions Button.
      */
-    protected $actions = FALSE;
-    protected $simple = FALSE;
+    protected $actions = false;
+    protected $simple = false;
 
     /**
-     * Search Display
+     * Search Display.
      */
-    protected $search = TRUE;
+    protected $search = true;
 
     /**
-     * Data Filtering
+     * Data Filtering.
      */
-    protected $autoFilter = FALSE;
-
+    protected $autoFilter = false;
 
     /**
-     * Paginate Numbers
+     * Paginate Numbers.
      */
     public $paginate = 20;
 
+    /**
+     * Generate Columns For Table.
+     *
+     * @param array $columns
+     *
+     **/
+    public function setColumns(array $columns)
+    {
+        $this->columns = $columns;
+    }
 
-	/**
-	 * Generate Columns For Table
-	 *
-	 * @param array $columns
-	 *
-	 **/
-	public function setColumns(Array $columns)
-	{
-		$this->columns = $columns;
-	}
+    /**
+     * Generate Data Model.
+     *
+     * @param Illuminate\Database\Eloquent\Builder $model
+     * @param array                                $columns
+     *
+     **/
+    public function setModel($model, $columns = [])
+    {
+        $this->columns = (empty($columns)) ? $this->columns : $columns;
 
+        $this->items = $model;
+    }
 
-	/**
-	 * Generate Data Model
-	 *
-	 * @param Illuminate\Database\Eloquent\Builder $model
-	 * @param array $columns
-	 * 
-	 **/
-	public function setModel($model, $columns = [])
-	{
-		$this->columns = (empty($columns)) ? $this->columns  : $columns;
+    /**
+     * URI for Data API.
+     *
+     * @param string $url
+     **/
+    public function apiUrl($url)
+    {
+        $this->api = $url;
+    }
 
-		$this->items = $model;
+    /**
+     * Edit action.
+     *
+     * @param array $actions
+     **/
+    public function action($actions, $simple = false)
+    {
+        $this->actions = $actions;
+        $this->simple = $simple;
+    }
 
+    /**
+     * TODO : checboxes.
+     *
+     * @return void
+     *
+     * @author
+     **/
+    public function checkboxes()
+    {
+    }
 
-	}
+    /**
+     * Display Search Function.
+     *
+     * @return void
+     *
+     * @author
+     **/
+    public function showSearch($okay = true)
+    {
+        $this->search = $okay;
+    }
 
-	/**
-	 * URI for Data API
-	 *
-	 * @param string $url
-	 **/
-	public function apiUrl($url)
-	{
-		$this->api = $url;
-	}
+    /**
+     * Auto Filter Function.
+     *
+     * @return void
+     *
+     * @author
+     **/
+    public function autoFilter($okay = true)
+    {
+        $this->autoFilter = $okay;
+    }
 
-	/**
-	 * Edit action
-	 *
-	 * @param array $actions
-	 **/
-	public function action($actions, $simple = FALSE)
-	{
-		$this->actions = $actions;
-		$this->simple = $simple;
-	}
+    /**
+     * Add action.
+     *
+     * @param string $url
+     **/
+    public function add($url, $urlDesc = null)
+    {
+        $this->add = $url;
+        $this->addDesc = $urlDesc;
+    }
 
-	/**
-	 * TODO : checboxes
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function checkboxes()
-	{
-	}
+    /**
+     * Build And Generate Data grid Table.
+     *
+     * @return void
+     **/
+    public function build()
+    {
+        if (!is_null($this->items)):
+            $items = $this->buildPaginators($this->items);
+        endif;
 
-	/**
-	 * Display Search Function
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function showSearch($okay = TRUE)
-	{
-		$this->search = $okay;
-	}
+        JavaScript::put([
+            'swalert' => [
+                'confirm' => [
+                    'title'   => trans('threef/entree::datagrid.delete.confirm.title'),
+                    'text'    => trans('threef/entree::datagrid.delete.confirm.text'),
+                    'proceed' => trans('threef/entree::datagrid.delete.confirm.proceed'),
+                ],
+                'cancel' => [
+                    'title' => trans('threef/entree::datagrid.delete.cancel.title'),
+                    'text'  => trans('threef/entree::datagrid.delete.cancel.text'),
+                ],
+            ],
+            'autoFilter' => $this->autoFilter,
+            'search'     => $this->search,
+            'column'     => $this->columns,
+            'api'        => $this->api,
+            'add'        => $this->add,
+            'addDesc'    => $this->addDesc,
+            'actions'    => $this->actions,
+            'simple'     => $this->simple,
+               'data'    => (!is_null($this->items)) ? $items->items() : [],
+            'pagination' => [
+                'total'        => (!is_null($this->items)) ? $items->total() : 0,
+                'per_page'     => (!is_null($this->items)) ? $items->perPage() : 20,
+                'current_page' => (!is_null($this->items)) ? $items->currentPage() : 1,
+                'last_page'    => (!is_null($this->items)) ? $items->lastPage() : 1,
+                'from'         => (!is_null($this->items)) ? $items->firstItem() : 1,
+                'to'           => (!is_null($this->items)) ? $items->lastItem() : 1,
+            ],
+        ]);
 
-	/**
-	 * Auto Filter Function
-	 *
-	 * @return void
-	 * @author 
-	 **/
-	public function autoFilter($okay = TRUE)
-	{
-		$this->autoFilter = $okay;
-	}
-
-	/**
-	 * Add action
-	 *
-	 * @param string $url
-	 **/
-	public function add($url,$urlDesc = NULL)
-	{
-		$this->add = $url;
-		$this->addDesc = $urlDesc;
-	}
-
-	/**
-	 * Build And Generate Data grid Table
-	 *
-	 * @return void
-	 **/
-	public function build()
-	{
-
-		if(!is_null($this->items)):
-			$items = $this->buildPaginators($this->items);
-		endif;
-
-		JavaScript::put([
-			'swalert' => [
-				'confirm' => [
-					'title' => trans('threef/entree::datagrid.delete.confirm.title'),
-					'text' => trans('threef/entree::datagrid.delete.confirm.text'),
-					'proceed' => trans('threef/entree::datagrid.delete.confirm.proceed')
-				],
-				'cancel' => [
-					'title' => trans('threef/entree::datagrid.delete.cancel.title'),
-					'text' => trans('threef/entree::datagrid.delete.cancel.text')
-				]
-			],
-			'autoFilter' => $this->autoFilter,
-			'search' => $this->search,
-	        'column' => $this->columns,
-	        'api' => $this->api,
-	        'add' => $this->add,
-	        'addDesc' => $this->addDesc,
-	        'actions' => $this->actions,
-	        'simple' => $this->simple,
-	       	'data' => (!is_null($this->items)) ? $items->items() : [],
-	        'pagination' => [
-	            'total' => (!is_null($this->items)) ? $items->total() : 0,
-	            'per_page' => (!is_null($this->items)) ? $items->perPage() : 20,
-	            'current_page' => (!is_null($this->items)) ? $items->currentPage() : 1,
-	            'last_page' => (!is_null($this->items)) ? $items->lastPage() : 1,
-	            'from' => (!is_null($this->items)) ? $items->firstItem() : 1,
-	            'to' => (!is_null($this->items)) ? $items->lastItem() : 1
-	        ]
-	    ]);
-
-
-
-
-	    return view('threef/entree::entree.datagrid.datagrid');
-	}
-
-
-
-} // END class VueDatagrid 
+        return view('threef/entree::entree.datagrid.datagrid');
+    }
+} // END class VueDatagrid

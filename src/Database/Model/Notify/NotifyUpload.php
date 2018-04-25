@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Threef\Entree\Database\Model\Notify;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,12 +15,9 @@ class NotifyUpload extends Model
 
     /**
      * Has One relationship with Elesen\Model\Data\Model\Application\ApplicationSetup.
-     *
      */
     public function notify()
     {
-        return $this->belongsTo(\Threef\Entree\Database\Model\Notify\Notify::class,'notify');
+        return $this->belongsTo(\Threef\Entree\Database\Model\Notify\Notify::class, 'notify');
     }
-
-
 }

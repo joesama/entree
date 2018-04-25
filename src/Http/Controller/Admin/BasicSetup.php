@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 namespace Threef\Entree\Http\Controller\Admin;
 
 use Illuminate\Http\Request;
@@ -7,14 +8,13 @@ use Threef\Entree\Http\Processor\Admin\BasicSetupProcessor;
 
 class BasicSetup extends Controller
 {
-
-    public function __construct(BasicSetupProcessor $processor) {
-        
+    public function __construct(BasicSetupProcessor $processor)
+    {
         $this->processor = $processor;
     }
 
     /**
-     * Displaying landing page
+     * Displaying landing page.
      *
      * @return mixed
      **/
@@ -23,23 +23,22 @@ class BasicSetup extends Controller
         return  $this->processor->processAppConfig($this);
     }
 
-
     /**
-     * Landing Page View
+     * Landing Page View.
      *
      * @return view
      **/
     public function appConfigView($data)
     {
-        return view('threef/entree::entree.admin.appconfig',$data);
+        return view('threef/entree::entree.admin.appconfig', $data);
     }
 
-
     /**
-     * Save Application Configuration Info
+     * Save Application Configuration Info.
      *
      * @return void
-     * @author 
+     *
+     * @author
      **/
     public function saveAppConfig(Request $request)
     {
@@ -47,10 +46,11 @@ class BasicSetup extends Controller
     }
 
     /**
-     * Upload Application Logo
+     * Upload Application Logo.
      *
      * @return void
-     * @author 
+     *
+     * @author
      **/
     public function saveLogo(Request $request)
     {
@@ -58,14 +58,14 @@ class BasicSetup extends Controller
     }
 
     /**
-     * Upload Fav Icon
+     * Upload Fav Icon.
      *
      * @return void
-     * @author 
+     *
+     * @author
      **/
     public function saveFavicon(Request $request)
     {
         return $this->processor->uploadFavIcon($request);
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateUserTrailInTable extends Migration
 {
@@ -23,7 +23,6 @@ class CreateUserTrailInTable extends Migration
         });
 
         Schema::create('user_trails', function (Blueprint $table) {
-            
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('person')->nullable();

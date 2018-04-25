@@ -1,4 +1,6 @@
-<?php namespace Threef\Entree\Http\Validation;
+<?php
+
+namespace Threef\Entree\Http\Validation;
 
 use Orchestra\Foundation\Validation\AuthenticateUser;
 
@@ -19,7 +21,7 @@ class User extends AuthenticateUser
      * @var array
      */
     protected $phrases = [
-        'exists' => 'Tiada Pengguna Yang Mendaftar Menggunakan Emel Ini.'
+        'exists' => 'Tiada Pengguna Yang Mendaftar Menggunakan Emel Ini.',
     ];
 
     /**
@@ -40,9 +42,8 @@ class User extends AuthenticateUser
     protected function onReset()
     {
         $this->rules = [
-            'email'   => ['required','exists:users']
+            'email'   => ['required', 'exists:users'],
         ];
-
     }
 
     /**

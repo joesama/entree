@@ -13,7 +13,6 @@ return [
     |
     */
 
-
     'accepted'             => ':attribute mesti diterima pakai.',
     'active_url'           => ':attribute bukan URL yang sah.',
     'after'                => ':attribute mesti tarikh selepas :date.',
@@ -102,10 +101,10 @@ return [
 
     'custom' => [
         'idnumber' => [
-            'unique' => trans('threef/entree::entree.user.grid.idno') . ' Mestilah Unik',
+            'unique' => trans('threef/entree::entree.user.grid.idno').' Mestilah Unik',
         ],
         'email' => [
-            'unique' => trans('threef/entree::entree.user.grid.email')  . ' Mestilah Unik',
+            'unique' => trans('threef/entree::entree.user.grid.email').' Mestilah Unik',
         ],
     ],
 

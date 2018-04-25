@@ -1,13 +1,11 @@
-<?php namespace Threef\Entree\Event\Listener\Presenter;
+<?php
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+namespace Threef\Entree\Event\Listener\Presenter;
 
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
 class EntreeUserGrid
 {
-
     /**
      * Create the event listener.
      *
@@ -19,39 +17,37 @@ class EntreeUserGrid
     }
 
     /**
-     * Handle User List Grid Event
+     * Handle User List Grid Event.
      *
-     * @param  threef.user.profile  $event
+     * @param threef.user.profile $event
+     *
      * @return void
      */
     public function handle($eloquent, $table)
     {
         return $table->extend(function (TableGrid $table) {
-
             $table->layout('entree::layouts.components.table');
 
             $table->find('fullname')
                 ->label(trans('entree::entree.user.grid.fullname'))
-                ->value(function($row){
+                ->value(function ($row) {
                     return $row->fullname;
                 });
 
             $table->find('email')
                 ->label(trans('entree::entree.user.grid.username'))
-                ->value(function($row){
+                ->value(function ($row) {
                     return $row->username;
                 });
-
 
             $table->column('role')
                 ->label(trans('entree::entree.user.grid.role'))
                 ->value($this->getRoleColumn());
 
-            $table->column('email','email')
+            $table->column('email', 'email')
                 ->label(trans('entree::entree.user.grid.email'));
         });
     }
-
 
     /**
      * Get role column for table builder.
@@ -78,5 +74,4 @@ class EntreeUserGrid
             ]);
         };
     }
-
 }

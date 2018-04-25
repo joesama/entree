@@ -1,48 +1,41 @@
-<?php namespace Threef\Entree\Http\Controller;
+<?php
 
-use Illuminate\Http\Request;
-use Threef\Entree\Services\Notification\Announcement;
+namespace Threef\Entree\Http\Controller;
 
 class Entrance extends Controller
 {
-
     /**
-     * Displaying landing page
+     * Displaying landing page.
      *
      * @return mixed
      **/
     public function getIndex()
-    {   
+    {
         $announcer = \Threef\Entree\Facades\Announcer::notify();
 
         return  $this->viewMain(compact('announcer'));
     }
 
-
     /**
-     * change language
+     * change language.
      *
      **/
     public function changeLange($lang)
     {
+        $sessionLang = 'lang'.str_replace('.', '', app(\Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
 
-
-
-        $sessionLang = 'lang' . str_replace('.', '' , app(\Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
-        
         session([$sessionLang => $lang]);
 
         return redirect(url()->previous());
     }
 
-
     /**
-     * Landing Page View
+     * Landing Page View.
      *
      * @return view
      **/
     public function viewMain($data)
     {
-        return view('threef/entree::entree.index',$data);
+        return view('threef/entree::entree.index', $data);
     }
 }

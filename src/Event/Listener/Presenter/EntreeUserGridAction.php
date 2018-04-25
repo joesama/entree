@@ -1,13 +1,11 @@
-<?php namespace Threef\Entree\Event\Listener\Presenter;
+<?php
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+namespace Threef\Entree\Event\Listener\Presenter;
 
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
 class EntreeUserGridAction
 {
-
     /**
      * Create the event listener.
      *
@@ -19,14 +17,15 @@ class EntreeUserGridAction
     }
 
     /**
-     * Handle User List Grid Event
+     * Handle User List Grid Event.
      *
-     * @param  threef.user.profile  $event
+     * @param threef.user.profile $event
+     *
      * @return void
      */
     public function handle($table)
     {
-       return $table->extend(function (TableGrid $table) {
+        return $table->extend(function (TableGrid $table) {
             $table->find('actions')
                 ->label('')
                 ->escape(false)
@@ -46,9 +45,9 @@ class EntreeUserGridAction
     protected function getActionsColumn()
     {
         return function ($row) {
-            $btn   = [];
+            $btn = [];
 
-            $edit = trans("entree::button.edit");
+            $edit = trans('entree::button.edit');
 
             $btn[] = app('html')->link(
                 handles("threef::user/{$row->id}"),
@@ -89,5 +88,4 @@ class EntreeUserGridAction
             );
         };
     }
-
 }

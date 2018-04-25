@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateUserProfileTable extends Migration
 {
@@ -13,7 +13,6 @@ class CreateUserProfileTable extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
-            
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();

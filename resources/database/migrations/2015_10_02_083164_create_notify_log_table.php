@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateNotifyLogTable extends Migration
 {
@@ -13,7 +13,6 @@ class CreateNotifyLogTable extends Migration
     public function up()
     {
         Schema::create('notification_log', function (Blueprint $table) {
-            
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('channel')->nullable();

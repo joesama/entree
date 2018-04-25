@@ -1,11 +1,9 @@
-<?php namespace Threef\Entree\Event\Listener;
+<?php
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+namespace Threef\Entree\Event\Listener;
 
 class EntreeUserProfile
 {
-
     /**
      * Create the event listener.
      *
@@ -17,9 +15,10 @@ class EntreeUserProfile
     }
 
     /**
-     * Handle User Profile Creation Event
+     * Handle User Profile Creation Event.
      *
-     * @param  threef.user.profile  $event
+     * @param threef.user.profile $event
+     *
      * @return void
      */
     public function handle($table)
@@ -27,9 +26,5 @@ class EntreeUserProfile
         // Add additional user profile base on project here
         $table->string('idnumber');
         $table->text('photo');
-
     }
-
-
-
 }

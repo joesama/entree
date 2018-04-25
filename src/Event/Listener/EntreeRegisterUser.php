@@ -1,11 +1,9 @@
-<?php namespace Threef\Entree\Event\Listener;
+<?php
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+namespace Threef\Entree\Event\Listener;
 
 class EntreeRegisterUser
 {
-
     /**
      * Create the event listener.
      *
@@ -17,18 +15,15 @@ class EntreeRegisterUser
     }
 
     /**
-     * Handle User Insertion Event
+     * Handle User Insertion Event.
      *
-     * @param  threef.user.profile  $event
+     * @param threef.user.profile $event
+     *
      * @return void
      */
     public function handle($user, $input)
     {
-        $email = array_get($input,'emel');
+        $email = array_get($input, 'emel');
         $user->username = strstr($email, '@', true);
-
     }
-
-
-
 }

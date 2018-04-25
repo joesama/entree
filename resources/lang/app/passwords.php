@@ -17,6 +17,6 @@ return [
     'reset'    => 'Kata Laluan Telah Ditukar!',
     'sent'     => 'Peringatan Penukaran Kata Laluan Telah Dihantar!',
     'token'    => 'Token Kata Laluan Ini Tidak Sah.',
-    'user'     => "Tiada Pengguna Yang Mendaftar Menggunakan Emel Ini.",
+    'user'     => 'Tiada Pengguna Yang Mendaftar Menggunakan Emel Ini.',
 
 ];

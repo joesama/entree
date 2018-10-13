@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Services\Pdf;
+namespace Joesama\Entree\Services\Pdf;
 
 use Knp\Snappy\Pdf;
-use Threef\Entree\Services\Traits\ExtensionManager;
+use Joesama\Entree\Services\Traits\ExtensionManager;
 
 /**
  * Service for pdf maker class.
@@ -37,7 +37,7 @@ class PdfMaker
         $this->pdf->setOption('page-size', 'Letter');
         $this->pdf->setOption('margin-right', 10);
         $this->pdf->setOption('margin-left', 10);
-        $this->pdf->setOption('user-style-sheet', public_path().'/packages/threef/entree/css/bootstrap.css');
+        $this->pdf->setOption('user-style-sheet', public_path().'/packages/joesama/entree/css/bootstrap.css');
 
         foreach ($attributes as $key => $value) {
             $this->pdf->setOption($key, $value);

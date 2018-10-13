@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Database\Model\Notify;
+namespace Joesama\Entree\Database\Model\Notify;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,11 +14,11 @@ class Notify extends Model
     protected $table = 'notify';
 
     /**
-     * Has Many relationship with E\Threef\Entree\Database\Model\Notify\NotifyUpload::class.
+     * Has Many relationship with E\Joesama\Entree\Database\Model\Notify\NotifyUpload::class.
      */
     public function upload()
     {
-        return $this->hasMany(\Threef\Entree\Database\Model\Notify\NotifyUpload::class, 'notify');
+        return $this->hasMany(\Joesama\Entree\Database\Model\Notify\NotifyUpload::class, 'notify');
     }
 
     /**

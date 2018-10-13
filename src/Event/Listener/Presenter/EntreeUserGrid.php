@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Event\Listener\Presenter;
+namespace Joesama\Entree\Event\Listener\Presenter;
 
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
@@ -19,7 +19,7 @@ class EntreeUserGrid
     /**
      * Handle User List Grid Event.
      *
-     * @param threef.user.profile $event
+     * @param joesama.user.profile $event
      *
      * @return void
      */

@@ -1,8 +1,8 @@
 <?php
 
-namespace Threef\Entree\Database\Repository;
+namespace Joesama\Entree\Database\Repository;
 
-use Threef\Entree\Database\Model\Logs\NotificationLog as Model;
+use Joesama\Entree\Database\Model\Logs\NotificationLog as Model;
 
 /**
  * Notification Log.
@@ -20,7 +20,7 @@ class NotificationLog
      **/
     public function mail()
     {
-        return Model::where('notifiable', 'Threef\Entree\Database\Model\User')
+        return Model::where('notifiable', 'Joesama\Entree\Database\Model\User')
                 ->where('notifiable_id', \Auth::user()->id)->get();
     }
 

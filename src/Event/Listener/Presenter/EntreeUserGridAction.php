@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Event\Listener\Presenter;
+namespace Joesama\Entree\Event\Listener\Presenter;
 
 use Orchestra\Contracts\Html\Table\Grid as TableGrid;
 
@@ -19,7 +19,7 @@ class EntreeUserGridAction
     /**
      * Handle User List Grid Event.
      *
-     * @param threef.user.profile $event
+     * @param joesama.user.profile $event
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class EntreeUserGridAction
             $edit = trans('entree::button.edit');
 
             $btn[] = app('html')->link(
-                handles("threef::user/{$row->id}"),
+                handles("joesama::user/{$row->id}"),
                 trans('entree::entree.button.update'),
                 [
                     'class'   => 'btn btn-xs btn-warning',
@@ -60,7 +60,7 @@ class EntreeUserGridAction
             );
 
             $btn[] = app('html')->link(
-                handles("threef::user/reset/{$row->id}"),
+                handles("joesama::user/reset/{$row->id}"),
                 trans('entree::entree.button.reset'),
                 [
                     'class'   => 'btn btn-xs btn-info',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Auth;
+namespace Joesama\Entree\Http\Controller\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class Password extends Controller implements Listener
      **/
     public function edit()
     {
-        set_meta('title', trans('threef/entree::entree.password.reset.title'));
+        set_meta('title', trans('joesama/entree::entree.password.reset.title'));
 
         return $this->processor->edit($this);
     }
@@ -47,7 +47,7 @@ class Password extends Controller implements Listener
      */
     public function updatePasswordFailedValidation($errors)
     {
-        return $this->redirectWithErrors(handles('threef/entree::password'), $errors);
+        return $this->redirectWithErrors(handles('joesama/entree::password'), $errors);
     }
 
     /**
@@ -60,7 +60,7 @@ class Password extends Controller implements Listener
     {
         $message = trans('orchestra/foundation::response.account.password.invalid');
 
-        return $this->redirectWithMessage(handles('threef/entree::password'), $message, 'error');
+        return $this->redirectWithMessage(handles('joesama/entree::password'), $message, 'error');
     }
 
     /**
@@ -75,7 +75,7 @@ class Password extends Controller implements Listener
     {
         $message = trans('orchestra/foundation::response.db-failed', $errors);
 
-        return $this->redirectWithMessage(handles('threef/entree::password'), $message, 'error');
+        return $this->redirectWithMessage(handles('joesama/entree::password'), $message, 'error');
     }
 
     /**
@@ -87,7 +87,7 @@ class Password extends Controller implements Listener
     {
         $message = trans('orchestra/foundation::response.account.password.update');
 
-        return $this->redirectWithMessage(handles('threef/entree::home'), $message);
+        return $this->redirectWithMessage(handles('joesama/entree::home'), $message);
     }
 
     /**
@@ -107,6 +107,6 @@ class Password extends Controller implements Listener
      **/
     public function showPasswordChanger(array $data)
     {
-        return view('threef/entree::entree.auth.password', $data);
+        return view('joesama/entree::entree.auth.password', $data);
     }
 }

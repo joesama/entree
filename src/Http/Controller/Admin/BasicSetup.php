@@ -1,10 +1,10 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Admin;
+namespace Joesama\Entree\Http\Controller\Admin;
 
 use Illuminate\Http\Request;
-use Threef\Entree\Http\Controller\Controller;
-use Threef\Entree\Http\Processor\Admin\BasicSetupProcessor;
+use Joesama\Entree\Http\Controller\Controller;
+use Joesama\Entree\Http\Processor\Admin\BasicSetupProcessor;
 
 class BasicSetup extends Controller
 {
@@ -30,7 +30,7 @@ class BasicSetup extends Controller
      **/
     public function appConfigView($data)
     {
-        return view('threef/entree::entree.admin.appconfig', $data);
+        return view('joesama/entree::entree.admin.appconfig', $data);
     }
 
     /**

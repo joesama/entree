@@ -1,4 +1,4 @@
-@extends('threef/entree::layouts.content')
+@extends('joesama/entree::layouts.content')
 @push('content.style')
 <style type="text/css">
 /*textarea:focus .required,
@@ -35,33 +35,33 @@ input:invalid {
     {!! Form::open(array('url' => url()->current(), 'method' => 'POST', 'class' => 'form-horizontal form-validation')) !!}
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.user.grid.fullname') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.user.grid.fullname') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::text('fullname', data_get($user,'fullname',old('fullname')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('threef/entree::entree.user.grid.fullname') )) !!}
+          {!! Form::text('fullname', data_get($user,'fullname',old('fullname')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('joesama/entree::entree.user.grid.fullname') )) !!}
         </div>
       </div>
       @if($username == 'username')
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.user.grid.username') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.user.grid.username') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::text('username', data_get($user,'username',old('username')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('threef/entree::entree.user.grid.username') )) !!}
+          {!! Form::text('username', data_get($user,'username',old('username')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('joesama/entree::entree.user.grid.username') )) !!}
         </div>
       </div>
       @endif
       <div class="form-group">
         <label for="email" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.user.grid.email') }}<span class="text-danger">&nbsp;*</span>
+        {{ trans('joesama/entree::entree.user.grid.email') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::email('email', data_get($user,'email',old('email')) , array('required','class' => 'form-control', 'id' => 'email','placeholder' => trans('threef/entree::entree.user.grid.email') )) !!}
+          {!! Form::email('email', data_get($user,'email',old('email')) , array('required','class' => 'form-control', 'id' => 'email','placeholder' => trans('joesama/entree::entree.user.grid.email') )) !!}
         </div>
       </div>
       <div class="form-group"  id="default-select2">
         <label for="spec_project" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.user.grid.role') }}<span class="text-danger">&nbsp;*</span>
+        {{ trans('joesama/entree::entree.user.grid.role') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10  element-margin-bottom form-bootstrap-select">
           {!! Form::select('roles[]', $roles , data_get($user,'roles',collect([]))->pluck('id'), ['required', 'class'=>'form-control js-example-basic-multiple' , 'multiple' => TRUE] ) !!}
@@ -70,10 +70,10 @@ input:invalid {
       @if(!data_get($user,'id',false) && $validation == FALSE )
       <div class="form-group">
         <label for="password" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.login.password') }}<span class="text-danger">&nbsp;*</span>
+        {{ trans('joesama/entree::entree.login.password') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::text('password',NULL, array('required','class' => 'form-control', 'id' => 'password','placeholder' => trans('threef/entree::entree.login.password') )) !!}
+          {!! Form::text('password',NULL, array('required','class' => 'form-control', 'id' => 'password','placeholder' => trans('joesama/entree::entree.login.password') )) !!}
         </div>
       </div>
       @endif
@@ -82,7 +82,7 @@ input:invalid {
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-right">
           <button type="submit" class="btn btn-primary">
-          {{  trans('threef/entree::entree.button.save')  }}
+          {{  trans('joesama/entree::entree.button.save')  }}
           </button>
         </div>
       </div>
@@ -122,8 +122,8 @@ input:invalid {
 </div>
 @endsection
 @push('content.script')
-<!-- <script src="{{ asset('packages/threef/manager/js/jcrop.min.js') }}"></script> -->
-<!-- <script src="{{ asset('packages/threef/manager/js/vue-crop.js') }}"></script> -->
+<!-- <script src="{{ asset('packages/joesama/manager/js/jcrop.min.js') }}"></script> -->
+<!-- <script src="{{ asset('packages/joesama/manager/js/vue-crop.js') }}"></script> -->
 <script type="text/javascript">
 
 Vue.config.debug = true;
@@ -170,7 +170,7 @@ var resources = new Vue({
       data.append('id', this.profileID);
       data.append('photo', this.photo);
 
-      this.$http.post("{{ handles('threef/entree::user/photo') }}", data).then((response) => {
+      this.$http.post("{{ handles('joesama/entree::user/photo') }}", data).then((response) => {
           $( "input[name='photo']" ).val(response.body.path);
           this.newPhoto = true;
       }, (response) => {

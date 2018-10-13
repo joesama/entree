@@ -1,11 +1,11 @@
 <?php
 
-namespace Threef\Entree\Database\Model;
+namespace Joesama\Entree\Database\Model;
 
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Orchestra\Foundation\Auth\User as OrchestraUser;
-use Threef\Entree\Http\Notifications\EntreeMailer;
+use Joesama\Entree\Http\Notifications\EntreeMailer;
 
 /**
  * Extension of.
@@ -26,11 +26,11 @@ class User extends OrchestraUser
     ];
 
     /**
-     * Relation has one Threef\Entree\Database\Model\UserProfile.
+     * Relation has one Joesama\Entree\Database\Model\UserProfile.
      **/
     public function profile()
     {
-        return $this->hasOne('Threef\Entree\Database\Model\UserProfile', 'user_id');
+        return $this->hasOne('Joesama\Entree\Database\Model\UserProfile', 'user_id');
     }
 
     public function getFullnameAttribute($value)
@@ -45,7 +45,7 @@ class User extends OrchestraUser
 
     public function getStatusAttribute($value)
     {
-        return trans('threef/entree::entree.user.status.'.$value);
+        return trans('joesama/entree::entree.user.status.'.$value);
     }
 
     /**
@@ -53,9 +53,9 @@ class User extends OrchestraUser
      *
      * @return array
      */
-    public function getAuthIdentifiersName()
+    public function getAuthIdentifiersName():array
     {
-        return [config('threef/entree::entree.username', 'email')];
+        return [config('joesama/entree::entree.username', 'email')];
     }
 
     /**
@@ -65,7 +65,7 @@ class User extends OrchestraUser
      */
     public function getUserName()
     {
-        return strtolower($this->attributes[config('threef/entree::entree.username', 'email')]);
+        return strtolower($this->attributes[config('joesama/entree::entree.username', 'email')]);
     }
 
     /**
@@ -102,16 +102,16 @@ class User extends OrchestraUser
     {
         $message = collect([]);
         $message->put('level', 'success');
-        $message->put('title', trans('threef/entree::mail.reset.title'));
+        $message->put('title', trans('joesama/entree::mail.reset.title'));
         $message->put('content', collect([
-         trans('threef/entree::mail.reset.form'),
+         trans('joesama/entree::mail.reset.form'),
         ]));
 
         $message->put('footer', collect([
-         trans('threef/entree::mail.reset.expired', ['time' => config('auth.reminder.expire', 60)]),
+         trans('joesama/entree::mail.reset.expired', ['time' => config('auth.reminder.expire', 60)]),
         ]));
 
-        $message->put('action', collect([trans('threef/entree::mail.reset.title') => handles('entree::forgot/reset/'.$token)]));
+        $message->put('action', collect([trans('joesama/entree::mail.reset.title') => handles('entree::forgot/reset/'.$token)]));
 
         $this->notify(new EntreeMailer($message));
     }
@@ -127,18 +127,18 @@ class User extends OrchestraUser
     {
         $message = collect([]);
         $message->put('level', 'success');
-        $message->put('title', trans('threef/entree::mail.validated.title'));
+        $message->put('title', trans('joesama/entree::mail.validated.title'));
         $message->put('content', collect([
-            title_case(trans('threef/entree::mail.validated.success')),
-            trans('threef/entree::mail.validated.username', ['username' => $this->getUserName()]),
-            trans('threef/entree::mail.validated.password', ['password' => $password]),
+            title_case(trans('joesama/entree::mail.validated.success')),
+            trans('joesama/entree::mail.validated.username', ['username' => $this->getUserName()]),
+            trans('joesama/entree::mail.validated.password', ['password' => $password]),
         ]));
 
         $message->put('footer', collect([
-            title_case(trans('threef/entree::mail.validated.form')),
+            title_case(trans('joesama/entree::mail.validated.form')),
         ]));
 
-        $message->put('action', collect([trans('threef/entree::mail.login') => handles('entree::login/')]));
+        $message->put('action', collect([trans('joesama/entree::mail.login') => handles('entree::login/')]));
 
         $this->notify(new EntreeMailer($message));
     }

@@ -1,9 +1,8 @@
 <?php
 
-namespace Threef\Entree\Services\Notification;
+namespace Joesama\Entree\Services\Notification;
 
-use JavaScript;
-use Threef\Entree\Database\Repository\NotificationData;
+use Joesama\Entree\Database\Repository\NotificationData;
 
 /**
  * Announcement Service Class.
@@ -27,10 +26,6 @@ class Announcement
     public function notify()
     {
         $notification = $this->notify->getNotifications();
-
-        JavaScript::put([
-            'notify' => $notification,
-        ]);
 
         return $notification;
     }

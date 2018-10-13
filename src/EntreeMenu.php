@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree;
+namespace Joesama\Entree;
 
 use Illuminate\Foundation\Application;
 use Orchestra\Contracts\Authorization\Factory;
@@ -65,22 +65,22 @@ use Orchestra\Contracts\Authorization\Factory;
      protected function generateMenuService($menu)
      {
          $menu->add('home')
-            ->title(trans('threef/entree::title.home'))
-            ->link(handles('threef/entree::home'))
+            ->title(trans('joesama/entree::title.home'))
+            ->link(handles('joesama/entree::home'))
             ->icon('fa fa-home');
 
          $menu->add('config', '>')
-            ->title(trans('threef/entree::title.config.title'))
+            ->title(trans('joesama/entree::title.config.title'))
             ->icon('fa fa-cogs');
 
          $menu->add('menu', '^:config')
-            ->title(trans('threef/entree::title.config.menu'))
-            ->link(handles('threef/entree::menu'))
+            ->title(trans('joesama/entree::title.config.menu'))
+            ->link(handles('joesama/entree::menu'))
             ->icon('fa fa-link');
 
          $menu->add('base', '^:config')
-            ->title(trans('threef/entree::title.config.base'))
-            ->link(handles('threef/entree::base'))
+            ->title(trans('joesama/entree::title.config.base'))
+            ->link(handles('joesama/entree::base'))
             ->icon('fa fa-info');
 
          /*
@@ -88,57 +88,57 @@ use Orchestra\Contracts\Authorization\Factory;
          @TODO : Report Menu
 
          $menu->add('report','^:config')
-             ->title(trans('threef/entree::report.menu.report'))
-             ->link(handles('threef/entree::menu'))
+             ->title(trans('joesama/entree::report.menu.report'))
+             ->link(handles('joesama/entree::menu'))
              ->icon('fa fa-bar-chart');
 
          $menu->add('reportlist','^:config.report')
-             ->title(trans('threef/entree::report.menu.report-list'))
-             ->link(handles('threef/entree::report/list'))
+             ->title(trans('joesama/entree::report.menu.report-list'))
+             ->link(handles('joesama/entree::report/list'))
              ->icon('fa fa-chevron-circle-right');
 
          $menu->add('reportgroup','^:config.report')
-             ->title(trans('threef/entree::report.menu.report-group'))
-             ->link(handles('threef/entree::report/category'))
+             ->title(trans('joesama/entree::report.menu.report-group'))
+             ->link(handles('joesama/entree::report/category'))
              ->icon('fa fa-chevron-circle-right');
 
          $menu->add('reportaccess','^:config.report')
-             ->title(trans('threef/entree::report.menu.report-assign'))
-             ->link(handles('threef/entree::report/access'))
+             ->title(trans('joesama/entree::report.menu.report-assign'))
+             ->link(handles('joesama/entree::report/access'))
              ->icon('fa fa-chevron-circle-right');
 
          **/
 
          $menu->add('user', '^:config')
-            ->title(trans('threef/entree::entree.user.manage'))
+            ->title(trans('joesama/entree::entree.user.manage'))
             ->icon('fa fa-user');
 
          $menu->add('user-list', '^:config.user')
-            ->title(trans('threef/entree::entree.user.list'))
-            ->link(handles('threef/entree::user'))
+            ->title(trans('joesama/entree::entree.user.list'))
+            ->link(handles('joesama/entree::user'))
             ->icon('fa fa-chevron-circle-right');
 
          $menu->add('user-new', '^:config.user')
-            ->title(trans('threef/entree::entree.user.new'))
-            ->link(handles('threef/entree::user/new'))
+            ->title(trans('joesama/entree::entree.user.new'))
+            ->link(handles('joesama/entree::user/new'))
             ->icon('fa fa-chevron-circle-right');
 
          $menu->add('audit', '>:config')
-            ->title(trans('threef/entree::entree.audit.title'))
+            ->title(trans('joesama/entree::entree.audit.title'))
             ->icon('fa fa-paperclip');
 
          $menu->add('audit.access', '^:audit')
-            ->title(trans('threef/entree::entree.audit.access'))
-            ->link(handles('threef/entree::audit/access'))
+            ->title(trans('joesama/entree::entree.audit.access'))
+            ->link(handles('joesama/entree::audit/access'))
             ->icon('fa fa-universal-access');
 
          $menu->add('notify', '>:audit')
-            ->title(trans('threef/entree::entree.notify.title'))
+            ->title(trans('joesama/entree::entree.notify.title'))
             ->icon('fa fa-newspaper-o');
 
          $menu->add('announcement', '^:notify')
-            ->title(trans('threef/entree::entree.notify.manage'))
-            ->link(handles('threef/entree::notify/announcement'))
+            ->title(trans('joesama/entree::entree.notify.manage'))
+            ->link(handles('joesama/entree::notify/announcement'))
             ->icon('fa fa-navicon');
 
          event('entree.menu:ready', [$menu]);

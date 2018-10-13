@@ -1,12 +1,12 @@
 <?php
 
-namespace Threef\Entree\Http\Processor;
+namespace Joesama\Entree\Http\Processor;
 
 use Illuminate\Support\Arr;
 use Orchestra\Contracts\Authorization\Factory;
 use Orchestra\Support\Keyword;
-use Threef\Entree\Database\Model\Role;
-use Threef\Entree\EntreeMenu;
+use Joesama\Entree\Database\Model\Role;
+use Joesama\Entree\EntreeMenu;
 
 /**
  * undocumented class.
@@ -80,7 +80,7 @@ class MenuAccessManager
             }
         }
 
-        return redirect_with_message(handles('threef/entree::menu'), trans('threef/entree::respond.respond.saved'), 'success');
+        return redirect_with_message(handles('joesama/entree::menu'), trans('joesama/entree::respond.respond.saved'), 'success');
     }
 
     /**

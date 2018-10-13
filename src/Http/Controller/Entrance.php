@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Controller;
+namespace Joesama\Entree\Http\Controller;
 
 class Entrance extends Controller
 {
@@ -11,7 +11,7 @@ class Entrance extends Controller
      **/
     public function getIndex()
     {
-        $announcer = \Threef\Entree\Facades\Announcer::notify();
+        $announcer = \Joesama\Entree\Facades\Announcer::notify();
 
         return  $this->viewMain(compact('announcer'));
     }
@@ -22,7 +22,7 @@ class Entrance extends Controller
      **/
     public function changeLange($lang)
     {
-        $sessionLang = 'lang'.str_replace('.', '', app(\Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
+        $sessionLang = 'lang'.str_replace('.', '', app(\Joesama\Entree\Entity\IpOrigin::class)->ipOrigin());
 
         session([$sessionLang => $lang]);
 
@@ -36,6 +36,6 @@ class Entrance extends Controller
      **/
     public function viewMain($data)
     {
-        return view('threef/entree::entree.index', $data);
+        return view('joesama/entree::entree.index', $data);
     }
 }

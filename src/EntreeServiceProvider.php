@@ -1,11 +1,11 @@
 <?php
 
-namespace Threef\Entree;
+namespace Joesama\Entree;
 
 use Orchestra\Foundation\Support\Providers\ModuleServiceProvider;
 
 /**
- * Wrapper extension for threef development.
+ * Wrapper extension for joesama development.
  *
  * @author joharijumali@gmail.com
  **/
@@ -30,7 +30,7 @@ class EntreeServiceProvider extends ModuleServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'Threef\Entree';
+    protected $namespace = 'Joesama\Entree';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -45,11 +45,11 @@ class EntreeServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $listen = [
-        'threef.system.trail' => [
+        'joesama.system.trail' => [
             Event\Listener\EntreeSystemAccess::class, ],
-        'threef.user.profile' => [
+        'joesama.user.profile' => [
             Event\Listener\EntreeUserProfile::class, ],
-        'threef.user.login' => [
+        'joesama.user.login' => [
             Event\Listener\EntreeUserLogin::class, ],
         'Illuminate\Auth\Events\Logout' => [
             Event\Listener\EntreeUserLogout::class, ],
@@ -57,10 +57,10 @@ class EntreeServiceProvider extends ModuleServiceProvider
             Event\Listener\EntreeUserAttempting::class, ],
         'orchestra.install: user' => [
             Event\Listener\EntreeRegisterUser::class, ],
-        'threef.email.user: new' => [
+        'joesama.email.user: new' => [
             Event\Listener\Notifications\NewUserEmail::class, ],
         'Illuminate\Notifications\Events\NotificationSent' => [
-            'Threef\Entree\Event\Listener\EntreeLogNotification', ],
+            'Joesama\Entree\Event\Listener\EntreeLogNotification', ],
     ];
 
     /**
@@ -93,9 +93,9 @@ class EntreeServiceProvider extends ModuleServiceProvider
 
         $this->publishOrchestraLang($path);
         $this->publishJavascriptTransformerView($path);
-        $this->addLanguageComponent('threef/entree', 'threef/entree', $path.'/lang');
-        $this->addConfigComponent('threef/entree', 'threef/entree', $path.'/config');
-        $this->addViewComponent('threef/entree', 'threef/entree', $path.'/views');
+        $this->addLanguageComponent('joesama/entree', 'joesama/entree', $path.'/lang');
+        $this->addConfigComponent('joesama/entree', 'joesama/entree', $path.'/config');
+        $this->addViewComponent('joesama/entree', 'joesama/entree', $path.'/views');
     }
 
     /**
@@ -149,9 +149,9 @@ class EntreeServiceProvider extends ModuleServiceProvider
      **/
     protected function bindingUserValidation()
     {
-        $this->app->when('Orchestra\Foundation\Processor\AuthenticateUser')
+        $this->app->when('Orchestra\Foundation\Processors\AuthenticateUser')
           ->needs('Orchestra\Foundation\Validation\AuthenticateUser')
-          ->give('Threef\Entree\Http\Validation\User');
+          ->give('Joesama\Entree\Http\Validation\User');
     }
 
     /**
@@ -162,6 +162,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
     {
         $this->app->when('Orchestra\Foundation\Http\Middleware\VerifyCsrfToken')
           ->needs('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
-          ->give('Threef\Entree\Http\Middleware\VerifyCsrfToken');
+          ->give('Joesama\Entree\Http\Middleware\VerifyCsrfToken');
     }
 } // END class Entree

@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Report;
+namespace Joesama\Entree\Http\Controller\Report;
 
 use App\Http\Controllers\Controller;
 
@@ -13,7 +13,7 @@ class Reporter extends Controller
      **/
     public function getIndex()
     {
-        set_meta('page-header', trans('threef/entree::report.menu.report-list'));
+        set_meta('page-header', trans('joesama/entree::report.menu.report-list'));
 
         return  $this->viewMain();
     }
@@ -25,6 +25,6 @@ class Reporter extends Controller
      **/
     public function viewMain()
     {
-        return view('threef/entree::entree.report.list');
+        return view('joesama/entree::entree.report.list');
     }
 }

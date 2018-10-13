@@ -1,10 +1,10 @@
 <?php
 
-namespace Threef\Entree\Services\Upload;
+namespace Joesama\Entree\Services\Upload;
 
 use Illuminate\Http\UploadedFile;
 use Intervention\Image\ImageManager;
-use Threef\Entree\Services\Traits\ExtensionManager;
+use Joesama\Entree\Services\Traits\ExtensionManager;
 
 /**
  * File Uploader Services.

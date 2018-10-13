@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Validation;
+namespace Joesama\Entree\Http\Validation;
 
 use Illuminate\Validation\Rule;
 use Orchestra\Support\Validator;
@@ -39,9 +39,9 @@ class Profile extends Validator
         $this->rules['idnumber'][] = Rule::unique('user_profiles')->where(function ($query) {
             $query->whereNull('deleted_at');
         });
-        $this->phrases['required'] = trans('threef/entree::validation.required');
-        // $this->phrases['idnumber.unique'] = trans('threef/entree::validation.custom.idnumber.unique');
-        $this->phrases['email.unique'] = trans('threef/entree::validation.custom.email.unique');
+        $this->phrases['required'] = trans('joesama/entree::validation.required');
+        // $this->phrases['idnumber.unique'] = trans('joesama/entree::validation.custom.idnumber.unique');
+        $this->phrases['email.unique'] = trans('joesama/entree::validation.custom.email.unique');
     }
 
     // $proxy_host, $proxy_port, $proxy_username, $proxy_password,0,100
@@ -56,8 +56,8 @@ class Profile extends Validator
         $this->rules['idnumber'][] = 'unique:user_profiles,user_id,{userId}';
         $this->rules['email'][] = 'unique:users,id,{userId}';
 
-        $this->phrases['required'] = trans('threef/entree::validation.required');
-        $this->phrases['email.unique'] = trans('threef/entree::validation.custom.email.unique');
-        $this->phrases['idnumber.unique'] = trans('threef/entree::validation.custom.idnumber.unique');
+        $this->phrases['required'] = trans('joesama/entree::validation.required');
+        $this->phrases['email.unique'] = trans('joesama/entree::validation.custom.email.unique');
+        $this->phrases['idnumber.unique'] = trans('joesama/entree::validation.custom.idnumber.unique');
     }
 }

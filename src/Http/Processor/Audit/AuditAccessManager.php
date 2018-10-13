@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Http\Processor\Audit;
+namespace Joesama\Entree\Http\Processor\Audit;
 
-use Threef\Entree\Database\Model\UserAccessTrails;
-use Threef\Entree\Services\DataGrid\VueDatagrid;
+use Joesama\Entree\Database\Model\UserAccessTrails;
+use VueGrid;
 
 /**
  * undocumented class.
@@ -22,28 +22,28 @@ class AuditAccessManager
     public function listAuditAccess($request)
     {
         $columns = [
-            ['field' => 'user.fullname', 'title' => trans('threef/entree::entree.audit.grid.user'), 'style' => 'text-left'],
-            ['field' => 'ip', 'title' => trans('threef/entree::entree.audit.grid.ip'), 'style' => 'text-left'],
-            ['field' => 'method', 'title' => trans('threef/entree::entree.audit.grid.method'), 'style' => 'text-left'],
-            ['field' => 'path', 'title' => trans('threef/entree::entree.audit.grid.uri'), 'style' => 'text-center'],
-            ['field' => 'created_at', 'title' => trans('threef/entree::entree.audit.grid.date'), 'style' => 'text-left'],
+            ['field' => 'user.fullname', 'title' => trans('joesama/entree::entree.audit.grid.user'), 'style' => 'text-left'],
+            ['field' => 'ip', 'title' => trans('joesama/entree::entree.audit.grid.ip'), 'style' => 'text-left'],
+            ['field' => 'method', 'title' => trans('joesama/entree::entree.audit.grid.method'), 'style' => 'text-left'],
+            ['field' => 'path', 'title' => trans('joesama/entree::entree.audit.grid.uri'), 'style' => 'text-center'],
+            ['field' => 'created_at', 'title' => trans('joesama/entree::entree.audit.grid.date'), 'style' => 'text-left'],
         ];
 
-        $grid = new VueDatagrid();
+        $grid = new VueGrid();
         $grid->setColumns($columns);
         $grid->setModel($this->retrieveAccessAudit($request));
-        $grid->apiUrl(handles('threef/entree::audit/data'));
+        $grid->apiUrl(handles('joesama/entree::audit/data'));
         // $grid->action([
-        //         [ 'action' => trans('threef/entree::datagrid.buttons.edit') ,
-        //           'url' => handles('threef/entree::user'),
+        //         [ 'action' => trans('joesama/entree::datagrid.buttons.edit') ,
+        //           'url' => handles('joesama/entree::user'),
         //           'icons' => 'fa fa-pencil',
         //           'key' => 'id'  ],
-        //         // [ 'action' => trans('threef/entree::datagrid.buttons.reset-pwd') ,
-        //         //   'url' => handles('threef/entree::user/reset'),
+        //         // [ 'action' => trans('joesama/entree::datagrid.buttons.reset-pwd') ,
+        //         //   'url' => handles('joesama/entree::user/reset'),
         //         //   'icons' => 'fa fa-key',
         //         //   'key' => 'id'   ],
-        //         // [ 'delete' => trans('threef/entree::datagrid.buttons.delete') ,
-        //         //   'url' => handles('threef/entree::user/delete/'),
+        //         // [ 'delete' => trans('joesama/entree::datagrid.buttons.delete') ,
+        //         //   'url' => handles('joesama/entree::user/delete/'),
         //         //   'icons' => 'fa fa-trash',
         //         //   'key' => 'id'  ]
         //     ],TRUE);

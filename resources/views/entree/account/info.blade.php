@@ -1,4 +1,4 @@
-@extends('threef/entree::layouts.content')
+@extends('joesama/entree::layouts.content')
 @push('content.style')
 
 @endpush
@@ -8,26 +8,26 @@
     {!! Form::open(array('url' => url()->current(), 'method' => 'POST', 'class' => 'form-horizontal form-validation')) !!}
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.user.grid.fullname') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.user.grid.fullname') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::text('fullname', data_get($user,'fullname',old('fullname')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('threef/entree::entree.user.grid.fullname') )) !!}
+          {!! Form::text('fullname', data_get($user,'fullname',old('fullname')) , array('required','class' => 'form-control', 'id' => 'fullname','placeholder' => trans('joesama/entree::entree.user.grid.fullname') )) !!}
         </div>
       </div>
       <div class="form-group">
         <label for="email" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.user.grid.email') }}<span class="text-danger">&nbsp;*</span>
+        {{ trans('joesama/entree::entree.user.grid.email') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::email('email', data_get($user,'email',old('email')) , array('required','class' => 'form-control', 'id' => 'email','placeholder' => trans('threef/entree::entree.user.grid.email'), 'readonly' )) !!}
+          {!! Form::email('email', data_get($user,'email',old('email')) , array('required','class' => 'form-control', 'id' => 'email','placeholder' => trans('joesama/entree::entree.user.grid.email'), 'readonly' )) !!}
         </div>
       </div>
       <div class="form-group">
         <label for="password" class="col-sm-2 control-label">
-        {{ trans('threef/entree::entree.login.password') }}
+        {{ trans('joesama/entree::entree.login.password') }}
         </label>
         <div class="col-sm-10">
-            <a class="btn btn-warning btn-xs text-center" href="{!! handles('threef::password') !!}">
+            <a class="btn btn-warning btn-xs text-center" href="{!! handles('joesama::password') !!}">
             <strong>{{ trans('orchestra/foundation::title.account.password') }}</strong>
             </a>
         </div>
@@ -37,7 +37,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-right">
           <button type="submit" class="btn btn-primary">
-          {{  trans('threef/entree::entree.button.save')  }}
+          {{  trans('joesama/entree::entree.button.save')  }}
           </button>
         </div>
       </div>
@@ -124,7 +124,7 @@ var resources = new Vue({
       data.append('id', this.profileID);
       data.append('photo', this.photo);
 
-      this.$http.post("{{ handles('threef/entree::user/photo') }}", data).then((response) => {
+      this.$http.post("{{ handles('joesama/entree::user/photo') }}", data).then((response) => {
           $( "input[name='photo']" ).val(response.body.path);
           this.newPhoto = true;
       }, (response) => {

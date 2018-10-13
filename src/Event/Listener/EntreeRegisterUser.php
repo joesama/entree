@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Event\Listener;
+namespace Joesama\Entree\Event\Listener;
 
 class EntreeRegisterUser
 {
@@ -17,7 +17,7 @@ class EntreeRegisterUser
     /**
      * Handle User Insertion Event.
      *
-     * @param threef.user.profile $event
+     * @param joesama.user.profile $event
      *
      * @return void
      */

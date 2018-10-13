@@ -8,9 +8,9 @@
 		</div> 
 		<div class="panel-collapse collapse" role="tabpanel" id="{!! $link->id !!}" aria-labelledby="collapseListGroupHeading1" aria-expanded="true"> 
             @if(count($link->childs) > 0)
-            	@include('threef/entree::entree.menu.item',['links' => $link->childs,'roles' => $roles, 'main' => $main .'_'.$link->id])
+            	@include('joesama/entree::entree.menu.item',['links' => $link->childs,'roles' => $roles, 'main' => $main .'_'.$link->id])
             @else
-            	@include('threef/entree::entree.menu.role',['id' => $link->id,'roles' => $roles, 'main' => $main.'_'.$link->id])
+            	@include('joesama/entree::entree.menu.role',['id' => $link->id,'roles' => $roles, 'main' => $main.'_'.$link->id])
 			@endif
 		</div> 
 	</div> 

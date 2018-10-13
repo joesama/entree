@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Notifications;
+namespace Joesama\Entree\Http\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,7 +11,7 @@ class EntreeMailer extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $view = 'threef/entree::entree.emails.layouts.simple';
+    protected $view = 'joesama/entree::entree.emails.layouts.simple';
     public $message;
 
     /**
@@ -55,7 +55,7 @@ class EntreeMailer extends Notification implements ShouldQueue
         $mailMessage->subject($this->message->get('title', 'Email From '.memorize('site.name')));
         $mailMessage->title($this->message->get('title', 'Email From '.memorize('site.name')));
         $mailMessage->level($this->message->get('level'));
-        $mailMessage->greeting(trans('threef/entree::mail.greeting').' '.$notifiable->fullname.', ');
+        $mailMessage->greeting(trans('joesama/entree::mail.greeting').' '.$notifiable->fullname.', ');
 
         $content = $this->message->get('content', []);
 

@@ -6,10 +6,8 @@ $format = <<<MESSAGE
 </div>
 MESSAGE;
 
-	\JavaScript::put([
-    	'errorBags' => $errors->messages(),
-    	'hasError' => $errors->isEmpty()
-	]);
+  $errorBags = $errors->messages();
+  $hasError = $errors->isEmpty();
 
 
 	$message = app('orchestra.messages')->retrieve();
@@ -29,6 +27,8 @@ MESSAGE;
 
 <script type="text/javascript">
 
+let errorBags = @json($errorBags);
+let hasError = @json($hasError);
 
 // create Vue app
 var mesej = new Vue({

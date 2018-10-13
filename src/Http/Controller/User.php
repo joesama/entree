@@ -1,11 +1,11 @@
 <?php
 
-namespace Threef\Entree\Http\Controller;
+namespace Joesama\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
 use Orchestra\Foundation\Http\Controllers\UsersController;
-use Orchestra\Foundation\Processor\User as Processor;
-use Threef\Entree\Http\Processor\UserManager;
+use Orchestra\Foundation\Processors\User as Processor;
+use Joesama\Entree\Http\Processor\UserManager;
 
 class User extends UsersController
 {
@@ -24,11 +24,11 @@ class User extends UsersController
      **/
     public function getIndex(Request $request)
     {
-        set_meta('page-header', trans('threef/entree::entree.user.manage'));
+        set_meta('page-header', trans('joesama/entree::entree.user.manage'));
 
         $table = $this->manager->userList($request);
+        return view('joesama/entree::entree.datagrid.list', compact('table'));
 
-        return view('threef/entree::entree.datagrid.list', compact('table'));
     }
 
     /**
@@ -54,7 +54,7 @@ class User extends UsersController
 
         $data = $this->manager->userCreation($request);
 
-        return view('threef/entree::entree.user.form', $data);
+        return view('joesama/entree::entree.user.form', $data);
     }
 
     /**
@@ -76,11 +76,11 @@ class User extends UsersController
      **/
     public function getUserUpdate(Request $request)
     {
-        set_meta('title', trans('threef/entree::entree.user.edit'));
+        set_meta('title', trans('joesama/entree::entree.user.edit'));
 
         $data = $this->manager->userCreation($request);
 
-        return view('threef/entree::entree.user.form', $data);
+        return view('joesama/entree::entree.user.form', $data);
     }
 
     /**

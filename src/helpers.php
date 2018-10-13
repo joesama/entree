@@ -10,6 +10,6 @@ if (!function_exists('ip_origin')) {
      */
     function ip_origin()
     {
-        return app('Threef\Entree\Entity\IpOrigin')->ipOrigin();
+        return app('Joesama\Entree\Entity\IpOrigin')->ipOrigin();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Services\Sms;
+namespace Joesama\Entree\Services\Sms;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;

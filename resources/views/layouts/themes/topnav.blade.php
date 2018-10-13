@@ -13,13 +13,13 @@
             <ul id="topbar"  class="nav navbar-nav">
             @foreach($menu as $link)
                 @if($link->id === 'home')
-                    @include('threef/entree::layouts.menu.item', ['item' => $link])
+                    @include('joesama/entree::layouts.menu.item', ['item' => $link])
                 @else
                     @if($acl->canIf($link->id) || $user->roles->contains('id', 1) )
                         @if(empty($link->childs))
-                            @include('threef/entree::layouts.menu.item', ['item' => $link])
+                            @include('joesama/entree::layouts.menu.item', ['item' => $link])
                         @else
-                            @include('threef/entree::layouts.menu.child', ['item' => $link])
+                            @include('joesama/entree::layouts.menu.child', ['item' => $link])
                         @endif
                     @endif
                 @endif

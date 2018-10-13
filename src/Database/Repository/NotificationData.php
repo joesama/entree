@@ -1,10 +1,10 @@
 <?php
 
-namespace Threef\Entree\Database\Repository;
+namespace Joesama\Entree\Database\Repository;
 
 use DB;
-use Threef\Entree\Database\Model\Notify\Notify;
-use Threef\Entree\Database\Model\Notify\NotifyUpload;
+use Joesama\Entree\Database\Model\Notify\Notify;
+use Joesama\Entree\Database\Model\Notify\NotifyUpload;
 
 /**
  * Notification Data Manager.

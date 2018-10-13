@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Http\Processor\Admin;
+namespace Joesama\Entree\Http\Processor\Admin;
 
-use Threef\Entree\Database\Repository\BaseConfigData;
-use Threef\Entree\Services\Upload\FileUploader;
+use Joesama\Entree\Database\Repository\BaseConfigData;
+use Joesama\Entree\Services\Upload\FileUploader;
 
 /**
  * BasicSetupProcessor class.
@@ -51,8 +51,8 @@ class BasicSetupProcessor
         $this->data->saveBaseConfigInfo($request);
 
         return redirect_with_message(
-            handles('threef/entree::base'),
-            trans('threef/entree::respond.data.success', ['form' => trans('threef/entree::title.config.base')]),
+            handles('joesama/entree::base'),
+            trans('joesama/entree::respond.data.success', ['form' => trans('joesama/entree::title.config.base')]),
             'success');
     }
 

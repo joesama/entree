@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Event\Listener;
+namespace Joesama\Entree\Event\Listener;
 
 use Illuminate\Auth\Events\Lockout;
-use Threef\Entree\Database\Model\UserAttempting;
+use Joesama\Entree\Database\Model\UserAttempting;
 
 class EntreeUserAttempting
 {
@@ -20,7 +20,7 @@ class EntreeUserAttempting
     /**
      * Handle User Login Event.
      *
-     * @param threef.user.login $event
+     * @param joesama.user.login $event
      *
      * @return void
      */

@@ -1,4 +1,4 @@
-@extends('threef/entree::layouts.content')
+@extends('joesama/entree::layouts.content')
 @push('content.style')
 @endpush
 @section('content')
@@ -39,28 +39,28 @@
 		    {!! Form::open(array('url' => url()->current(), 'method' => 'POST', 'class' => 'form-horizontal form-validation')) !!}
 		      <div class="form-group">
 		        <label for="fullname" class="col-sm-2 control-label">
-		          {{ trans('threef/entree::entree.notify.desc') }}<span class="text-danger">&nbsp;*</span>
+		          {{ trans('joesama/entree::entree.notify.desc') }}<span class="text-danger">&nbsp;*</span>
 		        </label>
 		        <div class="col-sm-10 col-md-10 col-xs-10 col-xl-10 col-lg-10">
-		          {!! Form::text('desc', data_get($data,'title',old('desc')) , array('required','class' => 'form-control', 'id' => 'abbr','placeholder' => trans('threef/entree::entree.notify.desc') )) !!}
+		          {!! Form::text('desc', data_get($data,'title',old('desc')) , array('required','class' => 'form-control', 'id' => 'abbr','placeholder' => trans('joesama/entree::entree.notify.desc') )) !!}
 		        </div>
 		      </div>
 		      <div class="form-group">
 		        <label for="content" class="col-sm-2 control-label">
-		          {{ trans('threef/entree::entree.notify.content') }}<span class="text-danger">&nbsp;*</span>
+		          {{ trans('joesama/entree::entree.notify.content') }}<span class="text-danger">&nbsp;*</span>
 		        </label>
 		        <div class="col-sm-10 col-md-10 col-xs-10 col-xl-10 col-lg-10">
-		          {!! Form::textarea('content', data_get($data,'content',old('content')) , array('required','class' => 'form-control', 'id' => 'name','placeholder' => trans('threef/entree::entree.notify.content') )) !!}
+		          {!! Form::textarea('content', data_get($data,'content',old('content')) , array('required','class' => 'form-control', 'id' => 'name','placeholder' => trans('joesama/entree::entree.notify.content') )) !!}
 		        </div>
 		      </div>
 		      <div class="clearfix">&nbsp;</div>
 		      <div class="form-group pull-right">
 		        <div class="col-md-12 col-xs-12 col-xl-12 col-lg-12">
-					<a href="{{ handles('threef/entree::notify/announcement') }}" class="btn btn-info flat-buttons" id="back">
-			          <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;{{  trans('threef/entree::entree.button.back')  }}
+					<a href="{{ handles('joesama/entree::notify/announcement') }}" class="btn btn-info flat-buttons" id="back">
+			          <i class="fa fa-angle-double-left" aria-hidden="true"></i>&nbsp;{{  trans('joesama/entree::entree.button.back')  }}
 			        </a>
 		          <button type="submit" class="btn btn-primary">
-		          {{  trans('threef/entree::entree.button.save')  }}
+		          {{  trans('joesama/entree::entree.button.save')  }}
 		          </button>
 		        </div>
 		      </div>
@@ -118,7 +118,7 @@ var resources = new Vue({
       data.append('_token', "{{ csrf_token() }}");
       data.append('photo', this.photo);
 
-      this.$http.post("{{ handles('threef/entree::notify/upload/' . request()->segment(3)) }}", data).then((response) => {
+      this.$http.post("{{ handles('joesama/entree::notify/upload/' . request()->segment(3)) }}", data).then((response) => {
           this.image = response.body.upload;
           this.newPhoto = "http://placehold.it/200x50";
           this.photo = false;
@@ -128,7 +128,7 @@ var resources = new Vue({
     },
     removeUpload: function (id) {
 
-      this.$http.get("{{ handles('threef/entree::notify/upload/' . request()->segment(3) .'/remove' ) }}" +'/' + id).then((response) => {
+      this.$http.get("{{ handles('joesama/entree::notify/upload/' . request()->segment(3) .'/remove' ) }}" +'/' + id).then((response) => {
           this.image = response.body.upload;
       }, (response) => {
 

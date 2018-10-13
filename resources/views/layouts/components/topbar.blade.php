@@ -1,5 +1,5 @@
 @inject('user', 'Illuminate\Contracts\Auth\Authenticatable')
-@inject('entree', 'Threef\Entree\EntreeMenu')
+@inject('entree', 'Joesama\Entree\EntreeMenu')
 <?php $menu = $entree->menu(); ?>
 <?php $acl = $entree->acl(); ?>
 @unless(is_null($user))
@@ -24,14 +24,14 @@
                         </a>
                         <ul class="dropdown-menu navbar-login">
                             <li>
-                                <a class=" text-center" href="{!! handles('threef::account/info') !!}">
+                                <a class=" text-center" href="{!! handles('joesama::account/info') !!}">
                                 <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
-                                <strong>{{ trans('threef/entree::entree.user.info') }}</strong>
+                                <strong>{{ trans('joesama/entree::entree.user.info') }}</strong>
                                 </a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="{!! handles('threef::logout') !!}" class="btn btn-primary btn-block">
+                                <a href="{!! handles('joesama::logout') !!}" class="btn btn-primary btn-block">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;
                                     {{ trans('orchestra/foundation::title.logout') }}
                                 </a>
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        @include('threef/entree::layouts.themes.topnav')
+        @include('joesama/entree::layouts.themes.topnav')
     </div>
 </nav>
 @endunless

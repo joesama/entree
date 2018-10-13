@@ -1,14 +1,15 @@
 <?php
 
-namespace Threef\Entree\Http\Processor;
+namespace Joesama\Entree\Http\Processor;
 
-use Orchestra\Foundation\Processor\User;
-use Threef\Entree\Database\Model\UserProfile as Profile;
-use Threef\Entree\Database\Repository\UserRepo;
-use Threef\Entree\Http\Validation\Profile as Validator;
-use Threef\Entree\Services\DataGrid\VueDatagrid;
-use Threef\Entree\Services\Form\UserProfileForm;
-use Threef\Entree\Services\Upload\FileUploader;
+use Orchestra\Foundation\Processors\User;
+use Joesama\Entree\Database\Model\UserProfile as Profile;
+use Joesama\Entree\Database\Repository\UserRepo;
+use Joesama\Entree\Http\Validation\Profile as Validator;
+use Joesama\Entree\Services\DataGrid\VueDatagrid;
+use Joesama\Entree\Services\Form\UserProfileForm;
+use Joesama\Entree\Services\Upload\FileUploader;
+use VueGrid;
 
 /**
  * UserManager class.
@@ -40,30 +41,30 @@ class UserManager extends User
     public function userList($request)
     {
         $columns = [
-            ['field' => 'fullname', 'title' => trans('threef/entree::entree.user.grid.fullname'), 'style' => 'text-left'],
-            ['field' => 'username', 'title' => trans('threef/entree::entree.user.grid.username'), 'style' => 'text-left'],
-            ['field' => 'email', 'title' => trans('threef/entree::entree.user.grid.email'), 'style' => 'text-left'],
-            ['field' => 'roles:name', 'title' => trans('threef/entree::entree.user.grid.role'), 'style' => 'text-left multi'],
-            ['field' => 'status', 'title' => trans('threef/entree::entree.user.grid.status'), 'style' => 'text-center'],
-            ['field' => 'lastlogin', 'title' => trans('threef/entree::entree.user.grid.lastlogin'), 'style' => 'text-left date'],
+            ['field' => 'fullname', 'title' => trans('joesama/entree::entree.user.grid.fullname'), 'style' => 'text-left'],
+            ['field' => 'username', 'title' => trans('joesama/entree::entree.user.grid.username'), 'style' => 'text-left'],
+            ['field' => 'email', 'title' => trans('joesama/entree::entree.user.grid.email'), 'style' => 'text-left'],
+            ['field' => 'roles:name', 'title' => trans('joesama/entree::entree.user.grid.role'), 'style' => 'text-left multi'],
+            ['field' => 'status', 'title' => trans('joesama/entree::entree.user.grid.status'), 'style' => 'text-center'],
+            ['field' => 'lastlogin', 'title' => trans('joesama/entree::entree.user.grid.lastlogin'), 'style' => 'text-left date'],
         ];
 
-        $grid = new VueDatagrid();
+        $grid = new VueGrid();
         $grid->setColumns($columns);
         $grid->setModel($this->dataList($request));
-        $grid->apiUrl(handles('threef/entree::user/data'));
-        $grid->add(handles('threef/entree::user/new'), trans('threef/entree::entree.user.action.new'));
+        $grid->apiUrl(handles('joesama/entree::user/data'));
+        $grid->add(handles('joesama/entree::user/new'), trans('joesama/entree::entree.user.action.new'));
         $grid->action([
-                ['action' => trans('threef/entree::datagrid.buttons.edit'),
-                  'url'   => handles('threef/entree::user'),
+                ['action' => trans('joesama/entree::datagrid.buttons.edit'),
+                  'url'   => handles('joesama/entree::user'),
                   'icons' => 'fa fa-pencil',
                   'key'   => 'id',  ],
-                ['action' => trans('threef/entree::datagrid.buttons.reset-pwd'),
-                  'url'   => handles('threef/entree::user/reset'),
+                ['action' => trans('joesama/entree::datagrid.buttons.reset-pwd'),
+                  'url'   => handles('joesama/entree::user/reset'),
                   'icons' => 'fa fa-key',
                   'key'   => 'id',   ],
-                ['delete' => trans('threef/entree::datagrid.buttons.delete'),
-                  'url'   => handles('threef/entree::user/delete/'),
+                ['delete' => trans('joesama/entree::datagrid.buttons.delete'),
+                  'url'   => handles('joesama/entree::user/delete/'),
                   'icons' => 'fa fa-trash',
                   'key'   => 'id',  ],
             ], true);
@@ -94,8 +95,8 @@ class UserManager extends User
     {
         $user = $this->repo->userInfo($request->segment(2));
         $roles = $this->repo->userRoleArray();
-        $validation = config('threef/entree::entree.validation');
-        $username = config('threef/entree::entree.username');
+        $validation = config('joesama/entree::entree.validation');
+        $username = config('joesama/entree::entree.username');
 
         return compact('user', 'roles', 'validation', 'username');
     }
@@ -125,8 +126,8 @@ class UserManager extends User
         if ($validation->fails()):
 
             return redirect_with_message(
-                handles('threef/entree::user/new'),
-                trans('threef/entree::respond.data.failed', ['form' => trans('threef/entree::entree.user.new')]),
+                handles('joesama/entree::user/new'),
+                trans('joesama/entree::respond.data.failed', ['form' => trans('joesama/entree::entree.user.new')]),
                 'danger')
             ->withInput()
             ->withErrors($validation->getMessageBag());
@@ -136,17 +137,17 @@ class UserManager extends User
         $input = $this->delegateUserInfo($request);
         $user = $this->repo->createUserData($input);
 
-        if (config('threef/entree::entree.validation')):
+        if (config('joesama/entree::entree.validation')):
 
-            event('threef.email.user: new', [$user]); else:
+            event('joesama.email.user: new', [$user]); else:
 
             $user->sendWelcomeNotification(data_get($input, 'user.password'));
 
         endif;
 
         return redirect_with_message(
-                handles('threef/entree::user'),
-                trans('threef/entree::respond.data.success', ['form' => trans('threef/entree::entree.user.new')]),
+                handles('joesama/entree::user'),
+                trans('joesama/entree::respond.data.success', ['form' => trans('joesama/entree::entree.user.new')]),
                 'success');
     }
 
@@ -164,7 +165,7 @@ class UserManager extends User
 
             return redirect_with_message(
                 $request->url(),
-                trans('threef/entree::respond.register.failed', ['form' => trans('threef/entree::entree.user.new')]),
+                trans('joesama/entree::respond.register.failed', ['form' => trans('joesama/entree::entree.user.new')]),
                 'danger')
             ->withInput()
             ->withErrors($validation->getMessageBag());
@@ -172,21 +173,21 @@ class UserManager extends User
         endif;
 
         $input = $this->delegateUserInfo($request);
-        $input['user']['roles'] = app(\Threef\Entree\Database\Model\Role::class)->member()->id;
+        $input['user']['roles'] = app(\Joesama\Entree\Database\Model\Role::class)->member()->id;
 
         $user = $this->repo->createUserData($input);
 
-        if (config('threef/entree::entree.validation')):
+        if (config('joesama/entree::entree.validation')):
 
-            event('threef.email.user: new', [$user]); else:
+            event('joesama.email.user: new', [$user]); else:
 
             $user->sendWelcomeNotification(data_get($input, 'user.password'));
 
         endif;
 
         return redirect_with_message(
-                handles('threef/entree::/'),
-                trans('threef/entree::respond.register.success', ['form' => trans('threef/entree::entree.user.new')]),
+                handles('joesama/entree::/'),
+                trans('joesama/entree::respond.register.success', ['form' => trans('joesama/entree::entree.user.new')]),
                 'success');
     }
 
@@ -224,8 +225,8 @@ class UserManager extends User
         if ($validation->fails()):
 
             return redirect_with_message(
-                handles('threef/entree::user/'.$request->get('id')),
-                trans('threef/entree::respond.data.failed', ['form' => trans('threef/entree::entree.user.edit')]),
+                handles('joesama/entree::user/'.$request->get('id')),
+                trans('joesama/entree::respond.data.failed', ['form' => trans('joesama/entree::entree.user.edit')]),
                 'danger')
             ->withInput()
             ->withErrors($validation->getMessageBag());
@@ -237,8 +238,8 @@ class UserManager extends User
         $user = $this->repo->updateUserData($input);
 
         return redirect_with_message(
-                handles('threef/entree::user'),
-                trans('threef/entree::respond.data.success', ['form' => trans('threef/entree::entree.user.edit')]),
+                handles('joesama/entree::user'),
+                trans('joesama/entree::respond.data.success', ['form' => trans('joesama/entree::entree.user.edit')]),
                 'success');
     }
 
@@ -280,9 +281,9 @@ class UserManager extends User
         $user = $this->repo->deactivate($id);
 
         return redirect_with_message(
-                handles('threef/entree::user'),
-                trans('threef/entree::respond.data.deleted', [
-                    'form'   => trans('threef/entree::entree.user.delete'),
+                handles('joesama/entree::user'),
+                trans('joesama/entree::respond.data.deleted', [
+                    'form'   => trans('joesama/entree::entree.user.delete'),
                     'person' => title_case(data_get($user, 'fullname')), ]),
                 'success');
     }
@@ -305,7 +306,7 @@ class UserManager extends User
 
         $user = $this->repo->validateUser($token, $email);
 
-        return view('threef/entree::entree.auth.validation', compact('user'));
+        return view('joesama/entree::entree.auth.validation', compact('user'));
     }
 
     /**
@@ -322,8 +323,8 @@ class UserManager extends User
         $this->repo->updateUserData($input);
 
         return redirect_with_message(
-                handles('threef/entree::account/info'),
-                trans('threef/entree::respond.data.success', ['form' => trans('threef/entree::entree.user.edit')]),
+                handles('joesama/entree::account/info'),
+                trans('joesama/entree::respond.data.success', ['form' => trans('joesama/entree::entree.user.edit')]),
                 'success');
     }
 } // END class UserManager

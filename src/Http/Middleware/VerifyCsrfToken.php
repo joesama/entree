@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Middleware;
+namespace Joesama\Entree\Http\Middleware;
 
 use Orchestra\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
@@ -24,9 +24,9 @@ class VerifyCsrfToken extends BaseVerifier
 
     public function handle($request, \Closure $next)
     {
-        event('threef.system.trail', [$request->getUri(), $request->getMethod()]);
+        event('joesama.system.trail', [$request->getUri(), $request->getMethod()]);
 
-        $sessionLang = 'lang'.str_replace('.', '', app(\Threef\Entree\Entity\IpOrigin::class)->ipOrigin());
+        $sessionLang = 'lang'.str_replace('.', '', app(\Joesama\Entree\Entity\IpOrigin::class)->ipOrigin());
 
         if (!\Session::has($sessionLang)) {
             \Session::put($sessionLang, $request->getPreferredLanguage($this->languages));

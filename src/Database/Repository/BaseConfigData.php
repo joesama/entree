@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Database\Repository;
+namespace Joesama\Entree\Database\Repository;
 
 use Orchestra\Contracts\Memory\Provider;
 
@@ -24,7 +24,7 @@ class BaseConfigData
      */
     protected function defaultApplicationAbbr()
     {
-        return memorize('threef.'.$this->locale.'.abbr');
+        return memorize('joesama.'.$this->locale.'.abbr');
     }
 
     /**
@@ -34,7 +34,7 @@ class BaseConfigData
      */
     protected function defaultContact()
     {
-        return memorize('threef.'.$this->locale.'.contact');
+        return memorize('joesama.'.$this->locale.'.contact');
     }
 
     /**
@@ -44,7 +44,7 @@ class BaseConfigData
      */
     protected function defaultApplicationName()
     {
-        return memorize('threef.'.$this->locale.'.name', memorize('site.name'));
+        return memorize('joesama.'.$this->locale.'.name', memorize('site.name'));
     }
 
     /**
@@ -54,7 +54,7 @@ class BaseConfigData
      */
     protected function defaultApplicationSummary()
     {
-        return memorize('threef.'.$this->locale.'.description', memorize('site.description'));
+        return memorize('joesama.'.$this->locale.'.description', memorize('site.description'));
     }
 
     /**
@@ -64,7 +64,7 @@ class BaseConfigData
      */
     protected function defaultApplicationLogo()
     {
-        return memorize('threef.logo');
+        return memorize('joesama.logo');
     }
 
     /**
@@ -74,7 +74,7 @@ class BaseConfigData
      */
     protected function defaultApplicationFavicon()
     {
-        return memorize('threef.favicon');
+        return memorize('joesama.favicon');
     }
 
     /**
@@ -84,7 +84,7 @@ class BaseConfigData
      */
     protected function defaultApplicationFooter()
     {
-        return memorize('threef.'.$this->locale.'.footer', 'Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '.date('Y'));
+        return memorize('joesama.'.$this->locale.'.footer', 'Best browsing experience with Firefox 48 , Chrome 52 , Windows Edge and Safari 9 with resolution 1024x768. All Right Reserved © '.date('Y'));
     }
 
     /**
@@ -109,13 +109,13 @@ class BaseConfigData
     protected function saveData($request)
     {
         $memory = $this->memory;
-        $memory->put('threef.'.$this->locale.'.name', $request->get('name'));
-        $memory->put('threef.'.$this->locale.'.description', $request->get('summary'));
-        $memory->put('threef.favicon', $request->get('fav'));
-        $memory->put('threef.logo', $request->get('logo'));
-        $memory->put('threef.'.$this->locale.'.footer', $request->get('footer'));
-        $memory->put('threef.'.$this->locale.'.contact', $request->get('contact'));
-        $memory->put('threef.'.$this->locale.'.abbr', $request->get('abbr'));
+        $memory->put('joesama.'.$this->locale.'.name', $request->get('name'));
+        $memory->put('joesama.'.$this->locale.'.description', $request->get('summary'));
+        $memory->put('joesama.favicon', $request->get('fav'));
+        $memory->put('joesama.logo', $request->get('logo'));
+        $memory->put('joesama.'.$this->locale.'.footer', $request->get('footer'));
+        $memory->put('joesama.'.$this->locale.'.contact', $request->get('contact'));
+        $memory->put('joesama.'.$this->locale.'.abbr', $request->get('abbr'));
     }
 
     /**
@@ -128,7 +128,7 @@ class BaseConfigData
     public function saveFavicon($input, $path)
     {
         $memory = $this->memory;
-        $memory->put('threef.favicon', $path);
+        $memory->put('joesama.favicon', $path);
     }
 
     /**
@@ -141,7 +141,7 @@ class BaseConfigData
     public function saveLogo($input, $path)
     {
         $memory = $this->memory;
-        $memory->put('threef.logo', $path);
+        $memory->put('joesama.logo', $path);
     }
 
     /**

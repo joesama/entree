@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Auth;
+namespace Joesama\Entree\Http\Controller\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -11,9 +11,9 @@ use Orchestra\Contracts\Auth\Command\ThrottlesLogins as ThrottlesCommand;
 use Orchestra\Contracts\Auth\Listener\AuthenticateUser as AuthenticateListener;
 use Orchestra\Contracts\Auth\Listener\DeauthenticateUser as DeauthenticateListener;
 use Orchestra\Contracts\Auth\Listener\ThrottlesLogins as ThrottlesListener;
-use Orchestra\Foundation\Processor\AuthenticateUser;
-use Orchestra\Foundation\Processor\DeauthenticateUser;
-use Threef\Entree\Http\Processor\UserManager;
+use Orchestra\Foundation\Processors\AuthenticateUser;
+use Orchestra\Foundation\Processors\DeauthenticateUser;
+use Joesama\Entree\Http\Processor\UserManager;
 
 class Access extends Controller implements AuthenticateListener, DeauthenticateListener, ThrottlesListener
 {
@@ -52,7 +52,7 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
      **/
     public function home()
     {
-        return view('threef/entree::entree.home');
+        return view('joesama/entree::entree.home');
     }
 
     /**
@@ -76,7 +76,7 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
      */
     public function userEmailValidationRespond($messages)
     {
-        return view('threef/entree::entree.auth.validation', compact('messages'));
+        return view('joesama/entree::entree.auth.validation', compact('messages'));
     }
 
     /**
@@ -88,7 +88,7 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
      */
     public function userLoginHasFailedValidation($errors)
     {
-        return $this->redirectWithErrors(handles('threef/entree::login'), $errors);
+        return $this->redirectWithErrors(handles('joesama/entree::login'), $errors);
     }
 
     /**
@@ -100,9 +100,9 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
      */
     public function userLoginHasFailedAuthentication(array $input)
     {
-        $message = trans('threef/entree::respond.respond.login.fail-auth');
+        $message = trans('joesama/entree::respond.respond.login.fail-auth');
 
-        return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'error')->withInput();
+        return $this->redirectWithMessage(handles('joesama/entree::login'), $message, 'error')->withInput();
     }
 
     /**
@@ -117,7 +117,7 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
     {
         $message = trans('auth.throttle', ['seconds' => $seconds]);
 
-        return $this->redirectWithMessage(handles('threef/entree::login'), $message, 'danger')->withInput();
+        return $this->redirectWithMessage(handles('joesama/entree::login'), $message, 'danger')->withInput();
     }
 
     /**
@@ -131,9 +131,9 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
     {
         messages('success', trans('orchestra/foundation::response.credential.logged-in'));
 
-        event('threef.user.login', [$user]);
+        event('joesama.user.login', [$user]);
 
-        return Redirect::intended(handles('threef/entree::home'));
+        return Redirect::intended(handles('joesama/entree::home'));
     }
 
     /**
@@ -145,6 +145,6 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
     {
         messages('success', trans('orchestra/foundation::response.credential.logged-out'));
 
-        return Redirect::intended(handles(Input::get('redirect', 'threef/entree::login')));
+        return Redirect::intended(handles(Input::get('redirect', 'joesama/entree::login')));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Facades;
+namespace Joesama\Entree\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

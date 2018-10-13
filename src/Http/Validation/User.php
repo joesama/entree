@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Validation;
+namespace Joesama\Entree\Http\Validation;
 
 use Orchestra\Foundation\Validation\AuthenticateUser;
 

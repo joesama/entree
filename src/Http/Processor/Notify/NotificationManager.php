@@ -1,11 +1,11 @@
 <?php
 
-namespace Threef\Entree\Http\Processor\Notify;
+namespace Joesama\Entree\Http\Processor\Notify;
 
 use File;
-use Threef\Entree\Database\Repository\NotificationData;
-use Threef\Entree\Services\DataGrid\VueDatagrid;
-use Threef\Entree\Services\Upload\FileUploader;
+use Joesama\Entree\Database\Repository\NotificationData;
+use VueGrid;
+use Joesama\Entree\Services\Upload\FileUploader;
 
 /**
  * Manage All Notification Process.
@@ -29,26 +29,26 @@ class NotificationManager
     public function listNotification($request)
     {
         $columns = [
-            ['field' => 'title', 'title' => trans('threef/entree::entree.notify.desc'), 'style' => 'text-left'],
-            ['field' => 'active', 'title' => trans('threef/entree::entree.notify.active'), 'style' => 'text-center', 'iconic' => true],
+            ['field' => 'title', 'title' => trans('joesama/entree::entree.notify.desc'), 'style' => 'text-left'],
+            ['field' => 'active', 'title' => trans('joesama/entree::entree.notify.active'), 'style' => 'text-center', 'iconic' => true],
         ];
 
-        $grid = new VueDatagrid();
+        $grid = new VueGrid();
         $grid->setColumns($columns);
         $grid->setModel($this->getNotifyData($request));
-        $grid->add(handles('threef/entree::notify/form/'.$request->segment(3)), trans('threef/entree::entree.notify.title'));
-        $grid->apiUrl(handles('threef/entree::notify/data'));
+        $grid->add(handles('joesama/entree::notify/form/'.$request->segment(3)), trans('joesama/entree::entree.notify.title'));
+        $grid->apiUrl(handles('joesama/entree::notify/data'));
         $grid->action([
-                ['action' => trans('threef/entree::datagrid.buttons.edit'),
-                  'url'   => handles('threef/entree::notify/form/'),
+                ['action' => trans('joesama/entree::datagrid.buttons.edit'),
+                  'url'   => handles('joesama/entree::notify/form/'),
                   'icons' => 'fa fa-pencil',
                   'key'   => 'id',  ],
-                // [ 'action' => trans('threef/entree::datagrid.buttons.reset-pwd') ,
-                //   'url' => handles('threef/entree::user/reset'),
+                // [ 'action' => trans('joesama/entree::datagrid.buttons.reset-pwd') ,
+                //   'url' => handles('joesama/entree::user/reset'),
                 //   'icons' => 'fa fa-key',
                 //   'key' => 'id'   ],
-                // [ 'delete' => trans('threef/entree::datagrid.buttons.delete') ,
-                //   'url' => handles('threef/entree::user/delete/'),
+                // [ 'delete' => trans('joesama/entree::datagrid.buttons.delete') ,
+                //   'url' => handles('joesama/entree::user/delete/'),
                 //   'icons' => 'fa fa-trash',
                 //   'key' => 'id'  ]
             ], true);

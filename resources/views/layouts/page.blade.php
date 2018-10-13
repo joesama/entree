@@ -1,18 +1,20 @@
-@extends('threef/entree::layouts.main')
-@push('threef.style')
+@extends('joesama/entree::layouts.main')
+@push('joesama.style')
 <style type="text/css">
 
 </style>
 @stack('pages.style')
+@stack('vuegrid-css')
 @endpush
 @section('body')
 <div class="container-fluid">
 	@yield('page')
 </div>
 @endsection
-@push('threef.footer')
+@push('joesama.footer')
 <script type="text/javascript">
 
 </script>
 @stack('pages.script')
+@stack('vuegrid-js')
 @endpush

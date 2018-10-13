@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Event\Listener;
+namespace Joesama\Entree\Event\Listener;
 
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Database\Migrations\Migrator;

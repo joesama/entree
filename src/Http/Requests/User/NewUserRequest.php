@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Requests\User;
+namespace Joesama\Entree\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 

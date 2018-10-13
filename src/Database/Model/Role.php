@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Database\Model;
+namespace Joesama\Entree\Database\Model;
 
 use Orchestra\Model\Role as OrchestraRole;
 

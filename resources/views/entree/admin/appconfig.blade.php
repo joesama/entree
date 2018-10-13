@@ -1,4 +1,4 @@
-@extends('threef/entree::layouts.content')
+@extends('joesama/entree::layouts.content')
 @push('content.style')
 
 @endpush
@@ -9,42 +9,42 @@
     {!! Form::open(array('url' => url()->current(), 'method' => 'POST', 'class' => 'form-horizontal form-validation')) !!}
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.base.abbr') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.base.abbr') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::text('abbr', data_get($data,'abbr',old('abbr')) , array('required','class' => 'form-control', 'id' => 'abbr','placeholder' => trans('threef/entree::entree.base.abbr') )) !!}
+          {!! Form::text('abbr', data_get($data,'abbr',old('abbr')) , array('required','class' => 'form-control', 'id' => 'abbr','placeholder' => trans('joesama/entree::entree.base.abbr') )) !!}
         </div>
       </div>
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.base.name') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.base.name') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::text('name', data_get($data,'name',old('name')) , array('required','class' => 'form-control', 'id' => 'name','placeholder' => trans('threef/entree::entree.base.name') )) !!}
+          {!! Form::text('name', data_get($data,'name',old('name')) , array('required','class' => 'form-control', 'id' => 'name','placeholder' => trans('joesama/entree::entree.base.name') )) !!}
         </div>
       </div>
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.base.summary') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.base.summary') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::textarea('summary', data_get($data,'summary',old('summary')) , array('required','class' => 'form-control', 'id' => 'summary','placeholder' => trans('threef/entree::entree.base.summary') )) !!}
+          {!! Form::textarea('summary', data_get($data,'summary',old('summary')) , array('required','class' => 'form-control', 'id' => 'summary','placeholder' => trans('joesama/entree::entree.base.summary') )) !!}
         </div>
       </div>
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.base.contact') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.base.contact') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::textarea('contact', data_get($data,'contact',old('contact')) , array('required','class' => 'form-control', 'id' => 'contact','placeholder' => trans('threef/entree::entree.base.contact') )) !!}
+          {!! Form::textarea('contact', data_get($data,'contact',old('contact')) , array('required','class' => 'form-control', 'id' => 'contact','placeholder' => trans('joesama/entree::entree.base.contact') )) !!}
         </div>
       </div>
       <div class="form-group">
         <label for="fullname" class="col-sm-2 control-label">
-          {{ trans('threef/entree::entree.base.footer') }}<span class="text-danger">&nbsp;*</span>
+          {{ trans('joesama/entree::entree.base.footer') }}<span class="text-danger">&nbsp;*</span>
         </label>
         <div class="col-sm-10">
-          {!! Form::textarea('footer', data_get($data,'footer',old('footer')) , array('required','class' => 'form-control', 'id' => 'footer','placeholder' => trans('threef/entree::entree.base.footer') )) !!}
+          {!! Form::textarea('footer', data_get($data,'footer',old('footer')) , array('required','class' => 'form-control', 'id' => 'footer','placeholder' => trans('joesama/entree::entree.base.footer') )) !!}
         </div>
       </div>
       {!! Form::hidden('logo', data_get($data,'logo') ) !!}
@@ -52,7 +52,7 @@
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10 text-right">
           <button type="submit" class="btn btn-primary">
-          {{  trans('threef/entree::entree.button.save')  }}
+          {{  trans('joesama/entree::entree.button.save')  }}
           </button>
         </div>
       </div>
@@ -66,7 +66,7 @@
       <div class="col-md-12">
       <center>
         <label for="fullname" class="control-label">
-        {{ trans('threef/entree::entree.base.favicon') }}
+        {{ trans('joesama/entree::entree.base.favicon') }}
         </label>
       </center>
       <div class="row">
@@ -112,7 +112,7 @@
       <div class="col-md-12">
       <center>
         <label for="fullname" class="control-label">
-        {{ trans('threef/entree::entree.base.logo') }}
+        {{ trans('joesama/entree::entree.base.logo') }}
         </label>
       </center>
       <div class="row">
@@ -232,7 +232,7 @@ var resources = new Vue({
       data.append('_token', "{{ csrf_token() }}");
       data.append('fav', this.photo);
 
-      this.$http.post("{{ handles('threef/entree::favicon') }}", data).then((response) => {
+      this.$http.post("{{ handles('joesama/entree::favicon') }}", data).then((response) => {
           $( "input[name='fav']" ).val(response.body.path);
           this.newFav = true;
 
@@ -247,7 +247,7 @@ var resources = new Vue({
       data.append('id', this.profileID);
       data.append('logo', this.photo);
 
-      this.$http.post("{{ handles('threef/entree::logo') }}", data).then((response) => {
+      this.$http.post("{{ handles('joesama/entree::logo') }}", data).then((response) => {
           $( "input[name='logo']" ).val(response.body.path);
           this.newPhoto = true;
 

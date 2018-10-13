@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree;
+namespace Joesama\Entree;
 
 /**
  * undocumented class.

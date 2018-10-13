@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Event\Listener\Notifications;
+namespace Joesama\Entree\Event\Listener\Notifications;
 
-use Threef\Entree\Database\Model\User;
-use Threef\Entree\Http\Notifications\EntreeMailer;
+use Joesama\Entree\Database\Model\User;
+use Joesama\Entree\Http\Notifications\EntreeMailer;
 
 class NewUserEmail
 {
@@ -19,7 +19,7 @@ class NewUserEmail
     /**
      * Handle the event.
      *
-     * @param Threef\Entree\Database\Model\User $user
+     * @param Joesama\Entree\Database\Model\User $user
      *
      * @return void
      */
@@ -30,17 +30,17 @@ class NewUserEmail
 
         $message = collect([]);
         $message->put('level', 'info');
-        $message->put('title', trans('threef/entree::mail.validation'));
+        $message->put('title', trans('joesama/entree::mail.validation'));
         $message->put('content', collect([
-         trans('threef/entree::mail.thank'),
-         trans('threef/entree::mail.proceed'),
+         trans('joesama/entree::mail.thank'),
+         trans('joesama/entree::mail.proceed'),
         ]));
 
         $message->put('footer', collect([
-         trans('threef/entree::mail.click'),
+         trans('joesama/entree::mail.click'),
         ]));
 
-        $message->put('action', collect([trans('threef/entree::mail.validation') => handles('threef/entree::validate/'.$token.'/?email='.$email)]));
+        $message->put('action', collect([trans('joesama/entree::mail.validation') => handles('joesama/entree::validate/'.$token.'/?email='.$email)]));
 
         $user->notify(new EntreeMailer($message));
     }

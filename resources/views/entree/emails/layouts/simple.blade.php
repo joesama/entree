@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-@include('threef/entree::entree.emails.layouts.styles.basic')
+@include('joesama/entree::entree.emails.layouts.styles.basic')
 </head>
  
 <body bgcolor="#FFFFFF">
@@ -68,6 +68,6 @@
 		</td>
 	</tr>
 </table><!-- /BODY -->
-@include('threef/entree::entree.emails.layouts.footer')
+@include('joesama/entree::entree.emails.layouts.footer')
 </body>
 </html>

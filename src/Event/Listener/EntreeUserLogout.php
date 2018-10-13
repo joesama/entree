@@ -1,10 +1,10 @@
 <?php
 
-namespace Threef\Entree\Event\Listener;
+namespace Joesama\Entree\Event\Listener;
 
 use Illuminate\Auth\Events\Logout;
-use Threef\Entree\Database\Model\User;
-use Threef\Entree\Database\Model\UserTrails;
+use Joesama\Entree\Database\Model\User;
+use Joesama\Entree\Database\Model\UserTrails;
 
 class EntreeUserLogout
 {
@@ -23,7 +23,7 @@ class EntreeUserLogout
     /**
      * Handle User Login Event.
      *
-     * @param threef.user.login $event
+     * @param joesama.user.login $event
      *
      * @return void
      */

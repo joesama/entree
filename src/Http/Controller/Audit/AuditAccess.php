@@ -1,10 +1,10 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Audit;
+namespace Joesama\Entree\Http\Controller\Audit;
 
 use Illuminate\Http\Request;
-use Threef\Entree\Http\Controller\Controller;
-use Threef\Entree\Http\Processor\Audit\AuditAccessManager;
+use Joesama\Entree\Http\Controller\Controller;
+use Joesama\Entree\Http\Processor\Audit\AuditAccessManager;
 
 class AuditAccess extends Controller
 {
@@ -20,7 +20,7 @@ class AuditAccess extends Controller
     {
         $table = $this->manager->listAuditAccess($request);
 
-        return view('threef/entree::entree.datagrid.list', compact('table'));
+        return view('joesama/entree::entree.datagrid.list', compact('table'));
     }
 
     /**

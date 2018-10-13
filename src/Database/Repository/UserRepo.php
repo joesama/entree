@@ -1,11 +1,11 @@
 <?php
 
-namespace Threef\Entree\Database\Repository;
+namespace Joesama\Entree\Database\Repository;
 
 use DB;
-use Threef\Entree\Database\Model\Role;
-use Threef\Entree\Database\Model\User;
-use Threef\Entree\Database\Model\UserProfile;
+use Joesama\Entree\Database\Model\Role;
+use Joesama\Entree\Database\Model\User;
+use Joesama\Entree\Database\Model\UserProfile;
 
 /**
  * User Data Manager.
@@ -60,7 +60,7 @@ class UserRepo
      **/
     public function userRoleArray()
     {
-        return app(\Threef\Entree\Database\Model\Role::class)
+        return app(\Joesama\Entree\Database\Model\Role::class)
             ->whereNotIn('roles.id', [app(Role::class)->admin()->id])
             ->orderBy('name')
             ->pluck('name', 'id');
@@ -117,10 +117,10 @@ class UserRepo
         $roles = data_get($input, 'user')->get('roles');
         $roles = (is_array($roles)) ? $roles : [$roles];
 
-        $user->status = config('threef/entree::entree.validation') ? User::UNVERIFIED : User::VERIFIED;
+        $user->status = config('joesama/entree::entree.validation') ? User::UNVERIFIED : User::VERIFIED;
 
-        if (config('threef/entree::entree.username', 'email') == 'email'):
-        $user->username = data_get($input, 'user')->get(config('threef/entree::entree.username', 'email'));
+        if (config('joesama/entree::entree.username', 'email') == 'email'):
+        $user->username = data_get($input, 'user')->get(config('joesama/entree::entree.username', 'email'));
         endif;
 
         $profileTable = data_get($input, 'profile');
@@ -151,7 +151,7 @@ class UserRepo
     /**
      * Update User Information.
      *
-     * @return Threef\Entree\Database\Model\User
+     * @return Joesama\Entree\Database\Model\User
      *
      **/
     public function updateUserData($input)
@@ -169,8 +169,8 @@ class UserRepo
         $roles = data_get($input, 'user')->get('roles');
         // $roles = (is_array($roles)) ? $roles : $roles;
 
-        if (config('threef/entree::entree.username', 'email') == 'email'):
-        $user->username = data_get($input, 'user')->get(config('threef/entree::entree.username', 'email'));
+        if (config('joesama/entree::entree.username', 'email') == 'email'):
+        $user->username = data_get($input, 'user')->get(config('joesama/entree::entree.username', 'email'));
         endif;
 
         $profileTable = data_get($input, 'profile');

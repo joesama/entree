@@ -1,11 +1,11 @@
 <?php
 
-namespace Threef\Entree\Http\Processor;
+namespace Joesama\Entree\Http\Processor;
 
 use Illuminate\Contracts\Auth\PasswordBroker as Password;
 use Orchestra\Foundation\Processor\Account\PasswordBroker;
-use Threef\Entree\Database\Model\User;
-use Threef\Entree\Http\Validation\User as Validator;
+use Joesama\Entree\Database\Model\User;
+use Joesama\Entree\Http\Validation\User as Validator;
 
 /**
  * undocumented class.
@@ -66,12 +66,12 @@ class ResetPasswordManager
      **/
     public function resetByAdmin($control, $id)
     {
-        $user = collect(User::find($id)->toArray())->only(config('threef/entree::entree.username', 'email'));
+        $user = collect(User::find($id)->toArray())->only(config('joesama/entree::entree.username', 'email'));
 
         $site = app('orchestra.platform.memory')->get('site.name', '3FRSB : PSS');
 
         $response = $this->password->sendResetLink($user->toArray(), function ($mail) use ($site) {
-            $mail->subject(trans('threef/entree::emails.password', ['site' => $site]));
+            $mail->subject(trans('joesama/entree::emails.password', ['site' => $site]));
         });
 
         return $control->resetByAdminLinkSent($response);

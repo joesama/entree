@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Http\Controller;
+namespace Joesama\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
-use Threef\Entree\Http\Processor\MenuAccessManager;
+use Joesama\Entree\Http\Processor\MenuAccessManager;
 
 class MenuAccess extends Controller
 {
@@ -41,8 +41,8 @@ class MenuAccess extends Controller
      **/
     public function viewMain($data)
     {
-        set_meta('page-header', trans('threef/entree::title.config.menu'));
+        set_meta('page-header', trans('joesama/entree::title.config.menu'));
 
-        return view('threef/entree::entree.menu.menu', $data);
+        return view('joesama/entree::entree.menu.menu', $data);
     }
 }

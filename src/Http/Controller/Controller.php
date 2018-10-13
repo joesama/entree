@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Controller;
+namespace Joesama\Entree\Http\Controller;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

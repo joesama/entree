@@ -1,11 +1,11 @@
-@extends('threef/entree::layouts.content')
+@extends('joesama/entree::layouts.content')
 @push('pages.style')
 <style type="text/css">
 
 </style>
 @endpush
 @section('content')
-{!! Form::open(['url' => handles('threef/entree::menu'), 'action' => 'POST', 'class' => 'form-horizontal']) !!}
+{!! Form::open(['url' => handles('joesama/entree::menu'), 'action' => 'POST', 'class' => 'form-horizontal']) !!}
 <div class="container-fluid">
 <div class="row">
 	<div class="col-md-12">
@@ -24,9 +24,9 @@
 		<div class="panel-collapse collapse in" role="tabpanel" id="{!! $links->id !!}" aria-labelledby="collapseListGroupHeading1" aria-expanded="true" style="padding:5px;padding-left: 2px;padding-right: 3px"> 
 
             @if(count($links->childs) > 0)
-            	@include('threef/entree::entree.menu.item',['links' => $links->childs,'roles' => $roles, 'main' => $links->id])
+            	@include('joesama/entree::entree.menu.item',['links' => $links->childs,'roles' => $roles, 'main' => $links->id])
             @else
-            	@include('threef/entree::entree.menu.role',['id' => $links->id,'roles' => $roles, 'main' => $links->id])
+            	@include('joesama/entree::entree.menu.role',['id' => $links->id,'roles' => $roles, 'main' => $links->id])
 			@endif
 		</div> 
 	</div> 
@@ -40,7 +40,7 @@
 <hr>
 <div class="row">
 	<div class="col-md-12">
-		<button class="btn btn-sm btn-primary pull-right" type="submit">{{ trans('threef/entree::entree.button.save') }}</button>
+		<button class="btn btn-sm btn-primary pull-right" type="submit">{{ trans('joesama/entree::entree.button.save') }}</button>
 	</div>
 </div>
 </div>

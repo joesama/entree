@@ -1,10 +1,10 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Account;
+namespace Joesama\Entree\Http\Controller\Account;
 
 use Illuminate\Http\Request;
-use Threef\Entree\Http\Controller\Controller;
-use Threef\Entree\Http\Processor\UserManager;
+use Joesama\Entree\Http\Controller\Controller;
+use Joesama\Entree\Http\Processor\UserManager;
 
 class UserInfo extends Controller
 {
@@ -20,11 +20,11 @@ class UserInfo extends Controller
      **/
     public function getIndex()
     {
-        set_meta('title', trans('threef/entree::title.account.info'));
+        set_meta('title', trans('joesama/entree::title.account.info'));
 
         $user = \Auth::user();
 
-        return view('threef/entree::entree.account.info', compact('user'));
+        return view('joesama/entree::entree.account.info', compact('user'));
     }
 
     /**

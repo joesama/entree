@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Services\Form;
+namespace Joesama\Entree\Services\Form;
 
 use Illuminate\Http\Request;
-use Threef\Entree\Database\Model\UserProfile;
+use Joesama\Entree\Database\Model\UserProfile;
 
 /**
  * User Profile Form.

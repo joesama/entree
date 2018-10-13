@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Notifications;
+namespace Joesama\Entree\Http\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\SlackMessage;

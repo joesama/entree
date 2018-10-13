@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Services\Traits;
+namespace Joesama\Entree\Services\Traits;
 
 /**
  * Trait for extension matters.

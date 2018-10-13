@@ -1,9 +1,9 @@
 <?php
 
-namespace Threef\Entree\Event\Listener;
+namespace Joesama\Entree\Event\Listener;
 
 use Illuminate\Notifications\Events\NotificationSent;
-use Threef\Entree\Database\Model\Logs\NotificationLog;
+use Joesama\Entree\Database\Model\Logs\NotificationLog;
 
 class EntreeLogNotification
 {
@@ -20,7 +20,7 @@ class EntreeLogNotification
     /**
      * Handle User Insertion Event.
      *
-     * @param threef.user.profile $event
+     * @param joesama.user.profile $event
      *
      * @return void
      */
@@ -34,7 +34,7 @@ class EntreeLogNotification
             $log->notifiable = get_class($event->notifiable);
             $log->notifiable_id = data_get($event, 'notifiable.id');
 
-            if ($event->notification instanceof \Threef\Entree\Http\Notifications\EntreeMailer):
+            if ($event->notification instanceof \Joesama\Entree\Http\Notifications\EntreeMailer):
             $log->title = data_get($event, 'notification.message.title');
 
             $content = collect(data_get($event, 'notification.message.content'))->merge(data_get($event, 'notification.message.action'))->merge(data_get($event, 'notification.message.footer'));

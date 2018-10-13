@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Entity;
+namespace Joesama\Entree\Entity;
 
 /**
  * Retrieves the best guess of the client's actual IP address.

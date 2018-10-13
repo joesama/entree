@@ -1,11 +1,10 @@
 <?php
 
-namespace Threef\Entree\Http\Controller\Notify;
+namespace Joesama\Entree\Http\Controller\Notify;
 
 use Illuminate\Http\Request;
-use JavaScript;
-use Threef\Entree\Http\Controller\Controller;
-use Threef\Entree\Http\Processor\Notify\NotificationManager;
+use Joesama\Entree\Http\Controller\Controller;
+use Joesama\Entree\Http\Processor\Notify\NotificationManager;
 
 /**
  * Announcement Packages.
@@ -30,7 +29,7 @@ class Announcement extends Controller
     {
         $table = $this->manager->listNotification($request);
 
-        return view('threef/entree::entree.datagrid.list', compact('table'));
+        return view('joesama/entree::entree.datagrid.list', compact('table'));
     }
 
     /**
@@ -78,15 +77,12 @@ class Announcement extends Controller
      **/
     public function notification(Request $request)
     {
-        set_meta('title', trans('threef/entree::title.notify.title'));
+        set_meta('title', trans('joesama/entree::title.notify.title'));
 
         $data = $this->manager->notifyDataByID($request->segment(3));
 
-        JavaScript::put([
-            'upload' => data_get($data, 'upload', false),
-        ]);
 
-        return view('threef/entree::entree.notify.notify', compact('data'));
+        return view('joesama/entree::entree.notify.notify', compact('data'));
     }
 
     /**
@@ -101,8 +97,8 @@ class Announcement extends Controller
         $notification = $this->manager->manageNotificationData($request);
 
         return redirect_with_message(
-                handles('threef/entree::notify/form/'.data_get($notification, 'id')),
-                trans('threef/entree::respond.data.success', ['form' => trans('threef/entree::entree.notify.title')]),
+                handles('joesama/entree::notify/form/'.data_get($notification, 'id')),
+                trans('joesama/entree::respond.data.success', ['form' => trans('joesama/entree::entree.notify.title')]),
                 'success');
     }
 } // END class Announcement

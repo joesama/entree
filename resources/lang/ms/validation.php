@@ -101,10 +101,10 @@ return [
 
     'custom' => [
         'idnumber' => [
-            'unique' => trans('threef/entree::entree.user.grid.idno').' Mestilah Unik',
+            'unique' => trans('joesama/entree::entree.user.grid.idno').' Mestilah Unik',
         ],
         'email' => [
-            'unique' => trans('threef/entree::entree.user.grid.email').' Mestilah Unik',
+            'unique' => trans('joesama/entree::entree.user.grid.email').' Mestilah Unik',
         ],
     ],
 

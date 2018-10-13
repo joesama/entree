@@ -1,6 +1,6 @@
 <?php
 
-namespace Threef\Entree\Http\Notifications;
+namespace Joesama\Entree\Http\Notifications;
 
 /**
  * undocumented class
@@ -20,7 +20,7 @@ class ResetPasswordMessage
     /**
      * Handle the event.
      *
-     * @param Threef\Entree\Database\Model\User $user
+     * @param Joesama\Entree\Database\Model\User $user
      * @return void
      */
     public function messages($token)

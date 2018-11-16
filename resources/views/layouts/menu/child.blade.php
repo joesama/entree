@@ -1,49 +1,33 @@
-<li class="dropdown mega-dropdown">
-    <a href="{{ $item->link }}" data-toggle="dropdown">
+<li class="dropdown nav-item" id="subMenuNav" >
+    <a class="nav-link dropdown-toggle text-left" href="{{ $item->link }}" data-toggle="dropdown">
         <i class="{{ $item->icon }}" aria-hidden="true"></i>
         {!! $item->title !!}
         <span class="caret"></span>
     </a>
     @if(!empty($item->childs))
-    <ul class="dropdown-menu mega-dropdown-menu">
-        @foreach($item->childs as $child)
-
-        @if($acl->canIf($child->id) || $user->roles->contains('id', 1))
-            <li class="col-md-2">
-                <ul>
-                    @if(empty($child->childs))
-                    <li class="dropdown-header">
-                    <a href="{{ $child->link }}">
-                        <i class="{{ $child->icon }}" aria-hidden="true"></i>
-                        {!! $child->title !!}
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown4MenuLink">
+        @foreach($item->childs as $childMenu)
+            @if($acl->canIf($childMenu->id) || $user->roles->contains('id', 1) )
+                @if(empty($childMenu->childs))
+                    <a class="dropdown-item" href="{{ $childMenu->link }}">
+                        <i class="{{ $childMenu->icon }}" aria-hidden="true"></i>
+                        {!! $childMenu->title !!}
                     </a>
-                    </li>
-                    @else
-                    <li class="dropdown-submenu">
-                    <a href="{{ $child->link }}" data-toggle="dropdown">
-                        <i class="{{ $child->icon }}" aria-hidden="true"></i>
-                        {!! $child->title !!}
-                        <span class="caret"></span>
+                @else
+                    <a class="dropdown-item disabled" style="color: rgb(13, 13, 14); font-weight: bold;" href="#" >
+                        <i class="{{ $childMenu->icon }}" aria-hidden="true"></i>
+                        {!! $childMenu->title !!}
                     </a>
-                    <ul class="dropdown-menu mega-dropdown-submenu">
-                        @foreach($child->childs as $submenu)
-                            @if($acl->canIf($submenu->id) || $user->roles->contains('id', 1))
-                            <li>
-                                <a href="{{ $submenu->link }}" >
-                                    <i class="{{ $submenu->icon }}" aria-hidden="true"></i>
-                                    {!! $submenu->title !!}
-                                </a>
-                            </li>
-                    
-                            @endif
-                        @endforeach
-                    </ul>
-                    @endif
-                    </li>
-                </ul>
-            </li>
-        @endif
+                    @foreach($childMenu->childs as $childSubMenu)
+                    <a class="dropdown-item" style="padding-left: 30px" href="{{ $childSubMenu->link }}">
+                        <i class="{{ $childSubMenu->icon }}" aria-hidden="true"></i>
+                        {!! $childSubMenu->title !!}
+                    </a>
+                    @endforeach
+                @endif
+            @endif
+            <div class="dropdown-divider"></div>
         @endforeach
-    </ul>
+    </div>
     @endif
 </li>

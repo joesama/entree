@@ -123,20 +123,20 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('joesama/entree::user/new'))
             ->icon('fa fa-chevron-circle-right');
 
-         $menu->add('audit', '>:config')
+         $menu->add('audit', '^:config')
             ->title(trans('joesama/entree::entree.audit.title'))
             ->icon('fa fa-paperclip');
 
-         $menu->add('audit.access', '^:audit')
+         $menu->add('audit.access', '^:config.audit')
             ->title(trans('joesama/entree::entree.audit.access'))
             ->link(handles('joesama/entree::audit/access'))
             ->icon('fa fa-universal-access');
 
-         $menu->add('notify', '>:audit')
+         $menu->add('notify', '^:config')
             ->title(trans('joesama/entree::entree.notify.title'))
             ->icon('fa fa-newspaper-o');
 
-         $menu->add('announcement', '^:notify')
+         $menu->add('announcement', '^:config.notify')
             ->title(trans('joesama/entree::entree.notify.manage'))
             ->link(handles('joesama/entree::notify/announcement'))
             ->icon('fa fa-navicon');

@@ -1,7 +1,7 @@
 @inject('bread', 'Joesama\Entree\EntreeCrumbler')
 <?php $crumb = $bread->crumbler(); ?>
 
-@if( data_get($crumb->get('path',FALSE),'id') !== 'home')
+@if( data_get($crumb->get('path',FALSE),'id') !== config('joesama/entree::entree.landing'))
 <div class="page-header">
   	@if(!is_null($crumb))
   	<div class="row">

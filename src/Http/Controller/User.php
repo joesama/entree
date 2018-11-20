@@ -4,7 +4,7 @@ namespace Joesama\Entree\Http\Controller;
 
 use Illuminate\Http\Request;
 use Orchestra\Foundation\Http\Controllers\UsersController;
-use Orchestra\Foundation\Processors\User as Processor;
+use Orchestra\Foundation\Processor\User as Processor;
 use Joesama\Entree\Http\Processor\UserManager;
 
 class User extends UsersController

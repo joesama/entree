@@ -65,15 +65,37 @@ body{
     border-radius: 0px;
 }
 
+.text-default{
+    color: rgb(38, 50, 56);
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.card-header:first-child{
+    border-radius:0;
+}
+
+.bg-default{
+    background-color: rgb(38, 50, 56);
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.btn-link.btn-category,.btn-link:hover.btn-category,.btn-link:focus.btn-category{
+    text-decoration: none;
+    width: 100%;
+    text-align: left;
+}
 
 </style>
 @stack('pages.style')
 @stack('vuegrid-css')
 @endpush
 @section('body')
-<div class="container-fluid">
-	@yield('page')
-</div>
+    <div class="row mt-5">
+        <div class="col-md-12 mt-5">
+            @yield('page')   
+        </div>
+    </div>
 @endsection
 @push('joesama.footer')
 <script type="text/javascript">

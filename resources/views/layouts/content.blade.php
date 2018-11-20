@@ -11,15 +11,14 @@
 	<div class="row">
 		<div class="col-md-12">
 			@include('joesama/entree::layouts.components.content-header',[ 'crumb' => $crumb ])
-			@include('joesama/entree::layouts.components.message')
 			<div class="panel panel-default">
-				<div class="panel-heading">
+{{-- 				<div class="panel-heading">
 					@if($crumb->has('path'))
 				  	{{ $crumb->get('path')->title }}
 				  	@else
 				  	{{ get_meta('title', '') }}
 				  	@endif
-				</div>
+				</div> --}}
 				<div class="panel-body">
 					@yield('content')
 				</div>
@@ -31,5 +30,4 @@
 @push('pages.script')
 	@stack('messages.jscript')
 	@stack('content.script')
-	@stack('datagrid.jscript')
 @endpush

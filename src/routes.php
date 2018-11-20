@@ -6,7 +6,7 @@ use Orchestra\Support\Facades\Foundation;
 Foundation::group('joesama/entree', '/', ['namespace' => 'Http\Controller', 'middleware' => ['web']], function (Router $router) {
     $router->group(['middleware' => 'guest'], function ($router) {
         $router->get('/', 'Entrance@getIndex');
-        $router->get('/login', 'Entrance@getIndex');
+        $router->get('/login', 'Entrance@getIndex')->name('login');
         $router->post('/login', 'Auth\Access@login');
         $router->get('/validate/{token}', 'Auth\Access@emailValidation');
         $router->get('/forgot', 'Auth\ResetPassword@getSelfReset');

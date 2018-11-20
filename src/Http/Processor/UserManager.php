@@ -2,7 +2,7 @@
 
 namespace Joesama\Entree\Http\Processor;
 
-use Orchestra\Foundation\Processors\User;
+use Orchestra\Foundation\Processor\User;
 use Joesama\Entree\Database\Model\UserProfile as Profile;
 use Joesama\Entree\Database\Repository\UserRepo;
 use Joesama\Entree\Http\Validation\Profile as Validator;

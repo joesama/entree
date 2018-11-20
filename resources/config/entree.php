@@ -27,4 +27,15 @@ return [
 
     'validation' => env('USER_VALIDATION', false),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Reroute Landing Page
+    |--------------------------------------------------------------------------
+    |
+    | To set process use to register user either required email validation or not
+    |
+    */
+
+    'landing' => env('LANDING_PAGE', 'home'),
+
 ];

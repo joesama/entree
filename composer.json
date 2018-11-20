@@ -28,24 +28,6 @@
     },
     "suggest": {
     },
-    "scripts": {
-        "test": [
-            "./vendor/bin/phpunit"
-        ],
-        "update-frontend": [
-            "bower update",
-            "bower-installer",
-            "gulp"
-        ],
-        "post-install-cmd": [
-            "php artisan view:clear",
-            "php artisan vendor:publish"
-        ],
-        "post-update-cmd": [
-            "php artisan view:clear",
-            "php artisan vendor:publish"
-        ]
-    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }

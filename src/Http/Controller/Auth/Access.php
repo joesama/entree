@@ -133,7 +133,7 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
 
         event('joesama.user.login', [$user]);
 
-        return Redirect::intended(handles('joesama/entree::home'));
+        return Redirect::intended(handles('joesama/entree::'.config('joesama/entree::entree.landing') ));
     }
 
     /**

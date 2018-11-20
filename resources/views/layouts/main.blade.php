@@ -3,8 +3,7 @@
     <head>
         @include('joesama/entree::layouts.components._header')
         @stack('joesama.style')
-        <link rel="shortcut icon" type="image/x-icon" href="/fav.ico">
-        <title>{{ memorize('threef.' .\App::getLocale(). '.abbr') }}</title>
+        <title>{{ memorize('threef.' .\App::getLocale(). '.abbr', 'J') }}</title>
     </head>
     <body >
         @if(Auth::check())
@@ -12,7 +11,7 @@
         @endif
         <section class="wrapper fixed-top">
             <div class="overlays"></div><!--Mascara de imagen-->
-            <div class="container h-100">
+            <div class="container-fluid h-100">
                 @yield('body')
             </div>
         </section> 

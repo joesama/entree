@@ -86,7 +86,7 @@
                 <img class="image-circle" src="{{ asset(memorize('threef.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:128px;height:128px;" >
                 </center>
             	<h1 class="text-center login-title">
-                    {{ memorize('threef.' .\App::getLocale(). '.name', 'Joesama Props') }}<br/>
+                    {{ memorize('threef.' .\App::getLocale(). '.name', config('app.name')) }}<br/>
                     <small></small>
                 </h1>
                 {!! Form::open(['url' => handles('joesama/entree::login'), 'action' => 'POST', 'class' => 'form-signin']) !!}

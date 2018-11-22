@@ -3,7 +3,7 @@
     <head>
         @include('joesama/entree::layouts.components._header')
         @stack('joesama.style')
-        <title>{{ memorize('threef.' .\App::getLocale(). '.abbr', 'J') }}</title>
+        <title>{{ memorize('threef.' .\App::getLocale(). '.abbr', config('app.name')) }}</title>
     </head>
     <body >
         @if(Auth::check())

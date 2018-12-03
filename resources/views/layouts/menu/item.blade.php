@@ -1,6 +1,8 @@
-<li class="nav-item">
-    <a class="nav-link" href="{{ $item->link }}" >
+<li>
+    <a href="{{ $item->link }}" >
     <i class="{{ $item->icon }}" aria-hidden="true"></i>
-    &nbsp;{!! data_get($item,'title') !!}
+    <span class="menu-title">
+    {!! data_get($item,'title') !!}
+	</span>
     </a>
 </li>

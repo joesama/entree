@@ -5,26 +5,26 @@
 @endpush
 
 @section('page')
-@inject('bread', 'Joesama\Entree\EntreeCrumbler')
-<?php $crumb = $bread->crumbler(); ?>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			@include('joesama/entree::layouts.components.content-header',[ 'crumb' => $crumb ])
-			<div class="panel panel-default">
-{{-- 				<div class="panel-heading">
-					@if($crumb->has('path'))
-				  	{{ $crumb->get('path')->title }}
-				  	@else
-				  	{{ get_meta('title', '') }}
-				  	@endif
-				</div> --}}
-				<div class="panel-body">
-					@yield('content')
-				</div>
-			</div>
+
+ <!--CONTENT CONTAINER-->
+<!--===================================================-->
+<div id="content-container">
+	@include('joesama/entree::layouts.components.content-header')
+    <!--Page content-->
+    <!--===================================================-->
+    <div id="page-content">
+    	<div class="row">
+		    <div class="col-lg-12 col-md-12">
+		        <div class="panel panel-body">
+		            <div class="panel-body">
+						@yield('content')
+		            </div>
+		        </div>
+		    </div>
 		</div>
-	</div>
+    </div>
+    <!--===================================================-->
+    <!--End page content-->
 </div>
 @endsection
 @push('pages.script')

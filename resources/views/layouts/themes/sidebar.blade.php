@@ -15,7 +15,6 @@
                     </div>
                     <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
                         <span class="pull-right dropdown-toggle">
-                            <i class="dropdown-caret"></i>
                         </span>
                         <p class="mnp-name">
                             {{ ucwords(strtolower($user->fullname)) }}
@@ -49,7 +48,7 @@
             <div id="mainnav-shortcut">
                 <ul class="list-unstyled shortcut-wrap">
                     <li class="col-xs-3" data-content="{{trans('joesama/entree::title.home',['home'=> ucwords(config('joesama/entree::entree.landing','home'))])}}">
-                        <a class="shortcut-grid" href="{!! handles('/') !!}">
+                        <a class="shortcut-grid" href="{!! handles('joesama/entree::'.config('joesama/entree::entree.landing','home')) !!}">
                             <div class="icon-wrap icon-wrap-sm icon-circle bg-mint">
                             <i class="pli-dashboard"></i>
                             </div>

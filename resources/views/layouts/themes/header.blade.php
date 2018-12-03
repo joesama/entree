@@ -38,9 +38,9 @@
                 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                 <li>
                     <div class="custom-search-form">
-                        <label class="btn btn-trans" for="search-input" data-toggle="collapse" data-target="#nav-searchbox">
+{{--                         <label class="btn btn-trans" for="search-input" data-toggle="collapse" data-target="#nav-searchbox">
                             <i class="pli-magnifi-glass"></i>
-                        </label>
+                        </label> --}}
 {{--                         <form>
                             <div class="search-container collapse" id="nav-searchbox">
                                 <input id="search-input" type="text" class="form-control" placeholder="Type for search...">

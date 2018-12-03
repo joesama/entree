@@ -6,7 +6,7 @@
 @endpush
 @section('body')
     @inject('user', 'Illuminate\Contracts\Auth\Authenticatable')  
-    <div id="container" class="effect aside-float aside-bright slide mainnav-out">
+    <div id="container" class="effect aside-float aside-bright mainnav-sm">
     <!--NAVBAR-->
     <!--===================================================-->
         @include('joesama/entree::layouts.themes.header')

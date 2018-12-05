@@ -15,11 +15,7 @@
     <div id="page-content">
     	<div class="row">
 		    <div class="col-lg-12 col-md-12">
-		        <div class="panel panel-body">
-		            <div class="panel-body">
-						@yield('content')
-		            </div>
-		        </div>
+				@yield('content')
 		    </div>
 		</div>
     </div>

@@ -2,7 +2,6 @@
 @push('joesama.style')
 
 @stack('pages.style')
-@stack('vuegrid-css')
 @endpush
 @section('body')
     @inject('user', 'Illuminate\Contracts\Auth\Authenticatable')  
@@ -39,7 +38,5 @@
     </div>
 @endsection
 @push('joesama.footer')
-
 @stack('pages.script')
-
 @endpush

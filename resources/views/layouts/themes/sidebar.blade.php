@@ -54,7 +54,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="col-xs-3" data-content="{{trans('joesama/project::project.dashboard')}}">
+                    <li class="col-xs-3" data-content="{{trans('joesama/project::project.dashboard.overall')}}">
                         <a class="shortcut-grid" href="{!! handles('joesama/project::dashboard') !!}"">
                             <div class="icon-wrap icon-wrap-sm icon-circle bg-warning">
                             <i class="pli-project"></i>

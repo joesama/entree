@@ -24,6 +24,8 @@ class User extends OrchestraUser
     protected $dates = [
         'lastlogin',
     ];
+    
+    protected $guarded = ['id'];
 
     /**
      * Relation has one Joesama\Entree\Database\Model\UserProfile.

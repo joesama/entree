@@ -7,7 +7,7 @@
     @if(!empty($item->childs))
     <ul class="collapse">
         @foreach($item->childs as $childMenu)
-            @if($acl->canIf($childMenu->id) || $user->roles->contains('id', 1) )
+            @if($acl->canIf($childMenu->id) || $user->roles->contains('id', 1) || $user->isAdmin )
                 @if(empty($childMenu->childs))
                     @include('joesama/entree::layouts.menu.item', ['item' => $childMenu])
                 @else

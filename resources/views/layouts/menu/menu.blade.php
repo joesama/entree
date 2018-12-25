@@ -6,7 +6,7 @@
     @if($link->id === 'home')
         {{-- @include('joesama/entree::layouts.menu.item', ['item' => $link]) --}}
     @else
-        @if($acl->canIf($link->id) || $user->roles->contains('id', 1) )
+        @if($acl->canIf($link->id) || $user->roles->contains('id', 1) || $user->isAdmin )
             @if(empty($link->childs))
                 @include('joesama/entree::layouts.menu.item', ['item' => $link])
             @else

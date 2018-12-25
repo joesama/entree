@@ -21,35 +21,4 @@
 <!--Page Load Progress Bar [ OPTIONAL ]-->
 <link href="{{ asset('packages/joesama/entree/css/pace.min.css') }}" rel="stylesheet">
 
-<!--Switchery [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/switchery/switchery.min.css') }}" rel="stylesheet">
-
-
-<!--Bootstrap Select [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet">
-
-
-<!--Bootstrap Tags Input [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css') }}" rel="stylesheet">
-
-
-<!--Chosen [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/chosen/chosen.min.css') }}" rel="stylesheet">
-
-
-<!--noUiSlider [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/noUiSlider/nouislider.min.css') }}" rel="stylesheet">
-
-
-<!--Select2 [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
-
-
-<!--Bootstrap Timepicker [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
-
-
-<!--Bootstrap Datepicker [ OPTIONAL ]-->
-<link href="{{ asset('packages/joesama/entree/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-
 @stack('joesama.style')

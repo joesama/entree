@@ -1,6 +1,24 @@
 @extends('joesama/entree::layouts.page')
 
 @push('pages.style')
+<style type="text/css">
+	#content-container:before{
+		height:100px;
+	}
+	#page-content {
+	    padding: 5px 5px 0;
+	}
+	#page-title {
+		padding: 0px 10px;
+	}
+	#page-title .page-header {
+		font-weight: 700;
+		padding: 0px 0px 10px;
+	}
+	.breadcrumb{
+		padding:0 10px 10px
+	}
+</style>
 	@stack('content.style')
 @endpush
 

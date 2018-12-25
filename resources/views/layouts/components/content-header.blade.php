@@ -12,7 +12,6 @@
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <!--End page title-->
 
-
 <!--Breadcrumb-->
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 @if(!is_null($crumb))
@@ -21,7 +20,8 @@
   		<li ><a href="{{ $crumb->get('main')->link }}">{{ $crumb->get('main')->title }}</a></li>
   @endif
 	@if($crumb->has('head'))
-		@if(data_get($crumb->get('head'),'link') != '#')
+
+		@if(data_get($crumb->get('head'),'link') != '#' && data_get($crumb->get('head'),'link') != null)
   		<li >
   			<a href="{{ data_get($crumb->get('head'),'link') }}">
   				{{ data_get($crumb->get('head'),'title') }}

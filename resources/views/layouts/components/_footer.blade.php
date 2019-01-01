@@ -11,10 +11,13 @@
 
 <script src="{{ asset('packages/joesama/entree/js/pace.min.js') }}"></script>
 
-<!--DataTables [ OPTIONAL ]-->
+<!--Chart [ OPTIONAL ]-->
 <script src="{{ asset('packages/joesama/entree/plugins/easy-pie-chart/jquery.easypiechart.min.js') }}"></script>
 <script src="{{ asset('packages/joesama/entree/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('packages/joesama/entree/plugins/jquery-match-height/jquery-match-height.min.js') }}"></script>
+<script src="{{ asset('packages/joesama/entree/plugins/flot-charts/jquery.flot.min.js') }}"></script>
+<script src="{{ asset('packages/joesama/entree/plugins/flot-charts/jquery.flot.resize.min.js') }}"></script>
+<script src="{{ asset('packages/joesama/entree/plugins/flot-charts/jquery.flot.tooltip.min.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>

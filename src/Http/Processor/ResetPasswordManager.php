@@ -3,7 +3,7 @@
 namespace Joesama\Entree\Http\Processor;
 
 use Illuminate\Contracts\Auth\PasswordBroker as Password;
-use Orchestra\Foundation\Processor\Account\PasswordBroker;
+use Orchestra\Foundation\Processors\Account\PasswordBroker;
 use Joesama\Entree\Database\Model\User;
 use Joesama\Entree\Http\Validation\User as Validator;
 

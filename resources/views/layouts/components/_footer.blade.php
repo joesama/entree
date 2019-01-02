@@ -18,6 +18,8 @@
 <script src="{{ asset('packages/joesama/entree/plugins/flot-charts/jquery.flot.min.js') }}"></script>
 <script src="{{ asset('packages/joesama/entree/plugins/flot-charts/jquery.flot.resize.min.js') }}"></script>
 <script src="{{ asset('packages/joesama/entree/plugins/flot-charts/jquery.flot.tooltip.min.js') }}"></script>
+<script src="{{ asset('packages/joesama/entree/plugins/morris-js/morris.min.js') }}"></script>
+<script src="{{ asset('packages/joesama/entree/plugins/morris-js/raphael-js/raphael.min.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>

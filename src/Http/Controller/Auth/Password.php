@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Orchestra\Contracts\Foundation\Listener\Account\PasswordUpdater as Listener;
-use Orchestra\Foundation\Processor\Account\PasswordUpdater as Processor;
+use Orchestra\Foundation\Processors\Account\PasswordUpdater as Processor;
 
 class Password extends Controller implements Listener
 {

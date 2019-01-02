@@ -2,7 +2,7 @@
 
 namespace Joesama\Entree\Http\Validation;
 
-use Orchestra\Foundation\Validation\AuthenticateUser;
+use Orchestra\Foundation\Validations\AuthenticateUser;
 
 class User extends AuthenticateUser
 {

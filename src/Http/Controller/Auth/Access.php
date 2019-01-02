@@ -11,8 +11,8 @@ use Orchestra\Contracts\Auth\Command\ThrottlesLogins as ThrottlesCommand;
 use Orchestra\Contracts\Auth\Listener\AuthenticateUser as AuthenticateListener;
 use Orchestra\Contracts\Auth\Listener\DeauthenticateUser as DeauthenticateListener;
 use Orchestra\Contracts\Auth\Listener\ThrottlesLogins as ThrottlesListener;
-use Orchestra\Foundation\Processor\AuthenticateUser;
-use Orchestra\Foundation\Processor\DeauthenticateUser;
+use Orchestra\Foundation\Processors\AuthenticateUser;
+use Orchestra\Foundation\Processors\DeauthenticateUser;
 use Joesama\Entree\Http\Processor\UserManager;
 
 class Access extends Controller implements AuthenticateListener, DeauthenticateListener, ThrottlesListener

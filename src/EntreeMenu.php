@@ -69,19 +69,19 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('joesama/entree::'.config('joesama/entree::entree.landing','home')))
             ->icon('fa fa-home');
 
-         $menu->add('config', '>')
-            ->title(trans('joesama/entree::title.config.title'))
-            ->icon('fa fa-cogs');
+         // $menu->add('config', '>')
+         //    ->title(trans('joesama/entree::title.config.title'))
+         //    ->icon('fa fa-cogs');
 
-         $menu->add('menu', '^:config')
-            ->title(trans('joesama/entree::title.config.menu'))
-            ->link(handles('joesama/entree::menu'))
-            ->icon('fa fa-link');
+         // $menu->add('menu', '^:config')
+         //    ->title(trans('joesama/entree::title.config.menu'))
+         //    ->link(handles('joesama/entree::menu'))
+         //    ->icon('fa fa-link');
 
-         $menu->add('base', '^:config')
-            ->title(trans('joesama/entree::title.config.base'))
-            ->link(handles('joesama/entree::base'))
-            ->icon('fa fa-info');
+         // $menu->add('base', '^:config')
+         //    ->title(trans('joesama/entree::title.config.base'))
+         //    ->link(handles('joesama/entree::base'))
+         //    ->icon('fa fa-info');
 
          /*
 
@@ -109,37 +109,37 @@ use Orchestra\Contracts\Authorization\Factory;
 
          **/
 
-         $menu->add('user', '^:config')
-            ->title(trans('joesama/entree::entree.user.manage'))
-            ->icon('fa fa-user');
+         // $menu->add('user', '^:config')
+         //    ->title(trans('joesama/entree::entree.user.manage'))
+         //    ->icon('fa fa-user');
 
-         $menu->add('user-list', '^:config.user')
-            ->title(trans('joesama/entree::entree.user.list'))
-            ->link(handles('joesama/entree::user'))
-            ->icon('fa fa-chevron-circle-right');
+         // $menu->add('user-list', '^:config.user')
+         //    ->title(trans('joesama/entree::entree.user.list'))
+         //    ->link(handles('joesama/entree::user'))
+         //    ->icon('fa fa-chevron-circle-right');
 
-         $menu->add('user-new', '^:config.user')
-            ->title(trans('joesama/entree::entree.user.new'))
-            ->link(handles('joesama/entree::user/new'))
-            ->icon('fa fa-chevron-circle-right');
+         // $menu->add('user-new', '^:config.user')
+         //    ->title(trans('joesama/entree::entree.user.new'))
+         //    ->link(handles('joesama/entree::user/new'))
+         //    ->icon('fa fa-chevron-circle-right');
 
-         $menu->add('audit', '^:config')
-            ->title(trans('joesama/entree::entree.audit.title'))
-            ->icon('fa fa-paperclip');
+         // $menu->add('audit', '^:config')
+         //    ->title(trans('joesama/entree::entree.audit.title'))
+         //    ->icon('fa fa-paperclip');
 
-         $menu->add('audit.access', '^:config.audit')
-            ->title(trans('joesama/entree::entree.audit.access'))
-            ->link(handles('joesama/entree::audit/access'))
-            ->icon('fa fa-universal-access');
+         // $menu->add('audit.access', '^:config.audit')
+         //    ->title(trans('joesama/entree::entree.audit.access'))
+         //    ->link(handles('joesama/entree::audit/access'))
+         //    ->icon('fa fa-universal-access');
 
-         $menu->add('notify', '^:config')
-            ->title(trans('joesama/entree::entree.notify.title'))
-            ->icon('fa fa-newspaper-o');
+         // $menu->add('notify', '^:config')
+         //    ->title(trans('joesama/entree::entree.notify.title'))
+         //    ->icon('fa fa-newspaper-o');
 
-         $menu->add('announcement', '^:config.notify')
-            ->title(trans('joesama/entree::entree.notify.manage'))
-            ->link(handles('joesama/entree::notify/announcement'))
-            ->icon('fa fa-navicon');
+         // $menu->add('announcement', '^:config.notify')
+         //    ->title(trans('joesama/entree::entree.notify.manage'))
+         //    ->link(handles('joesama/entree::notify/announcement'))
+         //    ->icon('fa fa-navicon');
 
          event('entree.menu:ready', [$menu]);
      }

@@ -6,7 +6,7 @@ $format = <<<MESSAGE
 </div>
 MESSAGE;
 
-  $errorBags = $errors->messages();
+  $errorBags = $errors->getMessages();
   $hasError = $errors->isEmpty();
 
 
@@ -23,21 +23,21 @@ MESSAGE;
 
 ?>
 
-@push('messages.jscript')
+@push('pages.script')
 
 <script type="text/javascript">
 
 let errorBags = @json($errorBags);
 let hasError = @json($hasError);
-
+console.log(errorBags);
 // create Vue app
 var mesej = new Vue({
   // element to mount to
   el: '.form-validation',
   // initial data
   data: {
-    errors: window.errorBags,
-    bags: window.hasError,
+    errors: errorBags,
+    bags: hasError,
   },
   // methods
   mounted: function () {

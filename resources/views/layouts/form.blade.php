@@ -32,6 +32,9 @@
 <!--Bootstrap Datepicker [ OPTIONAL ]-->
 <link href="{{ asset('packages/joesama/entree/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<link href="{{ asset('packages/joesama/entree/plugins/bootstrap-validator/bootstrapValidator.min.css') }}" rel="stylesheet">
+
 @stack('form.style')
 @endpush
 
@@ -64,6 +67,13 @@
 
 <!--Bootstrap Datepicker [ OPTIONAL ]-->
 <script src="{{ asset('packages/joesama/entree/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+
+<!--Bootstrap Validator [ OPTIONAL ]-->
+<script src="{{ asset('packages/joesama/entree/plugins/bootstrap-validator/bootstrapValidator.min.js') }}"></script>
+
+<script type="text/javascript">
+	$(".date-select2").select2();
+</script>
 
 @stack('form.script')
 @endpush

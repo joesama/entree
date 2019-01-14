@@ -2,7 +2,7 @@
 
 
 return [
-    'home'   => ':home',
+    'home'   => 'Dashboard',
     'config' => [
         'title' => 'Management',
         'menu'  => 'Menu',

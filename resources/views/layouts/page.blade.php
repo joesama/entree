@@ -15,6 +15,7 @@
         <div class="boxed">
             <!--CONTENT CONTAINER-->
             <!--===================================================-->
+            @include('joesama/entree::layouts.components.message')
             @yield('page')
             <!--===================================================-->
             <!--END CONTENT CONTAINER-->

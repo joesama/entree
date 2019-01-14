@@ -65,7 +65,7 @@ use Orchestra\Contracts\Authorization\Factory;
      protected function generateMenuService($menu)
      {
          $menu->add('home')
-            ->title(trans('joesama/entree::title.home',['home'=> ucwords(config('joesama/entree::entree.landing','home'))]))
+            ->title(trans('joesama/entree::title.home'))
             ->link(handles('joesama/entree::'.config('joesama/entree::entree.landing','home')))
             ->icon('fa fa-home');
 

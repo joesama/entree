@@ -21,5 +21,4 @@
 <!--Page Load Progress Bar [ OPTIONAL ]-->
 <link href="{{ asset('packages/joesama/entree/css/pace.min.css') }}" rel="stylesheet">
 <link href="{{ asset('packages/joesama/entree/plugins/morris-js/morris.min.css') }}" rel="stylesheet">
-
 @stack('joesama.style')

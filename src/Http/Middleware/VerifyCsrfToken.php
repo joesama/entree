@@ -2,6 +2,7 @@
 
 namespace Joesama\Entree\Http\Middleware;
 
+use Illuminate\Support\Facades\Session;
 use Orchestra\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier
@@ -20,16 +21,16 @@ class VerifyCsrfToken extends BaseVerifier
      *
      * @array $languages
      */
-    protected $languages = ['ms'];
+    protected $languages = [ ];
 
     public function handle($request, \Closure $next)
     {
         event('joesama.system.trail', [$request->getUri(), $request->getMethod()]);
 
         $sessionLang = 'lang'.str_replace('.', '', app(\Joesama\Entree\Entity\IpOrigin::class)->ipOrigin());
-
-        if (!\Session::has($sessionLang)) {
-            \Session::put($sessionLang, $request->getPreferredLanguage($this->languages));
+Session::forget($sessionLang);
+        if (!Session::has($sessionLang)) {
+            Session::put($sessionLang, $request->getPreferredLanguage([config('joesama/entree::entree.language')]));
         }
 
         app()->setLocale(\Session::get($sessionLang));

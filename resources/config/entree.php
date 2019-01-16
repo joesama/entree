@@ -38,4 +38,15 @@ return [
 
     'landing' => env('LANDING_PAGE', 'home'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Default Language
+    |--------------------------------------------------------------------------
+    |
+    | To set process use to register user either required email validation or not
+    |
+    */
+
+    'language' => env('SPEAK', 'ms'),
+
 ];

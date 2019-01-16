@@ -42,47 +42,9 @@
                 </div>
             </div>
 
-
-            <!--Shortcut buttons-->
-            <!--================================-->
-            <div id="mainnav-shortcut">
-                <ul class="list-unstyled shortcut-wrap">
-                    <li class="col-xs-3" data-content="{{trans('joesama/entree::title.home')}}">
-                        <a class="shortcut-grid" href="{!! handles('joesama/entree::'.config('joesama/entree::entree.landing','home')) !!}">
-                            <div class="icon-wrap icon-wrap-sm icon-circle bg-mint">
-                            <i class="psi-home"></i>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="col-xs-3" data-content="{{trans('joesama/project::manager.dashboard.overall')}}">
-                        <a class="shortcut-grid" href="{!! handles('joesama/project::manager/dashboard/overall/'.request()->segment(4)) !!}"">
-                            <div class="icon-wrap icon-wrap-sm icon-circle bg-warning">
-                            <i class="pli-project"></i>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="col-xs-3" data-content="{{ trans('joesama/project::project.task.task') }}">
-                        <a class="shortcut-grid" href="{!! handles('joesama/project::manager/task/list/'.request()->segment(4)) !!}">
-                            <div class="icon-wrap icon-wrap-sm icon-circle bg-success">
-                            <i class="pli-calendar"></i>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="col-xs-3" data-content="{{ trans('joesama/project::project.issues.name') }}">
-                        <a class="shortcut-grid" href="{!! handles('joesama/project::manager/issue/list/'.request()->segment(4)) !!}">
-                            <div class="icon-wrap icon-wrap-sm icon-circle bg-purple">
-                            <i class="pli-calendar-clock"></i>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!--================================-->
-            <!--End shortcut buttons-->
-
+            @includeIf('joesama.entree.layouts.menu.shortcut')
 
             @include('joesama/entree::layouts.menu.menu')
-
 
         </div>
     </div>

@@ -28,7 +28,7 @@ class VerifyCsrfToken extends BaseVerifier
         event('joesama.system.trail', [$request->getUri(), $request->getMethod()]);
 
         $sessionLang = 'lang'.str_replace('.', '', app(\Joesama\Entree\Entity\IpOrigin::class)->ipOrigin());
-Session::forget($sessionLang);
+
         if (!Session::has($sessionLang)) {
             Session::put($sessionLang, $request->getPreferredLanguage([config('joesama/entree::entree.language')]));
         }

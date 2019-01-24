@@ -37,7 +37,9 @@
 
 <!--Summernote [ OPTIONAL ]-->
 <link href="{{ asset('packages/joesama/entree/plugins/summernote/summernote.min.css') }}" rel="stylesheet">
-    
+
+<!--Bootstrap Tags Input [ OPTIONAL ]-->
+<link href="{{ asset('packages/joesama/entree/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.css') }}" rel="stylesheet">
 
 @stack('form.style')
 @endpush
@@ -78,6 +80,8 @@
 <!--Summernote [ OPTIONAL ]-->
 <script src="{{ asset('packages/joesama/entree/plugins/summernote/summernote.min.js') }}"></script>
 
+<!--Bootstrap Tags Input [ OPTIONAL ]-->
+<script src="{{ asset('packages/joesama/entree/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 
 <script type="text/javascript">
 $(document).on('nifty.ready', function() {

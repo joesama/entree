@@ -83,6 +83,9 @@
 <!--Bootstrap Tags Input [ OPTIONAL ]-->
 <script src="{{ asset('packages/joesama/entree/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 
+<!--Masked Input [ OPTIONAL ]-->
+<script src="{{ asset('packages/joesama/entree/plugins/masked-input/jquery.maskedinput.min.js') }}"></script>
+
 <script type="text/javascript">
 $(document).on('nifty.ready', function() {
 

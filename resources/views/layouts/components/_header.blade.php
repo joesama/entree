@@ -21,4 +21,22 @@
 <!--Page Load Progress Bar [ OPTIONAL ]-->
 <link href="{{ asset('packages/joesama/entree/css/pace.min.css') }}" rel="stylesheet">
 <link href="{{ asset('packages/joesama/entree/plugins/morris-js/morris.min.css') }}" rel="stylesheet">
+<style type="text/css">
+	#content-container:before{
+		height:100px;
+	}
+	#page-content {
+	    padding: 5px 5px 0;
+	}
+	#page-title {
+		padding: 0px 10px;
+	}
+	#page-title .page-header {
+		font-weight: 700;
+		padding: 0px 0px 10px;
+	}
+	.breadcrumb{
+		padding:0 10px 10px
+	}
+</style>
 @stack('joesama.style')

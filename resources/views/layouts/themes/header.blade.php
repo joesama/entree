@@ -6,7 +6,7 @@
         <!--Brand logo & name-->
         <!--================================-->
         <div class="navbar-header">
-            <a href="/" class="navbar-brand">
+            <a href="{{handles('joesama/entree::'.config('joesama/entree::entree.landing','home'))}}" class="navbar-brand">
                 <img class="brand-icon" src="{{ asset(memorize('threef.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:50px;height:50px;" >
                 <div class="brand-title">
                     <span class="brand-text">{{ memorize('threef.' .\App::getLocale(). '.name', config('app.name')) }}</span>

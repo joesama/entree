@@ -1,8 +1,19 @@
 <?php
 
 $format = <<<MESSAGE
-<div class="alert alert-:key">
-	:message <button class="close" data-dismiss="alert">×</button>
+<div id="floating-bottom-container" class="floating-container">
+  <div id="floating-bottom-right">
+    <div class="alert-wrap animated jellyIn in">
+      <div class="alert alert-:key" role="alert">
+        <button class="close" data-dismiss="alert">
+          <i class="pci-cross pci-circle"></i>
+        </button>
+        <div class="media">
+          <strong>Well done!</strong> :message .
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 MESSAGE;
 
@@ -29,7 +40,7 @@ MESSAGE;
 
 let errorBags = @json($errorBags);
 let hasError = @json($hasError);
-console.log(errorBags);
+
 // create Vue app
 var mesej = new Vue({
   // element to mount to

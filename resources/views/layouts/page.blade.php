@@ -4,7 +4,7 @@
 @stack('pages.style')
 @endpush
 @section('body')
-    @inject('user', 'Illuminate\Contracts\Auth\Authenticatable')  
+    @inject('user', 'Illuminate\Contracts\Auth\Authenticatable') 
     <div id="container" class="effect aside-float aside-bright mainnav-sm footer-fixed">
         <!--NAVBAR-->
         <!--===================================================-->

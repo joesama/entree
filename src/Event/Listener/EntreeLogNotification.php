@@ -42,6 +42,7 @@ class EntreeLogNotification
             endif;
 
             $log->save();
+
         } catch (\Exception $e) {
             \DB::rollback();
             app('orchestra.messages')->add('error', $e->getMessage());

@@ -4,8 +4,9 @@ namespace Joesama\Entree\Database\Model;
 
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
-use Orchestra\Foundation\Auth\User as OrchestraUser;
+use Joesama\Entree\Database\Model\Logs\NotificationLog;
 use Joesama\Entree\Http\Notifications\EntreeMailer;
+use Orchestra\Foundation\Auth\User as OrchestraUser;
 
 /**
  * Extension of.
@@ -164,6 +165,15 @@ class User extends OrchestraUser
      **/
     public function routeNotificationForSlack()
     {
-        return 'https://hooks.slack.com/services/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';
+        // return 'https://hooks.slack.com/services/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';
     }
+
+    /**
+     * Get all of the user's mail.
+     */
+    public function mails()
+    {
+        return $this->morphMany(NotificationLog::class, 'notifiable');
+    }
+
 } // END class User extends OrchestraUser

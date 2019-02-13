@@ -20,8 +20,18 @@ class NotificationLog
      **/
     public function mail()
     {
-        return Model::where('notifiable', 'Joesama\Entree\Database\Model\User')
-                ->where('notifiable_id', \Auth::user()->id)->get();
+        return Model::where('notifiable_type', 'Joesama\Entree\Database\Model\User')
+                ->where('notifiable_id', \Auth::user()->id)
+                ->get()
+                ->map(function($mails){
+                    return collect([
+                        'title' => $mails->title,
+                        'header' => collect(json_decode($email->content))->first(),
+                        'content' => collect(json_decode($email->content)),
+                        'date' => \Carbon\Carbon::parse($email->created_at)->format('d-m-Y'),
+                        'aging' => \Carbon\Carbon::parse($email->created_at)->diffForHumans(),
+                    ]);
+                });
     }
 
     /**

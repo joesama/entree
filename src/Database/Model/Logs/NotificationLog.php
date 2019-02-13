@@ -13,11 +13,11 @@ class NotificationLog extends Model
      */
     protected $table = 'notification_log';
 
-    // /**
-    //  * Relation has one Joesama\Entree\Database\Model\User
-    //  **/
-    // public function user()
-    // {
-    //     return $this->belongsTo('Joesama\Entree\Database\Model\User','user_id');
-    // }
+    /**
+     * Get all of notification
+     */
+    public function notifiable()
+    {
+        return $this->morphTo();
+    }
 }

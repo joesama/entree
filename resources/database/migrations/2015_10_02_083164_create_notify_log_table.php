@@ -17,7 +17,7 @@ class CreateNotifyLogTable extends Migration
             $table->increments('id');
             $table->string('channel')->nullable();
             $table->string('title')->nullable();
-            $table->string('notifiable')->nullable();
+            $table->string('notifiable_type')->nullable();
             $table->integer('notifiable_id')->unsigned()->nullable();
             $table->text('content')->nullable();
             $table->integer('read')->unsigned()->nullable();

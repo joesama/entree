@@ -61,7 +61,7 @@
                     @include('joesama/entree::layouts.themes.mailing')
                 @endif
 
-                @include('joesama/entree::layouts.themes.user')
+                @include('joesama/entree::layouts.components.top-user')
 
             @endunless
 

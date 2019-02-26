@@ -25,7 +25,7 @@ MESSAGE;
 
 	if ($message instanceof Orchestra\Messages\MessageBag) :
 		$message->setFormat($format);
-		foreach (['danger', 'info', 'success'] as $key) :
+		foreach (['danger', 'info', 'success','error'] as $key) :
 			if ($message->has($key)) :
 				echo implode('', $message->get($key));
 			endif;

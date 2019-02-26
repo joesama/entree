@@ -30,15 +30,23 @@ class EntreeLogNotification
 
         try {
             $log = new NotificationLog();
+            
             $log->channel = $event->channel;
-            $log->notifiable = get_class($event->notifiable);
+            
+            $log->notifiable_type = get_class($event->notifiable);
+
             $log->notifiable_id = data_get($event, 'notifiable.id');
 
             if ($event->notification instanceof \Joesama\Entree\Http\Notifications\EntreeMailer):
             $log->title = data_get($event, 'notification.message.title');
 
-            $content = collect(data_get($event, 'notification.message.content'))->merge(data_get($event, 'notification.message.action'))->merge(data_get($event, 'notification.message.footer'));
+            $content = collect(data_get($event, 'notification.message.content'));
+
             $log->content = $content->toJson();
+
+            $action = collect(data_get($event, 'notification.message.footer'))->merge(data_get($event, 'notification.message.action'));
+
+            $log->action = $action->toJson();
             endif;
 
             $log->save();

@@ -20,6 +20,7 @@ class CreateNotifyLogTable extends Migration
             $table->string('notifiable_type')->nullable();
             $table->integer('notifiable_id')->unsigned()->nullable();
             $table->text('content')->nullable();
+            $table->text('action')->nullable();
             $table->integer('read')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();

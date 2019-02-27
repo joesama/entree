@@ -3,6 +3,7 @@
 namespace Joesama\Entree\Services\Upload;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Joesama\Entree\Services\Traits\ExtensionManager;
 
@@ -22,6 +23,7 @@ class FileUploader
     protected $file;
     protected $path;
     protected $origin;
+    protected $filename;
 
     public function __construct(UploadedFile $file, $origin)
     {
@@ -38,13 +40,18 @@ class FileUploader
     protected function upload($file, $dest)
     {
         $this->getDirectory($dest);
+        
         $this->getThumbDirectory($dest);
 
         $this->file = $file;
 
-        $file->move($this->publicPath(), $file->getClientOriginalName());
+        $orderedId = Str::uuid();
 
-        return $this->directory.'/'.$this->file->getClientOriginalName();
+        $this->filename = Str::studly(Str::slug($orderedId,'_')).'.'.$file->getClientOriginalExtension();
+
+        $file->move($this->publicPath(), $this->filename);
+
+        return $this->directory.'/'.$this->filename;
     }
 
     /**
@@ -54,13 +61,16 @@ class FileUploader
     public function thumbnail($width = 750, $height = 150, $pos = 'top-left')
     {
         $image = new ImageManager();
+
         $origin = $image->make($this->file);
+
+        $thumbName = $width.$height.$this->filename;
 
         $origin->fit($width, $height, function ($constraint) {
             $constraint->aspectRatio();
-        }, $pos)->save($this->thumbPath($this->file->getClientOriginalName()));
+        }, $pos)->save($this->thumbPath($thumbName));
 
-        return $this->thumb.'/'.$this->file->getClientOriginalName();
+        return $this->thumb.'/'.$thumbName;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Joesama\Entree\Services\Upload;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Joesama\Entree\Services\Traits\ExtensionManager;
@@ -49,7 +50,7 @@ class FileUploader
 
         $this->filename = Str::studly(Str::slug($orderedId,'_')).'.'.$file->getClientOriginalExtension();
 
-        $file->move($this->publicPath(), $this->filename);
+        Storage::putFileAs($this->directory, $file, $this->filename, 'public');
 
         return $this->directory.'/'.$this->filename;
     }
@@ -78,7 +79,7 @@ class FileUploader
      **/
     protected function publicPath()
     {
-        return public_path().$this->directory;
+        return $this->directory;
     }
 
     /**
@@ -86,13 +87,7 @@ class FileUploader
      **/
     protected function thumbPath($name = null)
     {
-        $path = public_path().$this->thumb;
-
-        if (!is_dir($path)):
-            mkdir($path, 0777, true);
-        endif;
-
-        return $path.$name;
+        return $this->thumb.$name;
     }
 
     /**
@@ -101,6 +96,11 @@ class FileUploader
     protected function getDirectory($dest)
     {
         $this->directory = strtolower('/'.self::SERVICES.'/'.$dest.'/'.date('Ymd'));
+
+        if(!is_dir($this->directory)){
+            Storage::makeDirectory($this->directory);
+        }
+
     }
 
     /**
@@ -109,6 +109,10 @@ class FileUploader
     protected function getThumbDirectory($dest)
     {
         $this->thumb = strtolower('/'.self::SERVICES.'/'.$dest.'/'.date('Ymd').'/thumbs/');
+
+        if(!is_dir($this->thumb)){
+            Storage::makeDirectory($this->thumb);
+        }
     }
 
     /**

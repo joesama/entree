@@ -20,25 +20,32 @@ class FileUploader
     const SERVICES = 'uploads';
 
     protected $directory;
+    protected $storage;
     protected $thumb;
     protected $file;
     protected $path;
     protected $origin;
     protected $filename;
 
-    public function __construct(UploadedFile $file, $origin)
+    public function __construct(UploadedFile $file, $origin, $public = true)
     {
+        $this->storage = ($public) ? Storage::disk('public') : Storage::disk('local');      
+
         $this->path = $this->upload($file, $this->guessExtensionName(get_class($origin)));
+
+        if ($public) {
+            $this->path = 'storage' . $this->path;
+        }
     }
 
     /**
      * Upload File To Specific Path.
-     *
-     * @param Illuminate\Http\UploadedFile $file , String $dest
-     *
+     * 
+     * @param  UploadedFile $file   Uploaded File
+     * @param  string       $dest   Upload destination
      * @return string
-     **/
-    protected function upload($file, $dest)
+     */
+    protected function upload(UploadedFile $file, string $dest): string
     {
         $this->getDirectory($dest);
         
@@ -50,7 +57,7 @@ class FileUploader
 
         $this->filename = Str::studly(Str::slug($orderedId,'_')).'.'.$file->getClientOriginalExtension();
 
-        Storage::putFileAs($this->directory, $file, $this->filename, 'public');
+        $this->storage->putFileAs($this->directory, $file, $this->filename, 'public');
 
         return $this->directory.'/'.$this->filename;
     }
@@ -98,7 +105,7 @@ class FileUploader
         $this->directory = strtolower('/'.self::SERVICES.'/'.$dest.'/'.date('Ymd'));
 
         if(!is_dir($this->directory)){
-            Storage::makeDirectory($this->directory);
+            $this->storage->makeDirectory($this->directory);
         }
 
     }
@@ -111,8 +118,9 @@ class FileUploader
         $this->thumb = strtolower('/'.self::SERVICES.'/'.$dest.'/'.date('Ymd').'/thumbs/');
 
         if(!is_dir($this->thumb)){
-            Storage::makeDirectory($this->thumb);
+            $this->storage->makeDirectory($this->thumb);
         }
+
     }
 
     /**

@@ -69,19 +69,19 @@ use Orchestra\Contracts\Authorization\Factory;
             ->link(handles('joesama/entree::'.config('joesama/entree::entree.landing','home')))
             ->icon('fa fa-home');
 
-         // $menu->add('config', '>')
-         //    ->title(trans('joesama/entree::title.config.title'))
-         //    ->icon('fa fa-cogs');
+         $menu->add('config', '>')
+            ->title(trans('joesama/entree::title.config.title'))
+            ->icon('fa fa-cogs');
 
          // $menu->add('menu', '^:config')
          //    ->title(trans('joesama/entree::title.config.menu'))
          //    ->link(handles('joesama/entree::menu'))
          //    ->icon('fa fa-link');
 
-         // $menu->add('base', '^:config')
-         //    ->title(trans('joesama/entree::title.config.base'))
-         //    ->link(handles('joesama/entree::base'))
-         //    ->icon('fa fa-info');
+         $menu->add('base', '^:config')
+            ->title(trans('joesama/entree::title.config.base'))
+            ->link(handles('joesama/entree::base'))
+            ->icon('fa fa-info');
 
          /*
 

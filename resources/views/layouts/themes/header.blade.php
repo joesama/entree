@@ -7,9 +7,9 @@
         <!--================================-->
         <div class="navbar-header">
             <a href="{{handles('joesama/entree::'.config('joesama/entree::entree.landing','home'))}}" class="navbar-brand">
-                <img class="brand-icon" src="{{ asset(memorize('threef.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:50px;height:50px;" >
+                <img class="brand-icon" src="{{ asset(memorize('joesama.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:50px;height:50px;padding-left: 5px;padding-top: 5px" >
                 <div class="brand-title">
-                    <span class="brand-text">{{ memorize('threef.' .\App::getLocale(). '.name', config('app.name')) }}</span>
+                    <span class="brand-text">{{ memorize('joesama.' .\App::getLocale(). '.name', config('app.name')) }}</span>
                 </div>
             </a>
         </div>

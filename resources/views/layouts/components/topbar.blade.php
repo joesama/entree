@@ -3,7 +3,7 @@
 <?php $menu = $entree->menu(); ?>
 <?php $acl = $entree->acl(); ?>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="up">
-  <img class="rounded-circle" src="{{ asset(memorize('threef.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:50px;height:50px;" >
+  <img class="rounded-circle" src="{{ asset(memorize('joesama.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:50px;height:50px;" >
   <button class="navbar-toggler" type="button"
   data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

@@ -16,8 +16,8 @@
             <div class="cls-content-sm panel">
                 <div class="panel-body">
                     <div class="mar-ver pad-btm">
-                        <img class="image-circle" src="{{ asset(memorize('threef.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:128px;height:128px;" >
-                        <p>{{ memorize('threef.' .\App::getLocale(). '.name', config('app.name')) }}</p>
+                        <img class="image-circle" src="{{ asset(memorize('joesama.logo','packages/joesama/entree/img/profile.png')) }}" alt="logo"  style="width:128px;height:128px;" >
+                        <p>{{ memorize('joesama.' .\App::getLocale(). '.name', config('app.name')) }}</p>
                     </div>
                     {!! Form::open(['url' => handles('joesama/entree::login'), 'action' => 'POST', 'class' => 'form-signin']) !!}
                         <div class="form-group">

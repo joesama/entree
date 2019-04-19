@@ -92,7 +92,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $path = realpath(__DIR__.'/../resources');
 
         $this->publishOrchestraLang($path);
-        $this->publishJavascriptTransformerView($path);
         $this->addLanguageComponent('joesama/entree', 'joesama/entree', $path.'/lang');
         $this->addConfigComponent('joesama/entree', 'joesama/entree', $path.'/config');
         $this->addViewComponent('joesama/entree', 'joesama/entree', $path.'/views');
@@ -106,16 +105,6 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->publishes([
             $path.'/lang/orchestra' => base_path('resources/lang/packages/orchestra/foundation/ms'),
             $path.'/lang/app'       => base_path('resources/lang/ms'),
-        ]);
-    }
-
-    /**
-     * Publishing Javascript Transformer View.
-     **/
-    protected function publishJavascriptTransformerView($path)
-    {
-        $this->publishes([
-            $path.'/views/entree/phptojs' => base_path('resources/views'),
         ]);
     }
 

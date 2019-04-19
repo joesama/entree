@@ -93,8 +93,8 @@ Vue.config.devtools = true;
 var resources = new Vue({
   el: '#photoprofile',
   data: {
-    image: "{{ data_get($user,'photo',false) }}",
-    newPhoto: "{{ data_get($user,'photo',false) }}",
+    image: "{{ asset(data_get($user,'photo',false)) }}",
+    newPhoto: "{{ asset(data_get($user,'photo',false)) }}",
     padRight: '',
     profileID: "{{ data_get($user,'id',false) }}",
     photo:'',

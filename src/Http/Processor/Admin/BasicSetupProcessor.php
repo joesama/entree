@@ -67,7 +67,7 @@ class BasicSetupProcessor
     {
         if ($request->file('logo')->isValid()) :
 
-            $file = new FileUploader($request->file('logo'), $this);
+            $file = new FileUploader($request->file('logo'), $this, true);
 
         $this->data->saveLogo($request, $file->destination());
 
@@ -87,7 +87,7 @@ class BasicSetupProcessor
     {
         if ($request->file('fav')->isValid()) :
 
-            $file = new FileUploader($request->file('fav'), $this);
+            $file = new FileUploader($request->file('fav'), $this, true);
 
         $this->data->saveFavicon($request, $file->destination());
 

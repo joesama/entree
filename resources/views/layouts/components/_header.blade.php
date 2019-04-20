@@ -22,6 +22,11 @@
 <link href="{{ asset('packages/joesama/entree/css/pace.min.css') }}" rel="stylesheet">
 <link href="{{ asset('packages/joesama/entree/plugins/morris-js/morris.min.css') }}" rel="stylesheet">
 <style type="text/css">
+	body {
+		font-family: Arial;
+		font-size: 12px;
+	}
+
 	#content-container:before{
 		height:100px;
 	}

@@ -34,7 +34,7 @@ class FileUploader
         $this->path = $this->upload($file, $this->guessExtensionName(get_class($origin)));
 
         if ($public) {
-            $this->path = 'storage' . $this->path;
+            $this->path = 'storage/' . $this->path;
         }
     }
 

@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>{{ memorize('threef.' .\App::getLocale(). '.abbr', config('app.name')) }}</title>
+<title>{{ memorize('joesama.' .\App::getLocale(). '.abbr', config('app.name')) }}</title>
 <!--Open Sans Font [ OPTIONAL ] -->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 

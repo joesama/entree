@@ -14,6 +14,7 @@ use Orchestra\Contracts\Auth\Listener\ThrottlesLogins as ThrottlesListener;
 use Orchestra\Foundation\Processors\AuthenticateUser;
 use Orchestra\Foundation\Processors\DeauthenticateUser;
 use Joesama\Entree\Http\Processor\UserManager;
+use Joesama\Entree\Facades\LdapAuth;
 
 class Access extends Controller implements AuthenticateListener, DeauthenticateListener, ThrottlesListener
 {
@@ -29,6 +30,10 @@ class Access extends Controller implements AuthenticateListener, DeauthenticateL
         $input = $request->only(['username', 'password', 'remember']);
         $throttles->setRequest($request)->setLoginKey('username');
         $input['status'] = 1;
+
+        if(config('joesama/entree::entree.ldap') === TRUE):
+            $auth = LdapAuth::authenticate($request->get('username'),$request->get('password'));
+        endif;
 
         return $authenticate->login($this, $input, $throttles);
     }

@@ -21,7 +21,8 @@
     },
     "require": {
         "php": ">=5.6.4",
-        "orchestra/foundation": ">=3.4.0"
+        "orchestra/foundation": ">=3.4.0",
+        "adldap/adldap": "5.0.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.3"

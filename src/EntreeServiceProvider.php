@@ -130,6 +130,8 @@ class EntreeServiceProvider extends ModuleServiceProvider
         $this->app->bind('entreecrumbler', EntreeCrumbler::class);
         $this->app->bind('announcer', Services\Notification\Announcement::class);
         $this->app->bind('emaillog', Database\Repository\NotificationLog::class);
+        $this->app->bind('ldap', Services\Ldap\LdapAuthenticate::class);
+
     }
 
     /**
